@@ -1,9 +1,12 @@
-import { chapterCatalogSchema, type Chapter, type ChapterCatalog } from "./schemas";
+import {
+  chapterCatalogSchema,
+  type Chapter,
+  type ChapterCatalog,
+} from "./schemas";
 
 /**
- * Real 12-chapter architecture outline for ZigZag Trading Academy.
- * Status is "outline" — stubs only; not a complete textbook.
- * Methodology specifics marked awaitingConfirmation where owner sign-off is required.
+ * Phase 3 curriculum: 12-chapter Hebrew ZigZag textbook catalog.
+ * Full bodies live under ./bodies — methodology math still marked awaitingConfirmation where needed.
  */
 const rawCatalog = {
   version: 1 as const,
@@ -13,132 +16,132 @@ const rawCatalog = {
       id: "ch-01",
       slug: "introduction-to-zigzag",
       number: 1,
-      titleHe: "מבוא למתודולוגיית ZigZag",
-      titleEn: "Introduction to the ZigZag Method",
+      titleHe: "מבוא ל־ZigZag",
+      titleEn: "Introduction to ZigZag",
       summaryHe:
-        "מסגרת האקדמיה, כללי סימולציה, והפרדה ברורה בין לימוד למסחר אמיתי.",
-      status: "outline" as const,
+        "מהי אקדמיית ZigZag, מהי סימולציה בלבד, ואיך בנוי מסלול 12 הפרקים סביב השיטה.",
+      status: "draft" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-02",
-      slug: "market-structure-and-swings",
+      slug: "market-structure-and-price-movement",
       number: 2,
-      titleHe: "מבנה שוק ותנועות ZigZag",
-      titleEn: "Market Structure & ZigZag Swings",
+      titleHe: "מבנה שוק ותנועת מחיר",
+      titleEn: "Market Structure and Price Movement",
       summaryHe:
-        "זיהוי מבנה, נקודות מפנה, ושפת מונחים בעברית עם מונחי מסחר באנגלית.",
-      status: "outline" as const,
+        "זיהוי מבנה, `swing high` / `swing low`, ושפת תנועה לניתוח לימודי של ZigZag.",
+      status: "draft" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-03",
-      slug: "capital-allocation",
+      slug: "trading-fundamentals",
       number: 3,
-      titleHe: "הקצאת הון לימודית",
-      titleEn: "Educational Capital Allocation",
+      titleHe: "יסודות מסחר לימודיים",
+      titleEn: "Trading Fundamentals",
       summaryHe:
-        "איך מגדירים הון מוקצה בתרגילים — ללא הפקדות, ברוקרים או מפתחות API.",
-      status: "outline" as const,
+        "מונחי בסיס: `position`, `entry`, `exit`, הון מוקצה לימודי — ללא ברוקר או הפקדה.",
+      status: "draft" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-04",
-      slug: "reinforcement-mechanics-1x",
+      slug: "position-construction",
       number: 4,
-      titleHe: "מכניקת Reinforcement ב־1x",
-      titleEn: "1x Reinforcement Mechanics",
+      titleHe: "בניית פוזיציה",
+      titleEn: "Position Construction",
       summaryHe:
-        "עקרונות חיזוק פוזיציה ברמת מינוף לימודי 1x — נוסחאות ממתינות לאישור.",
-      status: "outline" as const,
+        "איך בונים `position` לימודית בשכבות הקצאה, לפני חיזוקים ומינוף.",
+      status: "draft" as const,
       awaitingConfirmation: true,
     },
     {
       id: "ch-05",
-      slug: "adverse-moves-ladder",
+      slug: "reinforcement-mechanism",
       number: 5,
-      titleHe: "מהלכים שליליים וסולם 10%",
-      titleEn: "Adverse Moves & the 10% Ladder",
+      titleHe: "מנגנון Reinforcement",
+      titleEn: "Reinforcement Mechanism",
       summaryHe:
-        "סימון מהלך שלילי לימודי (הצעה: מרווח מחיר של 10%) — דורש אישור בעלים.",
-      status: "outline" as const,
+        "חיזוק פוזיציה לפי הון מוקצה מצטבר — טיוטת ברירת מחדל ממתינה לאישור בעלים.",
+      status: "draft" as const,
       awaitingConfirmation: true,
     },
     {
       id: "ch-06",
-      slug: "ten-x-threshold",
+      slug: "leverage-system",
       number: 6,
-      titleHe: "סף Reinforcement ב־10x",
-      titleEn: "10x Reinforcement Threshold",
+      titleHe: "מערכת מינוף",
+      titleEn: "Leverage System",
       summaryHe:
-        "מתי נפתחת אפשרות חיזוק ברמת 10x לפי הגדרה לימודית — לא קריאת מרווח חיה.",
-      status: "outline" as const,
+        "מסלולי 1x↔10x לימודיים, סף מעבר מוצע, והבחנה בין שני נתיבים שאינם שקולים.",
+      status: "draft" as const,
       awaitingConfirmation: true,
     },
     {
       id: "ch-07",
-      slug: "one-x-to-ten-x-paths",
+      slug: "average-entry-price",
       number: 7,
-      titleHe: "מעברים מ־1x ל־10x",
-      titleEn: "1x → 10x Transition Paths",
+      titleHe: "מחיר כניסה ממוצע",
+      titleEn: "Average Entry Price",
       summaryHe:
-        "שני מסלולים נפרדים: פוזיציית 10x נפרדת מול שינוי מינוף על קיימת — לא שקולים.",
-      status: "outline" as const,
-      awaitingConfirmation: true,
+        "חישוב `average entry` / ממוצע משוקלל אחרי מספר מילויים בתרגיל סימולציה.",
+      status: "draft" as const,
+      awaitingConfirmation: false,
     },
     {
       id: "ch-08",
-      slug: "profit-realization-75",
+      slug: "profit-realization",
       number: 8,
-      titleHe: "מימוש רווח 75%",
-      titleEn: "75% Profit Realization",
+      titleHe: "מימוש רווח",
+      titleEn: "Profit Realization",
       summaryHe:
-        "הבחנה בין משיכת רווח פתוח לבין סגירת 75% מהפוזיציה — ממתינים לאישור קנוני.",
-      status: "outline" as const,
+        "טיוטת מימוש 75%: משיכת רווח פתוח מול סגירת חלק מהפוזיציה — לאישור קנוני.",
+      status: "draft" as const,
       awaitingConfirmation: true,
     },
     {
       id: "ch-09",
-      slug: "fees-funding-slippage",
+      slug: "multiple-concurrent-positions",
       number: 9,
-      titleHe: "עמלות, מימון והחלקה בלימוד",
-      titleEn: "Fees, Funding & Slippage (Educational)",
+      titleHe: "מספר פוזיציות במקביל",
+      titleEn: "Multiple Concurrent Positions",
       summaryHe:
-        "ברירות מחדל לימודיות (טיוטה): עמלת round-trip, funding, slippage — לאישור.",
-      status: "outline" as const,
+        "ניהול כמה `positions` סימולטיביות במקביל, הקצאה נפרדת, ומגבלות לימודיות.",
+      status: "draft" as const,
       awaitingConfirmation: true,
     },
     {
       id: "ch-10",
-      slug: "risk-and-capital-stress",
+      slug: "risk-management",
       number: 10,
-      titleHe: "מעבדת סיכון ולחץ על הון",
-      titleEn: "Risk Lab & Capital Stress",
+      titleHe: "ניהול סיכונים",
+      titleEn: "Risk Management",
       summaryHe:
-        "תרגילי לחץ על הקצאה, חריגות סף, ותרחישי מהלך שלילי — סימולציה בלבד.",
-      status: "outline" as const,
+        "לחץ על הון מוקצה, חריגות סף, ומשמעת סימולציה — ללא הבטחות תשואה.",
+      status: "draft" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-11",
-      slug: "simulation-discipline",
+      slug: "practical-simulation-laboratory",
       number: 11,
-      titleHe: "משמעת סימולציה וציות",
-      titleEn: "Simulation Discipline & Compliance",
+      titleHe: "מעבדת סימולציה מעשית",
+      titleEn: "Practical Simulation Laboratory",
       summaryHe:
-        "איסורים: מסחר אמיתי, הפקדות, הבטחות תשואה, או סטטיסטיקות מבוימות.",
-      status: "outline" as const,
+        "פרוטוקול תרגול במעבדות `leverage` ו־`risk`, עם זרע דטרמיניסטי לתרגילים מדורגים.",
+      status: "draft" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-12",
-      slug: "method-synthesis",
+      slug: "final-examination",
       number: 12,
-      titleHe: "סינתזת השיטה וצעדים הבאים",
-      titleEn: "Method Synthesis & Next Steps",
+      titleHe: "בחינה מסכמת",
+      titleEn: "Final Examination",
       summaryHe:
-        "חיבור הפרקים לסימולטור, מעבדות, ומבחני ידע — ללא תעודת מיומנות מסחר.",
-      status: "outline" as const,
+        "סינתזת השיטה ושאלות ידע מסכמות — תעודת הבנה לימודית, לא רישיון מסחר.",
+      status: "draft" as const,
       awaitingConfirmation: false,
     },
   ],
@@ -153,4 +156,17 @@ export function getChapterBySlug(slug: string): Chapter | undefined {
 
 export function listChapters(): Chapter[] {
   return chapterCatalog.chapters;
+}
+
+export function getAdjacentChapters(slug: string): {
+  prev?: Chapter;
+  next?: Chapter;
+} {
+  const chapters = listChapters();
+  const index = chapters.findIndex((chapter) => chapter.slug === slug);
+  if (index < 0) return {};
+  return {
+    prev: index > 0 ? chapters[index - 1] : undefined,
+    next: index < chapters.length - 1 ? chapters[index + 1] : undefined,
+  };
 }

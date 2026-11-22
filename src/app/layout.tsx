@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Heebo, IBM_Plex_Mono, Syne } from "next/font/google";
 import { AcademyShell } from "@/components/layout/academy-shell";
 import { brand } from "@/lib/design/tokens";
@@ -33,7 +34,11 @@ export const metadata: Metadata = {
   applicationName: brand.fullName,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: ReactNode;
+}>) {
   return (
     <html
       lang="he"

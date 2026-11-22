@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { listChapters } from "@/lib/content/chapters";
 import { SimDisclaimer } from "@/components/layout/sim-disclaimer";
+import { RichText } from "@/lib/content/rich-text";
 
 export const metadata: Metadata = {
   title: "ספר לימוד — 12 פרקים",
@@ -13,20 +14,23 @@ export default function TextbookPage() {
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6">
       <p className="text-xs tracking-[0.25em] text-[var(--zz-gold)] uppercase">
-        Curriculum Outline
+        Curriculum
       </p>
       <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl text-[var(--zz-ink)] sm:text-4xl">
         ספר לימוד — 12 פרקים
       </h1>
-      <p className="mt-4 max-w-2xl text-[var(--zz-muted)]">
-        ארכיטקטורת התוכן בלבד. כל פרק מסומן כ־
-        <span dir="ltr" className="ltr-isolate font-mono text-xs">
-          outline
-        </span>
-        — אין כאן ספר לימוד מלא. פרקים שממתינים לאישור מתודולוגיה מסומנים במפורש.
+      <p className="mt-4 max-w-2xl leading-8 text-[var(--zz-muted)]">
+        תוכן עברי מלא ללימוד מתודולוגיית ZigZag. פרקים עם כללי מתודולוגיה
+        שטרם אושרו מסומנים במפורש. כל הדוגמאות הן סימולציה בלבד — ללא ביצועי עבר.
       </p>
-      <div className="mt-3">
+      <div className="mt-3 flex flex-wrap items-center gap-4">
         <SimDisclaimer compact />
+        <Link
+          href="/method"
+          className="text-sm text-[var(--zz-cyan)] hover:underline"
+        >
+          לדפי השיטה ←
+        </Link>
       </div>
 
       <ol className="mt-10 space-y-3">
@@ -54,8 +58,8 @@ export default function TextbookPage() {
                 >
                   {chapter.titleEn}
                 </p>
-                <p className="mt-2 text-sm text-[var(--zz-muted)]">
-                  {chapter.summaryHe}
+                <p className="mt-2 text-sm leading-7 text-[var(--zz-muted)]">
+                  <RichText text={chapter.summaryHe} />
                 </p>
               </div>
               <span className="shrink-0 self-start rounded-sm border border-[var(--zz-line)] px-2 py-1 font-mono text-[10px] tracking-wide text-[var(--zz-muted)] uppercase">

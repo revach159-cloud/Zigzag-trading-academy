@@ -8,7 +8,7 @@ Independent Hebrew-first (RTL) interactive trading **education** platform for th
 
 - Next.js App Router · React · TypeScript strict · Tailwind CSS
 - Framer Motion · R3F/Drei (lazy 3D with 2D / reduced-motion fallback)
-- Zod content schemas · Vitest
+- Zod content schemas · KaTeX formulas · Vitest
 
 ## Commands
 
@@ -26,14 +26,15 @@ npm run build
 - Independent Vercel project — no Edge Lab cron schedules in this repo
 - Methodology math defaults are drafts awaiting owner confirmation
 
-## Routes (Phase 1–2)
+## Routes
 
 | Path | Purpose |
 |------|---------|
 | `/` | Premium brand-first landing |
-| `/method` | ZigZag Method stub + draft assumptions |
-| `/textbook` | 12-chapter outline index |
-| `/textbook/[slug]` | Chapter outline stubs |
-| `/simulator` | Strategy simulator placeholder |
-| `/labs/leverage` · `/labs/risk` | Lab stubs |
-| `/tests` | Knowledge tests placeholder |
+| `/method` | ZigZag Method hub |
+| `/method/[slug]` | Method pages (overview, reinforcement, leverage, profit) |
+| `/textbook` | 12-chapter Hebrew textbook index |
+| `/textbook/[slug]` | Full chapter bodies (objectives, formulas, scenarios, exercises, quizzes) |
+| `/simulator` | Strategy simulator placeholder (+ curriculum links) |
+| `/labs/leverage` · `/labs/risk` | Lab stubs (+ curriculum links) |
+| `/tests` | Knowledge tests hub (+ chapter 12 link) |

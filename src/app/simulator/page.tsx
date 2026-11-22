@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SimDisclaimer } from "@/components/layout/sim-disclaimer";
 
 export const metadata: Metadata = {
@@ -15,6 +16,21 @@ export default function SimulatorPage() {
         שלד בלבד. הסימולטור יבנה על מנוע מתמטי מאושר וסדרות לימודיות — ללא
         ברוקרים, הפקדות, או נתוני ביצועים מבוימים.
       </p>
+      <ul className="mt-4 space-y-2 text-sm text-[var(--zz-muted)]">
+        <li>
+          <Link
+            href="/textbook/practical-simulation-laboratory"
+            className="text-[var(--zz-cyan)] hover:underline"
+          >
+            פרק 11 — מעבדת סימולציה מעשית
+          </Link>
+        </li>
+        <li>
+          <Link href="/method" className="text-[var(--zz-cyan)] hover:underline">
+            דפי השיטה
+          </Link>
+        </li>
+      </ul>
       <div className="mt-6 border border-dashed border-[var(--zz-line)] bg-[var(--zz-panel)]/30 p-8 text-center text-sm text-[var(--zz-muted)]">
         מנוע הסימולציה יתווסף בשלבים מאוחרים יותר.
         <div className="mt-3">
