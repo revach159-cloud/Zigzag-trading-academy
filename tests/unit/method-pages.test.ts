@@ -35,4 +35,13 @@ describe("method pages", () => {
     expect(getMethodPageBySlug("leverage")?.titleEn).toContain("1x");
     expect(getMethodPageBySlug("missing")).toBeUndefined();
   });
+
+  it("keeps knowledge-question indexes in range", () => {
+    for (const page of listMethodPages()) {
+      for (const question of page.knowledgeQuestions) {
+        expect(question.correctIndex).toBeGreaterThanOrEqual(0);
+        expect(question.correctIndex).toBeLessThan(question.choicesHe.length);
+      }
+    }
+  });
 });

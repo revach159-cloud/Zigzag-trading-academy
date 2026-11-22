@@ -132,6 +132,11 @@ export function MethodPageView({ page }: { page: MethodPage }) {
               className="rounded-sm border border-[var(--zz-line)] bg-[var(--zz-panel)]/40 p-4"
             >
               <h3 className="text-[var(--zz-cyan)]">{example.titleHe}</h3>
+              {example.awaitingConfirmation ? (
+                <p className="mt-1 text-xs text-[var(--zz-gold)]">
+                  דוגמה לימודית לפי טיוטת הנחות — ממתין לאישור
+                </p>
+              ) : null}
               <p className="mt-2 text-sm leading-7 text-[var(--zz-muted)]">
                 <RichText text={example.setupHe} />
               </p>

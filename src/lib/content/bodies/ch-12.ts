@@ -148,7 +148,7 @@ export const chapter12Body = {
       id: "q3",
       promptHe: "מה עושים כשחסר כלל מתודולוגיה?",
       choicesHe: [
-        "ממציאים baseret על אינטואיציה",
+        "ממציאים כלל על סמך אינטואיציה",
         "מסמנים awaiting confirmation ולא ממציאים",
         "מוחקים את הפרק",
         "מפרסמים win-rate",
