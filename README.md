@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZIGZAG TRADING ACADEMY
 
-## Getting Started
+Independent Hebrew-first (RTL) interactive trading **education** platform for the ZigZag Method.
 
-First, run the development server:
+**Simulation only** — no real trading, deposits, brokerage APIs, or fabricated performance.
+
+## Stack
+
+- Next.js App Router · React · TypeScript strict · Tailwind CSS
+- Framer Motion · R3F/Drei (lazy 3D with 2D / reduced-motion fallback)
+- Zod content schemas · Vitest
+
+## Commands
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run typecheck
+npm run test
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Product constraints
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Dedicated repository — **not** nested under Polymarket Edge Lab
+- Independent Vercel project — no Edge Lab cron schedules in this repo
+- Methodology math defaults are drafts awaiting owner confirmation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Routes (Phase 1–2)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Path | Purpose |
+|------|---------|
+| `/` | Premium brand-first landing |
+| `/method` | ZigZag Method stub + draft assumptions |
+| `/textbook` | 12-chapter outline index |
+| `/textbook/[slug]` | Chapter outline stubs |
+| `/simulator` | Strategy simulator placeholder |
+| `/labs/leverage` · `/labs/risk` | Lab stubs |
+| `/tests` | Knowledge tests placeholder |
