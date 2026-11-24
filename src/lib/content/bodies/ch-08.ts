@@ -3,75 +3,56 @@ import type { ChapterBodyInput } from "../schemas";
 export const chapter08Body = {
   slug: "profit-realization",
   learningObjectivesHe: [
-    "להכיר את טיוטת מימוש הרווח של 75% בשיטת ZigZag.",
-    "להבחין בין משיכת רווח פתוח לבין סגירת 75% מהכמות.",
-    "לתרגל דוגמה מספרית תוך סימון אי־הוודאות הקנונית.",
+    "ליישם מימוש מאושר: סגירת 75% מהכמות הפתוחה.",
+    "לחשב כמות שנותרת ומימוש חוזר על 25%.",
+    "לכלול עמלות 2 bps בסגירה ו-slippage 1 bp לצד.",
   ],
   sections: [
     {
       id: "seventy-five",
-      titleHe: "טיוטת 75%",
+      titleHe: "מימוש 75% בכמות",
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "התכנית מציעה `profit realization` של 75%. עד לאישור בעלים יש שתי פרשנויות עיקריות שאינן זהות תפעולית.",
+            "`Profit realization` המאושר הוא close_quantity_pct: סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; ניתן לחזור על 75% מהנותר.",
         },
         {
           type: "visual",
           kind: "profit-split",
-          captionHe: "75% ממומשים בתרגיל · 25% נשארים — הפרשנות הקנונית ממתינה.",
-        },
-        {
-          type: "table",
-          id: "interpretations",
-          captionHe: "שתי פרשנויות למימוש 75% (טיוטה)",
-          headersHe: ["פרשנות", "פעולה לימודית", "מה משתנה"],
-          rows: [
-            [
-              "Withdraw profit",
-              "מושכים 75% מה־`open profit`",
-              "הכמות עשויה להישאר; הרווח הממומש עולה",
-            ],
-            [
-              "Close 75% of position",
-              "סוגרים 75% מהכמות",
-              "Q יורד; E_avg של הנותרת נשמר בפישוט",
-            ],
-          ],
-          awaitingConfirmation: true,
-        },
-        {
-          type: "callout",
-          tone: "awaiting",
-          titleHe: "אין פרשנות קנונית עדיין",
-          textHe:
-            "מלמדים את שתי האפשרויות ומסמנים כל תרגיל באיזו פרשנות השתמשתם. אין לבחור בשקט פרשנות ולהציג אותה כשיטה הסופית.",
-        },
-      ],
-    },
-    {
-      id: "formulas-draft",
-      titleHe: "נוסחאות לימודיות לשתי הפרשנויות",
-      blocks: [
-        {
-          type: "formula",
-          id: "withdraw-profit",
-          latex: "R_{\\text{withdraw}} = 0.75 \\times \\max(\\mathrm{PnL}_{\\text{open}}, 0)",
-          captionHe: "פרשנות A: משיכת 75% מהרווח הפתוח החיובי (טיוטה)",
-          awaitingConfirmation: true,
+          captionHe: "75% נסגרים · 25% נשארים — אין 'משיכת רווח' נפרדת.",
         },
         {
           type: "formula",
           id: "close-qty",
           latex: "q_{\\text{close}} = 0.75 \\times Q,\\quad q_{\\text{remain}} = 0.25 \\times Q",
-          captionHe: "פרשנות B: סגירת 75% מהכמות (טיוטה)",
-          awaitingConfirmation: true,
+          captionHe: "סגירת 75% מהכמות",
+          awaitingConfirmation: false,
+        },
+        {
+          type: "callout",
+          tone: "note",
+          titleHe: "הפעלה ידנית",
+          textHe: "profitRealization.activation=manual; repeatableOnRemaining=true.",
+        },
+      ],
+    },
+    {
+      id: "fees",
+      titleHe: "עמלות בסגירה",
+      blocks: [
+        {
+          type: "list",
+          itemsHe: [
+            "roundTripBps: 2 בסגירה (במודל הלימודי).",
+            "slippageBpsPerSide: 1.",
+            "funding: 0; thresholdEpsilon: 0.",
+          ],
         },
         {
           type: "paragraph",
           textHe:
-            "בפרשנות B, ה־`realized PnL` על החלק שנסגר מחושב מול E_avg (בפישוט). בפרשנות A יש להגדיר כיצד המשיכה משפיעה על בסיס ההון המוקצה — וזה חלק מהאישור החסר.",
+            "Realized PnL על החלק שנסגר = q_close×(M−E_avg) פחות עמלות לפי התרגיל.",
         },
       ],
     },
@@ -82,9 +63,9 @@ export const chapter08Body = {
         {
           type: "list",
           itemsHe: [
-            "מתעדים איזו פרשנות הורצה.",
-            "לא ממירים מימוש לימודי ל'הוכחת תשואה'.",
-            "בודקים את מצב ה־25% הנותרים: סיכון, מינוף, ויעד תרגיל.",
+            "מתעדים Q לפני ואחרי כל מימוש.",
+            "לא מציגים מימוש לימודי כביצועי עבר.",
+            "בודקים שלב ×1/×10 והסיכון על הנותר.",
           ],
         },
       ],
@@ -93,83 +74,82 @@ export const chapter08Body = {
   workedExamples: [
     {
       id: "ex-realize",
-      titleHe: "השוואת שתי פרשנויות על אותו מצב",
-      setupHe:
-        "Q=100, E_avg=90, M=110 → PnL פתוח = 2000 לפני מימוש.",
+      titleHe: "מימוש ראשון וחוזר",
+      setupHe: "Q=20, E_avg=88, M=108.",
       stepsHe: [
-        "פרשנות A: R=0.75×2000=1500 ממומשים כ'משיכת רווח'; הכמות נשארת 100 לפי פישוט התרגיל.",
-        "פרשנות B: סוגרים 75 יח' → realized ≈ 75×(110−90)=1500; נותרות 25 יח'.",
-        "מציינים במפורש שהמספרים דומים כאן אך מצב הפוזיציה אחרי המעשה שונה.",
+        "PnL פתוח ≈ 20×20=400 לפני עמלות.",
+        "מימוש 1: q_close=15, q_remain=5.",
+        "Realized ≈ 15×20=300; ניכוי עמלה 2 bps על נושא הסגירה.",
+        "מימוש 2 (אופציונלי): 75%×5→3.75→3 ב-Floor.",
       ],
-      resultHe:
-        "אותו אחוז נומינלי, שני מצבי המשך שונים — לכן נדרש אישור קנוני.",
-      awaitingConfirmation: true,
+      resultHe: "רצף כמותי מתועד.",
+      awaitingConfirmation: false,
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-label-interp",
-        titleHe: "סימון פרשנות לפני ביצוע",
+        id: "ok-label",
+        titleHe: "יומן מימוש",
         narrativeHe:
-          "הלומד כותב 'Interpretation B' ואז סוגר 75% כמות בסימולציה.",
-        outcomeHe: "היומן ניתן לביקורת עקבית.",
-        lessonHe: "שקיפות פרשנות חשובה כל עוד אין אישור סופי.",
+          "הלומד רושם כל סגירת 75% עם עמלות.",
+        outcomeHe: "ביקורת עקבית.",
+        lessonHe: "מימוש = הפחתת כמות.",
       },
     ],
     failure: [
       {
-        id: "fail-blend",
-        titleHe: "ערבוב פרשנויות",
+        id: "fail-withdraw",
+        titleHe: "משיכת 75% מ-PnL בלי סגירה",
         narrativeHe:
-          "לומד 'מושך רווח' וגם מקטין כמות ב־75% באותו צעד בלי הגדרה.",
-        outcomeHe: "כפל פעולות וחוסר בהירות ב־PnL.",
-        lessonHe: "עד לאישור — בחרו פרשנות אחת לתרגיל.",
+          "מקטינים 'רווח במחברת' אך Q נשארת 20.",
+        outcomeHe: "סתירה למתודולוגיה.",
+        lessonHe: "mode=close_quantity_pct בלבד.",
       },
     ],
   },
   exercises: [
     {
       id: "ex1",
-      promptHe:
-        "ל־PnL פתוח 800, חשבו R לפי פרשנות A.",
+      promptHe: "Q=16. חשבו q_close ו־q_remain במימוש ראשון.",
     },
     {
       id: "ex2",
       promptHe:
-        "ל־Q=80 לפי פרשנות B, מהן q_close ו־q_remain? חשבו realized אם E_avg=50 ו־M=60.",
+        "q_remain=8, E_avg=50, M=62. חשבו realized על 75% מהנותר.",
     },
   ],
   knowledgeQuestions: [
     {
       id: "q1",
-      promptHe: "מה אחוז מימוש הרווח המוצע בטיוטה?",
-      choicesHe: ["25%", "50%", "75%", "100%"],
-      correctIndex: 2,
-      explanationHe: "הטיוטה מדברת על 75%.",
+      promptHe: "מימוש מאושר פירושו:",
+      choicesHe: [
+        "משיכת 75% מהרווח בלי שינוי כמות",
+        "סגירת 75% מהכמות",
+        "מינוף 75x",
+        "סגירת short",
+      ],
+      correctIndex: 1,
+      explanationHe: "profitRealization.mode=close_quantity_pct.",
     },
     {
       id: "q2",
-      promptHe: "Close 75% of position פירושו:",
-      choicesHe: [
-        "משיכת 75% מהרווח בלבד בלי שינוי כמות",
-        "הקטנת הכמות ב־75%",
-        "מינוף 75x",
-        "סגירת האקדמיה",
-      ],
+      promptHe: "אחרי מימוש ראשון נשאר:",
+      choicesHe: ["0%", "25% מהכמות המקורית", "75%", "short"],
       correctIndex: 1,
-      explanationHe: "זו פרשנות B — סגירת חלק מהכמות.",
+      explanationHe: "remainingPct=25.",
     },
     {
       id: "q3",
-      promptHe: "האם פרשנות המימוש אושרה סופית?",
-      choicesHe: ["כן", "לא — ממתינה לאישור בעלים", "רק ל־short", "רק ב־1x"],
+      promptHe: "עמלת round-trip במודל המאושר:",
+      choicesHe: ["20 bps", "2 bps", "0", "1%"],
       correctIndex: 1,
-      explanationHe: "שתי הפרשנויות עדיין בטיוטה.",
+      explanationHe: "fees.roundTripBps=2 בסגירה.",
     },
   ],
-  awaitingNotesHe: [
-    "אישור פרשנות קנונית: withdraw profit מול close 75% quantity.",
-    "אישור השפעת משיכת רווח על בסיס ההון המוקצה והשכבות.",
+  chapterSummaryHe: [
+    "מימוש = סגירה ידנית של 75% מהכמות, עם חזרה על הנותר.",
+    "עמלות ו-slippage מאושרים בתרגיל — לא טיוטה.",
   ],
+  awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

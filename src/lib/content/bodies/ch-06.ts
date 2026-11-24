@@ -3,88 +3,76 @@ import type { ChapterBodyInput } from "../schemas";
 export const chapter06Body = {
   slug: "leverage-system",
   learningObjectivesHe: [
-    "להסביר מינוף לימודי 1x מול 10x במסגרת ZigZag.",
-    "להבחין בין שני מסלולי מעבר שאינם שקולים.",
-    "לדעת את טיוטת סף המעבר: הפסד = 100% מהחיזוק האחרון.",
+    "להבחין שלב ×1 מול שלב ×10 על אותה פוזיציה long.",
+    "להסביר מעבר תקציבי כשחיזוק ×1 נדחה בתקרת $250.",
+    "לתאר חיזוק ×10 לפי הפסד מצטבר ותקרה מצטברת $250.",
   ],
   sections: [
     {
       id: "leverage-edu",
-      titleHe: "מינוף ככלי לימודי",
+      titleHe: "שלבי מינוף לימודיים",
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "באקדמיה `leverage` מתאר כמה חשיפה רעיונית מיוחסת להון מוקצה בתרגיל. 1x אומר חשיפה≈הקצאה (בפישוט). 10x מגדיל רגישות ל־`PnL` — ולכן גם לסיכון. המקסימום הלימודי המוצע הוא 10x.",
+            "באקדמיה `leverage` מתאר רגישות פוזיציה long ב־Cross. שלב ×1 מצטבר margin עד $250. שלב ×10 ממשיך על אותה כמות (preserves quantity) — לא פוזיציה נפרדת.",
         },
         {
           type: "formula",
           id: "notional-lev",
-          latex: "N \\approx L \\times C_{\\text{allocated}}",
-          captionHe: "קירוב לימודי: notional כמינוף כפול הון מוקצה (טיוטה)",
-          awaitingConfirmation: true,
+          latex: "N \\approx L \\times C_{\\text{margin}}",
+          captionHe: "קירוב לימודי: notional מול margin מוקצה",
+          awaitingConfirmation: false,
         },
         {
           type: "callout",
           tone: "warning",
-          titleHe: "לא מסחר ממונף אמיתי",
+          titleHe: "לא מסחר חי",
           textHe:
-            "אין כאן קריאות מרג'ין של ברוקר. תרגילי 10x הם להבנת רגישות — לא להפעלת חשבון.",
+            "אין כאן margin call אמיתי מ-Bybit. התרגיל מלמד רגישות — שינוי מינוף לא מבטיח משיכה או מניעת liquidation.",
         },
       ],
     },
     {
-      id: "threshold-draft",
-      titleHe: "סף מעבר מוצע ל־10x",
+      id: "transition",
+      titleHe: "מעבר ×1 → ×10",
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "טיוטה: אפשרות דיון ב־10x נפתחת כשההפסד הלימודי שווה ל־100% מה־`reinforcement` האחרון. בסיס מדידת ה־PnL המדויק לסף הזה עדיין דורש אישור.",
+            "כשחיזוק ×1 נוסף נדחה כי cumulative margin היה חורג מ-$250, השיטה עוברת לשלב ×10 על אותה פוזיציה ושומרת כמות. זה מעבר budget_cap_based — לא מסלול 'Path A/B' ולא תנאי יחיד של הפסד 100% מהחיזוק האחרון.",
         },
         {
-          type: "formula",
-          id: "tenx-threshold",
-          latex: "|\\mathrm{PnL}_{\\text{trigger}}| \\stackrel{?}{=} C_{\\text{latest reinforcement}}",
-          captionHe: "תנאי סף מוצע (סימן שאלה = ממתין לאישור)",
-          awaitingConfirmation: true,
+          type: "callout",
+          tone: "note",
+          titleHe: "שמירת כמות",
+          textHe: "stage1ToStage10PreservesQuantity=true.",
         },
       ],
     },
     {
-      id: "two-paths",
-      titleHe: "שני מסלולים — לא שקולים",
+      id: "stage10",
+      titleHe: "חיזוקים בשלב ×10",
       blocks: [
         {
-          type: "visual",
-          kind: "leverage-paths",
-          captionHe: "Path A: פוזיציית 10x נפרדת · Path B: שינוי מינוף על קיימת",
+          type: "formula",
+          id: "tenx-threshold",
+          latex:
+            "\\mathrm{net\\,loss} \\geq C_{\\text{relevant margin}}",
+          captionHe: "טריגר חיזוק ×10 מצטבר",
+          awaitingConfirmation: false,
         },
         {
-          type: "table",
-          id: "paths",
-          captionHe: "השוואת מסלולים (טיוטה)",
-          headersHe: ["מסלול", "מה קורה", "למה לא שקול"],
-          rows: [
-            [
-              "A — separate 10x",
-              "נפתחת פוזיציה ממונפת נוספת",
-              "שתי ישויות סיכון/תיעוד נפרדות",
-            ],
-            [
-              "B — re-lever in place",
-              "משנים L על אותה פוזיציה",
-              "אותה ישות עם רגישות PnL שונה",
-            ],
-          ],
-          awaitingConfirmation: true,
+          type: "paragraph",
+          textHe:
+            "תקרת margin מצטברת בשלב ×10: $250. אם חיזוק ×10 הבא נדחה, מעבר אוטומטי למינוף מקסימלי של ה-instrument — רק מנתוני Bybit מאומתים; אחרת unresolved.",
         },
         {
           type: "callout",
-          tone: "awaiting",
-          titleHe: "איזה מסלול קנוני?",
+          tone: "unresolved",
+          titleHe: "מינוף מקסימלי ל-instrument",
           textHe:
-            "הבעלים טרם אישר אם השיטה משתמשת ב־A, ב־B, או בשניהם תחת תנאים. עד אז מלמדים את ההבחנה בלבד.",
+            "maxInstrumentLeverage לא מוגדר גלובלית בספר עד אימות פר־symbol.",
         },
       ],
     },
@@ -92,37 +80,36 @@ export const chapter06Body = {
   workedExamples: [
     {
       id: "ex-lev-sense",
-      titleHe: "רגישות PnL ב־1x מול 10x",
-      setupHe:
-        "C_allocated=1,000. שינוי מחיר לימודי של +1% על ה־notional.",
+      titleHe: "מעבר אחרי Reject",
+      setupHe: "C_cum=$240 ב־×1; בקשה לחיזוק $20 → Reject; Q=3 נשמרת.",
       stepsHe: [
-        "ב־1x: N≈1000 → שינוי ≈10 יח'.",
-        "ב־10x: N≈10000 → שינוי ≈100 יח'.",
-        "מדגישים: אותו מהלך מחיר, רגישות שונה — בלי להבטיח תוצאה בשוק.",
+        "רושמים דחיית חיזוק ×1.",
+        "מסמנים מעבר לשלב ×10 על אותה פוזיציה.",
+        "מחשבים רגישות PnL: אותו Δמחיר, רגישות גבוהה יותר ב-×10.",
       ],
-      resultHe: "הלומד רואה למה 10x דורש משמעת סיכון גבוהה יותר.",
-      awaitingConfirmation: true,
+      resultHe: "מעבר שלב אחד וברור.",
+      awaitingConfirmation: false,
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-path-label",
-        titleHe: "תיעוד מסלול מעבר",
+        id: "ok-stage-label",
+        titleHe: "תיוג שלב ביומן",
         narrativeHe:
-          "בתרגיל הלומד כותב במפורש 'Path A' או 'Path B' לפני כל שינוי מינוף.",
-        outcomeHe: "אין בלבול בין פוזיציות או רמות סיכון.",
-        lessonHe: "הבחנת מסלולים חשובה יותר מהמספר 10 עצמו.",
+          "הלומד כותב ×1 או ×10 ואת C_cum תחת כל שלב.",
+        outcomeHe: "אין בלבול בין ישויות.",
+        lessonHe: "שלב ≠ פוזיציה חדשה.",
       },
     ],
     failure: [
       {
-        id: "fail-equiv",
-        titleHe: "הנחת שקילות מסלולים",
+        id: "fail-path-ab",
+        titleHe: "פתיחת 'פוזיציית 10x נפרדת'",
         narrativeHe:
-          "לומד מניח ש־re-lever זהה לפוזיציה נפרדת ומערבב יומנים.",
-        outcomeHe: "חישוב ממוצע וסיכון משתבשים.",
-        lessonHe: "המסלולים אינם שקולים — גם כששניהם בטיוטה.",
+          "מלמדים Path A כקנון — נפתחת P2 נפרדת.",
+        outcomeHe: "סתירה למתודולוגיה המאושרת.",
+        lessonHe: "המעבר שומר כמות על אותה פוזיציה.",
       },
     ],
   },
@@ -130,51 +117,55 @@ export const chapter06Body = {
     {
       id: "ex1",
       promptHe:
-        "הסבירו בשני משפטים למה Path A ו־Path B אינם שקולים.",
+        "הסבירו במשפט אחד ההבדל בין מעבר תקציבי לבין 'הפסד = 100% מהחיזוק האחרון'.",
     },
     {
       id: "ex2",
       promptHe:
-        "בהינתן חיזוק אחרון C=1,500, נסחו את תנאי הסף המוצע למעבר לדיון 10x.",
-      hintHe: "היעזרו בנוסחת הסף שבפרק.",
+        "C_cum=$248; חיזוק $5. מה קורה בשלב ×1? מה הצעד הבא בשיטה?",
     },
   ],
   knowledgeQuestions: [
     {
       id: "q1",
-      promptHe: "מהו המינוף הלימודי המרבי המוצע?",
-      choicesHe: ["2x", "5x", "10x", "100x"],
-      correctIndex: 2,
-      explanationHe: "הטיוטה מגדירה מקסימום לימודי 10x.",
+      promptHe: "מעבר ×1→×10 מאושר כאשר:",
+      choicesHe: [
+        "יש רווח 75%",
+        "חיזוק ×1 נדחה בתקרת margin",
+        "מגיע swing high",
+        "תמיד אחרי 3 חיזוקים",
+      ],
+      correctIndex: 1,
+      explanationHe: "stage1ToStage10Transition=budget_cap_based.",
     },
     {
       id: "q2",
-      promptHe: "סף המעבר המוצע ל־10x הוא:",
+      promptHe: "טריגר חיזוק בשלב ×10:",
       choicesHe: [
-        "רווח של 75%",
-        "הפסד השווה ל־100% מהחיזוק האחרון",
-        "כל swing low",
-        "פתיחת חשבון ברוקר",
+        "הפסד נקי ≥ margin הרלוונטי",
+        "כל מגע ב-90",
+        "סגירת 25%",
+        "רק funding",
       ],
-      correctIndex: 1,
-      explanationHe: "זו טיוטת הסף מהתכנית — ממתינה לאישור.",
+      correctIndex: 0,
+      explanationHe: "stage10ReinforcementTrigger=net_loss_ge_relevant_allocated_margin.",
     },
     {
       id: "q3",
-      promptHe: "Path A במעבר ל־10x פירושו:",
+      promptHe: "במעבר שלב:",
       choicesHe: [
-        "שינוי מינוף על אותה פוזיציה",
-        "פתיחת פוזיציית 10x נפרדת",
-        "סגירת כל החשיפה",
-        "הפקדת כסף",
+        "הכמות מתאפסת",
+        "הכמות נשמרת",
+        "חובה short",
+        "חובה פוזיציה שנייה",
       ],
       correctIndex: 1,
-      explanationHe: "Path A = separate 10x position.",
+      explanationHe: "stage1ToStage10PreservesQuantity=true.",
     },
   ],
-  awaitingNotesHe: [
-    "אישור סף 10x ובסיס מדידת ה־PnL לסף.",
-    "אישור מסלול מעבר קנוני: separate מול re-lever.",
-    "אישור נוסחת notional תחת מינוף לימודי.",
+  chapterSummaryHe: [
+    "×1→×10 מבוסס תקרת margin; אותה פוזיציה long ושמירת כמות.",
+    "×10 מחזק לפי הפסד מצטבר; מקסימום מינוף instrument — unresolved בלי נתוני Bybit.",
   ],
+  awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

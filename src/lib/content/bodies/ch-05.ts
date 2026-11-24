@@ -3,9 +3,9 @@ import type { ChapterBodyInput } from "../schemas";
 export const chapter05Body = {
   slug: "reinforcement-mechanism",
   learningObjectivesHe: [
-    "להסביר מהו `reinforcement` בשיטת ZigZag כשכבת הקצאה נוספת.",
-    "להכיר את טיוטת ברירת המחדל: גודל לפי הון מוקצה מצטבר.",
-    "לתרגל דוגמה מספרית תוך סימון מפורש של 'ממתין לאישור'.",
+    "להסביר `reinforcement` כהוספת margin לאחר מגע בסולם adverse.",
+    "ליישם P_k = P₀×(1−0.10×k) ולדוגמה 100→90→80.",
+    "לתעד cumulative allocated capital ותקרת $250.",
   ],
   sections: [
     {
@@ -15,67 +15,75 @@ export const chapter05Body = {
         {
           type: "paragraph",
           textHe:
-            "`Reinforcement` הוא הוספת הון מוקצה (וכמות) לפוזיציה קיימת בתרגיל, בדרך כלל אחרי מהלך שלילי לימודי. זה אינו 'averaging down' חופשי בלי כללים — בשיטה יש מסגרת (שבחלקה עדיין בטיוטה).",
+            "`Reinforcement` מוסיף margin וכמות long לפוזיציה קיימת. ההפעלה במגע (Touch) ברמת סולם. חיזוק אופציונלי לרמה; רמות שדולגו נשארות ברישום.",
         },
         {
           type: "callout",
-          tone: "awaiting",
-          titleHe: "מצב גודל — טיוטת ברירת מחדל",
+          tone: "note",
+          titleHe: "גודל מאושר",
           textHe:
-            "ברירת המחדל המוצעת: Cumulative allocated capital — סכום ההון שהוקצה/חוזק במפורש עד כה. חלופה שנדונה: Position equity כולל PnL לא ממומש. טרם אושר.",
+            "בשלב ×1: cumulative allocated capital על בסיס margin — סכום ההקצאות המפורשות עד כה.",
         },
       ],
     },
     {
       id: "adverse-context",
-      titleHe: "הקשר למהלך שלילי",
+      titleHe: "סולם adverse",
       blocks: [
-        {
-          type: "paragraph",
-          textHe:
-            "טיוטה לימודית מציעה סולם מרווחי מחיר של 10% כסמן ל־`adverse move` (לא mid של order book חי). החיזוק נדון ביחס לסולם הזה במעבדה — עד לאישור.",
-        },
         {
           type: "visual",
           kind: "adverse-ladder",
-          captionHe: "סולם 10% לימודי מוצע — אינו פרמטר מסחר חי.",
+          captionHe: "סולם 10% ממחיר ייחוס מקורי P₀.",
         },
         {
           type: "formula",
           id: "ladder-price",
-          latex: "P_k = P_0 \\times (1 - 0.10)^k",
-          captionHe: "מחיר רמה k בסולם ירידה לימודי של 10% (טיוטה)",
-          awaitingConfirmation: true,
+          latex: "P_k = P_0 \\times (1 - 0.10 \\times k)",
+          captionHe: "מחיר רמה k — מרווח מהייחוס המקורי",
+          awaitingConfirmation: false,
+        },
+        {
+          type: "callout",
+          tone: "warning",
+          titleHe: "לא מרכיב",
+          textHe: "מ־100: k=1→90, k=2→80. לא 81 (זה היה (1−0.10)²).",
         },
       ],
     },
     {
-      id: "sizing-draft",
-      titleHe: "טיוטת חישוב גודל",
+      id: "sizing",
+      titleHe: "חישוב margin וכמות",
       blocks: [
         {
           type: "formula",
           id: "cum-alloc",
           latex: "C_{\\text{cum}} = \\sum_{i=0}^{n} C_i",
-          captionHe: "הון מוקצה מצטבר אחרי n חיזוקים (הגדרה לימודית)",
-          awaitingConfirmation: true,
+          captionHe: "margin מצטבר אחרי n שכבות",
+          awaitingConfirmation: false,
         },
         {
-          type: "paragraph",
-          textHe:
-            "כיצד בדיוק נגזר C_{n+1} מ־C_cum (או מ־equity) — אינו סגור. לכן בדוגמאות נבחר מספר הקצאה מפורש לכל שכבה ונתייג זאת כתרגיל, לא ככלל קנוני.",
+          type: "formula",
+          id: "qty-i",
+          latex: "q_i = \\lfloor C_i / P_{\\text{exec}} \\rfloor",
+          captionHe: "כמות שכבה i",
+          awaitingConfirmation: false,
         },
         {
           type: "table",
           id: "reinforcement-log",
-          captionHe: "יומן חיזוקים לדוגמה (טיוטה)",
-          headersHe: ["שכבה", "מחיר סימולציה", "הקצאה C_i", "C_cum"],
+          captionHe: "יומן חיזוקים לדוגמה",
+          headersHe: ["שכבה", "מחיר סולם", "margin C_i", "C_cum", "q (Floor)"],
           rows: [
-            ["0 פתיחה", "100", "2,000", "2,000"],
-            ["1 חיזוק", "90", "2,000", "4,000"],
-            ["2 חיזוק", "81", "2,000", "6,000"],
+            ["0 פתיחה", "100", "$100", "$100", "1"],
+            ["1 חיזוק @90", "90", "$70", "$170", "0"],
+            ["2 חיזוק @80", "80", "$80", "$250", "1"],
           ],
-          awaitingConfirmation: true,
+          awaitingConfirmation: false,
+        },
+        {
+          type: "paragraph",
+          textHe:
+            "בשכבה 1, floor(70/90)=0 — בתרגיל פדגוגי מעלים margin או מסבירים דחייה. בשכבה 2, margin $80 נותן q=1; C_cum מגיע בדיוק ל-$250.",
         },
       ],
     },
@@ -83,18 +91,17 @@ export const chapter05Body = {
   workedExamples: [
     {
       id: "ex-reinf",
-      titleHe: "שני חיזוקים מתועדים",
+      titleHe: "שני מגעים עד התקרה",
       setupHe:
-        "פתיחה ב־100 עם C_0=2000. אחרי ירידה ל־90 ול־81 מוסיפים C_1=C_2=2000 (מספרים לבחירת התרגיל).",
+        "P₀=100; margin פתיחה $100 (q=1); חיזוק $100 ב־90 (q=1); חיזוק $50 ב־80 דחוי — C_cum היה $250 כבר.",
       stepsHe: [
-        "מחשבים מחירי סולם: 100, 90, 81 לפי טיוטת 10%.",
-        "מעדכנים C_cum אחרי כל שכבה: 2k → 4k → 6k.",
-        "כמויות בפישוט 1x: q₀=2000/100=20; q₁=2000/90≈22.22; q₂=2000/81≈24.69 → Q≈66.91.",
-        "מסמנים ביומן: כל השלבים לפי טיוטה ממתינה לאישור.",
+        "סולם: 100, 90, 80.",
+        "אחרי פתיחה וחיזוק ב־90: C_cum=$200, Q=2.",
+        "חיזוק נוסף $50 מביא ל-$250 — אחר כך Reject; מתכוננים למעבר ×10 בפרק 6.",
+        "מעדכנים E_avg בפרק 7.",
       ],
-      resultHe:
-        "נוצר יומן reinforcement שקוף (C_cum=6,000; Q≈66.91 בפישוט 1x) — בלי להציג זאת ככלל סופי.",
-      awaitingConfirmation: true,
+      resultHe: "יומן reinforcement עד תקרת $250.",
+      awaitingConfirmation: false,
     },
   ],
   scenarios: {
@@ -103,19 +110,19 @@ export const chapter05Body = {
         id: "ok-journal",
         titleHe: "חיזוק עם תיעוד מלא",
         narrativeHe:
-          "הלומד מוסיף שכבה רק אחרי שסימן את רמת הסולם ואת C_i החדש.",
-        outcomeHe: "אפשר לבדוק את הממוצע ואת הסיכון אחר כך.",
+          "כל שכבה: מגע סולם, C_i, C_cum, q ב-Floor.",
+        outcomeHe: "ביקורת וחישוב ממוצע.",
         lessonHe: "Reinforcement בלי יומן הוא ניחוש.",
       },
     ],
     failure: [
       {
-        id: "fail-invent",
-        titleHe: "המצאת כלל גודל",
+        id: "fail-compound",
+        titleHe: "סולם מרכיב שגוי",
         narrativeHe:
-          "לומד ממציא נוסחת 'פיבונאצ'י לחיזוק' ומציג אותה כחלק משיטת ZigZag.",
-        outcomeHe: "זיהום המתודולוגיה בכלל שלא אושר.",
-        lessonHe: "אם זה לא בטיוטה המסומנת — זה לא חלק מהשיטה כאן.",
+          "משתמשים ב־80→72 כרמה 2 במקום 80.",
+        outcomeHe: "סטייה מהמתודולוגיה המאושרת.",
+        lessonHe: "הנוסחה לינארית ב-k מהייחוס המקורי.",
       },
     ],
   },
@@ -123,57 +130,46 @@ export const chapter05Body = {
     {
       id: "ex1",
       promptHe:
-        "חשבו את P_1 ו־P_2 לפי טיוטת הסולם מ־P_0=120, ותעדו שני C_i לבחירתכם.",
+        "P₀=50: חשבו P₁ ו־P₂. תעדו margin $40 לכל שכבה אם מגע.",
     },
     {
       id: "ex2",
       promptHe:
-        "הסבירו במילים שלכם את ההבדל בין cumulative allocated capital לבין position equity.",
-      hintHe: "היעזרו בדף השיטה Reinforcement.",
+        "הסבירו מה קורה כש-C_cum+$20 היה עובר $250.",
+      hintHe: "capPolicy=reject.",
     },
   ],
   knowledgeQuestions: [
     {
       id: "q1",
-      promptHe: "מהי ברירת המחדל המוצעת לגודל reinforcement?",
-      choicesHe: [
-        "Position equity כולל PnL",
-        "Cumulative allocated capital",
-        "יתרת ברוקר חיה",
-        "מינוף קבוע 10x תמיד",
-      ],
+      promptHe: "P₂ כש־P₀=100:",
+      choicesHe: ["81", "80", "90", "100"],
       correctIndex: 1,
-      explanationHe:
-        "הטיוטה ברירת המחדל היא הון מוקצה מצטבר — עד לאישור.",
+      explanationHe: "100×(1−0.20)=80.",
     },
     {
       id: "q2",
-      promptHe: "סולם ה־10% בפרק זה הוא:",
-      choicesHe: [
-        "מחיר mid חי מבורסה",
-        "הצעה לימודית ממתינה לאישור",
-        "עמלת round-trip",
-        "מימוש רווח",
-      ],
-      correctIndex: 1,
-      explanationHe: "זה סמן פדגוגי מוצע, לא order book חי.",
+      promptHe: "הפעלת חיזוק על הסולם:",
+      choicesHe: ["במגע (Touch)", "רק בסגירת נר", "אוטומטי בכל דקה", "רק ב-short"],
+      correctIndex: 0,
+      explanationHe: "ladderActivation=touch.",
     },
     {
       id: "q3",
-      promptHe: "מתי מותר להמציא נוסחת חיזוק חדשה באקדמיה?",
+      promptHe: "בסיס גודל בשלב ×1:",
       choicesHe: [
-        "תמיד",
-        "אף פעם — רק טיוטות מסומנות עד אישור",
-        "רק אם PnL חיובי בדוגמה",
-        "רק בפרק 1",
+        "cumulative allocated margin",
+        "יתרת בנק",
+        "funding בלבד",
+        "short equity",
       ],
-      correctIndex: 1,
-      explanationHe: "אין להמציא כללי מתודולוגיה חסרים.",
+      correctIndex: 0,
+      explanationHe: "reinforcementSizingMode=cumulative_allocated_capital.",
     },
   ],
-  awaitingNotesHe: [
-    "אישור מצב גודל: cumulative allocated capital מול equity.",
-    "אישור סף/סולם ה־adverse move (הצעה: 10%).",
-    "אישור כלל גזירת C_{n+1} המדויק מתוך הבסיס שנבחר.",
+  chapterSummaryHe: [
+    "סולם 100→90→80 ממחיר מקורי; חיזוק במגע עם margin מצטבר.",
+    "תקרת $250 וכמות Floor הם חלק מהפרוטוקול המאושר.",
   ],
+  awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

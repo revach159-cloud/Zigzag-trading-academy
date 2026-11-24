@@ -22,7 +22,10 @@ export const chapter03Body = {
             ["`entry`", "מחיר/נקודת פתיחה מדומה"],
             ["`exit`", "סגירה מלאה או חלקית מדומה"],
             ["`notional`", "שווי רעיוני של החשיפה בתרגיל"],
-            ["`allocated capital`", "הון לימודי שהוקצה במפורש לפוזיציה"],
+            ["`margin`", "הקצאה לפוזיציה (בסיס sizing בשיטה המאושרת)"],
+            ["`collateral`", "בטוחה לחשבון Cross (לא זהה ל-margin בפוזיציה)"],
+            ["`liquidation`", "אירוע פירוק בשוק — נלמד בנפרד מסיום תרגיל"],
+            ["`allocated capital`", "מונח לימודי להון שהוקצה במפורש לפוזיציה"],
             ["`unrealized PnL`", "רווח/הפסד פתוח לפי מחיר סימולציה"],
             ["`realized PnL`", "רווח/הפסד שנסגר בתרגיל"],
           ],
@@ -52,9 +55,11 @@ export const chapter03Body = {
           captionHe: "רווח/הפסד לימודי לפוזיציית long מדומה",
         },
         {
-          type: "paragraph",
+          type: "callout",
+          tone: "note",
+          titleHe: "long בלבד",
           textHe:
-            "עבור `short` מדומה הסימן מתהפך: PnL = q × (E − M). באקדמיה נשתמש בעיקר בדוגמאות long כדי ליישר קו, אלא אם נאמר אחרת.",
+            "במתודולוגיה המאושרת short מבוטל (long_only). דוגמאות קצרות על short להבנת הסימן הן אופציונליות ולא חלק מפרוטוקול ZigZag.",
         },
         {
           type: "formula",
@@ -71,7 +76,7 @@ export const chapter03Body = {
         {
           type: "paragraph",
           textHe:
-            "`allocated capital` בתרגיל הוא מספר שאתם בוחרים לסימולציה. הוא אינו יתרת בנק. בפרקים על חיזוקים נשתמש (כטיוטה) בסכום ההון שהוקצה במפורש — לא בשווי שוק חיצוני.",
+            "margin מוקצה בתרגיל הוא מספר סימולטיבי — לא יתרת בנק. חיזוקים מצטברים לפי cumulative allocated margin עד תקרה $250. notional גדל עם מינוף; collateral שייך לרמת החשבון.",
         },
         {
           type: "list",
@@ -164,6 +169,10 @@ export const chapter03Body = {
       correctIndex: 1,
       explanationHe: "אין חיבור ברוקר; המוצר לימודי בלבד.",
     },
+  ],
+  chapterSummaryHe: [
+    "PnL long ומונחי margin/notional/collateral/liquidation מובחנים בבירור.",
+    "השיטה המאושרת היא long בלבד על סימולציה ללא ברוקר.",
   ],
   awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

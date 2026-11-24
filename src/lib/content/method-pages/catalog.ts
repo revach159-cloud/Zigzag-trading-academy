@@ -9,8 +9,8 @@ const rawCatalog = {
       titleHe: "סקירת מתודולוגיית ZigZag",
       titleEn: "ZigZag Method Overview",
       summaryHe:
-        "מפת השיטה הלימודית: חיזוקים, מעברי 1x↔10x, ומימוש רווח — עם טיוטות ממתינות לאישור.",
-      awaitingConfirmation: true,
+        "מפת השיטה המאושרת: חיזוקים בסולם adverse, מעבר ×1↔×10 לפי תקרת הקצאה, ומימוש 75% בכמות — סימולציה בלבד.",
+      awaitingConfirmation: false,
       sections: [
         {
           id: "pillars",
@@ -19,7 +19,7 @@ const rawCatalog = {
             {
               type: "paragraph",
               textHe:
-                "מתודולוגיית ZigZag באקדמיה נלמדת כמערכת שכבות: בניית `position`, `reinforcement` בתגובה למהלך שלילי לימודי, ניהול מינוף 1x↔10x, ומימוש רווח לפי טיוטת 75%.",
+                "מתודולוגיית ZigZag באקדמיה נלמדת כמערכת שכבות על מודל Bybit Linear USDT Perp (Cross, One-Way, long בלבד): בניית `position`, `reinforcement` בתגובה למגע בסולם adverse, ניהול שלב ×1 ושלב ×10, ומימוש רווח בסגירת 75% מהכמות. החישובים בפדגוגיה מתייחסים ל־Decimal.js במנוע.",
             },
             {
               type: "table",
@@ -27,9 +27,9 @@ const rawCatalog = {
               captionHe: "עמודים וקישורים",
               headersHe: ["עמוד", "מיקוד", "סטטוס"],
               rows: [
-                ["Reinforcement", "שכבות הקצאה וסולם adverse", "טיוטה"],
-                ["Leverage 1x↔10x", "סף ומסלולים לא־שקולים", "טיוטה"],
-                ["Profit realization", "75% — שתי פרשנויות", "טיוטה"],
+                ["Reinforcement", "הקצאת margin מצטברת, סולם 10% מ־P₀", "מאושר"],
+                ["Leverage 1x↔10x", "מעבר תקציבי; ×10 לפי הפסד מצטבר", "מאושר"],
+                ["Profit realization", "סגירה ידנית של 75% מהכמות", "מאושר"],
               ],
             },
             {
@@ -43,24 +43,25 @@ const rawCatalog = {
         },
         {
           id: "defaults",
-          titleHe: "ברירות מחדל מוצעות",
+          titleHe: "כללים מאושרים (2026-11-24)",
           blocks: [
             {
               type: "list",
               itemsHe: [
-                "גודל חיזוק: cumulative allocated capital (ברירת מחדל מוצעת).",
-                "סולם adverse: מרווחי 10% לימודיים.",
-                "סף 10x: הפסד = 100% מהחיזוק האחרון.",
-                "מימוש: 75% — פרשנות קנונית ממתינה.",
-                "עמלות מוצעות: 2 bps round-trip; slippage 1 bp לצד; funding 0 בתרגול בסיסי.",
+                "גודל בשלב ×1: cumulative allocated capital על בסיס margin; תקרה $250 לפוזיציה — דחייה (Reject).",
+                "סולם adverse: P_k = P₀×(1−0.10×k) ממחיר ייחוס מקורי; הפעלה במגע (Touch).",
+                "מעבר ×1→×10: כשתקרת ההקצאה חוסמת חיזוק ×1 נוסף — שומרים כמות, עוברים שלב.",
+                "שלב ×10: חיזוק כשההפסד הנקי ≥ ה-margin שהוקצה לרמת הרלוונטית; תקרה מצטברת $250.",
+                "מימוש: סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; חזרתי על הנותר.",
+                "עמלות: 2 bps round-trip בסגירה; slippage 1 bp לצד; funding 0; epsilon 0.",
               ],
             },
             {
               type: "callout",
-              tone: "awaiting",
-              titleHe: "הכל עד אישור בעלים",
+              tone: "note",
+              titleHe: "מתודולוגיה מאושרת על ידי הבעלים",
               textHe:
-                "Phase 4 של המנוע חסום עד לאישורים. כאן מלמדים את המפה בלבד.",
+                "כללי Phase 4 נלמדים כאן כשיטה קנונית. מקסימום מינוף לכל instrument נלמד רק מנתוני Bybit מאומתים — אחרת מסומן unresolved.",
             },
           ],
         },
@@ -71,12 +72,12 @@ const rawCatalog = {
           titleHe: "ניווט לימודי בדפי השיטה",
           setupHe: "לומד חדש רוצה להבין את השיטה לפני הסימולטור.",
           stepsHe: [
-            "קורא סקירה זו ורושם את חמש ברירות המחדל המוצעות.",
-            "עובר לדף Reinforcement ופותר את שאלות הידע.",
-            "עובר לדף Leverage ומתרגל הבחנת Path A/B.",
-            "עובר לדף Profit ומסמן פרשנות לתרגיל עתידי.",
+            "קורא סקירה זו ורושם את חמשת הכללים המאושרים.",
+            "עובר לדף Reinforcement ולומד סולם 100→90→80.",
+            "עובר לדף Leverage ומבין מעבר תקציבי ×1→×10.",
+            "עובר לדף Profit ומתרגל סגירת 75% מהכמות.",
           ],
-          resultHe: "מפה מנטלית של השיטה בלי להמציא כללים.",
+          resultHe: "מפה מנטלית של השיטה המאושרת בלי להמציא כללים.",
         },
       ],
       scenarios: {
@@ -85,7 +86,7 @@ const rawCatalog = {
             id: "ok-map",
             titleHe: "לימוד לפי מפה",
             narrativeHe: "הלומד מסיים את ארבעת דפי השיטה לפני מעבדה.",
-            outcomeHe: "פחות בלבול בין שכבות למסלולי מינוף.",
+            outcomeHe: "פחות בלבול בין שכבות לשלבי מינוף.",
             lessonHe: "שיטה נלמדת כמערכת, לא כטיפ בודד.",
           },
         ],
@@ -109,23 +110,21 @@ const rawCatalog = {
         },
         {
           id: "q2",
-          promptHe: "האם ברירות המחדל בדף זה סופיות?",
-          choicesHe: ["כן", "לא — ממתינות לאישור", "רק העמלות", "רק הסולם"],
+          promptHe: "תקרת margin לפוזיציה בשלב ×1:",
+          choicesHe: ["$100", "$250 עם מדיניות Reject", "ללא תקרה", "$10,000"],
           correctIndex: 1,
-          explanationHe: "כולן טיוטה עד אישור בעלים.",
+          explanationHe: "perPositionMarginCapUsd=250; capPolicy=reject.",
         },
       ],
-      awaitingNotesHe: [
-        "כל ברירות המחדל של Phase 4 עדיין ממתינות לאישור.",
-      ],
+      awaitingNotesHe: [],
     },
     {
       slug: "reinforcement",
       titleHe: "Reinforcement",
       titleEn: "Reinforcement Mechanics",
       summaryHe:
-        "שכבות חיזוק, הון מוקצה מצטבר, וסולם מהלך שלילי לימודי — טיוטה לאישור.",
-      awaitingConfirmation: true,
+        "שכבות חיזוק על בסיס margin מצטבר, סולם 10% ממחיר ייחוס מקורי, והפעלה במגע.",
+      awaitingConfirmation: false,
       sections: [
         {
           id: "def",
@@ -134,51 +133,57 @@ const rawCatalog = {
             {
               type: "paragraph",
               textHe:
-                "`Reinforcement` מוסיף הקצאה לפוזיציה קיימת אחרי מהלך שלילי לימודי. ברירת המחדל המוצעת לגודל מבוססת על cumulative allocated capital — לא על יתרת ברוקר.",
+                "`Reinforcement` מוסיף הקצאת margin (וכמות) לפוזיציה long קיימת לאחר מגע ברמת סולם adverse. החיזוק אופציונלי לכל רמה; רמות שדולגו נשארות מתועדות. גודל השכבה בשלב ×1 מבוסס על cumulative allocated capital — סכום ה-margin שהוקצה במפורש.",
             },
             {
               type: "visual",
               kind: "adverse-ladder",
-              captionHe: "סולם 10% מוצע כסמן פדגוגי ל־adverse move.",
+              captionHe: "סולם 10% ממחיר ייחוס מקורי P₀ — לא מרכיב.",
             },
             {
               type: "formula",
               id: "ladder",
-              latex: "P_k = P_0 (1 - 0.10)^k",
-              captionHe: "רמת מחיר k בטיוטת הסולם",
-              awaitingConfirmation: true,
+              latex: "P_k = P_0 \\times (1 - 0.10 \\times k)",
+              captionHe: "רמת מחיר k בסולם (מרווח 10% מהייחוס המקורי)",
+              awaitingConfirmation: false,
+            },
+            {
+              type: "callout",
+              tone: "definition",
+              titleHe: "דוגמה מספרית",
+              textHe: "P₀=100 → k=1 נותן 90; k=2 נותן 80 — לא 81 (אין הרכבה של 10%×10%).",
             },
           ],
         },
         {
           id: "sizing",
-          titleHe: "מצבי גודל מוצעים",
+          titleHe: "גודל וכמות בשלב ×1",
           blocks: [
+            {
+              type: "formula",
+              id: "qty-floor",
+              latex: "q_i = \\lfloor C_i / P_{\\text{exec}} \\rfloor",
+              captionHe: "כמות לאחר Floor על בסיס margin ביחס למחיר ביצוע (פישוט לימודי)",
+              awaitingConfirmation: false,
+            },
             {
               type: "table",
               id: "modes",
-              captionHe: "מצבי גודל — לאישור",
-              headersHe: ["מצב", "בסיס", "הערה"],
+              captionHe: "מדיניות הקצאה ×1",
+              headersHe: ["פרמטר", "ערך", "הערה"],
               rows: [
-                [
-                  "Cumulative allocated capital",
-                  "סכום הקצאות מפורשות",
-                  "ברירת מחדל מוצעת",
-                ],
-                [
-                  "Position equity",
-                  "שווי כולל PnL פתוח",
-                  "חלופה שנדונה",
-                ],
+                ["בסיס", "margin (לא notional בלבד)", "allocationBasis=margin"],
+                ["תקרה", "$250 לפוזיציה", "חריגה → Reject"],
+                ["עיגול", "Floor", "tick לימודי: שמרני לכיוון adverse"],
               ],
-              awaitingConfirmation: true,
+              awaitingConfirmation: false,
             },
             {
               type: "callout",
-              tone: "awaiting",
-              titleHe: "אין נוסחת C_{n+1} קנונית עדיין",
+              tone: "warning",
+              titleHe: "הפרדה פדגוגית",
               textHe:
-                "בתרגילים בוחרים C_i מפורש ומתעדים. אין להמציא כלל גודל חדש.",
+                "margin הוא ההקצאה לפוזיציה; notional הוא גודל החשיפה; collateral הוא בטוחה לחשבון Cross; liquidation אירוע נפרד — שינוי מינוף לא מבטיח משיכה או מניעת פירוק.",
             },
           ],
         },
@@ -186,15 +191,16 @@ const rawCatalog = {
       workedExamples: [
         {
           id: "ex-r",
-          titleHe: "יומן שלוש שכבות",
-          setupHe: "P0=100; חיזוקים ב־90 ו־81 עם C=2000 כל אחד אחרי פתיחה 2000.",
+          titleHe: "יומן שלוש שכבות תחת תקרה",
+          setupHe: "P₀=100; margin פתיחה $100; חיזוקים $80 ב־90 ו־$60 ב־80.",
           stepsHe: [
-            "C_cum: 2k → 4k → 6k.",
-            "כמויות בפישוט 1x: 20 @100; ≈22.22 @90; ≈24.69 @81 → Q≈66.91.",
+            "סולם: 100, 90, 80.",
+            "C_cum: $100 → $180 → $240 (מתחת ל-$250).",
+            "כמויות Floor: 1@100; 0@90 אם $80/90→0 או 1@90; 0@80 אם $60/80→0 — בתרגיל מגדילים margin לרמה אם צריך כמות>0.",
             "מעדכנים E_avg בפרק 7.",
           ],
-          resultHe: "יומן חיזוקים שקוף (C_cum=6,000; Q≈66.91) ומסומן כטיוטה.",
-          awaitingConfirmation: true,
+          resultHe: "יומן חיזוקים שקוף תחת תקרת $250.",
+          awaitingConfirmation: false,
         },
       ],
       scenarios: {
@@ -202,94 +208,92 @@ const rawCatalog = {
           {
             id: "ok",
             titleHe: "חיזוק מתועד",
-            narrativeHe: "כל שכבה עם מחיר, C_i ו־C_cum.",
+            narrativeHe: "כל שכבה עם מחיר סולם, C_i ו־C_cum.",
             outcomeHe: "ניתן לביקורת.",
-            lessonHe: "שקיפות לפני אישור קנוני.",
+            lessonHe: "שקיפות לפני הרצת מנוע.",
           },
         ],
         failure: [
           {
             id: "fail",
-            titleHe: "חיזוק בלי רמת סולם",
-            narrativeHe: "מוסיפים הקצאה בלי לציין למה לפי השיטה.",
-            outcomeHe: "איבוד עקביות פדגוגית.",
-            lessonHe: "גם בטיוטה צריך עוגן לימודי.",
+            titleHe: "חריגה מ-$250",
+            narrativeHe: "מוסיפים margin שמביא C_cum ל-$260.",
+            outcomeHe: "המערכת דוחה (Reject) את החיזוק.",
+            lessonHe: "התקרה חלק מהשיטה המאושרת.",
           },
         ],
       },
       knowledgeQuestions: [
         {
           id: "q1",
-          promptHe: "ברירת המחדל המוצעת לגודל היא:",
+          promptHe: "נוסחת הסולם המאושרת:",
           choicesHe: [
-            "Equity כולל PnL",
-            "Cumulative allocated capital",
-            "יתרת בנק",
-            "מינוף קבוע",
+            "P_k = P₀×(1−0.10)^k",
+            "P_k = P₀×(1−0.10×k)",
+            "P_k = P₀−10",
+            "P_k = 0.9×P_{k−1}",
           ],
           correctIndex: 1,
-          explanationHe: "זו ברירת המחדל בטיוטת התכנית.",
+          explanationHe: "מרווח 10% מהייחוס המקורי — לא מרכיב.",
         },
         {
           id: "q2",
-          promptHe: "סולם ה־10% הוא:",
-          choicesHe: [
-            "Order book חי",
-            "הצעה לימודית",
-            "עמלת מימון",
-            "מימוש רווח",
-          ],
-          correctIndex: 1,
-          explanationHe: "סמן פדגוגי עד אישור.",
+          promptHe: "תקרת margin לפוזיציה בשלב ×1:",
+          choicesHe: ["$250 Reject", "ללא תקרה", "$25", "רק ב־short"],
+          correctIndex: 0,
+          explanationHe: "perPositionMarginCapUsd=250.",
         },
       ],
-      awaitingNotesHe: [
-        "אישור מצב הגודל וסולם ה־adverse move.",
-      ],
+      awaitingNotesHe: [],
     },
     {
       slug: "leverage",
       titleHe: "מינוף 1x↔10x",
       titleEn: "Leverage 1x ↔ 10x",
       summaryHe:
-        "סף מעבר מוצע, מקסימום 10x לימודי, ושני מסלולים שאינם שקולים.",
-      awaitingConfirmation: true,
+        "מעבר ×1→×10 לפי תקרת תקציב; שלב ×10 עם חיזוק לפי הפסד מצטבר ותקרת $250 מצטברת.",
+      awaitingConfirmation: false,
       sections: [
         {
-          id: "threshold",
-          titleHe: "סף ומינוף מרבי",
+          id: "transition",
+          titleHe: "מעבר שלב ×1 → שלב ×10",
           blocks: [
             {
               type: "paragraph",
               textHe:
-                "טיוטה: דיון ב־10x כשההפסד הלימודי מגיע ל־100% מהחיזוק האחרון. המקסימום הלימודי המוצע הוא 10x.",
+                "כשחיזוק ×1 נוסף נדחה כי cumulative margin היה עובר את תקרת $250, השיטה עוברת לשלב ×10 על אותה פוזיציה תוך שמירת הכמות — לא פתיחת פוזיציה נפרדת. זה מעבר תקציבי, לא מבוסס על 'הפסד = 100% מהחיזוק האחרון' כתנאי יחיד.",
             },
             {
-              type: "formula",
-              id: "thr",
-              latex:
-                "|\\mathrm{PnL}| \\stackrel{?}{=} C_{\\text{latest reinforcement}}",
-              captionHe: "תנאי סף מוצע",
-              awaitingConfirmation: true,
+              type: "callout",
+              tone: "note",
+              titleHe: "שמירת כמות",
+              textHe: "stage1ToStage10PreservesQuantity: אותה ישות פוזיציה, רגישות מינוף שונה.",
             },
           ],
         },
         {
-          id: "paths",
-          titleHe: "Path A מול Path B",
+          id: "stage10",
+          titleHe: "חיזוקים בשלב ×10",
           blocks: [
             {
-              type: "visual",
-              kind: "leverage-paths",
-              captionHe: "Separate 10x ≠ re-lever in place",
+              type: "formula",
+              id: "thr",
+              latex:
+                "\\mathrm{net\\,loss} \\ge C_{\\text{relevant margin}}",
+              captionHe: "תנאי חיזוק ×10 מצטבר",
+              awaitingConfirmation: false,
             },
             {
-              type: "list",
-              itemsHe: [
-                "Path A: פוזיציית 10x נפרדת.",
-                "Path B: שינוי מינוף על הפוזיציה הקיימת.",
-                "חובה לתייג מסלול בכל תרגיל.",
-              ],
+              type: "paragraph",
+              textHe:
+                "תקרת margin מצטברת בשלב ×10 היא $250. כשחיזוק ×10 הבא נדחה בגלל התקרה, המערכת עוברת אוטומטית למינוף מקסימלי של ה-instrument — רק אם המספר אומת מנתוני Bybit; אחרת מסומן unresolved ולא ממציאים ערך.",
+            },
+            {
+              type: "callout",
+              tone: "unresolved",
+              titleHe: "מינוף מקסימלי לכל instrument",
+              textHe:
+                "maxInstrumentLeverage אינו גלובלי קבוע בספר לימוד עד אימות פר־symbol מ-Bybit.",
             },
           ],
         },
@@ -297,96 +301,103 @@ const rawCatalog = {
       workedExamples: [
         {
           id: "ex-l",
-          titleHe: "רגישות 1x מול 10x",
-          setupHe: "C=1000; מהלך +1% על notional משוער.",
+          titleHe: "מעבר תקציבי",
+          setupHe: "C_cum=$240 ב־×1; חיזוק $20 נדחה → מעבר ×10, Q נשמרת.",
           stepsHe: [
-            "1x ≈ +10 יח'.",
-            "10x ≈ +100 יח'.",
-            "מסיקים על סיכון — לא על תשואה מובטחת.",
+            "מתעדים דחיית חיזוק ×1.",
+            "מסמנים מעבר שלב ללא פתיחת פוזיציה חדשה.",
+            "ב־×10 ממתינים להפסד מצטבר ≥ margin הרלוונטי לחיזוק הבא.",
           ],
-          resultHe: "הבנת רגישות לפני בחירת מסלול.",
-          awaitingConfirmation: true,
+          resultHe: "מסלול מעבר אחד וברור — בלי Path A/B.",
+          awaitingConfirmation: false,
         },
       ],
       scenarios: {
         success: [
           {
             id: "ok",
-            titleHe: "תיוג Path A",
-            narrativeHe: "נפתחת P2-10x עם יומן נפרד.",
-            outcomeHe: "אין ערבוב עם שכבות P1.",
-            lessonHe: "מסלול ברור = סיכון ברור.",
+            titleHe: "תיעוד מעבר שלב",
+            narrativeHe: "ביומן: '×1 cap reject → ×10, Q=X'.",
+            outcomeHe: "המשכיות ישות אחת.",
+            lessonHe: "שלב אינו פוזיציה נפרדת.",
           },
         ],
         failure: [
           {
             id: "fail",
-            titleHe: "שקילות מדומה",
-            narrativeHe: "מניחים ש־A ו־B זהים בחישוב.",
-            outcomeHe: "שגיאת E_avg / סיכון.",
-            lessonHe: "לא שקולים.",
+            titleHe: "הנחת משיכת הון בטוחה",
+            narrativeHe: "לומד חושב שמעבר ל-10x מבטיח שלא יגיע ל-liquidation.",
+            outcomeHe: "הבנה שגויה של Cross ו-collateral.",
+            lessonHe: "שינוי מינוף אינו ביטוח.",
           },
         ],
       },
       knowledgeQuestions: [
         {
           id: "q1",
-          promptHe: "מקסימום מינוף לימודי מוצע:",
-          choicesHe: ["3x", "10x", "25x", "100x"],
+          promptHe: "מתי מתקיים מעבר ×1→×10 במתודולוגיה המאושרת?",
+          choicesHe: [
+            "בכל swing low",
+            "כשחיזוק ×1 נדחה בתקרת תקציב margin",
+            "כשיש רווח 75%",
+            "תמיד בשעה הראשונה",
+          ],
           correctIndex: 1,
-          explanationHe: "10x לפי הטיוטה.",
+          explanationHe: "stage1ToStage10Transition=budget_cap_based.",
         },
         {
           id: "q2",
-          promptHe: "Path B הוא:",
+          promptHe: "טריגר חיזוק בשלב ×10:",
           choicesHe: [
-            "פוזיציה נפרדת",
-            "שינוי מינוף על קיימת",
-            "סגירת הכל",
-            "הפקדה",
+            "רווח ≥ 10%",
+            "הפסד נקי מצטבר ≥ margin הרלוונטי",
+            "סגירת 75%",
+            "כל מגע בסולם",
           ],
           correctIndex: 1,
-          explanationHe: "Re-lever in place.",
+          explanationHe: "stage10ReinforcementTrigger=net_loss_ge_relevant_allocated_margin.",
         },
       ],
-      awaitingNotesHe: [
-        "אישור סף, בסיס PnL, ומסלול קנוני.",
-      ],
+      awaitingNotesHe: [],
     },
     {
       slug: "profit-realization",
       titleHe: "מימוש רווח",
       titleEn: "Profit Realization",
       summaryHe:
-        "טיוטת 75%: משיכת רווח פתוח מול סגירת 75% מהכמות — לאישור קנוני.",
-      awaitingConfirmation: true,
+        "סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; חזרתי על הנותר.",
+      awaitingConfirmation: false,
       sections: [
         {
-          id: "two-interp",
-          titleHe: "שתי פרשנויות",
+          id: "close-qty",
+          titleHe: "מימוש לפי כמות",
           blocks: [
             {
               type: "visual",
               kind: "profit-split",
-              captionHe: "75% / 25% — המשמעות התפעולית עדיין פתוחה.",
-            },
-            {
-              type: "table",
-              id: "interp",
-              captionHe: "השוואת פרשנויות",
-              headersHe: ["פרשנות", "פעולה"],
-              rows: [
-                ["Withdraw profit", "75% מהרווח הפתוח החיובי"],
-                ["Close 75% of position", "הקטנת כמות ב־75%"],
-              ],
-              awaitingConfirmation: true,
+              captionHe: "75% נסגרים · 25% נשארים בפוזיציה.",
             },
             {
               type: "formula",
-              id: "w",
-              latex: "R = 0.75 \\times \\max(\\mathrm{PnL}_{open},0)",
-              captionHe: "פרשנות משיכת רווח (טיוטה)",
-              awaitingConfirmation: true,
+              id: "close-qty",
+              latex: "q_{\\text{close}} = 0.75 \\times Q,\\quad q_{\\text{remain}} = 0.25 \\times Q",
+              captionHe: "סגירת 75% מהכמות הפתוחה (מימוש מאושר)",
+              awaitingConfirmation: false,
+            },
+            {
+              type: "list",
+              itemsHe: [
+                "הפעלה: ידנית (manual) בתרגיל או במנוע.",
+                "ניתן לחזור על מימוש 75% מהכמות הנותרת.",
+                "עמלות: 2 bps על סגירה (round-trip במודל הלימודי); slippage 1 bp לצד.",
+              ],
+            },
+            {
+              type: "callout",
+              tone: "note",
+              titleHe: "ללא 'משיכת רווח' נפרדת",
+              textHe:
+                "הפרשנות הקנונית היא close_quantity_pct בלבד — לא משיכת 75% מ־open PnL בלי שינוי כמות.",
             },
           ],
         },
@@ -394,56 +405,60 @@ const rawCatalog = {
       workedExamples: [
         {
           id: "ex-p",
-          titleHe: "אותו PnL, המשכים שונים",
-          setupHe: "Q=100, E_avg=90, M=110, PnL=2000.",
+          titleHe: "מימוש ראשון וחוזר",
+          setupHe: "Q=40, E_avg=90, M=110.",
           stepsHe: [
-            "A: מושכים 1500 כרווח; כמות נשארת לפי פישוט.",
-            "B: סוגרים 75 יח' → realized 1500; נותרות 25.",
-            "מתעדים את הפער במצב הפוזיציה.",
+            "PnL פתוח = 40×(110−90)=800 (לפני עמלות).",
+            "סוגרים 75% → q_close=30, q_remain=10.",
+            "Realized על 30 יח' ≈ 30×20=600; ניכוי עמלה לפי 2 bps בסגירה.",
+            "במימוש שני על הנותר: q_close₂=0.75×10≈7 (Floor לפי מנוע).",
           ],
-          resultHe: "חובה לבחור פרשנות אחת לתרגיל עד אישור.",
-          awaitingConfirmation: true,
+          resultHe: "רצף מימוש כמותי מתועד.",
+          awaitingConfirmation: false,
         },
       ],
       scenarios: {
         success: [
           {
             id: "ok",
-            titleHe: "פרשנות מסומנת",
-            narrativeHe: "היומן מתחיל ב־Interpretation B.",
+            titleHe: "יומן מימוש מסודר",
+            narrativeHe: "כל מימוש מציין Q לפני/אחרי ועמלות.",
             outcomeHe: "שחזור אפשרי.",
-            lessonHe: "שקיפות מעל ודאות מדומה.",
+            lessonHe: "מימוש הוא פעולת כמות.",
           },
         ],
         failure: [
           {
             id: "fail",
-            titleHe: "ערבוב פרשנויות",
-            narrativeHe: "מושכים רווח וסוגרים 75% יחד בלי הגדרה.",
-            outcomeHe: "כפל פעולה.",
-            lessonHe: "פרשנות אחת לתרגיל.",
+            titleHe: "משיכת רווח בלי סגירה",
+            narrativeHe: "מציגים 'מימוש 75%' אך לא מקטינים כמות.",
+            outcomeHe: "סתירה למתודולוגיה המאושרת.",
+            lessonHe: "profitRealization.mode=close_quantity_pct.",
           },
         ],
       },
       knowledgeQuestions: [
         {
           id: "q1",
-          promptHe: "אחוז המימוש המוצע:",
+          promptHe: "אחוז המימוש המאושר:",
           choicesHe: ["50%", "75%", "90%", "100%"],
           correctIndex: 1,
-          explanationHe: "75% בטיוטה.",
+          explanationHe: "profitRealization.pct=75.",
         },
         {
           id: "q2",
-          promptHe: "האם הפרשנות הקנונית אושרה?",
-          choicesHe: ["כן", "לא", "רק A", "רק B"],
+          promptHe: "מה קורה ל־25% הנותרים?",
+          choicesHe: [
+            "נסגרים אוטומטית",
+            "נשארים בפוזיציה; מימוש חוזר אפשרי",
+            "הופכים ל-short",
+            "הופכים ל-funding",
+          ],
           correctIndex: 1,
-          explanationHe: "ממתינה לאישור בעלים.",
+          explanationHe: "remainingPct=25; repeatableOnRemaining=true.",
         },
       ],
-      awaitingNotesHe: [
-        "אישור פרשנות מימוש 75% והשפעתה על הון מוקצה.",
-      ],
+      awaitingNotesHe: [],
     },
   ],
 } satisfies MethodCatalogInput;

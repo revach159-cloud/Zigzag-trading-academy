@@ -168,5 +168,9 @@ export const chapter02Body = {
       explanationHe: "Higher highs / higher lows מתארים מבנה עולה בלימוד.",
     },
   ],
+  chapterSummaryHe: [
+    "מבנה שוק מתואר ב-swings וזיגזג — לא אות מסחר.",
+    "סולם adverse במתודולוגיה נשען על מחיר ייחוס P₀ בפרקים הבאים.",
+  ],
   awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

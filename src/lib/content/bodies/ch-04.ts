@@ -3,9 +3,9 @@ import type { ChapterBodyInput } from "../schemas";
 export const chapter04Body = {
   slug: "position-construction",
   learningObjectivesHe: [
-    "לתאר בניית `position` לימודית כשכבות הקצאה ולא כקליק בודד.",
-    "להבחין בין כמות (`quantity`) לבין הון מוקצה.",
-    "לבנות דוגמת פתיחה עם רזרבה לחיזוקים עתידיים — לפי טיוטת השיטה.",
+    "לתאר בניית `position` long בשלב ×1 על מודל Bybit Linear USDT Perp (Cross, One-Way).",
+    "לחשב כמות עם Floor מ-margin ביחס למחיר ביצוע.",
+    "להכיר תקרת $250 margin לפוזיציה ומדיניות Reject.",
   ],
   sections: [
     {
@@ -15,19 +15,19 @@ export const chapter04Body = {
         {
           type: "paragraph",
           textHe:
-            "ב־ZigZag, `position construction` אינה רק בחירת כיוון. מתחילים מהקצאת הון לימודית, קובעים כמות לפי מחיר סימולציה, ומשאירים מקום לשכבות `reinforcement` אם התרגיל ידרוש זאת.",
+            "ב־ZigZag, `position construction` מתחיל מהקצאת margin לימודית בשלב ×1, כמות long בלבד, ותיעוד לשכבות `reinforcement` עתידיות. Short מבוטל בשיטה המאושרת.",
         },
         {
           type: "visual",
           kind: "position-stack",
-          captionHe: "שכבות הקצאה לימודיות — הכניסה הראשונה אינה בהכרח כל הסיפור.",
+          captionHe: "שכבות הקצאת margin — הכניסה הראשונה אינה בהכרח סוף ההיסטוריה.",
         },
         {
           type: "callout",
-          tone: "awaiting",
-          titleHe: "גודל שכבה — טיוטה",
+          tone: "definition",
+          titleHe: "margin מול notional",
           textHe:
-            "אופן חישוב גודל כל שכבת חיזוק (לפי הון מוקצה מצטבר מול equity) ממתין לאישור בעלים. בפרק זה נבנה רק את שכבת הפתיחה ואת הרזרבה.",
+            "margin הוא הבסיס להקצאה (allocationBasis=margin). notional גדל עם מינוף; collateral שייך לחשבון Cross; liquidation אינו זהה ל'סיום תרגיל'.",
         },
       ],
     },
@@ -37,15 +37,15 @@ export const chapter04Body = {
       blocks: [
         {
           type: "formula",
-          id: "qty-from-capital",
-          latex: "q_0 = \\frac{C_0}{E_0}",
-          captionHe: "כמות פתיחה לימודית מהון מוקצה ראשוני וממחיר כניסה (פישוט ללא מינוף)",
-          awaitingConfirmation: true,
+          id: "qty-from-margin",
+          latex: "q_0 = \\lfloor C_0 / E_0 \\rfloor",
+          captionHe: "כמות פתיחה מ-margin וממחיר ביצוע (Floor, שלב ×1)",
+          awaitingConfirmation: false,
         },
         {
           type: "paragraph",
           textHe:
-            "במינוף 1x לימודי, הנוסחה למעלה מקשרת הון מוקצה לכמות. כשנכנס מינוף (פרק 6) הקשר משתנה — וגם שם הכללים בטיוטה.",
+            "בשלב ×1, sizing מצטבר לפי cumulative allocated capital על בסיס margin. תקרה $250 לפוזיציה — ניסיון חריגה נדחה.",
         },
         {
           type: "table",
@@ -53,30 +53,30 @@ export const chapter04Body = {
           captionHe: "רשימת בניית פוזיציה לתרגיל",
           headersHe: ["שלב", "שאלה לבדיקה"],
           rows: [
-            ["כוונה", "מה הכיוון הלימודי (long/short) ולמה?"],
-            ["הקצאה", "כמה C_0 ומה הרזרבה?"],
-            ["כניסה", "מהו E_0 בסדרת הסימולציה?"],
-            ["תיעוד", "האם נרשמו כמות, הון, ומחיר?"],
-            ["גבול", "מה יקרה בתרגיל אם המחיר ינוע נגד?"],
+            ["כוונה", "long בלבד — למה בתרגיל?"],
+            ["הקצאה", "כמה margin ב־C₀ ומה נשאר מתחת ל-$250?"],
+            ["כניסה", "מהו E₀ ואיך מעגלים tick לכיוון adverse?"],
+            ["תיעוד", "margin, כמות, מחיר — ביומן?"],
+            ["גבול", "מה קורה במגע בסולם P_k = P₀×(1−0.10×k)?"],
           ],
         },
       ],
     },
     {
       id: "reserve",
-      titleHe: "רזרבה לחיזוקים",
+      titleHe: "תקרה ורזרבה פדגוגית",
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "בניית פוזיציה נבונה בלימוד ZigZag מניחה שייתכנו חיזוקים. לכן לא מקצים 100% מההון הלימודי לשכבה הראשונה בתרגילי המעבדה — אלא אם התרגיל מגדיר במפורש תרחיש קיצון.",
+            "התקרה הקנונית היא $250 margin מצטבר לפוזיציה בשלב ×1. רזרבה בתוך התקרה משמשת לתרגול חיזוקים — לא 'הון אינסופי'.",
         },
         {
           type: "list",
           itemsHe: [
-            "דוגמת מדיניות לימודית: 30%–50% לפתיחה, יתרה לרזרבה.",
-            "המדיניות הזו היא פדגוגית — לא כלל קנוני מאושר של השיטה.",
-            "בפרק החיזוקים נראה איך הרזרבה נכנסת לפעולה כטיוטה.",
+            "דוגמה: פתיחה margin $120, נשאר מקום עד $250 לחיזוקים.",
+            "חריגה → Reject — לא דחיפת עודף לפוזיציה.",
+            "Decimal מדויק לסולם; כמות ב-Floor.",
           ],
         },
       ],
@@ -85,37 +85,36 @@ export const chapter04Body = {
   workedExamples: [
     {
       id: "ex-open",
-      titleHe: "פתיחה עם רזרבה",
-      setupHe:
-        "הון לימודי כולל 10,000. מקצים C_0=4,000 לפתיחה ב־E_0=50 (1x).",
+      titleHe: "פתיחה תחת $250",
+      setupHe: "P₀=100; margin C₀=$120 לפתיחה בשלב ×1.",
       stepsHe: [
-        "q_0 = 4000 / 50 = 80 יחידות.",
-        "רזרבה נותרת: 6,000 לתרגילי חיזוק/לחץ.",
-        "מתעדים ביומן: long, q=80, E=50, C_0=4000.",
+        "q₀ = floor(120/100) = 1.",
+        "C_cum=$120; נותר מקום עד $130 לחיזוקים לפני תקרה.",
+        "ביומן: long, q=1, E=100, margin=$120.",
       ],
-      resultHe: "פוזיציית פתיחה מוגדרת עם רזרבה מפורשת.",
-      awaitingConfirmation: true,
+      resultHe: "פוזיציית פתיחה מוגדרת בתוך תקרת margin.",
+      awaitingConfirmation: false,
     },
   ],
   scenarios: {
     success: [
       {
         id: "ok-reserve",
-        titleHe: "פתיחה ממושמעת",
+        titleHe: "פתיחה מתועדת",
         narrativeHe:
-          "הלומד פותח שכבה ראשונה עם רזרבה ומתנגד לדחף 'להיכנס בכל ההון' בסימולציה.",
-        outcomeHe: "יש מקום לתרגול reinforcement בהמשך.",
-        lessonHe: "בנייה טובה מתחילה בהקצאה, לא בעוצמת הכניסה.",
+          "הלומד פותח שכבה עם margin מפורש ומשאיר מקום לחיזוקים עד $250.",
+        outcomeHe: "תיעוד מוכן לפרק 5.",
+        lessonHe: "בנייה טובה מתחילה ב-margin, לא במינוף.",
       },
     ],
     failure: [
       {
-        id: "fail-allin",
-        titleHe: "הקצאת כל ההון מיד",
+        id: "fail-cap",
+        titleHe: "חריגה מ-$250 מיד",
         narrativeHe:
-          "בתרגיל לחץ הלומד שם 100% על השכבה הראשונה ואז אין הון לחיזוק מדומה.",
-        outcomeHe: "התרגיל נשבר לפני מכניקת השיטה.",
-        lessonHe: "בלי רזרבה אי אפשר לתרגל ZigZag כשכבות.",
+          "margin פתיחה $300 בשלב ×1.",
+        outcomeHe: "דחייה (Reject) לפי השיטה.",
+        lessonHe: "התקרה היא כלל מאושר — לא עיצוב UI.",
       },
     ],
   },
@@ -123,50 +122,46 @@ export const chapter04Body = {
     {
       id: "ex1",
       promptHe:
-        "בהון 12,000 ובמדיניות פתיחה 40%, חשבו C_0 ו־q_0 למחיר 60 (1x).",
-      hintHe: "C_0=0.4×12000; q_0=C_0/E_0.",
+        "margin $150, מחיר 75. חשבו q₀ ב-Floor. מה נשאר עד תקרה $250?",
+      hintHe: "q=⌊150/75⌋; נותר 250−150.",
     },
     {
       id: "ex2",
       promptHe:
-        "כתבו צ'ק־ליסט אישי לבניית פוזיציה בסימולטור (5 סעיפים לפחות).",
+        "כתבו צ'ק־ליסט בניית פוזיציה long בסימולטור (5 סעיפים).",
     },
   ],
   knowledgeQuestions: [
     {
       id: "q1",
-      promptHe: "למה משאירים רזרבה בבניית פוזיציה בלימוד ZigZag?",
+      promptHe: "תקרת margin לפוזיציה בשלב ×1:",
       choicesHe: [
-        "כדי לשלם עמלת ברוקר אמיתית",
-        "כדי לאפשר תרגול שכבות חיזוק/לחץ",
-        "כי חובה מינוף 10x מיד",
-        "כדי להבטיח רווח",
+        "$250 עם Reject",
+        "ללא תקרה",
+        "רק ל-short",
+        "$2,500 תמיד",
       ],
-      correctIndex: 1,
-      explanationHe: "רזרבה מאפשרת לתרגל חיזוקים ותרחישי לחץ.",
+      correctIndex: 0,
+      explanationHe: "perPositionMarginCapUsd=250; capPolicy=reject.",
     },
     {
       id: "q2",
-      promptHe: "בפישוט 1x, q_0 מחושב כ:",
-      choicesHe: ["C_0 × E_0", "C_0 / E_0", "E_0 − C_0", "PnL / E_0"],
+      promptHe: "כמות בשלב ×1 מחושבת כ:",
+      choicesHe: ["C₀ × E₀", "⌊C₀ / E₀⌋", "E₀ − C₀", "PnL / E₀"],
       correctIndex: 1,
-      explanationHe: "כמות ≈ הון מוקצה חלקי מחיר כניסה בפישוט 1x.",
+      explanationHe: "quantityRounding=floor.",
     },
     {
       id: "q3",
-      promptHe: "האם כלל גודל שכבת החיזוק סופי באקדמיה?",
-      choicesHe: [
-        "כן, תמיד לפי equity",
-        "לא — מסומן כממתין לאישור",
-        "כן, תמיד 50%",
-        "רק בפרק 12",
-      ],
+      promptHe: "כיוון מסחר מאושר:",
+      choicesHe: ["long ו-short", "long בלבד", "short בלבד", "אין פוזיציה"],
       correctIndex: 1,
-      explanationHe: "מצב גודל החיזוק הוא טיוטה עד אישור בעלים.",
+      explanationHe: "direction=long_only; shortEnabled=false.",
     },
   ],
-  awaitingNotesHe: [
-    "נוסחת המרת הון↔כמות תחת מינוף ממתינה לכללי Phase 4 המאושרים.",
-    "מדיניות אחוז הפתיחה מול רזרבה היא פדגוגית בלבד עד לאישור.",
+  chapterSummaryHe: [
+    "פוזיציה נבנית משכבות margin long עם כמות Floor ותקרה $250.",
+    "מבחינים margin, notional ו-collateral — liquidation נושא נפרד.",
   ],
+  awaitingNotesHe: [],
 } satisfies ChapterBodyInput;
