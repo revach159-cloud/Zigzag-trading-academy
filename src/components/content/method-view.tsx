@@ -3,8 +3,10 @@ import type { MethodPage } from "@/lib/content/schemas";
 import { listMethodPages } from "@/lib/content/method-pages/catalog";
 import { RichText } from "@/lib/content/rich-text";
 import { SimDisclaimer } from "@/components/layout/sim-disclaimer";
-import { ContentBlocks } from "./content-blocks";
+import { ContentBlocks, countFormulas } from "./content-blocks";
 import { KnowledgeCheck } from "./knowledge-check";
+import { EduDisclaimer } from "./edu-disclaimer";
+import { PdfDownloadCta } from "./pdf-download-cta";
 
 export function MethodHub() {
   const pages = listMethodPages();
@@ -17,10 +19,11 @@ export function MethodHub() {
         מתודולוגיית ZigZag
       </h1>
       <p className="mt-4 leading-8 text-[var(--zz-muted)]">
-        <RichText text="דפי השיטה מסבירים `reinforcement`, מעברי 1x↔10x ומימוש רווח לפי טיוטות התכנית. אין ביצועי עבר ואין כללים מומצאים מעבר למסומן." />
+        <RichText text="דפי השיטה מסבירים `reinforcement`, מעברי ×1→×10 לפי תקרת תקציב, ומימוש 75% בכמות — לפי המתודולוגיה המאושרת. אין ביצועי עבר ואין המצאת פרמטרי Bybit." />
       </p>
-      <div className="mt-3">
+      <div className="mt-3 flex flex-wrap items-center gap-3">
         <SimDisclaimer compact />
+        <PdfDownloadCta variant="compact" />
       </div>
 
       <ol className="mt-10 space-y-3">
@@ -28,15 +31,17 @@ export function MethodHub() {
           <li key={page.slug}>
             <Link
               href={`/method/${page.slug}`}
-              className="group block border border-[var(--zz-line)] bg-[var(--zz-panel)]/40 px-4 py-4 transition-colors hover:border-[var(--zz-cyan)]/50"
+              className="group block rounded-xl border border-[var(--zz-line)] bg-[rgba(16,26,46,0.45)] px-4 py-4 backdrop-blur-sm transition-colors hover:border-[var(--zz-cyan)]/50"
             >
               <p className="text-xs text-[var(--zz-cyan)]">
                 {index + 1}. {page.titleEn}
-                {page.awaitingConfirmation ? (
+                {!page.awaitingConfirmation ? (
+                  <span className="ms-2 text-[var(--zz-gold)]">· מאושר</span>
+                ) : (
                   <span className="ms-2 text-[var(--zz-gold)]">
                     · ממתין לאישור
                   </span>
-                ) : null}
+                )}
               </p>
               <h2 className="mt-1 text-lg text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
                 {page.titleHe}
@@ -56,6 +61,7 @@ export function MethodHub() {
         </Link>
         .
       </p>
+      <EduDisclaimer className="mt-10" />
     </main>
   );
 }
@@ -65,17 +71,21 @@ export function MethodPageView({ page }: { page: MethodPage }) {
   const index = pages.findIndex((item) => item.slug === page.slug);
   const prev = index > 0 ? pages[index - 1] : undefined;
   const next = index < pages.length - 1 ? pages[index + 1] : undefined;
+  let formulaStart = 1;
 
   return (
     <article className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 sm:px-6">
-      <Link
-        href="/method"
-        className="text-sm text-[var(--zz-muted)] hover:text-[var(--zz-cyan)]"
-      >
-        ← חזרה לשיטה
-      </Link>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Link
+          href="/method"
+          className="text-sm text-[var(--zz-muted)] hover:text-[var(--zz-cyan)]"
+        >
+          חזרה לשיטה →
+        </Link>
+        <PdfDownloadCta variant="compact" />
+      </div>
 
-      <header className="mt-8">
+      <header className="mt-8 rounded-2xl border border-[var(--zz-line)] bg-[linear-gradient(145deg,rgba(16,26,46,0.92),rgba(7,11,22,0.88))] p-6">
         <p className="text-xs tracking-[0.2em] text-[var(--zz-gold)] uppercase">
           Method · {page.titleEn}
         </p>
@@ -88,17 +98,19 @@ export function MethodPageView({ page }: { page: MethodPage }) {
         <div className="mt-3 flex flex-wrap items-center gap-3">
           {page.awaitingConfirmation ? (
             <span className="text-sm text-[var(--zz-gold)]">
-              טיוטת מתודולוגיה · ממתין לאישור
+              ממתינים לאישור
             </span>
-          ) : null}
+          ) : (
+            <span className="text-sm text-[var(--zz-cyan)]">מתודולוגיה מאושרת</span>
+          )}
           <SimDisclaimer compact />
         </div>
       </header>
 
       {page.awaitingNotesHe.length > 0 ? (
-        <aside className="mt-8 rounded-sm border border-[var(--zz-gold)]/40 bg-[var(--zz-gold-soft)] px-4 py-3">
+        <aside className="mt-8 rounded-lg border border-[var(--zz-gold)]/40 bg-[var(--zz-gold-soft)] px-4 py-3">
           <p className="text-sm font-medium text-[var(--zz-gold)]">
-            ממתין לאישור בעלים
+            Unresolved / הערות פתוחות
           </p>
           <ul className="mt-2 list-disc space-y-1 pe-5 text-sm">
             {page.awaitingNotesHe.map((note) => (
@@ -110,16 +122,20 @@ export function MethodPageView({ page }: { page: MethodPage }) {
         </aside>
       ) : null}
 
-      {page.sections.map((section) => (
-        <section key={section.id} className="mt-12" id={section.id}>
-          <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
-            {section.titleHe}
-          </h2>
-          <div className="mt-4">
-            <ContentBlocks blocks={section.blocks} />
-          </div>
-        </section>
-      ))}
+      {page.sections.map((section) => {
+        const start = formulaStart;
+        formulaStart += countFormulas(section.blocks);
+        return (
+          <section key={section.id} className="mt-12" id={section.id}>
+            <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
+              {section.titleHe}
+            </h2>
+            <div className="mt-4">
+              <ContentBlocks blocks={section.blocks} formulaStart={start} />
+            </div>
+          </section>
+        );
+      })}
 
       <section className="mt-12">
         <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
@@ -129,14 +145,9 @@ export function MethodPageView({ page }: { page: MethodPage }) {
           {page.workedExamples.map((example) => (
             <div
               key={example.id}
-              className="rounded-sm border border-[var(--zz-line)] bg-[var(--zz-panel)]/40 p-4"
+              className="rounded-xl border border-[var(--zz-line)] bg-[rgba(16,26,46,0.5)] p-4"
             >
               <h3 className="text-[var(--zz-cyan)]">{example.titleHe}</h3>
-              {example.awaitingConfirmation ? (
-                <p className="mt-1 text-xs text-[var(--zz-gold)]">
-                  דוגמה לימודית לפי טיוטת הנחות — ממתין לאישור
-                </p>
-              ) : null}
               <p className="mt-2 text-sm leading-7 text-[var(--zz-muted)]">
                 <RichText text={example.setupHe} />
               </p>
@@ -157,7 +168,7 @@ export function MethodPageView({ page }: { page: MethodPage }) {
       </section>
 
       <section className="mt-12 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-sm border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.05)] p-4">
+        <div className="rounded-xl border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.05)] p-4">
           <h2 className="text-[var(--zz-cyan)]">תרחיש מוצלח</h2>
           {page.scenarios.success.map((scenario) => (
             <div key={scenario.id} className="mt-3 space-y-2 text-sm leading-7">
@@ -175,7 +186,7 @@ export function MethodPageView({ page }: { page: MethodPage }) {
             </div>
           ))}
         </div>
-        <div className="rounded-sm border border-[var(--zz-danger)]/35 bg-[rgba(240,113,120,0.06)] p-4">
+        <div className="rounded-xl border border-[var(--zz-danger)]/35 bg-[rgba(240,113,120,0.06)] p-4">
           <h2 className="text-[var(--zz-danger)]">תרחיש כושל</h2>
           {page.scenarios.failure.map((scenario) => (
             <div key={scenario.id} className="mt-3 space-y-2 text-sm leading-7">
@@ -204,11 +215,13 @@ export function MethodPageView({ page }: { page: MethodPage }) {
         </div>
       </section>
 
+      <EduDisclaimer className="mt-12" />
+
       <nav className="mt-14 flex flex-col gap-3 border-t border-[var(--zz-line)] pt-6 sm:flex-row sm:justify-between">
         {prev ? (
           <Link
             href={`/method/${prev.slug}`}
-            className="rounded-sm border border-[var(--zz-line)] px-4 py-3 text-sm hover:border-[var(--zz-cyan)]/50"
+            className="rounded-xl border border-[var(--zz-line)] px-4 py-3 text-sm hover:border-[var(--zz-cyan)]/50"
           >
             <span className="block text-xs text-[var(--zz-muted)]">הקודם</span>
             {prev.titleHe}
@@ -219,7 +232,7 @@ export function MethodPageView({ page }: { page: MethodPage }) {
         {next ? (
           <Link
             href={`/method/${next.slug}`}
-            className="rounded-sm border border-[var(--zz-line)] px-4 py-3 text-sm hover:border-[var(--zz-cyan)]/50"
+            className="rounded-xl border border-[var(--zz-line)] px-4 py-3 text-sm hover:border-[var(--zz-cyan)]/50"
           >
             <span className="block text-xs text-[var(--zz-muted)]">הבא</span>
             {next.titleHe}

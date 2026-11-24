@@ -50,7 +50,14 @@ export const contentBlockSchema = z.discriminatedUnion("type", [
   }),
   z.object({
     type: z.literal("callout"),
-    tone: z.enum(["note", "warning", "awaiting", "sim"]),
+    tone: z.enum([
+      "note",
+      "warning",
+      "awaiting",
+      "sim",
+      "definition",
+      "unresolved",
+    ]),
     titleHe: z.string().min(1),
     textHe: z.string().min(1),
   }),
@@ -118,6 +125,7 @@ export const chapterBodySchema = z.object({
   }),
   exercises: z.array(exerciseSchema).min(2),
   knowledgeQuestions: z.array(knowledgeQuestionSchema).min(3),
+  chapterSummaryHe: z.array(z.string().min(1)).min(2),
   awaitingNotesHe: z.array(z.string().min(1)).optional().default([]),
 });
 

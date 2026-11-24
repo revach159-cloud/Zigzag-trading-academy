@@ -57,6 +57,66 @@ body {
   color: var(--zz-ink);
 }
 
+.book-cover {
+  isolation: isolate;
+}
+
+.book-chapter-open {
+  animation: book-open-fade 700ms ease-out both;
+}
+
+@keyframes book-open-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-formula .katex-display-host,
+.book-table {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .book-chapter {
+    padding-inline: 1rem;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: #0b1220 !important;
+  }
+
+  header,
+  .site-header,
+  nav[aria-label="ניווט ראשי"],
+  nav[aria-label="ניווט נייד"] {
+    display: none !important;
+  }
+
+  .book-chapter,
+  .book-cover {
+    max-width: none;
+    box-shadow: none;
+  }
+
+  .book-table table {
+    table-layout: fixed;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  a[href^="/downloads/"] {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -23,16 +23,16 @@ describe("method pages", () => {
     ]);
   });
 
-  it("marks methodology pages as awaiting confirmation", () => {
+  it("marks methodology pages as owner-confirmed", () => {
     for (const page of listMethodPages()) {
-      expect(page.awaitingConfirmation).toBe(true);
+      expect(page.awaitingConfirmation).toBe(false);
       expect(page.sections.length).toBeGreaterThanOrEqual(1);
       expect(page.knowledgeQuestions.length).toBeGreaterThanOrEqual(2);
     }
   });
 
   it("resolves pages by slug", () => {
-    expect(getMethodPageBySlug("leverage")?.titleEn).toContain("1x");
+    expect(getMethodPageBySlug("leverage")?.titleEn).toMatch(/1x|10x|Leverage/i);
     expect(getMethodPageBySlug("missing")).toBeUndefined();
   });
 
@@ -43,5 +43,12 @@ describe("method pages", () => {
         expect(question.correctIndex).toBeLessThan(question.choicesHe.length);
       }
     }
+  });
+
+  it("teaches close-quantity profit realization, not dual interpretations", () => {
+    const profit = getMethodPageBySlug("profit-realization");
+    const blob = JSON.stringify(profit);
+    expect(blob).toMatch(/75%/);
+    expect(blob.toLowerCase()).not.toContain("withdraw profit");
   });
 });

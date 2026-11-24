@@ -59,7 +59,7 @@ export const chapter03Body = {
           tone: "note",
           titleHe: "long בלבד",
           textHe:
-            "במתודולוגיה המאושרת short מבוטל (long_only). דוגמאות קצרות על short להבנת הסימן הן אופציונליות ולא חלק מפרוטוקול ZigZag.",
+            "במתודולוגיה המאושרת short מבוטל (`long_only` / `shortEnabled=false`). כל תרגילי הפרוטוקול הם long בלבד.",
         },
         {
           type: "formula",
@@ -129,7 +129,7 @@ export const chapter03Body = {
     {
       id: "ex1",
       promptHe:
-        "חשבו PnL ל־short מדומה: q=5, E=200, M=190. הסבירו את הסימן.",
+        "חשבו PnL ל־long מדומה: q=5, E=200, M=190. הסבירו את הסימן (הפסד לימודי).",
     },
     {
       id: "ex2",

@@ -3,17 +3,46 @@ import { RichText } from "@/lib/content/rich-text";
 import { KatexFormula } from "./katex-formula";
 import { ContentVisual } from "./content-visuals";
 
-export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
+type ContentBlocksProps = {
+  blocks: ContentBlock[];
+  formulaStart?: number;
+  onFormulaCount?: (count: number) => void;
+};
+
+export function ContentBlocks({
+  blocks,
+  formulaStart = 1,
+}: ContentBlocksProps) {
+  let formulaCursor = formulaStart;
+
   return (
     <div className="space-y-4">
-      {blocks.map((block, index) => (
-        <ContentBlockView key={`${block.type}-${index}`} block={block} />
-      ))}
+      {blocks.map((block, index) => {
+        const formulaNumber =
+          block.type === "formula" ? formulaCursor++ : undefined;
+        return (
+          <ContentBlockView
+            key={`${block.type}-${index}`}
+            block={block}
+            formulaNumber={formulaNumber}
+          />
+        );
+      })}
     </div>
   );
 }
 
-function ContentBlockView({ block }: { block: ContentBlock }) {
+export function countFormulas(blocks: ContentBlock[]): number {
+  return blocks.filter((block) => block.type === "formula").length;
+}
+
+function ContentBlockView({
+  block,
+  formulaNumber,
+}: {
+  block: ContentBlock;
+  formulaNumber?: number;
+}) {
   switch (block.type) {
     case "paragraph":
       return (
@@ -36,14 +65,15 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
         <KatexFormula
           latex={block.latex}
           captionHe={block.captionHe}
+          formulaNumber={formulaNumber}
           awaitingConfirmation={block.awaitingConfirmation}
         />
       );
     case "table":
       return (
-        <figure className="my-5 overflow-x-auto rounded-sm border border-[var(--zz-line)]">
+        <figure className="book-table my-5 overflow-x-auto rounded-lg border border-[var(--zz-line)] bg-[rgba(16,26,46,0.55)] backdrop-blur-sm">
           <table className="min-w-full border-collapse text-sm">
-            <caption className="border-b border-[var(--zz-line)] bg-[var(--zz-panel)]/60 px-3 py-2 text-start text-[var(--zz-muted)]">
+            <caption className="border-b border-[var(--zz-line)] bg-[var(--zz-panel)]/70 px-3 py-2 text-start text-[var(--zz-muted)]">
               {block.captionHe}
               {block.awaitingConfirmation ? (
                 <span className="ms-2 text-[var(--zz-gold)]">· ממתין לאישור</span>
@@ -67,7 +97,7 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
                   {row.map((cell, cellIndex) => (
                     <td
                       key={`${rowIndex}-${cellIndex}`}
-                      className="border-b border-[var(--zz-line)]/60 px-3 py-2 text-[var(--zz-ink)]"
+                      className="border-b border-[var(--zz-line)]/60 px-3 py-2 align-top text-[var(--zz-ink)]"
                     >
                       <RichText text={cell} />
                     </td>
@@ -82,25 +112,34 @@ function ContentBlockView({ block }: { block: ContentBlock }) {
       return (
         <aside
           className={
-            block.tone === "awaiting"
-              ? "rounded-sm border border-[var(--zz-gold)]/40 bg-[var(--zz-gold-soft)] px-4 py-3"
+            block.tone === "awaiting" || block.tone === "unresolved"
+              ? "rounded-lg border border-[var(--zz-gold)]/40 bg-[var(--zz-gold-soft)] px-4 py-3"
               : block.tone === "warning"
-                ? "rounded-sm border border-[var(--zz-danger)]/40 bg-[rgba(240,113,120,0.08)] px-4 py-3"
+                ? "rounded-lg border border-[var(--zz-danger)]/40 bg-[rgba(240,113,120,0.08)] px-4 py-3"
                 : block.tone === "sim"
-                  ? "rounded-sm border border-[var(--zz-line)] bg-[var(--zz-navy)]/50 px-4 py-3"
-                  : "rounded-sm border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.06)] px-4 py-3"
+                  ? "rounded-lg border border-[var(--zz-line)] bg-[var(--zz-navy)]/50 px-4 py-3"
+                  : block.tone === "definition"
+                    ? "rounded-lg border border-[var(--zz-cyan)]/35 bg-[rgba(46,230,255,0.07)] px-4 py-3"
+                    : "rounded-lg border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.06)] px-4 py-3"
           }
         >
           <p
             className={
-              block.tone === "awaiting"
+              block.tone === "awaiting" || block.tone === "unresolved"
                 ? "text-sm font-medium text-[var(--zz-gold)]"
                 : block.tone === "warning"
                   ? "text-sm font-medium text-[var(--zz-danger)]"
                   : "text-sm font-medium text-[var(--zz-cyan)]"
             }
           >
-            {block.titleHe}
+            {block.tone === "definition" ? `הגדרה · ${block.titleHe}` : null}
+            {block.tone === "warning" ? `אזהרה · ${block.titleHe}` : null}
+            {block.tone === "unresolved" ? `Unresolved · ${block.titleHe}` : null}
+            {block.tone !== "definition" &&
+            block.tone !== "warning" &&
+            block.tone !== "unresolved"
+              ? block.titleHe
+              : null}
           </p>
           <p className="mt-1 text-sm leading-7 text-[var(--zz-ink)]/90">
             <RichText text={block.textHe} />

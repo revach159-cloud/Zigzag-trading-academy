@@ -78,7 +78,7 @@ function VisualSvg({ kind }: { kind: VisualKind }) {
             reinforcement 1x
           </text>
           <text x="320" y="63" fill="#e8eef8" fontSize="13" textAnchor="middle">
-            optional 10x layer (draft)
+            ×10 stage (same quantity)
           </text>
         </svg>
       );
@@ -108,29 +108,34 @@ function VisualSvg({ kind }: { kind: VisualKind }) {
       );
     case "leverage-paths":
       return (
-        <svg viewBox="0 0 640 220" className="mx-auto h-auto w-full max-w-2xl" role="img" aria-label="1x to 10x paths">
-          <rect x="40" y="80" width="140" height="60" fill="rgba(46,230,255,0.15)" stroke="#2ee6ff" />
-          <text x="110" y="115" fill="#e8eef8" fontSize="14" textAnchor="middle">
-            1x position
+        <svg viewBox="0 0 640 220" className="mx-auto h-auto w-full max-w-2xl" role="img" aria-label="1x to 10x stage transition">
+          <rect x="40" y="70" width="150" height="80" fill="rgba(46,230,255,0.15)" stroke="#2ee6ff" />
+          <text x="115" y="105" fill="#e8eef8" fontSize="14" textAnchor="middle">
+            ×1 stage
           </text>
-          <path d="M190 95 H250" stroke="#c9a84c" strokeWidth="2" markerEnd="url(#arrow)" />
-          <path d="M190 125 H250" stroke="#2ee6ff" strokeWidth="2" />
-          <rect x="260" y="40" width="160" height="60" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" />
-          <text x="340" y="65" fill="#e8eef8" fontSize="12" textAnchor="middle">
-            Path A
+          <text x="115" y="128" fill="#8fa0b8" fontSize="11" textAnchor="middle">
+            margin ≤ $250
           </text>
-          <text x="340" y="85" fill="#8fa0b8" fontSize="11" textAnchor="middle">
-            separate 10x
+          <path d="M200 110 H270" stroke="#c9a84c" strokeWidth="2" />
+          <polygon points="270,110 258,104 258,116" fill="#c9a84c" />
+          <text x="235" y="98" fill="#c9a84c" fontSize="11" textAnchor="middle">
+            budget cap
           </text>
-          <rect x="260" y="120" width="160" height="60" fill="rgba(46,230,255,0.18)" stroke="#2ee6ff" />
-          <text x="340" y="145" fill="#e8eef8" fontSize="12" textAnchor="middle">
-            Path B
+          <rect x="280" y="70" width="150" height="80" fill="rgba(201,168,76,0.18)" stroke="#c9a84c" />
+          <text x="355" y="105" fill="#e8eef8" fontSize="14" textAnchor="middle">
+            ×10 stage
           </text>
-          <text x="340" y="165" fill="#8fa0b8" fontSize="11" textAnchor="middle">
-            re-lever in place
+          <text x="355" y="128" fill="#8fa0b8" fontSize="11" textAnchor="middle">
+            same quantity
           </text>
-          <text x="500" y="110" fill="#c9a84c" fontSize="12">
-            not equivalent
+          <path d="M440 110 H510" stroke="#2ee6ff" strokeWidth="2" />
+          <polygon points="510,110 498,104 498,116" fill="#2ee6ff" />
+          <rect x="520" y="70" width="100" height="80" fill="rgba(46,230,255,0.1)" stroke="#2ee6ff" strokeDasharray="4 3" />
+          <text x="570" y="105" fill="#e8eef8" fontSize="12" textAnchor="middle">
+            max L
+          </text>
+          <text x="570" y="128" fill="#8fa0b8" fontSize="10" textAnchor="middle">
+            Bybit only
           </text>
         </svg>
       );
@@ -161,7 +166,7 @@ function VisualSvg({ kind }: { kind: VisualKind }) {
           <rect x="80" y="60" width="360" height="48" fill="rgba(46,230,255,0.25)" stroke="#2ee6ff" />
           <rect x="440" y="60" width="120" height="48" fill="rgba(201,168,76,0.28)" stroke="#c9a84c" />
           <text x="260" y="90" fill="#e8eef8" fontSize="14" textAnchor="middle">
-            75% realize (draft)
+            75% close qty
           </text>
           <text x="500" y="90" fill="#e8eef8" fontSize="14" textAnchor="middle">
             25% remain

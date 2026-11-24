@@ -2,8 +2,10 @@ import Link from "next/link";
 import type { Chapter, ChapterBody } from "@/lib/content/schemas";
 import { RichText } from "@/lib/content/rich-text";
 import { SimDisclaimer } from "@/components/layout/sim-disclaimer";
-import { ContentBlocks } from "./content-blocks";
+import { ContentBlocks, countFormulas } from "./content-blocks";
 import { KnowledgeCheck } from "./knowledge-check";
+import { EduDisclaimer } from "./edu-disclaimer";
+import { PdfDownloadCta } from "./pdf-download-cta";
 
 type ChapterViewProps = {
   chapter: Chapter;
@@ -13,40 +15,97 @@ type ChapterViewProps = {
 };
 
 export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
-  return (
-    <article className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 sm:px-6">
-      <Link
-        href="/textbook"
-        className="text-sm text-[var(--zz-muted)] hover:text-[var(--zz-cyan)]"
-      >
-        ← חזרה לספר הלימוד
-      </Link>
+  let formulaStart = 1;
+  const toc = [
+    { id: "objectives", titleHe: "מטרות למידה" },
+    ...body.sections.map((section) => ({
+      id: section.id,
+      titleHe: section.titleHe,
+    })),
+    { id: "examples", titleHe: "דוגמאות מספריות" },
+    { id: "scenarios", titleHe: "תרחישים" },
+    { id: "exercises", titleHe: "תרגילים" },
+    { id: "knowledge", titleHe: "שאלות ידע" },
+    { id: "summary", titleHe: "סיכום הפרק" },
+  ];
 
-      <header className="mt-8">
-        <p className="text-xs text-[var(--zz-cyan)]">פרק {chapter.number}</p>
-        <h1 className="mt-2 font-[family-name:var(--font-display)] text-3xl text-[var(--zz-ink)] sm:text-4xl">
-          {chapter.titleHe}
-        </h1>
-        <p dir="ltr" className="ltr-isolate mt-2 text-[var(--zz-muted)]">
-          {chapter.titleEn}
-        </p>
-        <p className="mt-4 leading-8 text-[var(--zz-muted)]">
-          <RichText text={chapter.summaryHe} />
-        </p>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <span className="rounded-sm border border-[var(--zz-line)] px-2 py-1 font-mono text-[10px] tracking-wide text-[var(--zz-muted)] uppercase">
-            {chapter.status}
-          </span>
-          {chapter.awaitingConfirmation ? (
-            <span className="text-sm text-[var(--zz-gold)]">
-              חלקים בפרק ממתינים לאישור מתודולוגיה
+  return (
+    <article className="book-chapter mx-auto w-full max-w-3xl flex-1 px-4 py-12 sm:px-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Link
+          href="/textbook"
+          className="text-sm text-[var(--zz-muted)] hover:text-[var(--zz-cyan)]"
+        >
+          חזרה לספר הלימוד →
+        </Link>
+        <PdfDownloadCta variant="compact" />
+      </div>
+
+      <header className="book-chapter-open relative mt-8 overflow-hidden rounded-2xl border border-[var(--zz-line)] bg-[linear-gradient(145deg,rgba(16,26,46,0.92),rgba(7,11,22,0.88))] p-6 sm:p-8">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-70"
+          style={{
+            background:
+              "radial-gradient(ellipse at 85% 15%, rgba(46,230,255,0.12), transparent 45%), radial-gradient(ellipse at 10% 90%, rgba(201,168,76,0.1), transparent 40%)",
+          }}
+          aria-hidden
+        />
+        <div className="relative">
+          <p className="text-xs tracking-[0.28em] text-[var(--zz-cyan)] uppercase">
+            Chapter {chapter.number} · פרק {chapter.number}
+          </p>
+          <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl text-[var(--zz-ink)] sm:text-4xl">
+            {chapter.titleHe}
+          </h1>
+          <p dir="ltr" className="ltr-isolate mt-2 text-[var(--zz-muted)]">
+            {chapter.titleEn}
+          </p>
+          <p className="mt-4 max-w-2xl leading-8 text-[var(--zz-muted)]">
+            <RichText text={chapter.summaryHe} />
+          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <span className="rounded-md border border-[var(--zz-line)] px-2 py-1 font-mono text-[10px] tracking-wide text-[var(--zz-muted)] uppercase">
+              {chapter.status}
             </span>
-          ) : null}
-          <SimDisclaimer compact />
+            {chapter.awaitingConfirmation ? (
+              <span className="text-sm text-[var(--zz-gold)]">
+                חלקים בפרק ממתינים לאישור מתודולוגיה
+              </span>
+            ) : (
+              <span className="text-sm text-[var(--zz-cyan)]">
+                מתודולוגיה מאושרת
+              </span>
+            )}
+            <SimDisclaimer compact />
+          </div>
         </div>
       </header>
 
-      <section className="mt-10">
+      <nav
+        className="mt-8 rounded-xl border border-[var(--zz-line)] bg-[rgba(16,26,46,0.45)] p-4 backdrop-blur-sm"
+        aria-label="תוכן עניינים לפרק"
+      >
+        <p className="text-xs tracking-[0.2em] text-[var(--zz-gold)] uppercase">
+          בפרק זה
+        </p>
+        <ol className="mt-3 space-y-1.5 text-sm">
+          {toc.map((item, index) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className="text-[var(--zz-muted)] transition-colors hover:text-[var(--zz-cyan)]"
+              >
+                <span className="me-2 font-mono text-[10px] text-[var(--zz-gold)]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                {item.titleHe}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <section className="mt-10" id="objectives">
         <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
           מטרות למידה
         </h2>
@@ -60,9 +119,9 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
       </section>
 
       {body.awaitingNotesHe.length > 0 ? (
-        <aside className="mt-8 rounded-sm border border-[var(--zz-gold)]/40 bg-[var(--zz-gold-soft)] px-4 py-3">
+        <aside className="mt-8 rounded-lg border border-[var(--zz-gold)]/40 bg-[var(--zz-gold-soft)] px-4 py-3">
           <p className="text-sm font-medium text-[var(--zz-gold)]">
-            ממתין לאישור בעלים
+            Unresolved / הערות פתוחות
           </p>
           <ul className="mt-2 list-disc space-y-1 pe-5 text-sm text-[var(--zz-ink)]/90">
             {body.awaitingNotesHe.map((note) => (
@@ -74,18 +133,22 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         </aside>
       ) : null}
 
-      {body.sections.map((section) => (
-        <section key={section.id} className="mt-12" id={section.id}>
-          <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
-            {section.titleHe}
-          </h2>
-          <div className="mt-4">
-            <ContentBlocks blocks={section.blocks} />
-          </div>
-        </section>
-      ))}
+      {body.sections.map((section) => {
+        const start = formulaStart;
+        formulaStart += countFormulas(section.blocks);
+        return (
+          <section key={section.id} className="mt-12" id={section.id}>
+            <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
+              {section.titleHe}
+            </h2>
+            <div className="mt-4">
+              <ContentBlocks blocks={section.blocks} formulaStart={start} />
+            </div>
+          </section>
+        );
+      })}
 
-      <section className="mt-12">
+      <section className="mt-12" id="examples">
         <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
           דוגמאות מספריות
         </h2>
@@ -93,14 +156,9 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
           {body.workedExamples.map((example) => (
             <div
               key={example.id}
-              className="rounded-sm border border-[var(--zz-line)] bg-[var(--zz-panel)]/40 p-4"
+              className="rounded-xl border border-[var(--zz-line)] bg-[rgba(16,26,46,0.5)] p-4 backdrop-blur-sm"
             >
               <h3 className="text-[var(--zz-cyan)]">{example.titleHe}</h3>
-              {example.awaitingConfirmation ? (
-                <p className="mt-1 text-xs text-[var(--zz-gold)]">
-                  דוגמה לימודית לפי טיוטת הנחות — ממתין לאישור
-                </p>
-              ) : null}
               <p className="mt-2 text-sm leading-7 text-[var(--zz-muted)]">
                 <RichText text={example.setupHe} />
               </p>
@@ -120,8 +178,8 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         </div>
       </section>
 
-      <section className="mt-12 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-sm border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.05)] p-4">
+      <section className="mt-12 grid gap-4 sm:grid-cols-2" id="scenarios">
+        <div className="rounded-xl border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.05)] p-4">
           <h2 className="text-[var(--zz-cyan)]">תרחיש מוצלח</h2>
           {body.scenarios.success.map((scenario) => (
             <div key={scenario.id} className="mt-3 space-y-2 text-sm leading-7">
@@ -140,7 +198,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
             </div>
           ))}
         </div>
-        <div className="rounded-sm border border-[var(--zz-danger)]/35 bg-[rgba(240,113,120,0.06)] p-4">
+        <div className="rounded-xl border border-[var(--zz-danger)]/35 bg-[rgba(240,113,120,0.06)] p-4">
           <h2 className="text-[var(--zz-danger)]">תרחיש כושל</h2>
           {body.scenarios.failure.map((scenario) => (
             <div key={scenario.id} className="mt-3 space-y-2 text-sm leading-7">
@@ -161,7 +219,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         </div>
       </section>
 
-      <section className="mt-12">
+      <section className="mt-12" id="exercises">
         <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
           תרגילים
         </h2>
@@ -179,7 +237,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         </ol>
       </section>
 
-      <section className="mt-12">
+      <section className="mt-12" id="knowledge">
         <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
           שאלות ידע
         </h2>
@@ -188,6 +246,21 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         </div>
       </section>
 
+      <section className="mt-12" id="summary">
+        <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
+          סיכום הפרק
+        </h2>
+        <ul className="mt-4 list-disc space-y-2 pe-5 marker:text-[var(--zz-gold)]">
+          {body.chapterSummaryHe.map((item) => (
+            <li key={item} className="leading-7 text-[var(--zz-ink)]/95">
+              <RichText text={item} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <EduDisclaimer className="mt-12" />
+
       <nav
         className="mt-14 flex flex-col gap-3 border-t border-[var(--zz-line)] pt-6 sm:flex-row sm:justify-between"
         aria-label="ניווט בין פרקים"
@@ -195,7 +268,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         {prev ? (
           <Link
             href={`/textbook/${prev.slug}`}
-            className="rounded-sm border border-[var(--zz-line)] px-4 py-3 text-sm hover:border-[var(--zz-cyan)]/50"
+            className="rounded-xl border border-[var(--zz-line)] bg-[rgba(16,26,46,0.45)] px-4 py-3 text-sm transition-colors hover:border-[var(--zz-cyan)]/50"
           >
             <span className="block text-xs text-[var(--zz-muted)]">
               הפרק הקודם
@@ -210,7 +283,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         {next ? (
           <Link
             href={`/textbook/${next.slug}`}
-            className="rounded-sm border border-[var(--zz-line)] px-4 py-3 text-sm hover:border-[var(--zz-cyan)]/50 sm:text-start"
+            className="rounded-xl border border-[var(--zz-line)] bg-[rgba(16,26,46,0.45)] px-4 py-3 text-sm transition-colors hover:border-[var(--zz-cyan)]/50 sm:text-start"
           >
             <span className="block text-xs text-[var(--zz-muted)]">
               הפרק הבא
@@ -219,7 +292,14 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
               {next.number}. {next.titleHe}
             </span>
           </Link>
-        ) : null}
+        ) : (
+          <Link
+            href="/textbook/glossary"
+            className="rounded-xl border border-[var(--zz-gold)]/35 bg-[var(--zz-gold-soft)] px-4 py-3 text-sm text-[var(--zz-gold)]"
+          >
+            למילון המונחים ←
+          </Link>
+        )}
       </nav>
     </article>
   );
