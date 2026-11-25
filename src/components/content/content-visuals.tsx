@@ -19,11 +19,11 @@ export function ContentVisual({
   captionHe: string;
 }) {
   return (
-    <figure className="my-6 overflow-hidden rounded-sm border border-[var(--zz-line)] bg-[var(--zz-panel)]/40">
-      <div className="px-3 pt-4 sm:px-5">
+    <figure className="my-8 overflow-hidden border-y border-[var(--zz-line)] bg-[radial-gradient(ellipse_at_50%_0%,rgba(46,230,255,0.08),transparent_55%),rgba(7,11,22,0.55)]">
+      <div className="px-2 pt-5 sm:px-4">
         <VisualSvg kind={kind} />
       </div>
-      <figcaption className="border-t border-[var(--zz-line)] px-4 py-3 text-sm text-[var(--zz-muted)]">
+      <figcaption className="px-1 py-4 text-sm leading-7 text-[var(--zz-muted)]">
         {captionHe}
       </figcaption>
     </figure>

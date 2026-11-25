@@ -71,20 +71,20 @@ function ContentBlockView({
       );
     case "table":
       return (
-        <figure className="book-table my-5 overflow-x-auto rounded-lg border border-[var(--zz-line)] bg-[rgba(16,26,46,0.55)] backdrop-blur-sm">
+        <figure className="book-table my-6 overflow-x-auto border-y border-[var(--zz-line)]">
           <table className="min-w-full border-collapse text-sm">
-            <caption className="border-b border-[var(--zz-line)] bg-[var(--zz-panel)]/70 px-3 py-2 text-start text-[var(--zz-muted)]">
+            <caption className="border-b border-[var(--zz-line)] px-1 py-3 text-start text-[var(--zz-muted)]">
               {block.captionHe}
               {block.awaitingConfirmation ? (
                 <span className="ms-2 text-[var(--zz-gold)]">· ממתין לאישור</span>
               ) : null}
             </caption>
             <thead>
-              <tr className="bg-[var(--zz-navy)]/70">
+              <tr>
                 {block.headersHe.map((header) => (
                   <th
                     key={header}
-                    className="border-b border-[var(--zz-line)] px-3 py-2 text-start font-medium text-[var(--zz-cyan)]"
+                    className="border-b border-[var(--zz-line)] px-2 py-2.5 text-start font-medium text-[var(--zz-cyan)]"
                   >
                     {header}
                   </th>
@@ -93,11 +93,11 @@ function ContentBlockView({
             </thead>
             <tbody>
               {block.rows.map((row, rowIndex) => (
-                <tr key={rowIndex} className="odd:bg-[var(--zz-panel)]/30">
+                <tr key={rowIndex}>
                   {row.map((cell, cellIndex) => (
                     <td
                       key={`${rowIndex}-${cellIndex}`}
-                      className="border-b border-[var(--zz-line)]/60 px-3 py-2 align-top text-[var(--zz-ink)]"
+                      className="border-b border-[var(--zz-line)]/50 px-2 py-2.5 align-top text-[var(--zz-ink)]"
                     >
                       <RichText text={cell} />
                     </td>
@@ -113,16 +113,16 @@ function ContentBlockView({
         <aside
           className={
             block.tone === "awaiting" || block.tone === "unresolved"
-              ? "rounded-lg border border-[var(--zz-gold)]/40 bg-[var(--zz-gold-soft)] px-4 py-3"
+              ? "my-5 border-r-2 border-[var(--zz-gold)]/55 pr-4"
               : block.tone === "warning"
-                ? "rounded-lg border border-[var(--zz-danger)]/40 bg-[rgba(240,113,120,0.08)] px-4 py-3"
+                ? "my-5 border-r-2 border-[var(--zz-danger)]/55 pr-4"
                 : block.tone === "sim"
-                  ? "rounded-lg border border-[var(--zz-line)] bg-[var(--zz-navy)]/50 px-4 py-3"
+                  ? "my-5 border-r-2 border-[var(--zz-line)] pr-4"
                   : block.tone === "definition"
-                    ? "rounded-lg border border-[var(--zz-cyan)]/35 bg-[rgba(46,230,255,0.07)] px-4 py-3"
+                    ? "my-5 border-r-2 border-[var(--zz-cyan)]/55 pr-4"
                     : block.tone === "insight"
-                      ? "rounded-lg border border-[var(--zz-gold)]/35 bg-[rgba(201,168,76,0.08)] px-4 py-3"
-                      : "rounded-lg border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.06)] px-4 py-3"
+                      ? "my-5 border-r-2 border-[var(--zz-gold)]/55 pr-4"
+                      : "my-5 border-r-2 border-[var(--zz-cyan)]/40 pr-4"
           }
         >
           <p

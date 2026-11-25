@@ -22,20 +22,20 @@ export function PdfDownloadCta({
   }
 
   return (
-    <div className="rounded-xl border border-[var(--zz-cyan)]/25 bg-[rgba(16,26,46,0.65)] p-5 shadow-[0_0_40px_rgba(46,230,255,0.06)] backdrop-blur-md">
-      <p className="text-xs tracking-[0.2em] text-[var(--zz-cyan)] uppercase">
-        Print-ready · A4
+    <div className="border-y border-[var(--zz-line)] bg-[linear-gradient(105deg,rgba(46,230,255,0.06),transparent_55%)] py-6">
+      <p className="text-[11px] tracking-[0.28em] text-[var(--zz-cyan)] uppercase">
+        Print-ready · A4 · Dark cinematic
       </p>
-      <h2 className="mt-2 font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
+      <h2 className="book-hebrew-display mt-2 text-2xl text-[var(--zz-ink)]">
         הורידו את LOOKBACK כ־PDF
       </h2>
       <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--zz-muted)]">
-        אותו מקור נרטיבי כמו בקורא הדיגיטלי — עברית RTL, תחנות מסע, תוכן עניינים
-        לחיץ, מספרי עמודים וכותרות/תחתיות. מוכן להדפסה ב־A4.
+        אותו מקור נרטיבי כמו בקורא הדיגיטלי — זהות חזותית כהה, עברית RTL, תחנות
+        מסע, תוכן עניינים לחיץ ומספרי עמודים.
       </p>
       <Link
         href={PDF_HREF}
-        className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--zz-cyan)]/50 bg-[rgba(46,230,255,0.12)] px-4 py-2.5 text-sm text-[var(--zz-cyan)] transition-colors hover:bg-[rgba(46,230,255,0.2)] hover:text-[var(--zz-ink)]"
+        className="mt-4 inline-flex items-center gap-2 border border-[var(--zz-cyan)]/50 bg-[rgba(46,230,255,0.1)] px-4 py-2.5 text-sm text-[var(--zz-cyan)] transition-colors hover:bg-[rgba(46,230,255,0.18)]"
         prefetch={false}
       >
         <Download size={16} aria-hidden />

@@ -17,165 +17,173 @@ export default function TextbookPage() {
   const chapters = listChapters();
 
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6">
+    <main className="flex-1">
+      {/* Full-bleed cinematic cover */}
       <section
-        className="book-cover relative overflow-hidden rounded-3xl border border-[var(--zz-line)] px-6 py-14 sm:px-12 sm:py-20"
+        className="book-cover relative isolate min-h-[calc(100vh-7.5rem)] overflow-hidden px-4 py-16 sm:px-8 sm:py-20"
         aria-label="שער הספר"
       >
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse at 20% 20%, rgba(46,230,255,0.18), transparent 42%), radial-gradient(ellipse at 85% 30%, rgba(201,168,76,0.12), transparent 40%), linear-gradient(160deg, #03050c 0%, #0a1224 45%, #070b16 100%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 opacity-35"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(46,230,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(46,230,255,0.08) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-            maskImage: "linear-gradient(to top, black, transparent)",
-          }}
-          aria-hidden
-        />
+        <div className="absolute inset-0 -z-10">
+          <EducationalScene
+            kind="cover"
+            className="absolute inset-0 h-full w-full opacity-55"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(105deg, rgba(3,5,12,0.92) 0%, rgba(3,5,12,0.72) 42%, rgba(3,5,12,0.45) 70%, rgba(3,5,12,0.75) 100%)",
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-40"
+            style={{
+              background:
+                "linear-gradient(to top, var(--zz-void), transparent)",
+            }}
+            aria-hidden
+          />
+        </div>
 
-        <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <div className="max-w-2xl">
-            <p className="text-xs tracking-[0.35em] text-[var(--zz-gold)] uppercase">
-              {brand.narrativeConceptEn} · {brand.narrativeConceptHe}
-            </p>
-            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl tracking-[0.08em] text-[var(--zz-ink)] sm:text-6xl">
-              {brand.name}
-            </h1>
-            <p className="mt-2 font-[family-name:var(--font-display)] text-xl text-[var(--zz-cyan)] sm:text-3xl">
-              {brand.bookTitleHe}
-            </p>
-            <p className="mt-2 text-sm text-[var(--zz-gold)]">
-              {brand.methodHe} · {brand.methodEn}
-            </p>
-            <p className="mt-5 max-w-xl text-base leading-8 text-[var(--zz-muted)] sm:text-lg">
-              {brand.taglineHe}
-            </p>
-            <p
-              dir="ltr"
-              className="ltr-isolate mt-2 max-w-xl text-sm text-[var(--zz-muted)]"
+        <div className="relative mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col justify-center">
+          <p className="text-[11px] tracking-[0.4em] text-[var(--zz-gold)] uppercase">
+            {brand.narrativeConceptEn}
+          </p>
+          <h1 className="mt-5 font-[family-name:var(--font-display)] text-5xl tracking-[0.14em] text-[var(--zz-ink)] sm:text-7xl">
+            {brand.name}
+          </h1>
+          <p className="book-hebrew-display mt-4 text-3xl text-[var(--zz-cyan)] sm:text-5xl">
+            {brand.bookTitleHe}
+          </p>
+          <p className="mt-3 text-sm tracking-[0.08em] text-[var(--zz-gold)]">
+            {brand.methodHe}
+          </p>
+          <p className="mt-8 max-w-xl text-lg leading-9 text-[var(--zz-muted)] sm:text-xl">
+            {brand.taglineHe}
+          </p>
+          <p
+            dir="ltr"
+            className="ltr-isolate mt-3 max-w-xl text-sm text-[var(--zz-muted)]"
+          >
+            {brand.taglineEn}
+          </p>
+          <p className="mt-5 max-w-lg text-sm leading-7 text-[var(--zz-muted)]">
+            ספר נרטיבי עברי — {chapterCatalog.chapters.length} תחנות מסע, בלי
+            חידוני אמריקאי. סימולציה ולימוד בלבד.
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <Link
+              href={`/textbook/${chapters[0]?.slug ?? "opening-the-journey"}`}
+              className="border border-[var(--zz-cyan)]/50 bg-[rgba(46,230,255,0.1)] px-5 py-3 text-sm text-[var(--zz-cyan)] hover:bg-[rgba(46,230,255,0.18)]"
             >
-              {brand.taglineEn}
-            </p>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--zz-muted)]">
-              ספר נרטיבי עברי — {chapterCatalog.chapters.length} תחנות מסע, בלי
-              חידוני אמריקאי. סימולציה ולימוד בלבד.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a
-                href="#toc"
-                className="rounded-lg border border-[var(--zz-cyan)]/45 bg-[rgba(46,230,255,0.12)] px-4 py-2.5 text-sm text-[var(--zz-cyan)] hover:bg-[rgba(46,230,255,0.2)]"
-              >
-                לתוכן העניינים
-              </a>
-              <Link
-                href={`/textbook/${chapters[0]?.slug ?? "opening-the-journey"}`}
-                className="rounded-lg border border-[var(--zz-gold)]/40 bg-[rgba(201,168,76,0.12)] px-4 py-2.5 text-sm text-[var(--zz-gold)] hover:bg-[rgba(201,168,76,0.2)]"
-              >
-                התחלת המסע
-              </Link>
-              <Link
-                href="/textbook/glossary"
-                className="rounded-lg border border-[var(--zz-line)] px-4 py-2.5 text-sm text-[var(--zz-muted)] hover:text-[var(--zz-ink)]"
-              >
-                מילון מונחים
-              </Link>
-              <SimDisclaimer compact />
-            </div>
-            <div className="mt-8 max-w-md">
-              <TextbookCoverClient />
-            </div>
+              התחלת המסע
+            </Link>
+            <a
+              href="#toc"
+              className="border border-[var(--zz-line)] px-5 py-3 text-sm text-[var(--zz-muted)] hover:text-[var(--zz-ink)]"
+            >
+              מפת המסע
+            </a>
+            <Link
+              href="/textbook/glossary"
+              className="text-sm text-[var(--zz-gold)] hover:underline"
+            >
+              מילון
+            </Link>
+            <SimDisclaimer compact />
           </div>
 
-          <EducationalScene kind="cover" className="relative h-64 w-full overflow-hidden rounded-2xl border border-[var(--zz-line)] sm:h-80" />
+          <div className="mt-10 max-w-md">
+            <TextbookCoverClient />
+          </div>
         </div>
       </section>
 
-      <div className="mt-10">
-        <PdfDownloadCta />
-      </div>
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div className="mt-4">
+          <PdfDownloadCta />
+        </div>
 
-      <div className="mt-8 flex flex-wrap items-center gap-4">
-        <Link
-          href="/method"
-          className="text-sm text-[var(--zz-cyan)] hover:underline"
-        >
-          לדפי השיטה ←
-        </Link>
-        <Link
-          href="/textbook/clear-disclaimer"
-          className="text-sm text-[var(--zz-gold)] hover:underline"
-        >
-          להצהרה הברורה ←
-        </Link>
-      </div>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <Link
+            href="/method"
+            className="text-sm text-[var(--zz-cyan)] hover:underline"
+          >
+            לדפי השיטה ←
+          </Link>
+          <Link
+            href="/textbook/clear-disclaimer"
+            className="text-sm text-[var(--zz-gold)] hover:underline"
+          >
+            להצהרה הברורה ←
+          </Link>
+        </div>
 
-      <section className="mt-12" id="toc" aria-labelledby="toc-heading">
-        <h2
-          id="toc-heading"
-          className="font-[family-name:var(--font-display)] text-2xl text-[var(--zz-ink)]"
-        >
-          מפת המסע
-        </h2>
-        <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--zz-muted)]">
-          שלוש־עשרה תחנות בנרטיב {brand.narrativeConceptHe}. כל תחנה: סיפור,
-          עיקרון, דימוי, דוגמה, פסיכולוגיה ותובנה.
-        </p>
+        <section className="mt-16 pb-16" id="toc" aria-labelledby="toc-heading">
+          <h2
+            id="toc-heading"
+            className="book-hebrew-display text-3xl text-[var(--zz-ink)] sm:text-4xl"
+          >
+            מפת המסע
+          </h2>
+          <p className="mt-3 max-w-2xl text-base leading-8 text-[var(--zz-muted)]">
+            שלוש־עשרה תחנות בנרטיב {brand.narrativeConceptHe}. כל תחנה היא פרק
+            ספרותי: סיפור, עיקרון, דימוי, דוגמה, פסיכולוגיה ותובנה.
+          </p>
 
-        <ol className="mt-8 space-y-3">
-          {chapters.map((chapter) => (
-            <li key={chapter.id}>
-              <Link
-                href={`/textbook/${chapter.slug}`}
-                className="group flex flex-col gap-2 rounded-xl border border-[var(--zz-line)] bg-[rgba(16,26,46,0.45)] px-4 py-4 backdrop-blur-sm transition-colors hover:border-[var(--zz-cyan)]/50 sm:flex-row sm:items-start sm:justify-between"
-              >
+          <ol className="mt-10">
+            {chapters.map((chapter) => (
+              <li key={chapter.id}>
+                <Link
+                  href={`/textbook/${chapter.slug}`}
+                  className="journey-toc-item group"
+                >
+                  <span className="journey-toc-num">
+                    {String(chapter.number).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className="text-[11px] tracking-[0.22em] text-[var(--zz-cyan)] uppercase">
+                      {chapter.stationHe}
+                    </p>
+                    <h3 className="book-hebrew-display mt-1 text-2xl text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
+                      {chapter.titleHe}
+                    </h3>
+                    <p
+                      dir="ltr"
+                      className="ltr-isolate mt-1 text-sm text-[var(--zz-muted)]"
+                    >
+                      {chapter.titleEn}
+                    </p>
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--zz-muted)]">
+                      <RichText text={chapter.summaryHe} />
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/textbook/glossary" className="journey-toc-item group">
+                <span className="journey-toc-num">+</span>
                 <div>
-                  <p className="text-xs text-[var(--zz-cyan)]">
-                    {chapter.stationHe}
+                  <p className="text-[11px] tracking-[0.22em] text-[var(--zz-gold)] uppercase">
+                    נספח חי
                   </p>
-                  <h3 className="mt-1 text-lg text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
-                    {chapter.titleHe}
+                  <h3 className="book-hebrew-display mt-1 text-2xl text-[var(--zz-ink)] group-hover:text-[var(--zz-gold)]">
+                    מילון מונחים מורחב
                   </h3>
-                  <p
-                    dir="ltr"
-                    className="ltr-isolate mt-1 text-sm text-[var(--zz-muted)]"
-                  >
-                    {chapter.titleEn}
-                  </p>
-                  <p className="mt-2 text-sm leading-7 text-[var(--zz-muted)]">
-                    <RichText text={chapter.summaryHe} />
+                  <p className="mt-3 text-sm leading-7 text-[var(--zz-muted)]">
+                    אותם מונחי ליבה כמו בתחנה 11 — בפורמט עיון מהיר.
                   </p>
                 </div>
               </Link>
             </li>
-          ))}
-          <li>
-            <Link
-              href="/textbook/glossary"
-              className="group flex flex-col gap-2 rounded-xl border border-[var(--zz-gold)]/30 bg-[rgba(201,168,76,0.06)] px-4 py-4 transition-colors hover:border-[var(--zz-gold)]/55 sm:flex-row sm:items-start sm:justify-between"
-            >
-              <div>
-                <p className="text-xs text-[var(--zz-gold)]">נספח חי</p>
-                <h3 className="mt-1 text-lg text-[var(--zz-ink)] group-hover:text-[var(--zz-gold)]">
-                  מילון מונחים מורחב
-                </h3>
-                <p className="mt-2 text-sm leading-7 text-[var(--zz-muted)]">
-                  אותם מונחי ליבה כמו בתחנה 11 — בפורמט עיון מהיר.
-                </p>
-              </div>
-            </Link>
-          </li>
-        </ol>
-      </section>
+          </ol>
+        </section>
 
-      <EduDisclaimer className="mt-12" />
+        <EduDisclaimer className="mb-16" />
+      </div>
     </main>
   );
 }

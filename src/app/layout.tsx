@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Heebo, IBM_Plex_Mono, Outfit, Rubik } from "next/font/google";
+import {
+  Frank_Ruhl_Libre,
+  Heebo,
+  IBM_Plex_Mono,
+  Outfit,
+  Rubik,
+} from "next/font/google";
 import { AcademyShell } from "@/components/layout/academy-shell";
 import { brand } from "@/lib/design/tokens";
 import "./globals.css";
 
-/** Body: Rubik — Hebrew + Latin, OFL via Google Fonts */
+/** Body: Rubik — Hebrew + Latin, OFL */
 const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["hebrew", "latin"],
@@ -19,7 +25,18 @@ const heebo = Heebo({
   display: "swap",
 });
 
-/** Display / brand Latin — Outfit (OFL), paired with Rubik for Hebrew headlines */
+/**
+ * Distinctive Hebrew display — Frank Ruhl Libre (OFL).
+ * Literary editorial presence for chapter openings; pairs with Outfit for Latin brand.
+ */
+const frankRuhl = Frank_Ruhl_Libre({
+  variable: "--font-frank",
+  subsets: ["hebrew", "latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+/** Display / brand Latin — Outfit (OFL) */
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
@@ -51,7 +68,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${rubik.variable} ${heebo.variable} ${outfit.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${rubik.variable} ${heebo.variable} ${frankRuhl.variable} ${outfit.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <AcademyShell>{children}</AcademyShell>

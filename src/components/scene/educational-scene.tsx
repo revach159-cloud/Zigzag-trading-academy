@@ -48,10 +48,12 @@ export function EducationalScene({ kind, className, compact }: Props) {
       className={
         className ??
         (compact
-          ? "relative h-40 w-full overflow-hidden rounded-xl border border-[var(--zz-line)]"
-          : "relative h-56 w-full overflow-hidden rounded-2xl border border-[var(--zz-line)] sm:h-72")
+          ? "relative h-40 w-full overflow-hidden"
+          : "relative h-56 w-full overflow-hidden sm:h-72")
       }
       aria-hidden="true"
+      data-scene-mode={mode}
+      data-scene-kind={kind}
     >
       {mode === "3d" ? (
         <EducationalScene3D kind={kind} />

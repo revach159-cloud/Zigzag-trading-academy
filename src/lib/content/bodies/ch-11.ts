@@ -3,7 +3,7 @@ import type { ChapterBodyInput } from "../schemas";
 export const chapter11Body = {
   slug: "simple-glossary",
   openingStoryHe:
-    "בתחנת השפה תלויים שלטים קצרים. מי שמערבב ביניהם נכשל עוד לפני המספרים. מי שלומד להפריד — מדבר Lookback בבהירות.",
+    "לפני שסוגרים את המסע — עוצרים במילון. על הקיר שלטים קצרים. מי שמערבב ביניהם נכשל עוד לפני המספרים. מי שלומד להפריד — מדבר Lookback בבהירות, גם כשהרמזור צהוב.",
   principleHe:
     "כל מונח = משמעות אחת. Margin אינו notional; PnL אינו collateral; liquidation אינו 'צבע רמזור'.",
   memorableInsightHe:

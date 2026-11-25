@@ -6,16 +6,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #0b1220;
-      --muted: #445166;
-      --line: #c9d3e2;
-      --cyan: #0b6e82;
-      --gold: #8a6a1f;
-      --panel: #f3f7fb;
-      --midnight: #0a1224;
+      --void: #03050c;
+      --ink: #e8eef8;
+      --muted: #8fa0b8;
+      --line: rgba(125, 211, 252, 0.22);
+      --cyan: #2ee6ff;
+      --gold: #c9a84c;
+      --panel: #101a2e;
+      --navy: #0b1528;
     }
     * { box-sizing: border-box; }
     body {
@@ -23,107 +24,142 @@
       color: var(--ink);
       font-family: "Rubik", sans-serif;
       font-size: 11pt;
-      line-height: 1.7;
-      background: white;
+      line-height: 1.75;
+      background: var(--void);
     }
     .ltr { unicode-bidi: isolate; direction: ltr; }
     h1, h2, h3, h4 {
-      font-family: "Outfit", "Rubik", sans-serif;
+      font-family: "Frank Ruhl Libre", "Outfit", "Rubik", serif;
       page-break-after: avoid;
+      font-weight: 500;
     }
     a { color: var(--cyan); text-decoration: none; }
     .cover {
       min-height: 92vh;
       padding: 48px 40px;
-      border: 2px solid var(--line);
       display: flex;
       flex-direction: column;
       justify-content: center;
       page-break-after: always;
       background:
-        radial-gradient(ellipse at 20% 20%, rgba(11,110,130,0.12), transparent 40%),
-        linear-gradient(160deg, #eaf4f8, #ffffff 50%, #f7f3ea);
+        radial-gradient(ellipse at 18% 15%, rgba(46,230,255,0.16), transparent 42%),
+        radial-gradient(ellipse at 85% 25%, rgba(201,168,76,0.1), transparent 40%),
+        linear-gradient(160deg, #03050c 0%, #0a1224 48%, #070b16 100%);
+      border: 1px solid var(--line);
     }
     .cover .brand {
       font-family: "Outfit", sans-serif;
       font-size: 40pt;
       letter-spacing: 0.14em;
       margin: 0;
+      color: var(--ink);
     }
-    .cover .book { color: var(--cyan); font-size: 18pt; margin-top: 10px; }
-    .cover .method { color: var(--gold); margin-top: 8px; }
-    .cover .tag { margin-top: 22px; max-width: 34em; }
+    .cover .book {
+      font-family: "Frank Ruhl Libre", serif;
+      color: var(--cyan);
+      font-size: 20pt;
+      margin-top: 12px;
+    }
+    .cover .method { color: var(--gold); margin-top: 10px; letter-spacing: 0.04em; }
+    .cover .tag { margin-top: 24px; max-width: 34em; color: var(--muted); font-size: 12.5pt; line-height: 1.8; }
     .disclaimer {
       margin-top: 36px;
       padding: 16px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      font-size: 10pt;
+      border-right: 2px solid var(--gold);
+      background: rgba(16,26,46,0.55);
+      font-size: 9.5pt;
+      color: var(--muted);
     }
-    .toc { page-break-after: always; padding: 24px 8px; }
-    .toc ol { line-height: 2; }
+    .toc {
+      page-break-after: always;
+      padding: 28px 8px;
+      background: var(--void);
+    }
+    .toc h2 { color: var(--ink); }
+    .toc ol { line-height: 2.05; color: var(--muted); }
     .chapter { page-break-before: always; }
     .chapter-open {
-      padding: 18px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      margin-bottom: 18px;
+      padding: 20px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(46,230,255,0.08), transparent 45%);
     }
-    .eyebrow { color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; font-size: 9pt; }
+    .eyebrow { color: var(--cyan); letter-spacing: 0.16em; text-transform: uppercase; font-size: 9pt; }
     .en { color: var(--muted); font-size: 10pt; }
     blockquote.story {
-      margin: 0 0 14px;
-      padding: 12px 14px;
-      border-right: 3px solid var(--cyan);
-      background: #f7fbfe;
-      font-size: 11.5pt;
+      margin: 0 0 16px;
+      padding: 0 0 0 0;
+      border: none;
+      border-right: 2px solid var(--cyan);
+      padding-right: 14px;
+      background: transparent;
+      font-family: "Frank Ruhl Libre", "Rubik", serif;
+      font-size: 12pt;
+      line-height: 1.85;
+      color: var(--ink);
     }
-    .principle { margin: 10px 0 18px; }
+    .principle {
+      margin: 12px 0 20px;
+      padding-block: 10px;
+      border-block: 1px solid rgba(46,230,255,0.28);
+      color: var(--cyan);
+      font-family: "Frank Ruhl Libre", serif;
+    }
     .insight {
-      margin: 16px 0;
-      padding: 12px 14px;
-      border: 1px solid #e2d3a8;
-      background: #fbf7ea;
+      margin: 18px 0;
+      padding: 14px 16px;
+      border-right: 2px solid var(--gold);
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(16,26,46,0.35));
       page-break-inside: avoid;
+      font-family: "Frank Ruhl Libre", serif;
+      font-size: 12pt;
     }
     .formula {
       margin: 14px 0;
       padding: 10px 12px;
-      border: 1px solid var(--line);
-      background: #fafcfe;
+      border-block: 1px solid var(--line);
+      background: rgba(16,26,46,0.45);
       page-break-inside: avoid;
     }
     .formula-row { display: flex; align-items: flex-start; gap: 12px; }
-    .katex-host { flex: 1; text-align: center; overflow-x: auto; }
+    .katex-host { flex: 1; text-align: center; overflow-x: auto; color: #e8eef8; }
+    .katex { color: #e8eef8 !important; }
     .formula-num { font-family: "IBM Plex Mono", monospace; color: var(--gold); }
     figcaption { text-align: center; color: var(--muted); font-size: 9.5pt; margin-top: 6px; }
     .table-wrap { margin: 14px 0; page-break-inside: avoid; }
     table { width: 100%; border-collapse: collapse; font-size: 9.5pt; table-layout: fixed; word-wrap: break-word; }
-    th, td { border: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: right; }
-    th { background: #e8eef6; color: var(--cyan); }
+    th, td { border-bottom: 1px solid var(--line); padding: 7px 8px; vertical-align: top; text-align: right; }
+    th { color: var(--cyan); }
     caption { caption-side: top; text-align: right; color: var(--muted); margin-bottom: 6px; }
     .callout {
       margin: 12px 0;
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      background: var(--panel);
+      padding: 8px 0 8px 0;
+      padding-right: 12px;
+      border: none;
+      border-right: 2px solid var(--line);
+      background: transparent;
       page-break-inside: avoid;
     }
-    .callout.warning { border-color: #c45b63; background: #fff5f5; }
-    .callout.definition, .callout.insight { border-color: #0b6e82; }
-    .callout.unresolved, .callout.awaiting { border-color: var(--gold); background: #fbf6ea; }
+    .callout.warning { border-right-color: #f07178; }
+    .callout.definition, .callout.insight { border-right-color: var(--cyan); }
+    .callout.unresolved, .callout.awaiting { border-right-color: var(--gold); }
     .example, .gloss {
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid var(--line);
+      margin: 12px 0;
+      padding: 10px 0 10px 0;
+      padding-right: 12px;
+      border: none;
+      border-right: 1px solid var(--line);
       page-break-inside: avoid;
     }
     code {
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.92em;
-      background: #eef2f7;
+      background: rgba(46,230,255,0.08);
+      color: var(--cyan);
       padding: 0 3px;
     }
+    .visual-cap { color: var(--muted); font-size: 9.5pt; }
     @page { size: A4; margin: 18mm 14mm 18mm 14mm; }
   </style>
 </head>
@@ -170,7 +206,7 @@
           <p class="en" dir="ltr">Opening the Journey</p>
           <p>איך נכנסים למסע המסלולים: מהו Lookback, מהי השבחת העסקה, ולמה זה ספר סיפור — לא מחברת נוסחאות.</p>
         </header>
-        <blockquote class="story">בלילה הראשון של המסע אין גרף פתוח ואין אות כניסה. יש רק שער: מסלול מוכן מראש, ואור כחלחל שמזכיר שהשוק זז בזיגזג — לא בקו ישר. מי שנכנס לכאן לא מחפש קיצור דרך לרווח. הוא מחפש שפה: איך לעבוד עם תנועה במקום לרדוף אחריה.</blockquote>
+        <blockquote class="story">בלילה הראשון של המסע אין גרף פתוח ואין אות כניסה. יש רק שער: מסלול מוכן מראש, ואור כחלחל שמזכיר שהשוק זז בזיגזג — לא בקו ישר. מי שנכנס לכאן לא מחפש קיצור דרך לרווח. הוא מחפש שפה: איך לעבוד עם תנועה במקום לרדוף אחריה. מאחורי השער מחכות שלוש־עשרה תחנות — סיפור אחד ארוך, לא אוסף כרטיסים.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> ספר Lookback הוא מסע מסלולים: כל פרק הוא תחנה שמלמדת להכין דרך, לא לרדוף אופק.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>להבין מהו Lookback ומהי השבחת העסקה כסיפור לימודי אחד.</li><li>להבחין בין ספר נרטיבי לבין מחברת נוסחאות או מבחן בית־ספר.</li><li>לקבל את גבול הסימולציה לפני כל מספר בדוגמאות.</li></ul>
@@ -226,7 +262,7 @@
           <p class="en" dir="ltr">Lookback Discovery</p>
           <p>ללמוד לראות תנועה בזיגזג במקום לרדוף אחרי אופק. המבט לאחור הוא משמעת, לא אות כניסה.</p>
         </header>
-        <blockquote class="story">בתחנה השנייה עוצרים על גשר מעל עמק של זיגזגים. מלמטה נראה כאוס. מלמעלה — מסלולים. מי שלומד Lookback מגלה שהתנועה כבר סיפרה סיפור: עליות, ירידות, מגע בנקודות. המבט לאחור אינו נוסטלגיה. הוא כלי עבודה.</blockquote>
+        <blockquote class="story">אחרי שעברתם בשער, הגשר נפתח. מלמטה נראה כאוס של נרות; מלמעלה — מסלולים. מי שלומד Lookback מגלה שהתנועה כבר סיפרה סיפור: עליות, ירידות, מגע בנקודות. המבט לאחור אינו נוסטלגיה. הוא כלי עבודה שמחליף רדיפה בקריאה.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> לעבוד עם תנועת המחיר בזיגזג — לא לרדוף אחרי הנר הבא.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>להסביר מהו Lookback כמשמעת קריאה של תנועה.</li><li>להבחין בין מבנה swing לימודי לבין אות כניסה אוטומטי.</li><li>לחבר את המבט לאחור להשבחת העסקה בשלבים הבאים.</li></ul>
@@ -284,7 +320,7 @@
           <p class="en" dir="ltr">Trade Improvement</p>
           <p>איך משפרים פוזיציה דרך חיזוקים מדודים בסולם 10%, תקרת $250, והבחנה בין דוגמת XRP ל־$320 לבין הכלל המאושר.</p>
         </header>
-        <blockquote class="story">בתחנת ההשבחה פוגשים נפח שעובד על חפץ שבור. הוא לא זורק אותו. הוא מוסיף שכבה, בודק משקל, עוצר כשהחומר לא מחזיק. כך גם השבחת העסקה: לא הימור גדול יותר מתוך פחד — אלא שיפור מדוד של פוזיציה בתוך תקרה.</blockquote>
+        <blockquote class="story">מהגשר יורדים אל הסדנה. נפח עובד על חפץ שבור: לא זורק אותו, מוסיף שכבה, בודק משקל, עוצר כשהחומר לא מחזיק. כך השבחת העסקה אחרי Lookback — שיפור מדוד של פוזיציה בתוך תקרה, לא הימור גדול יותר מתוך פחד.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> משפרים פוזיציה בחיזוקים אופציונליים על סולם adverse, לפי מרג'ין מצטבר ותקרת $250 Reject — לא לפי תחושת בטן.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>להסביר חיזוק אופציונלי בסולם 10% מ־P₀ ב־Touch.</li><li>להבדיל בין דוגמת דפוס $320 לבין תקרת $250 המאושרת.</li><li>להבחין בין margin, quantity, avg entry ו־PnL.</li></ul>
@@ -357,7 +393,7 @@
           <p class="en" dir="ltr">Traffic Light</p>
           <p>ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי לניהול, לא שינוי במכניקת פירוק.</p>
         </header>
-        <blockquote class="story">באמצע המסע מופיע רמזור תלוי מעל צומת של ערפל. הירוק לא אומר 'אין סכנה'. הצהוב לא אומר 'הפסד מובטח'. האדום לא אומר 'סוף'. שלושתם שפה של ניהול תודעתי — כדי שלא תנהגו באותה מהירות בכל מזג אוויר.</blockquote>
+        <blockquote class="story">מתוך הסדנה יוצאים לצומת ערפל. מעל הצומת תלוי רמזור: הירוק לא אומר 'אין סכנה', הצהוב לא אומר 'הפסד מובטח', האדום לא אומר 'סוף'. שלושתם שפת ניהול תודעתי — כדי שלא תנהגו באותה מהירות בכל מזג אוויר של ההשבחה.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> רמזור ZigZag: ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי; אינו משנה את מכניקת ה־liquidation.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>למפות ירוק / צהוב / אדום לשלבי ×1, ×10 ומינוף מכשיר מרבי.</li><li>להסביר שמעבר ×1→×10 הוא תקציבי ושומר כמות.</li><li>להפריד בין סיווג פסיכולוגי לבין מחיר פירוק בבורסה.</li></ul>
@@ -416,7 +452,7 @@
           <p class="en" dir="ltr">Realize 75%</p>
           <p>סגירת 75% מהכמות הנותרת — שוב ושוב — כדי להפוך רווח לא ממומש למשמעת, לא לאשליה.</p>
         </header>
-        <blockquote class="story">בתחנת המימוש עומדים מול שולחן שעליו ערימת אבנים זוהרות. מי שלוקח הכול בבת אחת נשבר מהמשקל. מי שלומד Lookback לוקח שלושה רבעים — ומשאיר רבע חי על השולחן. אחר כך שוב. ושוב. עד שהערימה חוזרת לקנה מידה אנושי.</blockquote>
+        <blockquote class="story">מעבר לרמזור עומדים מול שולחן ועליו ערימת אבנים זוהרות. מי שלוקח הכול בבת אחת נשבר מהמשקל. Lookback לומד לקחת שלושה רבעים — ולהשאיר רבע חי. אחר כך שוב. ושוב. עד שהערימה חוזרת לקנה מידה אנושי.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> מימוש = סגירת 75% מהכמות הפתוחה הנותרת, ידנית וחוזרת — לא 'משיכת רווח' בלי שינוי כמות.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>להגדיר מימוש כסגירת 75% מהכמות הנותרת.</li><li>לחשב סדרת מימושים חוזרים על היתרה.</li><li>להפריד בין PnL לא ממומש לבין כמות שנסגרה.</li></ul>
@@ -477,7 +513,7 @@
           <p class="en" dir="ltr">Return to ×1 Balance</p>
           <p>לחזור לכיוון ×1 אחרי סערה: לא ניצחון מוחלט, אלא חזרה למסלול מוכן ושקט יותר.</p>
         </header>
-        <blockquote class="story">אחרי הסערה חוזרים לשביל צר ליד מים שקטים. לא כי הסערה 'לא הייתה'. אלא כי המסלול יודע לחזור ל־×1: לקנה מידה שבו אפשר שוב לנשום, לראות, ולהחליט בלי רעש של יתר.</blockquote>
+        <blockquote class="story">אחרי המימושים חוזרים לשביל צר ליד מים שקטים. לא כי הסערה 'לא הייתה' — אלא כי המסלול יודע לחזור ל־×1: לקנה מידה שבו אפשר שוב לנשום, לראות, ולהחליט בלי רעש של יתר.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> מטרת רצף המימוש והניהול היא שיבה לכיוון איזון ×1 — לא ניצחון מוחלט על השוק.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>לתאר חזרה ל־×1 כתהליך כמות וניהול — לא כקסם.</li><li>לחבר מימוש 75%, רמזור והשבחה למסלול שיבה.</li><li>להימנע משפת 'סיכון אפס אחרי איזון'.</li></ul>
@@ -525,7 +561,7 @@
           <p class="en" dir="ltr">Journey Psychology</p>
           <p>לא להתאהב בעסקה. לשפר, לנהל, לממש, לחזור לאיזון — בלי להפוך את הפוזיציה לזהות.</p>
         </header>
-        <blockquote class="story">בתחנת הנפש אין גרף על הקיר — רק מראה. מי שמביט רואה לא את המחיר, אלא את ההתקשרות: 'העסקה שלי', 'אני צודק', 'אסור לי לצאת עכשיו'. Lookback שובר את ההתקשרות בלי להשפיל: משפרים, מנהלים, מממשים, חוזרים לאיזון.</blockquote>
+        <blockquote class="story">בתחנת הנפש אין גרף על הקיר — רק מראה. מי שמביט רואה לא את המחיר, אלא את ההתקשרות: 'העסקה שלי', 'אני צודק'. Lookback שובר את ההתקשרות בלי להשפיל: משפרים, מנהלים, מממשים, חוזרים לאיזון — כמסלול, לא כזהות.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> אל תתאהבו בעסקה. הפוזיציה היא מסלול לניהול — לא זהות.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>לזהות התקשרות רגשית לפוזיציה.</li><li>לחבר רמזור ומימוש לכלים אנטי־התקשרות.</li><li>להפריד בין ערך עצמי לבין תוצאת תרגיל סימולטיבי.</li></ul>
@@ -575,7 +611,7 @@
           <p class="en" dir="ltr">Portfolio of Routes</p>
           <p>כמה מסלולים במקביל: הקצאת מרג'ין נפרדת לכל פוזיציה, תקרת $250, וסיכון תיק ולא רק סיכון עסקה.</p>
         </header>
-        <blockquote class="story">בתחנת התיק נפתחת מפה עם כמה שבילים זוהרים במקביל. מי שמנסה לרוץ בכולם באותה נשימה מאבד את המפה. מי שלומד Lookback מבין: כל מסלול מקבל תקרת מרג'ין משלו — והתיק כולו הוא סיפור סיכון נפרד מכל עסקה בודדת.</blockquote>
+        <blockquote class="story">מהמראה נפתחת מפה עם כמה שבילים זוהרים במקביל. מי שמנסה לרוץ בכולם באותה נשימה מאבד את המפה. Lookback מבין: כל מסלול מקבל תקרת מרג'ין משלו — והתיק כולו הוא סיפור סיכון נפרד מכל עסקה בודדת.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> כל פוזיציה = מסלול עם תקרת $250; התיק נמדד בסכום החשיפות והמשמעת — לא בדרמה של עסקה אחת.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>להפריד הקצאת מרג'ין בין פוזיציות סימולטיביות.</li><li>להסביר תקרת $250 לכל פוזיציה מול סיכון תיק.</li><li>להימנע מהעברת רגש מעסקה אחת לכל התיק.</li></ul>
@@ -629,7 +665,7 @@
           <p class="en" dir="ltr">Knowing When to Stop</p>
           <p>Reject לפי תקרה, דילוג על רמה, וסגירה ידנית — מתי המסלול נגמר בלי להפוך את העצירה לכישלון.</p>
         </header>
-        <blockquote class="story">לפני היער האחרון יש שער קטן עם שלט: 'כאן עוצרים גם כשאפשר להמשיך'. מי שלא יודע לקרוא אותו יהפוך כל Reject לכישלון אישי. מי שכן — מבין שהעצירה היא חלק ממפת המסלול.</blockquote>
+        <blockquote class="story">לפני היער האחרון יש שער קטן עם שלט: 'כאן עוצרים גם כשאפשר להמשיך'. מי שלא יודע לקרוא אותו יהפוך כל Reject לכישלון אישי. מי שכן — מבין שהעצירה היא חלק ממפת המסלול, לא סוף הסיפור.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> עצירה כשרה: Reject בתקרה, דילוג מודע על רמה, סגירה ידנית, או יציאה כשהמסלול איבד משמעת.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>למנות מצבי עצירה לגיטימיים בשיטה.</li><li>להפריד בין עצירת משמעת לבין כניעה רגשית.</li><li>לתעד דילוג ו־Reject בלי בושה.</li></ul>
@@ -681,7 +717,7 @@
           <p class="en" dir="ltr">Beyond Trading</p>
           <p>פילוסופיית Lookback כמשמעת חיים: לעבוד עם תנועה, לא לרדוף אחריה — גם מחוץ לגרף.</p>
         </header>
-        <blockquote class="story">מעבר לגשר האחרון של הגרף נפתח נוף שאינו בורסה: אותה משמעת של מבט לאחור — בעבודה, בלמידה, בשיחה. Lookback אינו רק כלי מסחר. הוא אופן עמידה מול תנועה.</blockquote>
+        <blockquote class="story">מעבר לגשר האחרון של הגרף נפתח נוף שאינו בורסה: אותה משמעת של מבט לאחור — בעבודה, בלמידה, בשיחה. Lookback אינו רק כלי מסחר. הוא אופן עמידה מול תנועה, עם אותן תקרות ואותו אומץ לעצור.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> לעבוד עם תנועה במקום לרדוף אחריה — עיקרון שחוצה את גבול הגרף.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>לנסח את פילוסופיית Lookback מחוץ להקשר מסחר.</li><li>לחבר השבחה, רמזור, מימוש ואיזון לדימויי חיים.</li><li>לחזור לגבול: גם פילוסופיה יפה אינה ייעוץ השקעות.</li></ul>
@@ -728,7 +764,7 @@
           <p class="en" dir="ltr">Simple Glossary</p>
           <p>מילון נרטיבי קצר: margin, notional, quantity, avg, PnL, collateral, liquidation — בלי לערבב ביניהם.</p>
         </header>
-        <blockquote class="story">בתחנת השפה תלויים שלטים קצרים. מי שמערבב ביניהם נכשל עוד לפני המספרים. מי שלומד להפריד — מדבר Lookback בבהירות.</blockquote>
+        <blockquote class="story">לפני שסוגרים את המסע — עוצרים במילון. על הקיר שלטים קצרים. מי שמערבב ביניהם נכשל עוד לפני המספרים. מי שלומד להפריד — מדבר Lookback בבהירות, גם כשהרמזור צהוב.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> כל מונח = משמעות אחת. Margin אינו notional; PnL אינו collateral; liquidation אינו 'צבע רמזור'.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>להגדיר את מונחי הליבה בעברית פשוטה.</li><li>להצביע על בלבולים נפוצים בין המונחים.</li><li>לחבר כל מונח למסלול Lookback במקום אחד.</li></ul>
@@ -776,7 +812,7 @@
           <p class="en" dir="ltr">Practical Reference</p>
           <p>דף עבודה אחד: סולם, רמזור, תקרות, עמלות, סליפג', מימון ופערים — לתרגול סימולטיבי בלבד.</p>
         </header>
-        <blockquote class="story">בתחנת המדריך פורסים דף עבודה אחד על השולחן. לא כדי להחליף את הסיפור — כדי שתוכלו לחזור אליו כשהסימולטור פתוח והראש מלא.</blockquote>
+        <blockquote class="story">בתחנת המדריך פורסים דף עבודה אחד על השולחן. לא כדי להחליף את הסיפור שכבר נקרא — כדי שתוכלו לחזור אליו כשהסימולטור פתוח והראש מלא. כשהסערה מתחילה, חוזרים לדף.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> דף ייחוס אחד: סולם, רמזור, תקרות, מימוש, עלויות ופערים — לתרגול סימולטיבי בלבד.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>לשלוף במהירות את כללי השיטה המאושרים.</li><li>לזכור עלויות בסיס וחריגים.</li><li>להשתמש בדף כעוגן משמעת בסימולציה.</li></ul>
@@ -829,7 +865,7 @@
           <p class="en" dir="ltr">Clear Disclaimer</p>
           <p>סימולציה וחינוך בלבד. אין הבטחות, אין סיכון אפס, אין מסחר אמיתי — ומה כן נשאר בידיים אחרי הספר.</p>
         </header>
-        <blockquote class="story">בסוף המסע עומדים מול שער יציאה מואר. על המשקוף חרוטה הצהרה שאי אפשר לפספס: כל מה שעברתם היה לימוד. לא הבטחה. לא חשבון. לא קיצור דרך לכסף קל.</blockquote>
+        <blockquote class="story">בסוף המסע עומדים מול שער יציאה מואר. על המשקוף חרוטה הצהרה שאי אפשר לפספס: כל מה שעברתם היה לימוד. לא הבטחה. לא חשבון. לא קיצור דרך לכסף קל. הגבול הברור הוא חלק מהיופי.</blockquote>
         <p class="principle"><strong>עיקרון:</strong> סימולציה וחינוך בלבד — בלי סיכון אפס, בלי תשואה מובטחת, בלי מסחר אמיתי.</p>
         <h3>מה לוקחים מהתחנה</h3>
         <ul><li>לנסח את גבולות האקדמיה בבהירות.</li><li>לדחות טענות סיכון־אפס או ביצועי עבר.</li><li>לסיים את המסע עם מצפן — לא עם הבטחה.</li></ul>

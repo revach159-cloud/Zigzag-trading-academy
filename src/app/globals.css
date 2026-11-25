@@ -3,9 +3,10 @@
 :root {
   --zz-void: #03050c;
   --zz-abyss: #070b16;
+  --zz-midnight: #0a1224;
   --zz-navy: #0b1528;
   --zz-panel: #101a2e;
-  --zz-line: rgba(125, 211, 252, 0.16);
+  --zz-line: rgba(125, 211, 252, 0.14);
   --zz-cyan: #2ee6ff;
   --zz-cyan-bright: #7af0ff;
   --zz-cyan-dim: #1aa8c4;
@@ -15,6 +16,7 @@
   --zz-ink: #e8eef8;
   --zz-muted: #8fa0b8;
   --zz-danger: #f07178;
+  --zz-fog: rgba(3, 5, 12, 0.55);
 
   --background: var(--zz-void);
   --foreground: var(--zz-ink);
@@ -24,7 +26,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-rubik), var(--font-heebo);
-  --font-display: var(--font-outfit), var(--font-rubik);
+  --font-display: var(--font-outfit), var(--font-frank), var(--font-rubik);
+  --font-hebrew-display: var(--font-frank), var(--font-rubik);
   --font-mono: var(--font-plex-mono);
 }
 
@@ -40,17 +43,12 @@ body {
   margin: 0;
   min-height: 100%;
   background:
-    radial-gradient(ellipse at 15% 0%, rgba(46, 230, 255, 0.07), transparent 42%),
-    radial-gradient(ellipse at 90% 10%, rgba(201, 168, 76, 0.05), transparent 36%),
+    radial-gradient(ellipse at 12% -10%, rgba(46, 230, 255, 0.09), transparent 44%),
+    radial-gradient(ellipse at 92% 8%, rgba(201, 168, 76, 0.06), transparent 38%),
+    radial-gradient(ellipse at 50% 120%, rgba(59, 130, 246, 0.05), transparent 40%),
     var(--zz-void);
   color: var(--zz-ink);
   font-family: var(--font-rubik), var(--font-heebo), "Rubik", "Heebo", sans-serif;
-}
-
-.glass-panel {
-  background: rgba(16, 26, 46, 0.55);
-  border: 1px solid var(--zz-line);
-  backdrop-filter: blur(12px);
 }
 
 .ltr-isolate {
@@ -63,18 +61,149 @@ body {
   color: var(--zz-ink);
 }
 
+/* ——— Editorial book surfaces ——— */
+
 .book-cover {
   isolation: isolate;
 }
 
+.book-hebrew-display {
+  font-family: var(--font-frank), var(--font-rubik), serif;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.book-chapter {
+  position: relative;
+}
+
+.book-chapter::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(46, 230, 255, 0.05), transparent 42%),
+    radial-gradient(ellipse at 10% 40%, rgba(201, 168, 76, 0.03), transparent 35%);
+}
+
 .book-chapter-open {
-  animation: book-open-fade 700ms ease-out both;
+  animation: book-open-fade 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.book-story {
+  font-size: 1.2rem;
+  line-height: 2.05;
+  color: color-mix(in srgb, var(--zz-ink) 94%, transparent);
+}
+
+.book-story::first-letter {
+  float: right;
+  font-family: var(--font-frank), serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  padding-left: 0.12em;
+  padding-top: 0.08em;
+  color: var(--zz-cyan);
+}
+
+.book-principle {
+  margin-top: 1.75rem;
+  padding-block: 1rem;
+  border-block: 1px solid color-mix(in srgb, var(--zz-cyan) 28%, transparent);
+  font-family: var(--font-frank), var(--font-rubik), serif;
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: var(--zz-cyan-bright);
+}
+
+.book-section-title {
+  font-family: var(--font-frank), var(--font-rubik), serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: var(--zz-ink);
+}
+
+.book-visual-pause {
+  height: 1px;
+  margin-block: 2.75rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--zz-cyan) 35%, transparent),
+    color-mix(in srgb, var(--zz-gold) 30%, transparent),
+    transparent
+  );
+}
+
+.book-insight {
+  position: relative;
+  margin-top: 3rem;
+  padding: 2rem 1.5rem;
+  border: none;
+  background:
+    linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(16, 26, 46, 0.2)),
+    radial-gradient(ellipse at 0% 0%, rgba(201, 168, 76, 0.12), transparent 55%);
+}
+
+.book-insight::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--zz-gold), transparent);
+}
+
+.book-scene-stage {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 16rem;
+  border: 1px solid color-mix(in srgb, var(--zz-cyan) 18%, transparent);
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(46, 230, 255, 0.1), transparent 55%),
+    linear-gradient(180deg, #050814 0%, #03050c 100%);
+  box-shadow:
+    0 0 0 1px rgba(3, 5, 12, 0.6) inset,
+    0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.book-scene-stage::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(3, 5, 12, 0.55));
+}
+
+.journey-toc-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 1.25rem;
+  padding-block: 1.35rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--zz-line) 80%, transparent);
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.journey-toc-item:hover {
+  border-bottom-color: color-mix(in srgb, var(--zz-cyan) 45%, transparent);
+}
+
+.journey-toc-num {
+  font-family: var(--font-outfit), var(--font-plex-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--zz-gold);
+  padding-top: 0.35rem;
 }
 
 @keyframes book-open-fade {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -91,12 +220,25 @@ body {
   .book-chapter {
     padding-inline: 1rem;
   }
+
+  .book-story {
+    font-size: 1.08rem;
+    line-height: 1.95;
+  }
+
+  .book-story::first-letter {
+    font-size: 2.6rem;
+  }
+
+  .book-scene-stage {
+    min-height: 12rem;
+  }
 }
 
 @media print {
   body {
-    background: white !important;
-    color: #0b1220 !important;
+    background: #03050c !important;
+    color: #e8eef8 !important;
   }
 
   header,
@@ -134,5 +276,11 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .book-story::first-letter {
+    float: none;
+    font-size: inherit;
+    padding: 0;
   }
 }

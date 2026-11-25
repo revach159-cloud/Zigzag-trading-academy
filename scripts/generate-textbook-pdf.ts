@@ -195,16 +195,17 @@ function buildHtml(): string {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #0b1220;
-      --muted: #445166;
-      --line: #c9d3e2;
-      --cyan: #0b6e82;
-      --gold: #8a6a1f;
-      --panel: #f3f7fb;
-      --midnight: #0a1224;
+      --void: #03050c;
+      --ink: #e8eef8;
+      --muted: #8fa0b8;
+      --line: rgba(125, 211, 252, 0.22);
+      --cyan: #2ee6ff;
+      --gold: #c9a84c;
+      --panel: #101a2e;
+      --navy: #0b1528;
     }
     * { box-sizing: border-box; }
     body {
@@ -212,107 +213,142 @@ function buildHtml(): string {
       color: var(--ink);
       font-family: "Rubik", sans-serif;
       font-size: 11pt;
-      line-height: 1.7;
-      background: white;
+      line-height: 1.75;
+      background: var(--void);
     }
     .ltr { unicode-bidi: isolate; direction: ltr; }
     h1, h2, h3, h4 {
-      font-family: "Outfit", "Rubik", sans-serif;
+      font-family: "Frank Ruhl Libre", "Outfit", "Rubik", serif;
       page-break-after: avoid;
+      font-weight: 500;
     }
     a { color: var(--cyan); text-decoration: none; }
     .cover {
       min-height: 92vh;
       padding: 48px 40px;
-      border: 2px solid var(--line);
       display: flex;
       flex-direction: column;
       justify-content: center;
       page-break-after: always;
       background:
-        radial-gradient(ellipse at 20% 20%, rgba(11,110,130,0.12), transparent 40%),
-        linear-gradient(160deg, #eaf4f8, #ffffff 50%, #f7f3ea);
+        radial-gradient(ellipse at 18% 15%, rgba(46,230,255,0.16), transparent 42%),
+        radial-gradient(ellipse at 85% 25%, rgba(201,168,76,0.1), transparent 40%),
+        linear-gradient(160deg, #03050c 0%, #0a1224 48%, #070b16 100%);
+      border: 1px solid var(--line);
     }
     .cover .brand {
       font-family: "Outfit", sans-serif;
       font-size: 40pt;
       letter-spacing: 0.14em;
       margin: 0;
+      color: var(--ink);
     }
-    .cover .book { color: var(--cyan); font-size: 18pt; margin-top: 10px; }
-    .cover .method { color: var(--gold); margin-top: 8px; }
-    .cover .tag { margin-top: 22px; max-width: 34em; }
+    .cover .book {
+      font-family: "Frank Ruhl Libre", serif;
+      color: var(--cyan);
+      font-size: 20pt;
+      margin-top: 12px;
+    }
+    .cover .method { color: var(--gold); margin-top: 10px; letter-spacing: 0.04em; }
+    .cover .tag { margin-top: 24px; max-width: 34em; color: var(--muted); font-size: 12.5pt; line-height: 1.8; }
     .disclaimer {
       margin-top: 36px;
       padding: 16px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      font-size: 10pt;
+      border-right: 2px solid var(--gold);
+      background: rgba(16,26,46,0.55);
+      font-size: 9.5pt;
+      color: var(--muted);
     }
-    .toc { page-break-after: always; padding: 24px 8px; }
-    .toc ol { line-height: 2; }
+    .toc {
+      page-break-after: always;
+      padding: 28px 8px;
+      background: var(--void);
+    }
+    .toc h2 { color: var(--ink); }
+    .toc ol { line-height: 2.05; color: var(--muted); }
     .chapter { page-break-before: always; }
     .chapter-open {
-      padding: 18px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      margin-bottom: 18px;
+      padding: 20px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(46,230,255,0.08), transparent 45%);
     }
-    .eyebrow { color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; font-size: 9pt; }
+    .eyebrow { color: var(--cyan); letter-spacing: 0.16em; text-transform: uppercase; font-size: 9pt; }
     .en { color: var(--muted); font-size: 10pt; }
     blockquote.story {
-      margin: 0 0 14px;
-      padding: 12px 14px;
-      border-right: 3px solid var(--cyan);
-      background: #f7fbfe;
-      font-size: 11.5pt;
+      margin: 0 0 16px;
+      padding: 0 0 0 0;
+      border: none;
+      border-right: 2px solid var(--cyan);
+      padding-right: 14px;
+      background: transparent;
+      font-family: "Frank Ruhl Libre", "Rubik", serif;
+      font-size: 12pt;
+      line-height: 1.85;
+      color: var(--ink);
     }
-    .principle { margin: 10px 0 18px; }
+    .principle {
+      margin: 12px 0 20px;
+      padding-block: 10px;
+      border-block: 1px solid rgba(46,230,255,0.28);
+      color: var(--cyan);
+      font-family: "Frank Ruhl Libre", serif;
+    }
     .insight {
-      margin: 16px 0;
-      padding: 12px 14px;
-      border: 1px solid #e2d3a8;
-      background: #fbf7ea;
+      margin: 18px 0;
+      padding: 14px 16px;
+      border-right: 2px solid var(--gold);
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(16,26,46,0.35));
       page-break-inside: avoid;
+      font-family: "Frank Ruhl Libre", serif;
+      font-size: 12pt;
     }
     .formula {
       margin: 14px 0;
       padding: 10px 12px;
-      border: 1px solid var(--line);
-      background: #fafcfe;
+      border-block: 1px solid var(--line);
+      background: rgba(16,26,46,0.45);
       page-break-inside: avoid;
     }
     .formula-row { display: flex; align-items: flex-start; gap: 12px; }
-    .katex-host { flex: 1; text-align: center; overflow-x: auto; }
+    .katex-host { flex: 1; text-align: center; overflow-x: auto; color: #e8eef8; }
+    .katex { color: #e8eef8 !important; }
     .formula-num { font-family: "IBM Plex Mono", monospace; color: var(--gold); }
     figcaption { text-align: center; color: var(--muted); font-size: 9.5pt; margin-top: 6px; }
     .table-wrap { margin: 14px 0; page-break-inside: avoid; }
     table { width: 100%; border-collapse: collapse; font-size: 9.5pt; table-layout: fixed; word-wrap: break-word; }
-    th, td { border: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: right; }
-    th { background: #e8eef6; color: var(--cyan); }
+    th, td { border-bottom: 1px solid var(--line); padding: 7px 8px; vertical-align: top; text-align: right; }
+    th { color: var(--cyan); }
     caption { caption-side: top; text-align: right; color: var(--muted); margin-bottom: 6px; }
     .callout {
       margin: 12px 0;
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      background: var(--panel);
+      padding: 8px 0 8px 0;
+      padding-right: 12px;
+      border: none;
+      border-right: 2px solid var(--line);
+      background: transparent;
       page-break-inside: avoid;
     }
-    .callout.warning { border-color: #c45b63; background: #fff5f5; }
-    .callout.definition, .callout.insight { border-color: #0b6e82; }
-    .callout.unresolved, .callout.awaiting { border-color: var(--gold); background: #fbf6ea; }
+    .callout.warning { border-right-color: #f07178; }
+    .callout.definition, .callout.insight { border-right-color: var(--cyan); }
+    .callout.unresolved, .callout.awaiting { border-right-color: var(--gold); }
     .example, .gloss {
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid var(--line);
+      margin: 12px 0;
+      padding: 10px 0 10px 0;
+      padding-right: 12px;
+      border: none;
+      border-right: 1px solid var(--line);
       page-break-inside: avoid;
     }
     code {
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.92em;
-      background: #eef2f7;
+      background: rgba(46,230,255,0.08);
+      color: var(--cyan);
       padding: 0 3px;
     }
+    .visual-cap { color: var(--muted); font-size: 9.5pt; }
     @page { size: A4; margin: 18mm 14mm 18mm 14mm; }
   </style>
 </head>
@@ -371,12 +407,12 @@ async function main() {
       printBackground: true,
       displayHeaderFooter: true,
       headerTemplate: `
-        <div style="width:100%;font-size:8px;color:#667;padding:0 14mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;">
+        <div style="width:100%;font-size:8px;color:#8fa0b8;padding:0 14mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;background:transparent;">
           <span>ZIGZAG · LOOKBACK</span>
           <span>סימולציה בלבד</span>
         </div>`,
       footerTemplate: `
-        <div style="width:100%;font-size:8px;color:#667;padding:0 14mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;">
+        <div style="width:100%;font-size:8px;color:#8fa0b8;padding:0 14mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;background:transparent;">
           <span>השבחת העסקה · לא מסחר אמיתי</span>
           <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
         </div>`,
