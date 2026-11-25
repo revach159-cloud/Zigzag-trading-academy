@@ -28,10 +28,10 @@ export function SiteHeader() {
           className="group flex flex-col items-start leading-none"
           aria-label={brand.fullName}
         >
-          <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-[0.18em] text-[var(--zz-ink)] transition-colors group-hover:text-[var(--zz-cyan)]">
+          <span className="text-lg font-bold tracking-[0.18em] text-[var(--zz-ink)] transition-colors group-hover:text-[var(--zz-cyan)]">
             {brand.name}
           </span>
-          <span className="mt-0.5 text-[10px] tracking-[0.22em] text-[var(--zz-muted)] uppercase">
+          <span className="mt-0.5 text-[10px] font-medium tracking-[0.22em] text-[var(--zz-muted)] uppercase">
             Trading Academy
           </span>
         </Link>
@@ -50,7 +50,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-sm px-3 py-2 text-sm transition-colors",
+                  "rounded-sm px-3 py-2 text-sm font-medium transition-colors",
                   active
                     ? "text-[var(--zz-cyan)]"
                     : "text-[var(--zz-muted)] hover:text-[var(--zz-ink)]",

@@ -47,28 +47,28 @@ export default function TextbookPage() {
         </div>
 
         <div className="relative mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col justify-center">
-          <p className="text-[11px] tracking-[0.4em] text-[var(--zz-gold)] uppercase">
+          <p className="zz-subtitle text-[11px] tracking-[0.4em] text-[var(--zz-gold)] uppercase">
             {brand.narrativeConceptEn}
           </p>
-          <h1 className="mt-5 font-[family-name:var(--font-display)] text-5xl tracking-[0.14em] text-[var(--zz-ink)] sm:text-7xl">
+          <h1 className="zz-title-hero mt-5 tracking-[0.12em] text-[var(--zz-ink)]">
             {brand.name}
           </h1>
-          <p className="book-hebrew-display mt-4 text-3xl text-[var(--zz-cyan)] sm:text-5xl">
+          <p className="mt-4 text-3xl font-bold leading-snug text-[var(--zz-cyan)] sm:text-5xl">
             {brand.bookTitleHe}
           </p>
-          <p className="mt-3 text-sm tracking-[0.08em] text-[var(--zz-gold)]">
+          <p className="mt-3 text-sm font-medium tracking-[0.06em] text-[var(--zz-gold)]">
             {brand.methodHe}
           </p>
-          <p className="mt-8 max-w-xl text-lg leading-9 text-[var(--zz-muted)] sm:text-xl">
+          <p className="mt-8 max-w-xl text-lg font-normal leading-9 text-[var(--zz-muted)] sm:text-xl">
             {brand.taglineHe}
           </p>
           <p
             dir="ltr"
-            className="ltr-isolate mt-3 max-w-xl text-sm text-[var(--zz-muted)]"
+            className="ltr-isolate mt-3 max-w-xl text-sm font-medium text-[var(--zz-muted)]"
           >
             {brand.taglineEn}
           </p>
-          <p className="mt-5 max-w-lg text-sm leading-7 text-[var(--zz-muted)]">
+          <p className="mt-5 max-w-lg text-[0.95rem] font-normal leading-7 text-[var(--zz-muted)]">
             ספר נרטיבי עברי — {chapterCatalog.chapters.length} תחנות מסע, בלי
             חידוני אמריקאי. סימולציה ולימוד בלבד.
           </p>
@@ -124,11 +124,11 @@ export default function TextbookPage() {
         <section className="mt-16 pb-16" id="toc" aria-labelledby="toc-heading">
           <h2
             id="toc-heading"
-            className="book-hebrew-display text-3xl text-[var(--zz-ink)] sm:text-4xl"
+            className="text-3xl font-bold text-[var(--zz-ink)] sm:text-4xl"
           >
             מפת המסע
           </h2>
-          <p className="mt-3 max-w-2xl text-base leading-8 text-[var(--zz-muted)]">
+          <p className="mt-3 max-w-2xl text-base font-normal leading-8 text-[var(--zz-muted)]">
             שלוש־עשרה תחנות בנרטיב {brand.narrativeConceptHe}. כל תחנה היא פרק
             ספרותי: סיפור, עיקרון, דימוי, דוגמה, פסיכולוגיה ותובנה.
           </p>
@@ -144,10 +144,10 @@ export default function TextbookPage() {
                     {String(chapter.number).padStart(2, "0")}
                   </span>
                   <div>
-                    <p className="text-[11px] tracking-[0.22em] text-[var(--zz-cyan)] uppercase">
+                    <p className="text-[11px] font-medium tracking-[0.22em] text-[var(--zz-cyan)] uppercase">
                       {chapter.stationHe}
                     </p>
-                    <h3 className="book-hebrew-display mt-1 text-2xl text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
+                    <h3 className="mt-1 text-2xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
                       {chapter.titleHe}
                     </h3>
                     <p
@@ -170,7 +170,7 @@ export default function TextbookPage() {
                   <p className="text-[11px] tracking-[0.22em] text-[var(--zz-gold)] uppercase">
                     נספח חי
                   </p>
-                  <h3 className="book-hebrew-display mt-1 text-2xl text-[var(--zz-ink)] group-hover:text-[var(--zz-gold)]">
+                  <h3 className="mt-1 text-2xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-gold)]">
                     מילון מונחים מורחב
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-[var(--zz-muted)]">

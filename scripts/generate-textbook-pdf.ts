@@ -195,7 +195,7 @@ function buildHtml(): string {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --void: #03050c;
@@ -212,16 +212,21 @@ function buildHtml(): string {
       margin: 0;
       color: var(--ink);
       font-family: "Rubik", sans-serif;
-      font-size: 11pt;
-      line-height: 1.75;
+      font-weight: 400;
+      font-size: 11.25pt;
+      line-height: 1.8;
       background: var(--void);
     }
     .ltr { unicode-bidi: isolate; direction: ltr; }
     h1, h2, h3, h4 {
-      font-family: "Frank Ruhl Libre", "Outfit", "Rubik", serif;
+      font-family: "Rubik", sans-serif;
       page-break-after: avoid;
-      font-weight: 500;
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
+    h2 { font-size: 18pt; }
+    h3 { font-size: 13.5pt; font-weight: 600; }
+    h4 { font-size: 12pt; font-weight: 600; }
     a { color: var(--cyan); text-decoration: none; }
     .cover {
       min-height: 92vh;
@@ -237,26 +242,41 @@ function buildHtml(): string {
       border: 1px solid var(--line);
     }
     .cover .brand {
-      font-family: "Outfit", sans-serif;
+      font-family: "Rubik", sans-serif;
+      font-weight: 800;
       font-size: 40pt;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       margin: 0;
       color: var(--ink);
     }
     .cover .book {
-      font-family: "Frank Ruhl Libre", serif;
+      font-family: "Rubik", sans-serif;
+      font-weight: 700;
       color: var(--cyan);
       font-size: 20pt;
       margin-top: 12px;
     }
-    .cover .method { color: var(--gold); margin-top: 10px; letter-spacing: 0.04em; }
-    .cover .tag { margin-top: 24px; max-width: 34em; color: var(--muted); font-size: 12.5pt; line-height: 1.8; }
+    .cover .method {
+      font-weight: 500;
+      color: var(--gold);
+      margin-top: 10px;
+      letter-spacing: 0.04em;
+    }
+    .cover .tag {
+      margin-top: 24px;
+      max-width: 34em;
+      color: var(--muted);
+      font-size: 12.5pt;
+      font-weight: 400;
+      line-height: 1.85;
+    }
     .disclaimer {
       margin-top: 36px;
       padding: 16px;
       border-right: 2px solid var(--gold);
       background: rgba(16,26,46,0.55);
       font-size: 9.5pt;
+      font-weight: 400;
       color: var(--muted);
     }
     .toc {
@@ -264,8 +284,8 @@ function buildHtml(): string {
       padding: 28px 8px;
       background: var(--void);
     }
-    .toc h2 { color: var(--ink); }
-    .toc ol { line-height: 2.05; color: var(--muted); }
+    .toc h2 { color: var(--ink); font-weight: 700; }
+    .toc ol { line-height: 2.05; color: var(--muted); font-weight: 400; }
     .chapter { page-break-before: always; }
     .chapter-open {
       padding: 20px 0 18px;
@@ -274,18 +294,25 @@ function buildHtml(): string {
       background:
         radial-gradient(ellipse at 90% 0%, rgba(46,230,255,0.08), transparent 45%);
     }
-    .eyebrow { color: var(--cyan); letter-spacing: 0.16em; text-transform: uppercase; font-size: 9pt; }
-    .en { color: var(--muted); font-size: 10pt; }
+    .eyebrow {
+      color: var(--cyan);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 9pt;
+      font-weight: 500;
+    }
+    .en { color: var(--muted); font-size: 10pt; font-weight: 500; }
     blockquote.story {
       margin: 0 0 16px;
-      padding: 0 0 0 0;
+      padding: 0;
       border: none;
       border-right: 2px solid var(--cyan);
       padding-right: 14px;
       background: transparent;
-      font-family: "Frank Ruhl Libre", "Rubik", serif;
+      font-family: "Rubik", sans-serif;
+      font-weight: 400;
       font-size: 12pt;
-      line-height: 1.85;
+      line-height: 1.9;
       color: var(--ink);
     }
     .principle {
@@ -293,7 +320,8 @@ function buildHtml(): string {
       padding-block: 10px;
       border-block: 1px solid rgba(46,230,255,0.28);
       color: var(--cyan);
-      font-family: "Frank Ruhl Libre", serif;
+      font-family: "Rubik", sans-serif;
+      font-weight: 500;
     }
     .insight {
       margin: 18px 0;
@@ -301,7 +329,8 @@ function buildHtml(): string {
       border-right: 2px solid var(--gold);
       background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(16,26,46,0.35));
       page-break-inside: avoid;
-      font-family: "Frank Ruhl Libre", serif;
+      font-family: "Rubik", sans-serif;
+      font-weight: 700;
       font-size: 12pt;
     }
     .formula {

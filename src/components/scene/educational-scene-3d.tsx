@@ -11,15 +11,22 @@ function SceneAtmosphere() {
     <>
       <color attach="background" args={["#03050C"]} />
       <fog attach="fog" args={["#03050C", 6.5, 14]} />
-      <ambientLight intensity={0.28} />
+      <ambientLight intensity={0.32} />
       <directionalLight
-        position={[4.5, 6, 3]}
-        intensity={1.35}
-        color="#B8ECFF"
+        position={[4.5, 6.2, 3.2]}
+        intensity={1.55}
+        color="#C8F2FF"
         castShadow={false}
       />
-      <pointLight position={[-3.2, -0.5, 2.4]} intensity={0.7} color="#C9A84C" />
-      <pointLight position={[2.5, 2.2, -2]} intensity={0.35} color="#2EE6FF" />
+      <spotLight
+        position={[0, 5, 2]}
+        angle={0.55}
+        penumbra={0.6}
+        intensity={0.55}
+        color="#7AF0FF"
+      />
+      <pointLight position={[-3.2, -0.5, 2.4]} intensity={0.85} color="#C9A84C" />
+      <pointLight position={[2.5, 2.2, -2]} intensity={0.42} color="#2EE6FF" />
       <Stars
         radius={40}
         depth={28}

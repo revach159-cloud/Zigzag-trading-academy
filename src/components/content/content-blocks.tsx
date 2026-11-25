@@ -46,7 +46,7 @@ function ContentBlockView({
   switch (block.type) {
     case "paragraph":
       return (
-        <p className="leading-8 text-[var(--zz-ink)]/95">
+        <p className="max-w-[40rem] text-[1.0625rem] font-normal leading-[1.85] text-[var(--zz-ink)]/95">
           <RichText text={block.textHe} />
         </p>
       );

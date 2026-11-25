@@ -1,53 +1,29 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import {
-  Frank_Ruhl_Libre,
-  Heebo,
-  IBM_Plex_Mono,
-  Outfit,
-  Rubik,
-} from "next/font/google";
+import { IBM_Plex_Mono, Rubik } from "next/font/google";
 import { AcademyShell } from "@/components/layout/academy-shell";
 import { brand } from "@/lib/design/tokens";
 import "./globals.css";
 
-/** Body: Rubik — Hebrew + Latin, OFL */
+/**
+ * Rubik — primary Hebrew + Latin system (OFL via next/font).
+ * ExtraBold/Bold titles · SemiBold headings · Medium UI · Regular body · Light sparingly.
+ */
 const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["hebrew", "latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
+  preload: true,
 });
 
-/** Secondary Hebrew UI */
-const heebo = Heebo({
-  variable: "--font-heebo",
-  subsets: ["hebrew", "latin"],
-  display: "swap",
-});
-
-/**
- * Distinctive Hebrew display — Frank Ruhl Libre (OFL).
- * Literary editorial presence for chapter openings; pairs with Outfit for Latin brand.
- */
-const frankRuhl = Frank_Ruhl_Libre({
-  variable: "--font-frank",
-  subsets: ["hebrew", "latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-/** Display / brand Latin — Outfit (OFL) */
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  display: "swap",
-});
-
+/** Numerals / code only — not body reading */
 const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -68,7 +44,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${rubik.variable} ${heebo.variable} ${frankRuhl.variable} ${outfit.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${rubik.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <AcademyShell>{children}</AcademyShell>

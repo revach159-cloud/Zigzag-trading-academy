@@ -21,7 +21,7 @@ export function Hero() {
 
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-16 sm:px-6 sm:py-20">
         <motion.p
-          className="font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[0.2em] text-[var(--zz-ink)] sm:text-5xl md:text-6xl lg:text-7xl"
+          className="text-4xl font-extrabold tracking-[0.18em] text-[var(--zz-ink)] sm:text-5xl md:text-6xl lg:text-7xl"
           {...fade}
           transition={{ duration: 0.7 }}
         >
@@ -29,7 +29,7 @@ export function Hero() {
         </motion.p>
 
         <motion.p
-          className="mt-3 text-xs tracking-[0.35em] text-[var(--zz-gold)] uppercase sm:text-sm"
+          className="mt-3 text-xs font-medium tracking-[0.35em] text-[var(--zz-gold)] uppercase sm:text-sm"
           {...fade}
           transition={{ duration: 0.7, delay: reduceMotion ? 0 : 0.08 }}
         >
@@ -37,14 +37,14 @@ export function Hero() {
         </motion.p>
 
         <motion.h1
-          className="mt-8 max-w-xl font-[family-name:var(--font-display)] text-2xl font-medium leading-snug text-[var(--zz-ink)] sm:text-3xl md:text-4xl"
+          className="mt-8 max-w-xl text-2xl font-semibold leading-snug text-[var(--zz-ink)] sm:text-3xl md:text-4xl"
           {...fade}
           transition={{ duration: 0.7, delay: reduceMotion ? 0 : 0.16 }}
         >
-          <span dir="ltr" className="ltr-isolate">
+          <span dir="ltr" className="ltr-isolate font-semibold">
             {brand.taglineEn}
           </span>
-          <span className="mt-2 block text-lg text-[var(--zz-muted)] sm:text-xl">
+          <span className="mt-2 block text-lg font-normal leading-8 text-[var(--zz-muted)] sm:text-xl">
             {brand.taglineHe}
           </span>
         </motion.h1>

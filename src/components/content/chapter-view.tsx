@@ -55,27 +55,27 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
               className="absolute inset-0 h-full w-full"
             />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--zz-void)] via-[var(--zz-void)]/70 to-transparent px-5 pb-5 pt-16">
-              <p className="text-[11px] tracking-[0.32em] text-[var(--zz-cyan)] uppercase">
+              <p className="text-[11px] font-medium tracking-[0.32em] text-[var(--zz-cyan)] uppercase">
                 {chapter.stationHe}
               </p>
             </div>
           </div>
         ) : (
-          <p className="text-[11px] tracking-[0.32em] text-[var(--zz-cyan)] uppercase">
+          <p className="text-[11px] font-medium tracking-[0.32em] text-[var(--zz-cyan)] uppercase">
             {chapter.stationHe}
           </p>
         )}
 
-        <h1 className="book-hebrew-display mt-2 text-4xl text-[var(--zz-ink)] sm:text-5xl">
+        <h1 className="zz-title-chapter mt-3 text-[var(--zz-ink)]">
           {chapter.titleHe}
         </h1>
         <p
           dir="ltr"
-          className="ltr-isolate mt-3 font-[family-name:var(--font-display)] text-sm tracking-[0.08em] text-[var(--zz-muted)]"
+          className="ltr-isolate mt-3 text-sm font-medium tracking-[0.06em] text-[var(--zz-muted)]"
         >
           {chapter.titleEn}
         </p>
-        <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--zz-muted)]">
+        <p className="mt-5 max-w-[40rem] text-base font-normal leading-8 text-[var(--zz-muted)]">
           <RichText text={chapter.summaryHe} />
         </p>
         <div className="mt-4">
@@ -86,7 +86,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
       <div className="book-visual-pause" aria-hidden />
 
       <section id="story">
-        <p className="text-[11px] tracking-[0.28em] text-[var(--zz-gold)] uppercase">
+        <p className="text-[11px] font-medium tracking-[0.28em] text-[var(--zz-gold)] uppercase">
           סיפור התחנה
         </p>
         <p className="book-story mt-5">
@@ -149,7 +149,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
           <div className="mt-6 space-y-8">
             {body.workedExamples.map((example) => (
               <div key={example.id} className="border-r border-[var(--zz-line)] pr-5">
-                <h3 className="font-[family-name:var(--font-display)] text-[var(--zz-cyan)]">
+                <h3 className="text-lg font-semibold text-[var(--zz-cyan)]">
                   {example.titleHe}
                 </h3>
                 <p className="mt-3 text-[0.98rem] leading-8 text-[var(--zz-muted)]">
@@ -244,10 +244,10 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
       ) : null}
 
       <section className="book-insight" id="insight">
-        <p className="text-[11px] tracking-[0.28em] text-[var(--zz-gold)] uppercase">
+        <p className="text-[11px] font-medium tracking-[0.28em] text-[var(--zz-gold)] uppercase">
           תובנה לזכור
         </p>
-        <p className="book-hebrew-display mt-4 text-2xl leading-10 text-[var(--zz-ink)]">
+        <p className="mt-4 text-2xl font-bold leading-10 text-[var(--zz-ink)]">
           <RichText text={body.memorableInsightHe} />
         </p>
       </section>
@@ -294,10 +294,10 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
             href={`/textbook/${prev.slug}`}
             className="group text-sm transition-colors"
           >
-            <span className="block text-[11px] tracking-[0.2em] text-[var(--zz-muted)] uppercase">
+            <span className="block text-[11px] font-medium tracking-[0.2em] text-[var(--zz-muted)] uppercase">
               התחנה הקודמת
             </span>
-            <span className="book-hebrew-display mt-1 block text-xl text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
+            <span className="mt-1 block text-xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
               {prev.titleHe}
             </span>
           </Link>
@@ -309,10 +309,10 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
             href={`/textbook/${next.slug}`}
             className="group text-sm transition-colors sm:text-start"
           >
-            <span className="block text-[11px] tracking-[0.2em] text-[var(--zz-muted)] uppercase">
+            <span className="block text-[11px] font-medium tracking-[0.2em] text-[var(--zz-muted)] uppercase">
               התחנה הבאה
             </span>
-            <span className="book-hebrew-display mt-1 block text-xl text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
+            <span className="mt-1 block text-xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
               {next.titleHe}
             </span>
           </Link>

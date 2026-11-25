@@ -26,7 +26,7 @@ export function PdfDownloadCta({
       <p className="text-[11px] tracking-[0.28em] text-[var(--zz-cyan)] uppercase">
         Print-ready · A4 · Dark cinematic
       </p>
-      <h2 className="book-hebrew-display mt-2 text-2xl text-[var(--zz-ink)]">
+      <h2 className="mt-2 text-2xl font-bold text-[var(--zz-ink)]">
         הורידו את LOOKBACK כ־PDF
       </h2>
       <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--zz-muted)]">

@@ -5,7 +5,7 @@ export function SceneFallback2D({ kind }: { kind: Exclude<SceneKind, "none"> }) 
     case "cover":
       return (
         <div className="flex h-full items-center justify-center bg-[radial-gradient(ellipse_at_center,rgba(46,230,255,0.18),transparent_55%),#03050c]">
-          <p className="font-[family-name:var(--font-display)] text-3xl tracking-[0.28em] text-[var(--zz-cyan)]">
+          <p className="text-3xl font-extrabold tracking-[0.28em] text-[var(--zz-cyan)]">
             LOOKBACK
           </p>
         </div>

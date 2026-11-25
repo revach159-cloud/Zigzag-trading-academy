@@ -16,7 +16,24 @@
   --zz-ink: #e8eef8;
   --zz-muted: #8fa0b8;
   --zz-danger: #f07178;
-  --zz-fog: rgba(3, 5, 12, 0.55);
+
+  /* Rubik type scale — rem on 16px */
+  --zz-text-xs: 0.8125rem; /* 13 — captions */
+  --zz-text-sm: 0.9375rem; /* 15 — secondary */
+  --zz-text-base: 1.0625rem; /* 17 — body */
+  --zz-text-md: 1.125rem; /* 18 — lead */
+  --zz-text-lg: 1.375rem; /* 22 — section */
+  --zz-text-xl: 1.75rem; /* 28 — chapter mobile */
+  --zz-text-2xl: 2.25rem; /* 36 — chapter */
+  --zz-text-3xl: 2.75rem; /* 44 — book title mobile */
+  --zz-text-4xl: 3.5rem; /* 56 — book title */
+
+  --zz-leading-tight: 1.2;
+  --zz-leading-snug: 1.35;
+  --zz-leading-body: 1.85;
+  --zz-leading-story: 1.95;
+
+  --zz-measure: 40rem; /* ~64ch comfortable Hebrew measure */
 
   --background: var(--zz-void);
   --foreground: var(--zz-ink);
@@ -25,9 +42,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-rubik), var(--font-heebo);
-  --font-display: var(--font-outfit), var(--font-frank), var(--font-rubik);
-  --font-hebrew-display: var(--font-frank), var(--font-rubik);
+  --font-sans: var(--font-rubik);
+  --font-display: var(--font-rubik);
   --font-mono: var(--font-plex-mono);
 }
 
@@ -48,7 +64,12 @@ body {
     radial-gradient(ellipse at 50% 120%, rgba(59, 130, 246, 0.05), transparent 40%),
     var(--zz-void);
   color: var(--zz-ink);
-  font-family: var(--font-rubik), var(--font-heebo), "Rubik", "Heebo", sans-serif;
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: var(--zz-text-base);
+  line-height: var(--zz-leading-body);
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
 }
 
 .ltr-isolate {
@@ -61,16 +82,65 @@ body {
   color: var(--zz-ink);
 }
 
-/* ——— Editorial book surfaces ——— */
+/* ——— Rubik hierarchy utilities ——— */
 
 .book-cover {
   isolation: isolate;
 }
 
+/* ExtraBold book / hero titles */
+.zz-title-hero {
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 800;
+  font-size: var(--zz-text-3xl);
+  line-height: var(--zz-leading-tight);
+  letter-spacing: -0.02em;
+}
+
+/* Bold chapter titles */
+.zz-title-chapter,
 .book-hebrew-display {
-  font-family: var(--font-frank), var(--font-rubik), serif;
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 700;
+  font-size: var(--zz-text-2xl);
+  line-height: var(--zz-leading-snug);
+  letter-spacing: -0.015em;
+}
+
+/* SemiBold section headings */
+.zz-title-section,
+.book-section-title {
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 600;
+  font-size: var(--zz-text-lg);
+  line-height: var(--zz-leading-snug);
   letter-spacing: -0.01em;
-  line-height: 1.25;
+  color: var(--zz-ink);
+}
+
+/* Medium subtitles / nav labels */
+.zz-subtitle {
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 500;
+  font-size: var(--zz-text-sm);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+/* Regular body */
+.zz-body {
+  font-weight: 400;
+  font-size: var(--zz-text-base);
+  line-height: var(--zz-leading-body);
+  max-width: var(--zz-measure);
+}
+
+/* Light secondary — sparingly */
+.zz-caption {
+  font-weight: 300;
+  font-size: var(--zz-text-xs);
+  line-height: 1.55;
+  color: var(--zz-muted);
 }
 
 .book-chapter {
@@ -93,41 +163,39 @@ body {
 }
 
 .book-story {
-  font-size: 1.2rem;
-  line-height: 2.05;
-  color: color-mix(in srgb, var(--zz-ink) 94%, transparent);
+  font-weight: 400;
+  font-size: var(--zz-text-md);
+  line-height: var(--zz-leading-story);
+  max-width: var(--zz-measure);
+  color: color-mix(in srgb, var(--zz-ink) 95%, transparent);
 }
 
 .book-story::first-letter {
   float: right;
-  font-family: var(--font-frank), serif;
-  font-size: 3.4rem;
-  line-height: 0.85;
-  padding-left: 0.12em;
-  padding-top: 0.08em;
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 800;
+  font-size: 3.1rem;
+  line-height: 0.88;
+  padding-left: 0.1em;
+  padding-top: 0.06em;
   color: var(--zz-cyan);
 }
 
 .book-principle {
   margin-top: 1.75rem;
+  max-width: var(--zz-measure);
   padding-block: 1rem;
   border-block: 1px solid color-mix(in srgb, var(--zz-cyan) 28%, transparent);
-  font-family: var(--font-frank), var(--font-rubik), serif;
-  font-size: 1.15rem;
-  line-height: 1.85;
-  color: var(--zz-cyan-bright);
-}
-
-.book-section-title {
-  font-family: var(--font-frank), var(--font-rubik), serif;
-  font-size: 1.55rem;
+  font-family: var(--font-rubik), "Rubik", sans-serif;
   font-weight: 500;
-  color: var(--zz-ink);
+  font-size: var(--zz-text-md);
+  line-height: 1.75;
+  color: var(--zz-cyan-bright);
 }
 
 .book-visual-pause {
   height: 1px;
-  margin-block: 2.75rem;
+  margin-block: 2.5rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -140,7 +208,8 @@ body {
 .book-insight {
   position: relative;
   margin-top: 3rem;
-  padding: 2rem 1.5rem;
+  max-width: var(--zz-measure);
+  padding: 1.75rem 1.35rem;
   border: none;
   background:
     linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(16, 26, 46, 0.2)),
@@ -164,11 +233,12 @@ body {
   min-height: 16rem;
   border: 1px solid color-mix(in srgb, var(--zz-cyan) 18%, transparent);
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(46, 230, 255, 0.1), transparent 55%),
+    radial-gradient(ellipse at 50% 30%, rgba(46, 230, 255, 0.12), transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(201, 168, 76, 0.06), transparent 40%),
     linear-gradient(180deg, #050814 0%, #03050c 100%);
   box-shadow:
     0 0 0 1px rgba(3, 5, 12, 0.6) inset,
-    0 24px 60px rgba(0, 0, 0, 0.45);
+    0 28px 70px rgba(0, 0, 0, 0.5);
 }
 
 .book-scene-stage::after {
@@ -176,7 +246,7 @@ body {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(3, 5, 12, 0.55));
+  background: linear-gradient(180deg, transparent 50%, rgba(3, 5, 12, 0.65));
 }
 
 .journey-toc-item {
@@ -193,17 +263,23 @@ body {
 }
 
 .journey-toc-num {
-  font-family: var(--font-outfit), var(--font-plex-mono), monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 600;
+  font-size: var(--zz-text-xs);
+  letter-spacing: 0.14em;
   color: var(--zz-gold);
-  padding-top: 0.35rem;
+  padding-top: 0.4rem;
+}
+
+.book-formula .katex-display-host,
+.book-table {
+  max-width: 100%;
 }
 
 @keyframes book-open-fade {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -211,9 +287,15 @@ body {
   }
 }
 
-.book-formula .katex-display-host,
-.book-table {
-  max-width: 100%;
+@media (min-width: 640px) {
+  .zz-title-hero {
+    font-size: var(--zz-text-4xl);
+  }
+
+  .zz-title-chapter,
+  .book-hebrew-display {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -222,16 +304,16 @@ body {
   }
 
   .book-story {
-    font-size: 1.08rem;
-    line-height: 1.95;
+    font-size: 1.05rem;
+    line-height: 1.9;
   }
 
   .book-story::first-letter {
-    font-size: 2.6rem;
+    font-size: 2.5rem;
   }
 
   .book-scene-stage {
-    min-height: 12rem;
+    min-height: 12.5rem;
   }
 }
 
@@ -239,6 +321,7 @@ body {
   body {
     background: #03050c !important;
     color: #e8eef8 !important;
+    font-family: "Rubik", sans-serif !important;
   }
 
   header,
@@ -246,18 +329,6 @@ body {
   nav[aria-label="ניווט ראשי"],
   nav[aria-label="ניווט נייד"] {
     display: none !important;
-  }
-
-  .book-chapter,
-  .book-cover {
-    max-width: none;
-    box-shadow: none;
-  }
-
-  .book-table table {
-    table-layout: fixed;
-    width: 100%;
-    word-break: break-word;
   }
 
   a[href^="/downloads/"] {
@@ -281,6 +352,7 @@ body {
   .book-story::first-letter {
     float: none;
     font-size: inherit;
+    font-weight: 700;
     padding: 0;
   }
 }
