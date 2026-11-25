@@ -1,14 +1,14 @@
 # ZIGZAG TRADING ACADEMY
 
-Independent Hebrew-first (RTL) interactive trading **education** platform for the ZigZag Method.
+Independent Hebrew-first (RTL) interactive trading **education** platform for the ZigZag Method — narrative digital book **LOOKBACK · המבט לאחור** (השבחת העסקה).
 
 **Simulation only** — no real trading, deposits, brokerage APIs, or fabricated performance.
 
 ## Stack
 
 - Next.js App Router · React · TypeScript strict · Tailwind CSS
-- Framer Motion · R3F/Drei (lazy 3D with 2D / reduced-motion fallback)
-- Zod content schemas · KaTeX formulas · Vitest
+- Framer Motion · R3F/Drei (lazy educational 3D with 2D / reduced-motion fallback)
+- Zod narrative content schemas · KaTeX (sparse, after story) · Vitest · Playwright PDF
 
 ## Commands
 
@@ -18,13 +18,14 @@ npm run dev
 npm run typecheck
 npm run test
 npm run build
+npm run pdf
 ```
 
 ## Product constraints
 
 - Dedicated repository — **not** nested under Polymarket Edge Lab
 - Independent Vercel project — no Edge Lab cron schedules in this repo
-- Methodology math defaults are drafts awaiting owner confirmation
+- Owner-approved methodology in project docs; illustrative $320 pattern ≠ $250 cap
 
 ## Routes
 
@@ -33,8 +34,10 @@ npm run build
 | `/` | Premium brand-first landing |
 | `/method` | ZigZag Method hub |
 | `/method/[slug]` | Method pages (overview, reinforcement, leverage, profit) |
-| `/textbook` | 12-chapter Hebrew textbook index |
-| `/textbook/[slug]` | Full chapter bodies (objectives, formulas, scenarios, exercises, quizzes) |
-| `/simulator` | Strategy simulator placeholder (+ curriculum links) |
-| `/labs/leverage` · `/labs/risk` | Lab stubs (+ curriculum links) |
-| `/tests` | Knowledge tests hub (+ chapter 12 link) |
+| `/textbook` | LOOKBACK cover + 13-station journey map |
+| `/textbook/[slug]` | Narrative chapter (story, principle, analogy, example, psychology) |
+| `/textbook/glossary` | Extended glossary |
+| `/simulator` | Strategy simulator placeholder |
+| `/labs/leverage` · `/labs/risk` | Lab stubs |
+| `/tests` | Knowledge tests hub (legacy surface; book has no MCQs) |
+| `/downloads/zigzag-academy-textbook.pdf` | Same-source A4 RTL PDF |

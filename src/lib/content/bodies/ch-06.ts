@@ -1,171 +1,147 @@
 import type { ChapterBodyInput } from "../schemas";
 
 export const chapter06Body = {
-  slug: "leverage-system",
+  slug: "return-to-balance",
+  openingStoryHe:
+    "אחרי הסערה חוזרים לשביל צר ליד מים שקטים. לא כי הסערה 'לא הייתה'. אלא כי המסלול יודע לחזור ל־×1: לקנה מידה שבו אפשר שוב לנשום, לראות, ולהחליט בלי רעש של יתר.",
+  principleHe:
+    "מטרת רצף המימוש והניהול היא שיבה לכיוון איזון ×1 — לא ניצחון מוחלט על השוק.",
+  memorableInsightHe:
+    "איזון הוא יעד ניהולי. מי שמחפש ניצחון מוחלט נשאר בסערה.",
   learningObjectivesHe: [
-    "להבחין שלב ×1 מול שלב ×10 על אותה פוזיציה long.",
-    "להסביר מעבר תקציבי כשחיזוק ×1 נדחה בתקרת $250.",
-    "לתאר חיזוק ×10 לפי הפסד מצטבר ותקרה מצטברת $250.",
+    "לתאר חזרה ל־×1 כתהליך כמות וניהול — לא כקסם.",
+    "לחבר מימוש 75%, רמזור והשבחה למסלול שיבה.",
+    "להימנע משפת 'סיכון אפס אחרי איזון'.",
   ],
   sections: [
     {
-      id: "leverage-edu",
-      titleHe: "שלבי מינוף לימודיים",
+      id: "opening",
+      titleHe: "סיפור התחנה",
+      role: "opening" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "באקדמיה `leverage` מתאר רגישות פוזיציה long ב־Cross. שלב ×1 מצטבר margin עד $250. שלב ×10 ממשיך על אותה כמות (preserves quantity) — לא פוזיציה נפרדת.",
+            "חזרה לאיזון אינה מחיקת העבר. היא צמצום חשיפה והחזרת הפוזיציה לקנה מידה ירוק יותר — שם Lookback שוב אפשרי בלי רעש יתר.",
         },
         {
-          type: "formula",
-          id: "notional-lev",
-          latex: "N \\approx L \\times C_{\\text{margin}}",
-          captionHe: "קירוב לימודי: notional מול margin מוקצה",
-          awaitingConfirmation: false,
-        },
-        {
-          type: "callout",
-          tone: "warning",
-          titleHe: "לא מסחר חי",
-          textHe:
-            "אין כאן margin call אמיתי מ-Bybit. התרגיל מלמד רגישות — שינוי מינוף לא מבטיח משיכה או מניעת liquidation.",
+          type: "visual",
+          kind: "return-balance",
+          captionHe: "מסילת שיבה: מסערה לכיוון ×1 דרך מימושים מדודים.",
         },
       ],
     },
     {
-      id: "transition",
-      titleHe: "מעבר ×1 → ×10",
+      id: "principle",
+      titleHe: "העיקרון",
+      role: "principle" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "כשחיזוק ×1 נוסף נדחה כי cumulative margin היה חורג מ-$250, השיטה עוברת לשלב ×10 על אותה פוזיציה ושומרת כמות. זה מעבר budget_cap_based — לא מסלול 'Path A/B' ולא תנאי יחיד של הפסד 100% מהחיזוק האחרון.",
+            "אחרי סבבי 75%, הכמות קטנה. הרמזור יכול לחזור להרגיש ירוק יותר מבחינת ניהול עצמי — אך המודל נשאר Cross, והסיכון לא מתאפס. avg entry, PnL ממומש/לא ממומש ו־collateral הם מושגים נפרדים שיש לקרוא בנפרד.",
         },
         {
           type: "callout",
-          tone: "note",
-          titleHe: "שמירת כמות",
-          textHe: "stage1ToStage10PreservesQuantity=true.",
+          tone: "insight",
+          titleHe: "איזון ≠ סיום הסיכון",
+          textHe:
+            "גם ב־×1 אפשר להפסיד, לשלם עמלות, ולפגוש פער מחיר. האיזון מחזיר יכולת ניהול — לא תעודת ביטוח.",
         },
       ],
     },
     {
-      id: "stage10",
-      titleHe: "חיזוקים בשלב ×10",
+      id: "analogy",
+      titleHe: "דימוי מהחיים",
+      role: "analogy" as const,
       blocks: [
-        {
-          type: "formula",
-          id: "tenx-threshold",
-          latex:
-            "\\mathrm{net\\,loss} \\geq C_{\\text{relevant margin}}",
-          captionHe: "טריגר חיזוק ×10 מצטבר",
-          awaitingConfirmation: false,
-        },
         {
           type: "paragraph",
           textHe:
-            "תקרת margin מצטברת בשלב ×10: $250. אם חיזוק ×10 הבא נדחה, מעבר אוטומטי למינוף מקסימלי של ה-instrument — רק מנתוני Bybit מאומתים; אחרת unresolved.",
+            "אחרי ריצה במעלה הר, חוזרים להליכה. לא כי ההר נעלם — אלא כי הקצב שוב אנושי. כך גם חזרה ל־×1.",
+        },
+      ],
+    },
+    {
+      id: "trading",
+      titleHe: "מסלול שיבה לימודי",
+      role: "trading" as const,
+      blocks: [
+        {
+          type: "list",
+          itemsHe: [
+            "מזהים צבע רמזור נוכחי ביומן.",
+            "מפעילים מימוש 75% לפי תוכנית — לא לפי פחד או תאווה.",
+            "בודקים כמות, מרג'ין ו־notional אחרי כל סבב.",
+            "חוזרים לקרוא את השוק ב־Lookback כשהרעש יורד.",
+          ],
         },
         {
-          type: "callout",
-          tone: "unresolved",
-          titleHe: "מינוף מקסימלי ל-instrument",
+          type: "visual",
+          kind: "avg-entry",
+          captionHe: "גם אחרי שיבה: avg entry ו־PnL נשארים סיפורים נפרדים מהכמות.",
+        },
+      ],
+    },
+    {
+      id: "psychology",
+      titleHe: "הערה פסיכולוגית",
+      role: "psychology" as const,
+      blocks: [
+        {
+          type: "paragraph",
           textHe:
-            "maxInstrumentLeverage לא מוגדר גלובלית בספר עד אימות פר־symbol.",
+            "יש מי שמתבייש לחזור לאיזון כי זה 'לא נראה כמו ניצחון'. Lookback הופך את הבושה למשמעת: לחזור לשביל זה מקצועיות.",
         },
       ],
     },
   ],
   workedExamples: [
     {
-      id: "ex-lev-sense",
-      titleHe: "מעבר אחרי Reject",
-      setupHe: "C_cum=$240 ב־×1; בקשה לחיזוק $20 → Reject; Q=3 נשמרת.",
+      id: "ex-back-to-x1",
+      titleHe: "יומן שיבה",
+      setupHe: "פוזיציה בצהוב עם כמות 16 אחרי סערה.",
       stepsHe: [
-        "רושמים דחיית חיזוק ×1.",
-        "מסמנים מעבר לשלב ×10 על אותה פוזיציה.",
-        "מחשבים רגישות PnL: אותו Δמחיר, רגישות גבוהה יותר ב-×10.",
+        "מימוש: נסגר 12; נותר 4.",
+        "מימוש נוסף: נסגר 3; נותר 1.",
+        "מסמנים: כיוון איזון ×1 לניהול — סיכון עדיין קיים.",
       ],
-      resultHe: "מעבר שלב אחד וברור.",
-      awaitingConfirmation: false,
+      resultHe: "המסלול שב לקנה מידה שניתן לנהל בלי אשליית ניצחון.",
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-stage-label",
-        titleHe: "תיוג שלב ביומן",
-        narrativeHe:
-          "הלומד כותב ×1 או ×10 ואת C_cum תחת כל שלב.",
-        outcomeHe: "אין בלבול בין ישויות.",
-        lessonHe: "שלב ≠ פוזיציה חדשה.",
+        id: "ok-balance",
+        titleHe: "שיבה בלי דרמה",
+        narrativeHe: "הלומד מסיים סבבי מימוש וחוזר לקרוא סולם בשקט.",
+        outcomeHe: "הניהול מתחדש.",
+        lessonHe: "איזון הוא תחנה, לא גביע.",
       },
     ],
     failure: [
       {
-        id: "fail-path-ab",
-        titleHe: "פתיחת 'פוזיציית 10x נפרדת'",
-        narrativeHe:
-          "מלמדים Path A כקנון — נפתחת P2 נפרדת.",
-        outcomeHe: "סתירה למתודולוגיה המאושרת.",
-        lessonHe: "המעבר שומר כמות על אותה פוזיציה.",
+        id: "fail-all-in-again",
+        titleHe: "קפיצה חזרה לסערה",
+        narrativeHe: "ברגע שהרגיש 'בטוח', הלומד מגדיל שוב באגרסיביות.",
+        outcomeHe: "השיבה מתבטלת.",
+        lessonHe: "איזון דורש שמירה — לא רק הגעה.",
       },
     ],
   },
-  exercises: [
+  reflections: [
     {
-      id: "ex1",
-      promptHe:
-        "הסבירו במשפט אחד ההבדל בין מעבר תקציבי לבין 'הפסד = 100% מהחיזוק האחרון'.",
+      id: "r1",
+      promptHe: "מה אצלכם נחשב 'ניצחון' — ומה הספר מציע במקום זה?",
     },
     {
-      id: "ex2",
-      promptHe:
-        "C_cum=$248; חיזוק $5. מה קורה בשלב ×1? מה הצעד הבא בשיטה?",
-    },
-  ],
-  knowledgeQuestions: [
-    {
-      id: "q1",
-      promptHe: "מעבר ×1→×10 מאושר כאשר:",
-      choicesHe: [
-        "יש רווח 75%",
-        "חיזוק ×1 נדחה בתקרת margin",
-        "מגיע swing high",
-        "תמיד אחרי 3 חיזוקים",
-      ],
-      correctIndex: 1,
-      explanationHe: "stage1ToStage10Transition=budget_cap_based.",
-    },
-    {
-      id: "q2",
-      promptHe: "טריגר חיזוק בשלב ×10:",
-      choicesHe: [
-        "הפסד נקי ≥ margin הרלוונטי",
-        "כל מגע ב-90",
-        "סגירת 25%",
-        "רק funding",
-      ],
-      correctIndex: 0,
-      explanationHe: "stage10ReinforcementTrigger=net_loss_ge_relevant_allocated_margin.",
-    },
-    {
-      id: "q3",
-      promptHe: "במעבר שלב:",
-      choicesHe: [
-        "הכמות מתאפסת",
-        "הכמות נשמרת",
-        "חובה short",
-        "חובה פוזיציה שנייה",
-      ],
-      correctIndex: 1,
-      explanationHe: "stage1ToStage10PreservesQuantity=true.",
+      id: "r2",
+      promptHe: "כתבו משפט אחד ליומן אחרי שיבה ל־×1 שאין בו הבטחת תשואה.",
     },
   ],
   chapterSummaryHe: [
-    "×1→×10 מבוסס תקרת margin; אותה פוזיציה long ושמירת כמות.",
-    "×10 מחזק לפי הפסד מצטבר; מקסימום מינוף instrument — unresolved בלי נתוני Bybit.",
+    "חזרה ל־×1 היא יעד ניהולי אחרי מימוש ושקט.",
+    "איזון אינו סיכון אפס ואינו ניצחון על השוק.",
   ],
   awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

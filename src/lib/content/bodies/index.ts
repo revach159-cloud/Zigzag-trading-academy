@@ -11,6 +11,7 @@ import { chapter09Body } from "./ch-09";
 import { chapter10Body } from "./ch-10";
 import { chapter11Body } from "./ch-11";
 import { chapter12Body } from "./ch-12";
+import { chapter13Body } from "./ch-13";
 
 export const chapterBodies: ChapterBody[] = [
   chapter01Body,
@@ -25,6 +26,7 @@ export const chapterBodies: ChapterBody[] = [
   chapter10Body,
   chapter11Body,
   chapter12Body,
+  chapter13Body,
 ].map((body) => chapterBodySchema.parse(body));
 
 export function getChapterBodyBySlug(slug: string): ChapterBody | undefined {

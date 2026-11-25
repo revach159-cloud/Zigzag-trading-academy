@@ -27,10 +27,10 @@ export function PdfDownloadCta({
         Print-ready · A4
       </p>
       <h2 className="mt-2 font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
-        הורידו את הספר כ־PDF
+        הורידו את LOOKBACK כ־PDF
       </h2>
       <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--zz-muted)]">
-        אותו מקור פרקים כמו בקריאה הדיגיטלית — עברית RTL, נוסחאות, תוכן עניינים
+        אותו מקור נרטיבי כמו בקורא הדיגיטלי — עברית RTL, תחנות מסע, תוכן עניינים
         לחיץ, מספרי עמודים וכותרות/תחתיות. מוכן להדפסה ב־A4.
       </p>
       <Link
@@ -39,7 +39,7 @@ export function PdfDownloadCta({
         prefetch={false}
       >
         <Download size={16} aria-hidden />
-        הורדת ZigZag Academy Textbook (PDF)
+        הורדת LOOKBACK (PDF)
       </Link>
     </div>
   );

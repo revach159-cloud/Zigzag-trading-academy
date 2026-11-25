@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils/cn";
 const navItems = [
   { href: "/", label: "בית" },
   { href: "/method", label: "השיטה" },
-  { href: "/textbook", label: "ספר לימוד" },
+  { href: "/textbook", label: "LOOKBACK" },
   { href: "/simulator", label: "סימולטור" },
   { href: "/labs/leverage", label: "מעבדות" },
   { href: "/tests", label: "מבחנים" },

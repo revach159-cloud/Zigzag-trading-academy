@@ -1,16 +1,15 @@
 /**
- * Generate A4 Hebrew RTL textbook PDF from the same chapter source modules
- * used by the digital reader — no divergent content copy.
+ * Generate A4 Hebrew RTL LOOKBACK narrative PDF from the same chapter
+ * source modules used by the digital reader — no divergent content copy.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import katex from "katex";
 import { chromium } from "playwright";
-import { listChapters } from "../src/lib/content/chapters";
+import { chapterCatalog, listChapters } from "../src/lib/content/chapters";
 import { getChapterBodyBySlug } from "../src/lib/content/bodies";
 import { listGlossaryEntries } from "../src/lib/content/glossary";
-import { listMethodPages } from "../src/lib/content/method-pages/catalog";
 import { brand } from "../src/lib/design/tokens";
 import type { ContentBlock } from "../src/lib/content/schemas";
 
@@ -27,7 +26,6 @@ function escapeHtml(value: string): string {
     .replaceAll('"', "&quot;");
 }
 
-/** Lightweight RichText: backticks → LTR code spans */
 function rich(text: string): string {
   return escapeHtml(text).replace(
     /`([^`]+)`/g,
@@ -50,10 +48,10 @@ function renderFormula(latex: string, number: number, captionHe: string): string
   </figure>`;
 }
 
-function renderBlocks(blocks: ContentBlock[], formulaStart: number): {
-  html: string;
-  next: number;
-} {
+function renderBlocks(
+  blocks: ContentBlock[],
+  formulaStart: number,
+): { html: string; next: number } {
   let n = formulaStart;
   const parts: string[] = [];
   for (const block of blocks) {
@@ -104,16 +102,14 @@ function renderBlocks(blocks: ContentBlock[], formulaStart: number): {
 function buildHtml(): string {
   const chapters = listChapters();
   const glossary = listGlossaryEntries();
-  const methods = listMethodPages();
 
-  const tocItems = [
-    ...chapters.map(
+  const tocItems = chapters
+    .map(
       (ch) =>
-        `<li><a href="#ch-${ch.number}">פרק ${ch.number}. ${escapeHtml(ch.titleHe)}</a></li>`,
-    ),
-    `<li><a href="#glossary">מילון מונחים</a></li>`,
-    `<li><a href="#method">דפי השיטה</a></li>`,
-  ].join("\n");
+        `<li><a href="#ch-${ch.number}">${escapeHtml(ch.stationHe)} — ${escapeHtml(ch.titleHe)}</a></li>`,
+    )
+    .concat([`<li><a href="#glossary">נספח · מילון מונחים מורחב</a></li>`])
+    .join("\n");
 
   let formulaGlobal = 1;
   const chapterHtml = chapters
@@ -131,34 +127,31 @@ function buildHtml(): string {
         </section>`);
       }
 
-      const examples = body.workedExamples
-        .map(
-          (ex) => `<div class="example">
+      const examples =
+        body.workedExamples.length === 0
+          ? ""
+          : `<h3>דוגמאות מספריות</h3>${body.workedExamples
+              .map(
+                (ex) => `<div class="example">
           <h4>${escapeHtml(ex.titleHe)}</h4>
           <p>${rich(ex.setupHe)}</p>
           <ol>${ex.stepsHe.map((s) => `<li>${rich(s)}</li>`).join("")}</ol>
           <p><strong>תוצאה:</strong> ${rich(ex.resultHe)}</p>
         </div>`,
-        )
-        .join("\n");
+              )
+              .join("\n")}`;
 
-      const exercises = body.exercises
-        .map(
-          (ex, i) =>
-            `<li><strong>תרגיל ${i + 1}.</strong> ${rich(ex.promptHe)}${
-              ex.hintHe ? ` <em>(רמז: ${rich(ex.hintHe)})</em>` : ""
-            }</li>`,
-        )
-        .join("\n");
-
-      const quiz = body.knowledgeQuestions
-        .map(
-          (q, i) => `<div class="quiz">
-          <p><strong>שאלת ידע ${i + 1}.</strong> ${rich(q.promptHe)}</p>
-          <ol type="A">${q.choicesHe.map((c) => `<li>${rich(c)}</li>`).join("")}</ol>
-        </div>`,
-        )
-        .join("\n");
+      const reflections =
+        body.reflections.length === 0
+          ? ""
+          : `<h3>שאלות להרהור</h3><ol>${body.reflections
+              .map(
+                (ex, i) =>
+                  `<li><strong>${i + 1}.</strong> ${rich(ex.promptHe)}${
+                    ex.hintHe ? ` <em>(רמז: ${rich(ex.hintHe)})</em>` : ""
+                  }</li>`,
+              )
+              .join("")}</ol>`;
 
       const summary = body.chapterSummaryHe
         .map((s) => `<li>${rich(s)}</li>`)
@@ -166,21 +159,20 @@ function buildHtml(): string {
 
       return `<article class="chapter" id="ch-${chapter.number}">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter ${chapter.number}</p>
-          <h2>פרק ${chapter.number}. ${escapeHtml(chapter.titleHe)}</h2>
+          <p class="eyebrow">${escapeHtml(chapter.stationHe)}</p>
+          <h2>${escapeHtml(chapter.titleHe)}</h2>
           <p class="en" dir="ltr">${escapeHtml(chapter.titleEn)}</p>
           <p>${rich(chapter.summaryHe)}</p>
         </header>
-        <h3>מטרות למידה</h3>
+        <blockquote class="story">${rich(body.openingStoryHe)}</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> ${rich(body.principleHe)}</p>
+        <h3>מה לוקחים מהתחנה</h3>
         <ul>${body.learningObjectivesHe.map((o) => `<li>${rich(o)}</li>`).join("")}</ul>
         ${sectionParts.join("\n")}
-        <h3>דוגמאות מספריות</h3>
         ${examples}
-        <h3>תרגילים</h3>
-        <ol>${exercises}</ol>
-        <h3>שאלות ידע</h3>
-        ${quiz}
-        <h3>סיכום הפרק</h3>
+        ${reflections}
+        <aside class="insight"><strong>תובנה לזכור.</strong> ${rich(body.memorableInsightHe)}</aside>
+        <h3>סיכום התחנה</h3>
         <ul>${summary}</ul>
       </article>`;
     })
@@ -195,38 +187,15 @@ function buildHtml(): string {
     )
     .join("\n");
 
-  const methodHtml = methods
-    .map((page) => {
-      let n = formulaGlobal;
-      const sections = page.sections
-        .map((section) => {
-          const rendered = renderBlocks(section.blocks, n);
-          n = rendered.next;
-          return `<section><h3>${escapeHtml(section.titleHe)}</h3>${rendered.html}</section>`;
-        })
-        .join("\n");
-      formulaGlobal = n;
-      return `<article class="chapter">
-        <header class="chapter-open">
-          <p class="eyebrow">Method</p>
-          <h2>${escapeHtml(page.titleHe)}</h2>
-          <p class="en" dir="ltr">${escapeHtml(page.titleEn)}</p>
-          <p>${rich(page.summaryHe)}</p>
-        </header>
-        ${sections}
-      </article>`;
-    })
-    .join("\n");
-
   return `<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <title>${escapeHtml(brand.fullName)} — Textbook</title>
+  <title>${escapeHtml(brand.bookTitleHe)} — ${escapeHtml(brand.fullName)}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --ink: #0b1220;
@@ -234,43 +203,47 @@ function buildHtml(): string {
       --line: #c9d3e2;
       --cyan: #0b6e82;
       --gold: #8a6a1f;
-      --panel: #f4f7fb;
+      --panel: #f3f7fb;
+      --midnight: #0a1224;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       color: var(--ink);
-      font-family: "Heebo", sans-serif;
+      font-family: "Rubik", sans-serif;
       font-size: 11pt;
-      line-height: 1.65;
+      line-height: 1.7;
       background: white;
     }
     .ltr { unicode-bidi: isolate; direction: ltr; }
     h1, h2, h3, h4 {
-      font-family: "Syne", "Heebo", sans-serif;
+      font-family: "Outfit", "Rubik", sans-serif;
       page-break-after: avoid;
     }
     a { color: var(--cyan); text-decoration: none; }
     .cover {
-      min-height: 90vh;
+      min-height: 92vh;
       padding: 48px 40px;
       border: 2px solid var(--line);
       display: flex;
       flex-direction: column;
       justify-content: center;
       page-break-after: always;
-      background: linear-gradient(160deg, #eef6fa, #ffffff 45%, #f7f1e4);
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(11,110,130,0.12), transparent 40%),
+        linear-gradient(160deg, #eaf4f8, #ffffff 50%, #f7f3ea);
     }
     .cover .brand {
-      font-family: "Syne", sans-serif;
-      font-size: 42pt;
-      letter-spacing: 0.12em;
+      font-family: "Outfit", sans-serif;
+      font-size: 40pt;
+      letter-spacing: 0.14em;
       margin: 0;
     }
-    .cover .sub { color: var(--cyan); font-size: 16pt; margin-top: 8px; }
-    .cover .tag { color: var(--gold); margin-top: 24px; }
+    .cover .book { color: var(--cyan); font-size: 18pt; margin-top: 10px; }
+    .cover .method { color: var(--gold); margin-top: 8px; }
+    .cover .tag { margin-top: 22px; max-width: 34em; }
     .disclaimer {
-      margin-top: 40px;
+      margin-top: 36px;
       padding: 16px;
       border: 1px solid var(--line);
       background: var(--panel);
@@ -285,8 +258,23 @@ function buildHtml(): string {
       background: var(--panel);
       margin-bottom: 18px;
     }
-    .eyebrow { color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9pt; }
+    .eyebrow { color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; font-size: 9pt; }
     .en { color: var(--muted); font-size: 10pt; }
+    blockquote.story {
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border-right: 3px solid var(--cyan);
+      background: #f7fbfe;
+      font-size: 11.5pt;
+    }
+    .principle { margin: 10px 0 18px; }
+    .insight {
+      margin: 16px 0;
+      padding: 12px 14px;
+      border: 1px solid #e2d3a8;
+      background: #fbf7ea;
+      page-break-inside: avoid;
+    }
     .formula {
       margin: 14px 0;
       padding: 10px 12px;
@@ -311,9 +299,9 @@ function buildHtml(): string {
       page-break-inside: avoid;
     }
     .callout.warning { border-color: #c45b63; background: #fff5f5; }
-    .callout.definition { border-color: #0b6e82; }
+    .callout.definition, .callout.insight { border-color: #0b6e82; }
     .callout.unresolved, .callout.awaiting { border-color: var(--gold); background: #fbf6ea; }
-    .example, .quiz, .gloss {
+    .example, .gloss {
       margin: 10px 0;
       padding: 10px;
       border: 1px solid var(--line);
@@ -330,16 +318,19 @@ function buildHtml(): string {
 </head>
 <body>
   <section class="cover">
-    <p class="eyebrow">Digital Textbook · Simulation only</p>
+    <p class="eyebrow">Digital narrative book · Simulation only</p>
     <h1 class="brand">${escapeHtml(brand.name)}</h1>
-    <p class="sub">Trading Academy</p>
-    <p>ספר לימוד עברי מלא — 12 פרקים, דפי שיטה ומילון מונחים.</p>
+    <p class="book">${escapeHtml(brand.bookTitleHe)}</p>
+    <p class="method">${escapeHtml(brand.methodHe)} · ${escapeHtml(brand.narrativeConceptHe)}</p>
     <p class="tag">${escapeHtml(brand.taglineHe)}</p>
+    <p dir="ltr" class="en">${escapeHtml(brand.taglineEn)}</p>
+    <p>${chapterCatalog.chapters.length} תחנות מסע נרטיבי — אותו מקור כמו בקורא הדיגיטלי.</p>
     <div class="disclaimer">
       <strong>הצהרה חינוכית.</strong>
       תוכן זה ללימוד וסימולציה בלבד (Bybit Linear USDT Perp, Cross, One-Way).
       אין ייעוץ השקעות, מסחר אמיתי או הבטחות תשואה.
-      יש להבחין בין margin, notional, collateral ו־liquidation.
+      יש להבחין בין margin, notional, quantity, avg, PnL, collateral ו־liquidation.
+      דפוס $320 איורי בלבד; תקרת מרג'ין מאושרת $250 · Reject.
     </div>
   </section>
 
@@ -353,18 +344,9 @@ function buildHtml(): string {
   <section class="chapter" id="glossary">
     <header class="chapter-open">
       <p class="eyebrow">Appendix</p>
-      <h2>מילון מונחים</h2>
+      <h2>מילון מונחים מורחב</h2>
     </header>
     ${glossaryHtml}
-  </section>
-
-  <section class="chapter" id="method">
-    <header class="chapter-open">
-      <p class="eyebrow">Method pages</p>
-      <h2>דפי השיטה</h2>
-      <p>אותו מקור כמו בממשק הדיגיטלי — מתודולוגיה מאושרת.</p>
-    </header>
-    ${methodHtml}
   </section>
 </body>
 </html>`;
@@ -389,13 +371,13 @@ async function main() {
       printBackground: true,
       displayHeaderFooter: true,
       headerTemplate: `
-        <div style="width:100%;font-size:8px;color:#667;padding:0 14mm;display:flex;justify-content:space-between;font-family:Heebo,sans-serif;direction:rtl;">
-          <span>ZIGZAG Trading Academy</span>
+        <div style="width:100%;font-size:8px;color:#667;padding:0 14mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;">
+          <span>ZIGZAG · LOOKBACK</span>
           <span>סימולציה בלבד</span>
         </div>`,
       footerTemplate: `
-        <div style="width:100%;font-size:8px;color:#667;padding:0 14mm;display:flex;justify-content:space-between;font-family:Heebo,sans-serif;direction:rtl;">
-          <span>לימוד בלבד · לא מסחר אמיתי</span>
+        <div style="width:100%;font-size:8px;color:#667;padding:0 14mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;">
+          <span>השבחת העסקה · לא מסחר אמיתי</span>
           <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
         </div>`,
       margin: { top: "18mm", bottom: "18mm", left: "14mm", right: "14mm" },

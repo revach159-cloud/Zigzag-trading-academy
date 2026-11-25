@@ -23,5 +23,9 @@ describe("zigzag methodology assumptions", () => {
     expect(zigzagAssumptions.fees.funding).toBe(0);
     expect(zigzagAssumptions.maxInstrumentLeverage).toBeNull();
     expect(zigzagAssumptions.gradedRandomness).toBe("seeded_deterministic");
+    expect(zigzagAssumptions.illustrativePatternTotalUsd).toBe(320);
+    expect(zigzagAssumptions.illustrativePatternTotalUsd).toBeGreaterThan(
+      zigzagAssumptions.perPositionMarginCapUsd,
+    );
   });
 });

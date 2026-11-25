@@ -2,11 +2,11 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <title>ZIGZAG TRADING ACADEMY — Textbook</title>
+  <title>LOOKBACK · המבט לאחור — ZIGZAG TRADING ACADEMY</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --ink: #0b1220;
@@ -14,43 +14,47 @@
       --line: #c9d3e2;
       --cyan: #0b6e82;
       --gold: #8a6a1f;
-      --panel: #f4f7fb;
+      --panel: #f3f7fb;
+      --midnight: #0a1224;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       color: var(--ink);
-      font-family: "Heebo", sans-serif;
+      font-family: "Rubik", sans-serif;
       font-size: 11pt;
-      line-height: 1.65;
+      line-height: 1.7;
       background: white;
     }
     .ltr { unicode-bidi: isolate; direction: ltr; }
     h1, h2, h3, h4 {
-      font-family: "Syne", "Heebo", sans-serif;
+      font-family: "Outfit", "Rubik", sans-serif;
       page-break-after: avoid;
     }
     a { color: var(--cyan); text-decoration: none; }
     .cover {
-      min-height: 90vh;
+      min-height: 92vh;
       padding: 48px 40px;
       border: 2px solid var(--line);
       display: flex;
       flex-direction: column;
       justify-content: center;
       page-break-after: always;
-      background: linear-gradient(160deg, #eef6fa, #ffffff 45%, #f7f1e4);
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(11,110,130,0.12), transparent 40%),
+        linear-gradient(160deg, #eaf4f8, #ffffff 50%, #f7f3ea);
     }
     .cover .brand {
-      font-family: "Syne", sans-serif;
-      font-size: 42pt;
-      letter-spacing: 0.12em;
+      font-family: "Outfit", sans-serif;
+      font-size: 40pt;
+      letter-spacing: 0.14em;
       margin: 0;
     }
-    .cover .sub { color: var(--cyan); font-size: 16pt; margin-top: 8px; }
-    .cover .tag { color: var(--gold); margin-top: 24px; }
+    .cover .book { color: var(--cyan); font-size: 18pt; margin-top: 10px; }
+    .cover .method { color: var(--gold); margin-top: 8px; }
+    .cover .tag { margin-top: 22px; max-width: 34em; }
     .disclaimer {
-      margin-top: 40px;
+      margin-top: 36px;
       padding: 16px;
       border: 1px solid var(--line);
       background: var(--panel);
@@ -65,8 +69,23 @@
       background: var(--panel);
       margin-bottom: 18px;
     }
-    .eyebrow { color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9pt; }
+    .eyebrow { color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; font-size: 9pt; }
     .en { color: var(--muted); font-size: 10pt; }
+    blockquote.story {
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border-right: 3px solid var(--cyan);
+      background: #f7fbfe;
+      font-size: 11.5pt;
+    }
+    .principle { margin: 10px 0 18px; }
+    .insight {
+      margin: 16px 0;
+      padding: 12px 14px;
+      border: 1px solid #e2d3a8;
+      background: #fbf7ea;
+      page-break-inside: avoid;
+    }
     .formula {
       margin: 14px 0;
       padding: 10px 12px;
@@ -91,9 +110,9 @@
       page-break-inside: avoid;
     }
     .callout.warning { border-color: #c45b63; background: #fff5f5; }
-    .callout.definition { border-color: #0b6e82; }
+    .callout.definition, .callout.insight { border-color: #0b6e82; }
     .callout.unresolved, .callout.awaiting { border-color: var(--gold); background: #fbf6ea; }
-    .example, .quiz, .gloss {
+    .example, .gloss {
       margin: 10px 0;
       padding: 10px;
       border: 1px solid var(--line);
@@ -110,890 +129,767 @@
 </head>
 <body>
   <section class="cover">
-    <p class="eyebrow">Digital Textbook · Simulation only</p>
+    <p class="eyebrow">Digital narrative book · Simulation only</p>
     <h1 class="brand">ZIGZAG</h1>
-    <p class="sub">Trading Academy</p>
-    <p>ספר לימוד עברי מלא — 12 פרקים, דפי שיטה ומילון מונחים.</p>
-    <p class="tag">שלוט במערכת. הבן את הסיכון.</p>
+    <p class="book">LOOKBACK · המבט לאחור</p>
+    <p class="method">השבחת העסקה · מסע המסלולים</p>
+    <p class="tag">אל תרדוף אחרי השוק. למד לעבוד עם התנועה שלו.</p>
+    <p dir="ltr" class="en">Stop chasing the market. Learn how to work with its movement.</p>
+    <p>13 תחנות מסע נרטיבי — אותו מקור כמו בקורא הדיגיטלי.</p>
     <div class="disclaimer">
       <strong>הצהרה חינוכית.</strong>
       תוכן זה ללימוד וסימולציה בלבד (Bybit Linear USDT Perp, Cross, One-Way).
       אין ייעוץ השקעות, מסחר אמיתי או הבטחות תשואה.
-      יש להבחין בין margin, notional, collateral ו־liquidation.
+      יש להבחין בין margin, notional, quantity, avg, PnL, collateral ו־liquidation.
+      דפוס $320 איורי בלבד; תקרת מרג'ין מאושרת $250 · Reject.
     </div>
   </section>
 
   <nav class="toc" id="toc">
     <h2>תוכן עניינים</h2>
-    <ol><li><a href="#ch-1">פרק 1. מבוא ל־ZigZag</a></li>
-<li><a href="#ch-2">פרק 2. מבנה שוק ותנועת מחיר</a></li>
-<li><a href="#ch-3">פרק 3. יסודות מסחר לימודיים</a></li>
-<li><a href="#ch-4">פרק 4. בניית פוזיציה</a></li>
-<li><a href="#ch-5">פרק 5. מנגנון Reinforcement</a></li>
-<li><a href="#ch-6">פרק 6. מערכת מינוף</a></li>
-<li><a href="#ch-7">פרק 7. מחיר כניסה ממוצע</a></li>
-<li><a href="#ch-8">פרק 8. מימוש רווח</a></li>
-<li><a href="#ch-9">פרק 9. מספר פוזיציות במקביל</a></li>
-<li><a href="#ch-10">פרק 10. ניהול סיכונים</a></li>
-<li><a href="#ch-11">פרק 11. מעבדת סימולציה מעשית</a></li>
-<li><a href="#ch-12">פרק 12. בחינה מסכמת</a></li>
-<li><a href="#glossary">מילון מונחים</a></li>
-<li><a href="#method">דפי השיטה</a></li></ol>
+    <ol><li><a href="#ch-1">תחנה 01 · השער — פתיחת המסע</a></li>
+<li><a href="#ch-2">תחנה 02 · המבט — גילוי המבט לאחור</a></li>
+<li><a href="#ch-3">תחנה 03 · השבחה — השבחת העסקה</a></li>
+<li><a href="#ch-4">תחנה 04 · הרמזור — רמזור הניהול</a></li>
+<li><a href="#ch-5">תחנה 05 · המימוש — מימוש השבעים וחמישה</a></li>
+<li><a href="#ch-6">תחנה 06 · האיזון — חזרה לאיזון ×1</a></li>
+<li><a href="#ch-7">תחנה 07 · הנפש — פסיכולוגיית המסע</a></li>
+<li><a href="#ch-8">תחנה 08 · התיק — תיק המסלולים</a></li>
+<li><a href="#ch-9">תחנה 09 · העצירה — לדעת מתי לעצור</a></li>
+<li><a href="#ch-10">תחנה 10 · האופק — מעבר למסחר</a></li>
+<li><a href="#ch-11">תחנה 11 · השפה — מילון פשוט</a></li>
+<li><a href="#ch-12">תחנה 12 · המדריך — מדריך מעשי</a></li>
+<li><a href="#ch-13">תחנה 13 · הגבול — הצהרה ברורה</a></li>
+<li><a href="#glossary">נספח · מילון מונחים מורחב</a></li></ol>
   </nav>
 
   <article class="chapter" id="ch-1">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 1</p>
-          <h2>פרק 1. מבוא ל־ZigZag</h2>
-          <p class="en" dir="ltr">Introduction to ZigZag</p>
-          <p>מהי אקדמיית ZigZag, מהי סימולציה בלבד, ואיך בנוי מסלול 12 הפרקים סביב השיטה המאושרת.</p>
+          <p class="eyebrow">תחנה 01 · השער</p>
+          <h2>פתיחת המסע</h2>
+          <p class="en" dir="ltr">Opening the Journey</p>
+          <p>איך נכנסים למסע המסלולים: מהו Lookback, מהי השבחת העסקה, ולמה זה ספר סיפור — לא מחברת נוסחאות.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>להסביר מהי אקדמיית ZigZag ומה ההבדל בין לימוד לבין מסחר אמיתי.</li><li>לזהות את 12 פרקי הספר ואת דפי השיטה כמסלול לימודי אחד.</li><li>להכיר את עקרון הסימולציה בלבד ואת האיסור על ביצועי עבר מבוימים.</li></ul>
+        <blockquote class="story">בלילה הראשון של המסע אין גרף פתוח ואין אות כניסה. יש רק שער: מסלול מוכן מראש, ואור כחלחל שמזכיר שהשוק זז בזיגזג — לא בקו ישר. מי שנכנס לכאן לא מחפש קיצור דרך לרווח. הוא מחפש שפה: איך לעבוד עם תנועה במקום לרדוף אחריה.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> ספר Lookback הוא מסע מסלולים: כל פרק הוא תחנה שמלמדת להכין דרך, לא לרדוף אופק.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להבין מהו Lookback ומהי השבחת העסקה כסיפור לימודי אחד.</li><li>להבחין בין ספר נרטיבי לבין מחברת נוסחאות או מבחן בית־ספר.</li><li>לקבל את גבול הסימולציה לפני כל מספר בדוגמאות.</li></ul>
         <section>
-          <h3>מהי אקדמיית ZigZag?</h3>
-          <p>ZIGZAG TRADING ACADEMY היא פלטפורמת לימוד עברית־ראשונה (RTL) שמלמדת את מתודולוגיית ZigZag דרך ספר לימוד, דפי שיטה, סימולטור ומעבדות. המוצר עצמאי — אינו חלק מ־Polymarket Edge Lab.</p>
-<p>המטרה אינה להפעיל חשבון ברוקר, אלא לבנות הבנה מסודרת של מבנה שוק, בניית <code dir="ltr" class="ltr">position</code>, <code dir="ltr" class="ltr">reinforcement</code>, מינוף לימודי, מימוש רווח וניהול סיכון — הכל בתוך סביבת סימולציה.</p>
+          <h3>סיפור הפתיחה</h3>
+          <p>ZIGZAG TRADING ACADEMY מזמינה אתכם למסע בעברית: LOOKBACK — המבט לאחור. השיטה נקראת השבחת העסקה. הרעיון המרכזי פשוט וקשה באותה מידה: אל תרדפו אחרי השוק. למדו לעבוד עם התנועה שלו.</p>
+<p>במסע הזה אין חידוני אמריקאי ואין 'ציון עובר'. יש סיפור, עיקרון, דימוי מהחיים, דוגמה מספרית אחרי האינטואיציה, והערה פסיכולוגית. המתמטיקה מגיעה אחרי שהסיפור כבר ברור.</p>
 <aside class="callout sim">
           <strong>סימולציה בלבד</strong>
-          <p>אין הפקדות, אין מפתחות API, אין ניתוב פקודות אמיתי, ואין הבטחות תשואה. כל מספר בדוגמאות הוא תרגיל לימודי.</p>
+          <p>אין הפקדות, אין מפתחות API, אין ניתוב פקודות אמיתי, ואין הבטחות תשואה. כל מספר הוא תרגיל לימודי על מודל Bybit Linear USDT Perp (Cross, One-Way).</p>
         </aside>
         </section>
 <section>
-          <h3>מפת המסלול</h3>
-          <p>הספר בנוי מ־12 פרקים: ממבוא ומבנה שוק, דרך בניית פוזיציה וחיזוקים, ועד מעבדה מעשית ובחינה מסכמת. דפי השיטה (<code dir="ltr" class="ltr">/method</code>) מרחיבים את לוגיקת ה־<code dir="ltr" class="ltr">reinforcement</code>, מעברי 1x↔10x ומימוש רווח.</p>
+          <h3>עיקרון המסע</h3>
+          <p>מסע המסלולים אומר: לפני שרצים קדימה — מכינים מסלול. לפני שמגיבים לרעש — מסתכלים לאחור על איך המחיר כבר זז. לפני שמתאהבים בעסקה — מחליטים איך משפרים, מנהלים, מממשים וחוזרים לאיזון.</p>
+<ul><li>Lookback — פילוסופיית המבט לאחור על תנועה.</li><li>השבחת העסקה — שיפור מדוד של פוזיציה, לא הימור רגשי.</li><li>רמזור — שפת ניהול ירוק / צהוב / אדום.</li><li>75% — מימוש כמותי חוזר.</li><li>חזרה ל־×1 — שיבה לאיזון, לא ניצחון מוחלט.</li></ul>
+<p class="visual-cap"><em>איור: מפת המסע: שלוש־עשרה תחנות ממבט לאחור ועד הצהרה ברורה.</em></p>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>דמיינו נהג שמתכונן לנסיעה הררית. הוא לא בוחר בכביש רק כי 'נראה מהיר'. הוא בודק סיבובים, נקודות עצירה ואורות אזהרה. כך גם כאן: המסלול חשוב יותר מהרדיפה אחרי הפסגה הבאה.</p>
+        </section>
+<section>
+          <h3>איך לקרוא את הספר</h3>
+          <p>עברו תחנה־תחנה בפעם הראשונה. מונחי אנגלית כמו <code dir="ltr" class="ltr">margin</code>, <code dir="ltr" class="ltr">notional</code> ו־<code dir="ltr" class="ltr">PnL</code> מופיעים בתוך העברית במכוון — כדי ללמוד את שפת התחום בלי לאבד את זרימת ה־RTL.</p>
 <figure class="table-wrap">
           <table>
-            <caption>סקירת מסלול הלימוד</caption>
-            <thead><tr><th>בלוק</th><th>פרקים</th><th>מיקוד</th></tr></thead>
-            <tbody><tr><td>יסודות</td><td>1–3</td><td>הקשר, מבנה שוק, מונחי בסיס</td></tr><tr><td>מכניקה</td><td>4–8</td><td>פוזיציה, חיזוק, מינוף, ממוצע, מימוש</td></tr><tr><td>יישום</td><td>9–12</td><td>ריבוי פוזיציות, סיכון, מעבדה, בחינה</td></tr></tbody>
+            <caption>מפת תחנות המסע</caption>
+            <thead><tr><th>בלוק</th><th>תחנות</th><th>מיקוד</th></tr></thead>
+            <tbody><tr><td>פתיחה וגילוי</td><td>1–2</td><td>שער המסע ומבט Lookback</td></tr><tr><td>מכניקה נרטיבית</td><td>3–6</td><td>השבחה, רמזור, 75%, איזון</td></tr><tr><td>אדם ותיק</td><td>7–10</td><td>פסיכולוגיה, תיק, עצירה, פילוסופיה</td></tr><tr><td>ייחוס</td><td>11–13</td><td>מילון, מדריך מעשי, הצהרה</td></tr></tbody>
           </table>
         </figure>
-<ul><li>כל פרק כולל מטרות למידה, הסברים, נוסחאות לימודיות, טבלאות ודוגמאות.</li><li>תרחישי הצלחה וכישלון מופיעים זה לצד זה כדי לחדד שיקול דעת.</li><li>שאלות ידע בסוף הפרק בודקות הבנה — לא מנפיקות רישיון מסחר.</li></ul>
-        </section>
-<section>
-          <h3>איך ללמוד באקדמיה</h3>
-          <p>עברו פרק־פרק לפי הסדר בפעם הראשונה. מונחי אנגלית כמו <code dir="ltr" class="ltr">entry</code>, <code dir="ltr" class="ltr">leverage</code> ו־<code dir="ltr" class="ltr">PnL</code> מופיעים בתוך העברית במכוון — כך תלמדו את שפת התחום בלי לאבד את זרימת ה־RTL.</p>
 <aside class="callout note">
-          <strong>מתודולוגיה מאושרת על ידי הבעלים</strong>
-          <p>כללי המנוע (סולם לינארי, תקרת margin $250, מעבר ×10 תקציבי, מימוש 75% בכמות) מאושרים ללימוד. מינוף מקסימלי לכל instrument מסומן unresolved בלי נתוני Bybit מאומתים.</p>
+          <strong>מתודולוגיה מאושרת</strong>
+          <p>כללי המנוע (סולם 10% מ־P₀, תקרת margin $250, מעבר ×10 תקציבי, מימוש 75% בכמות) מאושרים ללימוד. מינוף מכשיר מרבי נשאר unresolved בלי נתוני Bybit מאומתים.</p>
         </aside>
-<p class="visual-cap"><em>איור: איור מושגי: תנועת מחיר בזיגזג כשפת לימוד — לא אות כניסה אוטומטי.</em></p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>תכנון שבוע לימוד סימולטיבי</h4>
-          <p>לומד מקצה 5 שעות בשבוע ללימוד באקדמיה, ללא חשבון מסחר.</p>
-          <ol><li>שעה 1–2: פרקים 1–2 + דף השיטה המבוא.</li><li>שעה 3: תרגילי ידע בפרקים שנלמדו; רישום מונחים באנגלית.</li><li>שעה 4–5: חזרה על מטרות הלמידה ובדיקה שלא הופיעו מספרי ביצועים מבוימים בהערות האישיות.</li></ol>
-          <p><strong>תוצאה:</strong> נוצר מסלול לימוד מדיד שמתמקד בהבנה — לא ב־<code dir="ltr" class="ltr">PnL</code> אמיתי.</p>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>כוונת מסלול לפני מספרים</h4>
+          <p>לומד פותח את הספר ורוצה 'לדלג ישר לנוסחאות'.</p>
+          <ol><li>קורא את סיפור הפתיחה בלי לדלג.</li><li>רושם משפט אחד: מה אני מנסה להכין — לא מה אני מנסה לרדוף.</li><li>רק אז עובר לפרק הבא.</li></ol>
+          <p><strong>תוצאה:</strong> נוצרת כוונת מסלול. בלי זה כל טבלה הופכת לחידה במקום לכלל משמעת.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> כתבו בפסקה אחת מה אסור לעשות באקדמיה (הפקדה, API, הבטחת תשואה) ולמה.</li>
-<li><strong>תרגיל 2.</strong> מפו את 12 הפרקים לשלושה בלוקים (יסודות / מכניקה / יישום) במילים שלכם. <em>(רמז: היעזרו בטבלת סקירת המסלול בפרק זה.)</em></li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> מהו אופי המוצר של ZigZag Trading Academy?</p>
-          <ol type="A"><li>פלטפורמת מסחר חיה עם הפקדות</li><li>אקדמיית לימוד וסימולציה בלבד</li><li>מודול בתוך Polymarket Edge Lab</li><li>שירות ניהול תיקים</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> מה עושים כשחסר נתון instrument (למשל מינוף max)?</p>
-          <ol type="A"><li>ממציאים מספר כדי להמשיך</li><li>מסמנים unresolved ולא ממציאים</li><li>מתעלמים מהפרק</li><li>מריצים בקטסט אמיתי</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> מה תפקיד דפי <code dir="ltr" class="ltr">/method</code>?</p>
-          <ol type="A"><li>להפקיד כסף</li><li>להסביר את לוגיקת השיטה (חיזוק, מינוף, מימוש)</li><li>להחליף את 12 הפרקים</li><li>לפרסם ביצועי עבר</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>האקדמיה היא סימולציה עצמאית עם מסלול 12 פרקים ודפי שיטה.</li><li>המתודולוגיה המרכזית מאושרת; unresolved רק לפרמטרי exchange חסרים.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> במשפט אחד: מה ההבדל אצלכם בין 'להכין מסלול' לבין 'לרדוף אחרי השוק'?</li><li><strong>2.</strong> כתבו מה אסור לעשות באקדמיה (הפקדה, API, הבטחת תשואה) ולמה זה חלק מהשער ולא נספח.</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> השער אינו הבטחה. הוא הזמנה למשמעת — ולמבט לאחור על התנועה שכבר קרתה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Lookback הוא מסע מסלולים נרטיבי — לא מבחן בית־ספר.</li><li>השער מחייב סימולציה בלבד לפני כל מספר.</li></ul>
       </article>
 <article class="chapter" id="ch-2">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 2</p>
-          <h2>פרק 2. מבנה שוק ותנועת מחיר</h2>
-          <p class="en" dir="ltr">Market Structure and Price Movement</p>
-          <p>זיהוי מבנה, <code dir="ltr" class="ltr">swing high</code> / <code dir="ltr" class="ltr">swing low</code>, ושפת תנועה לניתוח לימודי של ZigZag.</p>
+          <p class="eyebrow">תחנה 02 · המבט</p>
+          <h2>גילוי המבט לאחור</h2>
+          <p class="en" dir="ltr">Lookback Discovery</p>
+          <p>ללמוד לראות תנועה בזיגזג במקום לרדוף אחרי אופק. המבט לאחור הוא משמעת, לא אות כניסה.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>להגדיר מבנה שוק לימודי באמצעות <code dir="ltr" class="ltr">swing high</code> ו־<code dir="ltr" class="ltr">swing low</code>.</li><li>לתאר תנועת מחיר כרצף זיגזג ולא כקו חלק.</li><li>להבחין בין תיאור מבנה לבין אות כניסה או המלצת מסחר.</li></ul>
+        <blockquote class="story">בתחנה השנייה עוצרים על גשר מעל עמק של זיגזגים. מלמטה נראה כאוס. מלמעלה — מסלולים. מי שלומד Lookback מגלה שהתנועה כבר סיפרה סיפור: עליות, ירידות, מגע בנקודות. המבט לאחור אינו נוסטלגיה. הוא כלי עבודה.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> לעבוד עם תנועת המחיר בזיגזג — לא לרדוף אחרי הנר הבא.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להסביר מהו Lookback כמשמעת קריאה של תנועה.</li><li>להבחין בין מבנה swing לימודי לבין אות כניסה אוטומטי.</li><li>לחבר את המבט לאחור להשבחת העסקה בשלבים הבאים.</li></ul>
         <section>
-          <h3>שפת מבנה השוק</h3>
-          <p>מבנה שוק בלימוד ZigZag מתאר איך המחיר נע בין נקודות מפנה. <code dir="ltr" class="ltr">swing high</code> הוא שיא מקומי; <code dir="ltr" class="ltr">swing low</code> הוא שפל מקומי. החיבור ביניהם יוצר את הזיגזג שממנו נגזר שם השיטה כשפת תיאור.</p>
-<ul><li><code dir="ltr" class="ltr">upswing</code> — תנועה עולה בין שפל לשיא.</li><li><code dir="ltr" class="ltr">downswing</code> — תנועה יורדת בין שיא לשפל.</li><li><code dir="ltr" class="ltr">range</code> — אזור שבו השיאים והשפלים אינם יוצרים כיוון ברור.</li></ul>
-<p class="visual-cap"><em>איור: סדרת swing highs/lows כמפה לתיאור — לא כפקודה.</em></p>
+          <h3>סיפור התחנה</h3>
+          <p>רוב האנשים מסתכלים על השוק כמו על אופק שבורח. Lookback הופך את הכיוון: קודם רואים איך המחיר כבר זז, ורק אחר כך מחליטים איך לעבוד עם מה שקרה — לא איך לרדוף אחרי מה שעוד לא קרה.</p>
+<p class="visual-cap"><em>איור: תנועת זיגזג כשפת לימוד: swing high / swing low — לא אות כניסה אוטומטי.</em></p>
         </section>
 <section>
-          <h3>תנועת מחיר מול רעש</h3>
-          <p>לא כל תנודה קטנה היא <code dir="ltr" class="ltr">swing</code>. בלימוד מסמנים מפנה רק כשהתנועה עוברת סף מושגי שנבחר לתרגיל (למשל אחוז מינימלי מהמחיר הקודם). הסף כאן הוא כלי פדגוגי — לא פרמטר חי של בורסה.</p>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi mathvariant="normal">%</mi></msub><mo>=</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><msub><mi>P</mi><mi>t</mi></msub><mo>−</mo><msub><mi>P</mi><mtext>pivot</mtext></msub><mi mathvariant="normal">∣</mi></mrow><msub><mi>P</mi><mtext>pivot</mtext></msub></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">\Delta_{\%} = \frac{|P_t - P_{\text{pivot}}|}{P_{\text{pivot}}} \times 100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.9024em;vertical-align:-0.2191em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">%</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2191em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.3991em;vertical-align:-0.9721em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">pivot</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">pivot</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(1)</span>
-    </div>
-    <figcaption>נוסחה 1. שינוי אחוזי לימודי בין מחיר נוכחי לנקודת מפנה קודמת</figcaption>
-  </figure>
-<figure class="table-wrap">
-          <table>
-            <caption>תוויות מבנה נפוצות בלימוד</caption>
-            <thead><tr><th>תווית</th><th>משמעות לימודית</th><th>מה זה לא</th></tr></thead>
-            <tbody><tr><td>HH / HL</td><td>שיאים ושפלים עולים</td><td>הבטחת המשך מגמה</td></tr><tr><td>LH / LL</td><td>שיאים ושפלים יורדים</td><td>אות מכירה אוטומטי</td></tr><tr><td>BOS (מושגי)</td><td>שבירת מבנה בתרגיל</td><td>פקודת שוק</td></tr></tbody>
-          </table>
-        </figure>
-<aside class="callout note">
-          <strong>תיאור ≠ המלצה</strong>
-          <p>סימון מבנה עוזר לדבר בשפה משותפת במעבדה. הוא אינו אישור לפתוח <code dir="ltr" class="ltr">position</code> אמיתית.</p>
+          <h3>העיקרון</h3>
+          <p>במתודולוגיית ZigZag לומדים סולם adverse של 10% ממחיר ייחוס מקורי (P₀). ההפעלה היא ב־Touch. החישוב של ספי הסולם מדויק (Decimal) — בלי עיגול שמסתיר את האמת הלימודית.</p>
+<aside class="callout definition">
+          <strong>מבט לאחור ≠ חיזוי</strong>
+          <p>Lookback אינו מנבא את הנר הבא. הוא מלמד לקרוא מסלול שכבר נסלל, כדי לנהל פוזיציה במשמעת.</p>
         </aside>
         </section>
 <section>
-          <h3>עדשת ZigZag</h3>
-          <p>בפרקים הבאים נשתמש במבנה רק כרקע להבנת מתי תרגיל מדבר על מהלך שלילי (<code dir="ltr" class="ltr">adverse move</code>) או על התקדמות לטובת הפוזיציה. המכניקה של חיזוקים ומינוף תבוא אחרי יסודות המסחר ובניית הפוזיציה.</p>
+          <h3>דימוי מהחיים</h3>
+          <p>מטייל ביער לא רץ אחרי כל צליל. הוא מסתכל על השביל שכבר עבר, על הסימונים, על השיפוע. כך גם כאן: המבט לאחור מארגן את הרעש למסלול שאפשר לנהל.</p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>סימון שלושה מפנים</h4>
-          <p>סדרת מחירים לימודית: 100 → 108 → 102 → 115 (יחידות מדומות).</p>
-          <ol><li>מזהים 108 כ־<code dir="ltr" class="ltr">swing high</code> ראשון אחרי העלייה מ־100.</li><li>מזהים 102 כ־<code dir="ltr" class="ltr">swing low</code> אחרי הירידה מ־108.</li><li>מזהים 115 כ־<code dir="ltr" class="ltr">swing high</code> חדש (HH לימודי).</li><li>מחשבים Δ% בין 102 ל־115: (115−102)/102 ≈ 12.7%.</li></ol>
-          <p><strong>תוצאה:</strong> המבנה מתואר כ־HL ואז HH — תיאור בלבד, בלי פקודה.</p>
+<section>
+          <h3>דוגמה מסחרית־לימודית</h3>
+          <p>נניח מחיר ייחוס מקורי P₀ = 100. סולם 10% adverse ארוך־בלבד בונה מגע ב־90, 80, 70… כל מגע הוא הזדמנות לחשוב על חיזוק אופציונלי — לא חובה, ולא הבטחה.</p>
+<figure class="table-wrap">
+          <table>
+            <caption>תצוגת סולם לימודית מ־P₀=100 (Touch)</caption>
+            <thead><tr><th>רמה</th><th>מחיר מגע</th><th>משמעות Lookback</th></tr></thead>
+            <tbody><tr><td>L1</td><td>90</td><td>מבט לאחור על ירידה של 10% מ־P₀</td></tr><tr><td>L2</td><td>80</td><td>מסלול ממשיך; חיזוק עדיין אופציונלי</td></tr><tr><td>L3</td><td>70</td><td>הרעש גדל — המשמעת נבחנת</td></tr></tbody>
+          </table>
+        </figure>
+<aside class="callout warning">
+          <strong>אין סיכון אפס</strong>
+          <p>גם כשהסולם 'ברור' על הנייר, עמלות, סליפג', מימון ופערי מחיר קיימים. Cross margin אינו ביטוח מפני liquidation.</p>
+        </aside>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הפיתוי הגדול הוא להחליף מבט לאחור בציפייה קדימה: 'מה יקרה עכשיו?'. Lookback מחזיר את השאלה ל: 'מה כבר קרה, ומה המסלול שלי בתוכו?'</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>קריאת מסלול לפני תגובה</h4>
+          <p>מחיר ירד מ־100 ל־90 בסימולציה. הלומד רוצה מיד 'לתקן'.</p>
+          <ol><li>מסמן: זה Touch על L1 ביחס ל־P₀.</li><li>רושם: חיזוק אופציונלי — לא חובה.</li><li>בודק תקרת מרג'ין לפני כל פעולה.</li></ol>
+          <p><strong>תוצאה:</strong> התגובה הופכת להחלטת מסלול, לא לרפלקס רדיפה.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> ציירו (על נייר) סדרה עם לפחות שני <code dir="ltr" class="ltr">swing highs</code> ושני <code dir="ltr" class="ltr">swing lows</code> וסמנו HH/HL או LH/LL.</li>
-<li><strong>תרגיל 2.</strong> חשבו Δ% בין pivot של 80 ליחידה לבין מחיר 92, והסבירו אם הייתם מסמנים זאת כ־swing בתרגיל עם סף 10%. <em>(רמז: השתמשו בנוסחה שבפרק.)</em></li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> מהו <code dir="ltr" class="ltr">swing low</code>?</p>
-          <ol type="A"><li>שיא מקומי במחיר</li><li>שפל מקומי במחיר</li><li>עמלת מימון</li><li>מינוף 10x</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> סימון מבנה ZigZag באקדמיה פירושו:</p>
-          <ol type="A"><li>פקודת קנייה אוטומטית</li><li>תיאור לימודי של תנועה</li><li>אישור ביצועי עבר</li><li>חיבור לברוקר</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> HH / HL מתארים לרוב:</p>
-          <ol type="A"><li>מבנה עולה לימודי</li><li>חוב מימון</li><li>סגירת 75% מהפוזיציה</li><li>הפקדת כסף</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>מבנה שוק מתואר ב-swings וזיגזג — לא אות מסחר.</li><li>סולם adverse במתודולוגיה נשען על מחיר ייחוס P₀ בפרקים הבאים.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> תארו swing אחד שראיתם (גם בדוגמה) במילים של מסלול — לא של ניחוש.</li><li><strong>2.</strong> מתי אצלכם 'להביט לאחור' מרגיש כמו חולשה — ואיך הספר הופך אותו למשמעת?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> מי שמביט רק קדימה רואה רעש. מי שמביט לאחור רואה מסלול.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Lookback קורא תנועה שכבר קרתה כדי לבנות מסלול ניהול.</li><li>סולם 10% מ־P₀ הוא שפת מגע — לא הבטחת תוצאה.</li></ul>
       </article>
 <article class="chapter" id="ch-3">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 3</p>
-          <h2>פרק 3. יסודות מסחר לימודיים</h2>
-          <p class="en" dir="ltr">Trading Fundamentals</p>
-          <p>מונחי בסיס: <code dir="ltr" class="ltr">margin</code>, <code dir="ltr" class="ltr">notional</code>, <code dir="ltr" class="ltr">collateral</code>, <code dir="ltr" class="ltr">liquidation</code>, <code dir="ltr" class="ltr">position</code> — ללא ברוקר או הפקדה.</p>
+          <p class="eyebrow">תחנה 03 · השבחה</p>
+          <h2>השבחת העסקה</h2>
+          <p class="en" dir="ltr">Trade Improvement</p>
+          <p>איך משפרים פוזיציה דרך חיזוקים מדודים בסולם 10%, תקרת $250, והבחנה בין דוגמת XRP ל־$320 לבין הכלל המאושר.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>להגדיר מונחי יסוד: <code dir="ltr" class="ltr">position</code>, <code dir="ltr" class="ltr">entry</code>, <code dir="ltr" class="ltr">exit</code>, <code dir="ltr" class="ltr">PnL</code>, הון מוקצה.</li><li>להסביר למה באקדמיה אין ברוקר, הפקדה או מפתח API.</li><li>לחשב <code dir="ltr" class="ltr">PnL</code> לימודי פשוט על פוזיציה מדומה.</li></ul>
+        <blockquote class="story">בתחנת ההשבחה פוגשים נפח שעובד על חפץ שבור. הוא לא זורק אותו. הוא מוסיף שכבה, בודק משקל, עוצר כשהחומר לא מחזיק. כך גם השבחת העסקה: לא הימור גדול יותר מתוך פחד — אלא שיפור מדוד של פוזיציה בתוך תקרה.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> משפרים פוזיציה בחיזוקים אופציונליים על סולם adverse, לפי מרג'ין מצטבר ותקרת $250 Reject — לא לפי תחושת בטן.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להסביר חיזוק אופציונלי בסולם 10% מ־P₀ ב־Touch.</li><li>להבדיל בין דוגמת דפוס $320 לבין תקרת $250 המאושרת.</li><li>להבחין בין margin, quantity, avg entry ו־PnL.</li></ul>
         <section>
-          <h3>מילון יסוד לתרגול</h3>
-          <figure class="table-wrap">
+          <h3>סיפור התחנה</h3>
+          <p>השבחת העסקה היא לב השיטה. כשהמחיר נוגע ברמת סולם, אפשר — לא חובה — להוסיף מרג'ין וכמות. רמות שדולגו נשארות מתועדות. הגודל נגזר ממרג'ין מצטבר, עיגול כמות Floor, ומחיר ביצוע מעוגל לרעת התרגיל (conservative/adverse).</p>
+<p class="visual-cap"><em>איור: שכבות חיזוק כערימת מסלול — כל שכבה היא החלטה, לא אוטומט.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <ul><li>Long בלבד; Short כבוי בלימוד.</li><li>סולם 10% ממחיר ייחוס מקורי; הפעלה ב־Touch.</li><li>הקצאה על בסיס <code dir="ltr" class="ltr">margin</code>; תקרה לפוזיציה $250; מדיניות Reject.</li><li>חישוב ספים מדויק; כמות ב־Floor.</li></ul>
+<aside class="callout definition">
+          <strong>מה משתפר?</strong>
+          <p>ממוצע הכניסה (<code dir="ltr" class="ltr">average entry</code>) יכול לזוז לטובת ניהול הפוזיציה כשמוסיפים כמות במחירים נמוכים יותר — אך זה לא מבטל סיכון, עמלות או אפשרות liquidation ב־Cross.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>שיפוץ דירה בתקציב קשיח: אפשר להוסיף שכבת צבע בכל חדר, אבל כשהתקציב נגמר — עוצרים. מי שממשיך 'רק עוד קצת' בלי תקרה לא משפץ. הוא שובר את המסגרת.</p>
+        </section>
+<section>
+          <h3>דוגמה מספרית — והפיוס השקוף</h3>
+          <p>דפוס חיזוק איורי נפוץ בסיפור השיטה: $5 → $5 → $10 → $20 → $40 → $80 → $160. סכום הדפוס: $320. זהו דפוס הכפלה לימודי — לא כלל ביצוע תחת התקרה המאושרת.</p>
+<aside class="callout warning">
+          <strong>פיוס $250 מול $320</strong>
+          <p>המתודולוגיה המאושרת קובעת תקרת מרג'ין $250 לפוזיציה עם Reject. דוגמת $320 ממחישה את צורת ההכפלה בלבד. בסימולציה תואמת־כללים לא משלבים את שני המספרים בשקט: עוצרים או נדחים כשההוספה הבאה שוברת את $250.</p>
+        </aside>
+<figure class="table-wrap">
           <table>
-            <caption>מונחים באנגלית בתוך הקשר עברי</caption>
-            <thead><tr><th>מונח</th><th>משמעות לימודית</th></tr></thead>
-            <tbody><tr><td><code dir="ltr" class="ltr">position</code></td><td>חשיפה מדומה לכיוון ולכמות בתרגיל</td></tr><tr><td><code dir="ltr" class="ltr">entry</code></td><td>מחיר/נקודת פתיחה מדומה</td></tr><tr><td><code dir="ltr" class="ltr">exit</code></td><td>סגירה מלאה או חלקית מדומה</td></tr><tr><td><code dir="ltr" class="ltr">notional</code></td><td>שווי רעיוני של החשיפה בתרגיל</td></tr><tr><td><code dir="ltr" class="ltr">margin</code></td><td>הקצאה לפוזיציה (בסיס sizing בשיטה המאושרת)</td></tr><tr><td><code dir="ltr" class="ltr">collateral</code></td><td>בטוחה לחשבון Cross (לא זהה ל-margin בפוזיציה)</td></tr><tr><td><code dir="ltr" class="ltr">liquidation</code></td><td>אירוע פירוק בשוק — נלמד בנפרד מסיום תרגיל</td></tr><tr><td><code dir="ltr" class="ltr">allocated capital</code></td><td>מונח לימודי להון שהוקצה במפורש לפוזיציה</td></tr><tr><td><code dir="ltr" class="ltr">unrealized PnL</code></td><td>רווח/הפסד פתוח לפי מחיר סימולציה</td></tr><tr><td><code dir="ltr" class="ltr">realized PnL</code></td><td>רווח/הפסד שנסגר בתרגיל</td></tr></tbody>
+            <caption>השוואה שקופה: דפוס איורי מול כלל מאושר</caption>
+            <thead><tr><th>פריט</th><th>ערך</th><th>מעמד</th></tr></thead>
+            <tbody><tr><td>דפוס הכפלה איורי</td><td>$5…$160 = $320</td><td>המחשת צורה בלבד</td></tr><tr><td>תקרת מרג'ין לפוזיציה</td><td>$250</td><td>כלל מאושר · Reject</td></tr><tr><td>מדיניות כשההוספה חורגת</td><td>דחייה</td><td>לא 'לכופף' את התקרה</td></tr></tbody>
           </table>
         </figure>
-<aside class="callout sim">
-          <strong>אין תשתיות מסחר</strong>
-          <p>האקדמיה לא מתחברת לבורסה. כל <code dir="ltr" class="ltr">order</code> שיופיע בהמשך הוא צעד בסימולטור או במעבדה.</p>
-        </aside>
-        </section>
-<section>
-          <h3>PnL לימודי בסיסי</h3>
-          <p>עבור <code dir="ltr" class="ltr">long</code> לימודי בכמות q ובמחיר כניסה E, עם מחיר סימולציה M:</p>
+<p>מקרה XRP בסיפור השיטה הוא תרגיל חינוכי. יש לחשב מחדש מול גודל חוזה/כמות ותקרת $250 — לא להעתיק סכום איורי כאילו הוא תוצאת מסחר.</p>
+<p class="visual-cap"><em>איור: סולם adverse עם חיזוקים אופציונליים ותיעוד רמות שדולגו.</em></p>
 <figure class="formula">
     <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">L</mi></mrow><mo>=</mo><mi>q</mi><mo>×</mo><mo stretchy="false">(</mo><mi>M</mi><mo>−</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{PnL} = q \times (M - E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">PnL</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(2)</span>
+      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>p</mi><mo>ˉ</mo></mover><mo>=</mo><mfrac><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>q</mi><mi>i</mi></msub><msub><mi>p</mi><mi>i</mi></msub></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>q</mi><mi>i</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">\bar{p} = \frac{\sum_i q_i p_i}{\sum_i q_i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7622em;vertical-align:-0.1944em;"></span><span class="mord katex-accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">p</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord">ˉ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.4254em;vertical-align:-0.9857em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4397em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9857em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+      <span class="formula-num" dir="ltr">(1)</span>
     </div>
-    <figcaption>נוסחה 2. רווח/הפסד לימודי לפוזיציית long מדומה</figcaption>
-  </figure>
-<aside class="callout note">
-          <strong>long בלבד</strong>
-          <p>במתודולוגיה המאושרת short מבוטל (<code dir="ltr" class="ltr">long_only</code> / <code dir="ltr" class="ltr">shortEnabled=false</code>). כל תרגילי הפרוטוקול הם long בלבד.</p>
-        </aside>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>r</mi><mtext>alloc</mtext></msub><mo>=</mo><mfrac><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">L</mi></mrow><msub><mi>C</mi><mtext>allocated</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">r_{\text{alloc}} = \frac{\mathrm{PnL}}{C_{\text{allocated}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">alloc</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">allocated</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">PnL</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(3)</span>
-    </div>
-    <figcaption>נוסחה 3. תשואה לימודית ביחס להון מוקצה (לא ביצועי עבר)</figcaption>
+    <figcaption>נוסחה 1. ממוצע כניסה משוקלל כמות אחרי כמה מילויים — אחרי שהסיפור ברור, לא במקומו.</figcaption>
   </figure>
         </section>
 <section>
-          <h3>הון מוקצה מול 'כסף אמיתי'</h3>
-          <p>margin מוקצה בתרגיל הוא מספר סימולטיבי — לא יתרת בנק. חיזוקים מצטברים לפי cumulative allocated margin עד תקרה $250. notional גדל עם מינוף; collateral שייך לרמת החשבון.</p>
-<ul><li>קבעו הון לימודי לתירגול (למשל 10,000 יח').</li><li>הקצו חלק לפוזיציה בודדת; השאירו רזרבה לתרגילי לחץ.</li><li>אל תייצאו מספרים אלה כביצועי מסחר.</li></ul>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הפיתוי להמשיך את דפוס ההכפלה גם אחרי התקרה הוא רגשי: 'הסדרה חייבת להשלים'. Lookback עונה: המסלול כולל גם דחייה. השבחה בלי גבול אינה השבחה.</p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>חישוב PnL long</h4>
-          <p>כמות q=10, כניסה E=100, מחיר סימולציה M=103, הון מוקצה C=1,000.</p>
-          <ol><li>PnL = 10 × (103 − 100) = 30.</li><li>r_alloc = 30 / 1000 = 3%.</li><li>רושמים: זה תרגיל — לא תשואת תיק אמיתי.</li></ol>
-          <p><strong>תוצאה:</strong> PnL לימודי 30 יח'; תשואה להון מוקצה 3%.</p>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>חיזוק שנדחה בתקרה</h4>
+          <p>בסימולציה הוקצו כבר $200 מרג'ין לפוזיציה. מתוכנן חיזוק של $80.</p>
+          <ol><li>בודקים: 200 + 80 = 280 &gt; 250.</li><li>מדיניות Reject דוחה את ההוספה.</li><li>מתעדים את ניסיון החיזוק ואת הדחייה — בלי 'לעגל' את התקרה.</li></ol>
+          <p><strong>תוצאה:</strong> הפוזיציה נשארת תחת $250. המשמעת שמרה על המסלול.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> חשבו PnL ל־long מדומה: q=5, E=200, M=190. הסבירו את הסימן (הפסד לימודי).</li>
-<li><strong>תרגיל 2.</strong> הגדירו הון לימודי 8,000 והקצו 25% לפוזיציה. מהו C_allocated ומה נשאר לרזרבה?</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> מהו <code dir="ltr" class="ltr">allocated capital</code> באקדמיה?</p>
-          <ol type="A"><li>יתרת ברוקר אמיתית</li><li>הון לימודי שהוקצה במפורש לתרגיל</li><li>עמלת מימון</li><li>מפתח API</li></ol>
+<div class="example">
+          <h4>דפוס $320 כאיור בלבד</h4>
+          <p>לומד רואה את סדרת $5…$160 ורוצה להריץ אותה במלואה.</p>
+          <ol><li>מחשבים סכום: 320.</li><li>משווים לתקרה המאושרת: 250.</li><li>מסמנים ביומן: הדפוס איורי; הביצוע נעצר לפי Reject.</li></ol>
+          <p><strong>תוצאה:</strong> אין ערבוב שקט בין $320 ל־$250. יש שקיפות לימודית.</p>
         </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> PnL ל־long לימודי מחושב כ:</p>
-          <ol type="A"><li>q × (E − M)</li><li>q × (M − E)</li><li>E / q</li><li>מינוף × עמלות בלבד</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> האם מותר לחבר מפתח ברוקר לאקדמיה?</p>
-          <ol type="A"><li>כן</li><li>לא — סימולציה בלבד</li><li>רק בסופי שבוע</li><li>רק ל־short</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>PnL long ומונחי margin/notional/collateral/liquidation מובחנים בבירור.</li><li>השיטה המאושרת היא long בלבד על סימולציה ללא ברוקר.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> הסבירו במילים שלכם למה $320 ו־$250 מופיעים שניהם בספר — ומה אסור לעשות איתם.</li><li><strong>2.</strong> מתי 'עוד חיזוק אחד' אצלכם הוא השבחה — ומתי הוא רדיפה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> השבחה אמיתית יודעת גם להידחות. תקרה שאי אפשר לעבור היא חלק מהשיטה — לא תקלה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>חיזוקים אופציונליים על סולם Touch, תחת תקרת $250 Reject.</li><li>דפוס $320 / XRP הוא איור חינוכי — לא שילוב שקט עם התקרה.</li></ul>
       </article>
 <article class="chapter" id="ch-4">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 4</p>
-          <h2>פרק 4. בניית פוזיציה</h2>
-          <p class="en" dir="ltr">Position Construction</p>
-          <p>בניית <code dir="ltr" class="ltr">position</code> long-only בשכבות מרג'ין, תקרת $250, עיגול Floor, ומודל Bybit Linear.</p>
+          <p class="eyebrow">תחנה 04 · הרמזור</p>
+          <h2>רמזור הניהול</h2>
+          <p class="en" dir="ltr">Traffic Light</p>
+          <p>ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי לניהול, לא שינוי במכניקת פירוק.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>לתאר בניית <code dir="ltr" class="ltr">position</code> long בשלב ×1 על מודל Bybit Linear USDT Perp (Cross, One-Way).</li><li>לחשב כמות עם Floor מ-margin ביחס למחיר ביצוע.</li><li>להכיר תקרת $250 margin לפוזיציה ומדיניות Reject.</li></ul>
+        <blockquote class="story">באמצע המסע מופיע רמזור תלוי מעל צומת של ערפל. הירוק לא אומר 'אין סכנה'. הצהוב לא אומר 'הפסד מובטח'. האדום לא אומר 'סוף'. שלושתם שפה של ניהול תודעתי — כדי שלא תנהגו באותה מהירות בכל מזג אוויר.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> רמזור ZigZag: ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי; אינו משנה את מכניקת ה־liquidation.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>למפות ירוק / צהוב / אדום לשלבי ×1, ×10 ומינוף מכשיר מרבי.</li><li>להסביר שמעבר ×1→×10 הוא תקציבי ושומר כמות.</li><li>להפריד בין סיווג פסיכולוגי לבין מחיר פירוק בבורסה.</li></ul>
         <section>
-          <h3>פוזיציה כמבנה שכבות</h3>
-          <p>ב־ZigZag, <code dir="ltr" class="ltr">position construction</code> מתחיל מהקצאת margin לימודית בשלב ×1, כמות long בלבד, ותיעוד לשכבות <code dir="ltr" class="ltr">reinforcement</code> עתידיות. Short מבוטל בשיטה המאושרת.</p>
-<p class="visual-cap"><em>איור: שכבות הקצאת margin — הכניסה הראשונה אינה בהכרח סוף ההיסטוריה.</em></p>
-<aside class="callout definition">
-          <strong>margin מול notional</strong>
-          <p>margin הוא הבסיס להקצאה (allocationBasis=margin). notional גדל עם מינוף; collateral שייך לחשבון Cross; liquidation אינו זהה ל'סיום תרגיל'.</p>
+          <h3>סיפור התחנה</h3>
+          <p>הרמזור הוא כלי Lookback לניהול עצמי. הוא עוזר לסווג איפה אתם במסלול — לא כדי להבטיח תוצאה, אלא כדי למנוע נהיגה עיוורת.</p>
+<p class="visual-cap"><em>איור: רמזור ניהול: ירוק ×1 · צהוב ×10 · אדום max leverage (מאומת בלבד).</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>שפת הרמזור (לימודית)</caption>
+            <thead><tr><th>צבע</th><th>שלב</th><th>קריאה פסיכולוגית</th><th>הערת סיכון</th></tr></thead>
+            <tbody><tr><td>ירוק</td><td>×1</td><td>סביבת ניהול רגועה יותר (~10% adverse בסולם)</td><td>עדיין יש סיכון, עמלות ופערים</td></tr><tr><td>צהוב</td><td>×10</td><td>דריכות גבוהה (~הפסד מול מרג'ין מוקצה רלוונטי)</td><td>חשיפת notional גדלה; Cross לא מבטל פירוק</td></tr><tr><td>אדום</td><td>מינוף מכשיר מרבי</td><td>אזור קיצון (~200–300% כפוף לבורסה)</td><td>רק מנתוני instrument מאומתים; אחרת unresolved</td></tr></tbody>
+          </table>
+        </figure>
+<p>מעבר ×1→×10 באקדמיה הוא לפי תקרת תקציב (budget-cap), לא טריגר של 'הפסדתי מספיק'. המעבר שומר על הכמות הקיימת. ב־×10 חיזוק נשקל כשהפסד נטו ≥ המרג'ין הרלוונטי שהוקצה.</p>
+<aside class="callout warning">
+          <strong>רמזור ≠ ביטוח</strong>
+          <p>שינוי מינוף לימודי או צבע רמזור אינו מבטיח משיכת הון ואינו מונע liquidation. יש להבחין בין מרג'ין מוקצה, notional, collateral פנוי ומחיר פירוק.</p>
         </aside>
         </section>
 <section>
-          <h3>פתיחת שכבה ראשונה</h3>
-          <figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mn>0</mn></msub><mo>=</mo><mo stretchy="false">⌊</mo><msub><mi>C</mi><mn>0</mn></msub><mi mathvariant="normal">/</mi><msub><mi>E</mi><mn>0</mn></msub><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">q_0 = \lfloor C_0 / E_0 \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⌋</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(4)</span>
-    </div>
-    <figcaption>נוסחה 4. כמות פתיחה מ-margin וממחיר ביצוע (Floor, שלב ×1)</figcaption>
-  </figure>
-<p>בשלב ×1, sizing מצטבר לפי cumulative allocated capital על בסיס margin. תקרה $250 לפוזיציה — ניסיון חריגה נדחה.</p>
-<figure class="table-wrap">
-          <table>
-            <caption>רשימת בניית פוזיציה לתרגיל</caption>
-            <thead><tr><th>שלב</th><th>שאלה לבדיקה</th></tr></thead>
-            <tbody><tr><td>כוונה</td><td>long בלבד — למה בתרגיל?</td></tr><tr><td>הקצאה</td><td>כמה margin ב־C₀ ומה נשאר מתחת ל-$250?</td></tr><tr><td>כניסה</td><td>מהו E₀ ואיך מעגלים tick לכיוון adverse?</td></tr><tr><td>תיעוד</td><td>margin, כמות, מחיר — ביומן?</td></tr><tr><td>גבול</td><td>מה קורה במגע בסולם P_k = P₀×(1−0.10×k)?</td></tr></tbody>
-          </table>
-        </figure>
+          <h3>דימוי מהחיים</h3>
+          <p>רמזור בצומת לא מבטל תאונות. הוא משנה התנהגות: בירוק ממשיכים בזהירות, בצהוב נערכים, באדום לא מאיצים 'כי ממהרים'. אותה לוגיקה בעסקה.</p>
         </section>
 <section>
-          <h3>תקרה ורזרבה פדגוגית</h3>
-          <p>התקרה הקנונית היא $250 margin מצטבר לפוזיציה בשלב ×1. רזרבה בתוך התקרה משמשת לתרגול חיזוקים — לא 'הון אינסופי'.</p>
-<ul><li>דוגמה: פתיחה margin $120, נשאר מקום עד $250 לחיזוקים.</li><li>חריגה → Reject — לא דחיפת עודף לפוזיציה.</li><li>Decimal מדויק לסולם; כמות ב-Floor.</li></ul>
+          <h3>דוגמה מסחרית־לימודית</h3>
+          <p>פוזיציה בשלב ירוק (×1) עם מרג'ין מצטבר מתקרב לתקרה. המעבר לצהוב (×10) נעשה כי התקציב מוצה — והכמות נשמרת. זה לא 'פרס', זו עליית דריכות.</p>
+<p class="visual-cap"><em>איור: מעבר תקציבי ×1→×10 שומר כמות; האדום רק מנתוני Bybit מאומתים.</em></p>
+<aside class="callout unresolved">
+          <strong>אדום ממתין לאימות</strong>
+          <p>מינוף מכשיר מרבי לא מומצא. בלי נתון Bybit מאומת לכל instrument — האדום מסומן unresolved.</p>
+        </aside>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>פתיחה תחת $250</h4>
-          <p>P₀=100; margin C₀=$120 לפתיחה בשלב ×1.</p>
-          <ol><li>q₀ = floor(120/100) = 1.</li><li>C_cum=$120; נותר מקום עד $130 לחיזוקים לפני תקרה.</li><li>ביומן: long, q=1, E=100, margin=$120.</li></ol>
-          <p><strong>תוצאה:</strong> פוזיציית פתיחה מוגדרת בתוך תקרת margin.</p>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>אנשים שומעים 'ירוק' ומרגישים ביטחון־יתר. Lookback מלמד: ירוק הוא רשות לנהל — לא רשות להירדם.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>סיווג צבע אחרי מעבר תקציבי</h4>
+          <p>פוזיציה עברה ל־×10 כי נדחתה הוספת מרג'ין נוספת תחת התקרה.</p>
+          <ol><li>מסמנים ביומן: צבע = צהוב.</li><li>מאשרים שהכמות נשמרה.</li><li>כותבים במפורש: liquidation נקבעת במודל הבורסה — לא לפי הצבע.</li></ol>
+          <p><strong>תוצאה:</strong> הסיווג משרת ניהול עצמי בלי לייצר אשליית ביטוח.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> margin $150, מחיר 75. חשבו q₀ ב-Floor. מה נשאר עד תקרה $250? <em>(רמז: q=⌊150/75⌋; נותר 250−150.)</em></li>
-<li><strong>תרגיל 2.</strong> כתבו צ'ק־ליסט בניית פוזיציה long בסימולטור (5 סעיפים).</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> תקרת margin לפוזיציה בשלב ×1:</p>
-          <ol type="A"><li>$250 עם Reject</li><li>ללא תקרה</li><li>רק ל-short</li><li>$2,500 תמיד</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> כמות בשלב ×1 מחושבת כ:</p>
-          <ol type="A"><li>C₀ × E₀</li><li>⌊C₀ / E₀⌋</li><li>E₀ − C₀</li><li>PnL / E₀</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> כיוון מסחר מאושר:</p>
-          <ol type="A"><li>long ו-short</li><li>long בלבד</li><li>short בלבד</li><li>אין פוזיציה</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>פוזיציה נבנית משכבות margin long עם כמות Floor ותקרה $250.</li><li>מבחינים margin, notional ו-collateral — liquidation נושא נפרד.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> תרגמו ירוק/צהוב/אדום למשפט התנהגות אחד כל אחד — בלי להבטיח תוצאה.</li><li><strong>2.</strong> למה חשוב שהרמזור לא ישנה את מכניקת הפירוק?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> צבע הרמזור משנה את אופן הניהול שלכם — לא את חוקי הבורסה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>רמזור = סיווג פסיכולוגי לשלבי ×1 / ×10 / max.</li><li>מעבר ×10 תקציבי ושומר כמות; אדום רק מנתונים מאומתים.</li></ul>
       </article>
 <article class="chapter" id="ch-5">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 5</p>
-          <h2>פרק 5. מנגנון Reinforcement</h2>
-          <p class="en" dir="ltr">Reinforcement Mechanism</p>
-          <p>חיזוק אופציונלי בסולם 10% מ־P₀ ב־Touch, לפי מרג'ין מצטבר, עם תיעוד רמות שדולגו.</p>
+          <p class="eyebrow">תחנה 05 · המימוש</p>
+          <h2>מימוש השבעים וחמישה</h2>
+          <p class="en" dir="ltr">Realize 75%</p>
+          <p>סגירת 75% מהכמות הנותרת — שוב ושוב — כדי להפוך רווח לא ממומש למשמעת, לא לאשליה.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>להסביר <code dir="ltr" class="ltr">reinforcement</code> כהוספת margin לאחר מגע בסולם adverse.</li><li>ליישם P_k = P₀×(1−0.10×k) ולדוגמה 100→90→80.</li><li>לתעד cumulative allocated capital ותקרת $250.</li></ul>
+        <blockquote class="story">בתחנת המימוש עומדים מול שולחן שעליו ערימת אבנים זוהרות. מי שלוקח הכול בבת אחת נשבר מהמשקל. מי שלומד Lookback לוקח שלושה רבעים — ומשאיר רבע חי על השולחן. אחר כך שוב. ושוב. עד שהערימה חוזרת לקנה מידה אנושי.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> מימוש = סגירת 75% מהכמות הפתוחה הנותרת, ידנית וחוזרת — לא 'משיכת רווח' בלי שינוי כמות.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להגדיר מימוש כסגירת 75% מהכמות הנותרת.</li><li>לחשב סדרת מימושים חוזרים על היתרה.</li><li>להפריד בין PnL לא ממומש לבין כמות שנסגרה.</li></ul>
         <section>
-          <h3>מהו Reinforcement?</h3>
-          <p><code dir="ltr" class="ltr">Reinforcement</code> מוסיף margin וכמות long לפוזיציה קיימת. ההפעלה במגע (Touch) ברמת סולם. חיזוק אופציונלי לרמה; רמות שדולגו נשארות ברישום.</p>
-<aside class="callout note">
-          <strong>גודל מאושר</strong>
-          <p>בשלב ×1: cumulative allocated capital על בסיס margin — סכום ההקצאות המפורשות עד כה.</p>
-        </aside>
+          <h3>סיפור התחנה</h3>
+          <p>בשיטת ZigZag מימוש רווח אינו קסם חשבונאי. סוגרים 75% מהכמות הפתוחה; נשארים 25%. אפשר לחזור על הפעולה על הנותר. ההפעלה ידנית — כי המשמעת שייכת לאדם, לא לאוטומט עיוור.</p>
+<p class="visual-cap"><em>איור: 75% נסגרים · 25% נשארים — וחוזר חלילה על היתרה.</em></p>
         </section>
 <section>
-          <h3>סולם adverse</h3>
-          <p class="visual-cap"><em>איור: סולם 10% ממחיר ייחוס מקורי P₀.</em></p>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mi>k</mi></msub><mo>=</mo><msub><mi>P</mi><mn>0</mn></msub><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>0.10</mn><mo>×</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_k = P_0 \times (1 - 0.10 \times k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">)</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(5)</span>
-    </div>
-    <figcaption>נוסחה 5. מחיר רמה k — מרווח מהייחוס המקורי</figcaption>
-  </figure>
-<aside class="callout warning">
-          <strong>לא מרכיב</strong>
-          <p>מ־100: k=1→90, k=2→80. לא 81 (זה היה (1−0.10)²).</p>
-        </aside>
-        </section>
-<section>
-          <h3>חישוב margin וכמות</h3>
+          <h3>העיקרון</h3>
           <figure class="formula">
     <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>C</mi><mtext>cum</mtext></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><msub><mi>C</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">C_{\text{cum}} = \sum_{i=0}^{n} C_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cum</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(6)</span>
+      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi></mrow></msub><mo>=</mo><mn>0.75</mn><mtext> </mtext><msub><mi>q</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">q_{\mathrm{close}} = 0.75 \, q_{\mathrm{open}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">close</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9305em;vertical-align:-0.2861em;"></span><span class="mord">0.75</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">open</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></div>
+      <span class="formula-num" dir="ltr">(2)</span>
     </div>
-    <figcaption>נוסחה 6. margin מצטבר אחרי n שכבות</figcaption>
+    <figcaption>נוסחה 2. כמות לסגירה בכל מימוש — אחרי שהסיפור ברור.</figcaption>
   </figure>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mi>i</mi></msub><mo>=</mo><mo stretchy="false">⌊</mo><msub><mi>C</mi><mi>i</mi></msub><mi mathvariant="normal">/</mi><msub><mi>P</mi><mtext>exec</mtext></msub><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">q_i = \lfloor C_i / P_{\text{exec}} \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">exec</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⌋</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(7)</span>
-    </div>
-    <figcaption>נוסחה 7. כמות שכבה i</figcaption>
-  </figure>
-<figure class="table-wrap">
+<p>עמלות בתרגול הבסיסי: 2 bps לסיבוב מלא (מודל פעם אחת בסגירה). סליפג': 1 bp לכל צד. מימון: 0 בתרגול הבסיסי; כשמופעל — לפני בדיקות סף. Threshold epsilon: 0.</p>
+<aside class="callout definition">
+          <strong>לא משיכת רווח בלי כמות</strong>
+          <p>מימוש כאן משנה <code dir="ltr" class="ltr">quantity</code>. הוא אינו 'להוציא רווח מהחשבון' בלי לצמצם חשיפה.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>קציר: לא עוקרים את כל השדה בבת אחת אם רוצים להשאיר זרעים. לוקחים את רוב היבול — ומשאירים חלק שימשיך לגדול תחת שליטה.</p>
+        </section>
+<section>
+          <h3>סדרת מימוש חוזרת</h3>
+          <figure class="table-wrap">
           <table>
-            <caption>יומן חיזוקים לדוגמה</caption>
-            <thead><tr><th>שכבה</th><th>מחיר סולם</th><th>margin C_i</th><th>C_cum</th><th>q (Floor)</th></tr></thead>
-            <tbody><tr><td>0 פתיחה</td><td>100</td><td>$100</td><td>$100</td><td>1</td></tr><tr><td>1 חיזוק @90</td><td>90</td><td>$70</td><td>$170</td><td>0</td></tr><tr><td>2 חיזוק @80</td><td>80</td><td>$80</td><td>$250</td><td>1</td></tr></tbody>
+            <caption>דוגמה: התחלה מ־100 יחידות (מספרים מעוגלים להמחשה)</caption>
+            <thead><tr><th>סבב</th><th>כמות לפני</th><th>נסגר 75%</th><th>נותר 25%</th></tr></thead>
+            <tbody><tr><td>1</td><td>100</td><td>75</td><td>25</td></tr><tr><td>2</td><td>25</td><td>18.75</td><td>6.25</td></tr><tr><td>3</td><td>6.25</td><td>4.6875</td><td>1.5625</td></tr></tbody>
           </table>
         </figure>
-<p>בשכבה 1, floor(70/90)=0 — בתרגיל פדגוגי מעלים margin או מסבירים דחייה. בשכבה 2, margin $80 נותן q=1; C_cum מגיע בדיוק ל-$250.</p>
+<p>כל סבב מקרב את הפוזיציה לקנה מידה שקט יותר — ואל עבר חזרה לאיזון ×1 בפרק הבא. זה לא מבטיח רווח חיובי אחרי עמלות וסליפג'.</p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>שני מגעים עד התקרה</h4>
-          <p>P₀=100; margin פתיחה $100 (q=1); חיזוק $100 ב־90 (q=1); חיזוק $50 ב־80 דחוי — C_cum היה $250 כבר.</p>
-          <ol><li>סולם: 100, 90, 80.</li><li>אחרי פתיחה וחיזוק ב־90: C_cum=$200, Q=2.</li><li>חיזוק נוסף $50 מביא ל-$250 — אחר כך Reject; מתכוננים למעבר ×10 בפרק 6.</li><li>מעדכנים E_avg בפרק 7.</li></ol>
-          <p><strong>תוצאה:</strong> יומן reinforcement עד תקרת $250.</p>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הקושי אינו מתמטי. הקושי הוא לשחרר 75% כשהסיפור 'עוד יכול לעלות'. Lookback מזכיר: התאהבות בעסקה מתחילה כשמסרבים לממש.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>שני סבבי מימוש</h4>
+          <p>כמות פתוחה 40. מפעילים מימוש פעמיים.</p>
+          <ol><li>סבב א: סוגרים 0.75×40 = 30; נותר 10.</li><li>סבב ב: סוגרים 0.75×10 = 7.5; נותר 2.5.</li><li>רושמים שעמלות/סליפג' בתרגיל הבסיסי ממודלים בנפרד על הסגירות.</li></ol>
+          <p><strong>תוצאה:</strong> החשיפה ירדה דרמטית בלי להעמיד פני 'סיכון אפס'.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> P₀=50: חשבו P₁ ו־P₂. תעדו margin $40 לכל שכבה אם מגע.</li>
-<li><strong>תרגיל 2.</strong> הסבירו מה קורה כש-C_cum+$20 היה עובר $250. <em>(רמז: capPolicy=reject.)</em></li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> P₂ כש־P₀=100:</p>
-          <ol type="A"><li>81</li><li>80</li><li>90</li><li>100</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> הפעלת חיזוק על הסולם:</p>
-          <ol type="A"><li>במגע (Touch)</li><li>רק בסגירת נר</li><li>אוטומטי בכל דקה</li><li>רק ב-short</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> בסיס גודל בשלב ×1:</p>
-          <ol type="A"><li>cumulative allocated margin</li><li>יתרת בנק</li><li>funding בלבד</li><li>short equity</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>סולם 100→90→80 ממחיר מקורי; חיזוק במגע עם margin מצטבר.</li><li>תקרת $250 וכמות Floor הם חלק מהפרוטוקול המאושר.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> חשבו סבב רביעי אחרי היתרה 1.5625 — מה נסגר ומה נותר? <em>(רמז: 0.75 ו־0.25 מהיתרה.)</em></li><li><strong>2.</strong> איזו התנגדות רגשית עולה בכם מול שחרור 75%?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> רווח שלא מומש בכמות נשאר סיפור. מימוש 75% הופך סיפור למשמעת.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>מימוש = 75% מהכמות הנותרת, ידני וחוזר.</li><li>עמלות, סליפג' ופערים נשארים חלק מהמציאות הלימודית.</li></ul>
       </article>
 <article class="chapter" id="ch-6">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 6</p>
-          <h2>פרק 6. מערכת מינוף</h2>
-          <p class="en" dir="ltr">Leverage System</p>
-          <p>מעבר ×1→×10 לפי תקרת תקציב (שומר כמות), חיזוק ×10 לפי הפסד נטו, ומינוף מכשיר מרבי מ־Bybit בלבד.</p>
+          <p class="eyebrow">תחנה 06 · האיזון</p>
+          <h2>חזרה לאיזון ×1</h2>
+          <p class="en" dir="ltr">Return to ×1 Balance</p>
+          <p>לחזור לכיוון ×1 אחרי סערה: לא ניצחון מוחלט, אלא חזרה למסלול מוכן ושקט יותר.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>להבחין שלב ×1 מול שלב ×10 על אותה פוזיציה long.</li><li>להסביר מעבר תקציבי כשחיזוק ×1 נדחה בתקרת $250.</li><li>לתאר חיזוק ×10 לפי הפסד מצטבר ותקרה מצטברת $250.</li></ul>
+        <blockquote class="story">אחרי הסערה חוזרים לשביל צר ליד מים שקטים. לא כי הסערה 'לא הייתה'. אלא כי המסלול יודע לחזור ל־×1: לקנה מידה שבו אפשר שוב לנשום, לראות, ולהחליט בלי רעש של יתר.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> מטרת רצף המימוש והניהול היא שיבה לכיוון איזון ×1 — לא ניצחון מוחלט על השוק.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לתאר חזרה ל־×1 כתהליך כמות וניהול — לא כקסם.</li><li>לחבר מימוש 75%, רמזור והשבחה למסלול שיבה.</li><li>להימנע משפת 'סיכון אפס אחרי איזון'.</li></ul>
         <section>
-          <h3>שלבי מינוף לימודיים</h3>
-          <p>באקדמיה <code dir="ltr" class="ltr">leverage</code> מתאר רגישות פוזיציה long ב־Cross. שלב ×1 מצטבר margin עד $250. שלב ×10 ממשיך על אותה כמות (preserves quantity) — לא פוזיציה נפרדת.</p>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mo>≈</mo><mi>L</mi><mo>×</mo><msub><mi>C</mi><mtext>margin</mtext></msub></mrow><annotation encoding="application/x-tex">N \approx L \times C_{\text{margin}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">margin</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(8)</span>
-    </div>
-    <figcaption>נוסחה 8. קירוב לימודי: notional מול margin מוקצה</figcaption>
-  </figure>
-<aside class="callout warning">
-          <strong>לא מסחר חי</strong>
-          <p>אין כאן margin call אמיתי מ-Bybit. התרגיל מלמד רגישות — שינוי מינוף לא מבטיח משיכה או מניעת liquidation.</p>
+          <h3>סיפור התחנה</h3>
+          <p>חזרה לאיזון אינה מחיקת העבר. היא צמצום חשיפה והחזרת הפוזיציה לקנה מידה ירוק יותר — שם Lookback שוב אפשרי בלי רעש יתר.</p>
+<p class="visual-cap"><em>איור: מסילת שיבה: מסערה לכיוון ×1 דרך מימושים מדודים.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <p>אחרי סבבי 75%, הכמות קטנה. הרמזור יכול לחזור להרגיש ירוק יותר מבחינת ניהול עצמי — אך המודל נשאר Cross, והסיכון לא מתאפס. avg entry, PnL ממומש/לא ממומש ו־collateral הם מושגים נפרדים שיש לקרוא בנפרד.</p>
+<aside class="callout insight">
+          <strong>איזון ≠ סיום הסיכון</strong>
+          <p>גם ב־×1 אפשר להפסיד, לשלם עמלות, ולפגוש פער מחיר. האיזון מחזיר יכולת ניהול — לא תעודת ביטוח.</p>
         </aside>
         </section>
 <section>
-          <h3>מעבר ×1 → ×10</h3>
-          <p>כשחיזוק ×1 נוסף נדחה כי cumulative margin היה חורג מ-$250, השיטה עוברת לשלב ×10 על אותה פוזיציה ושומרת כמות. זה מעבר budget_cap_based — לא מסלול 'Path A/B' ולא תנאי יחיד של הפסד 100% מהחיזוק האחרון.</p>
-<aside class="callout note">
-          <strong>שמירת כמות</strong>
-          <p>stage1ToStage10PreservesQuantity=true.</p>
-        </aside>
+          <h3>דימוי מהחיים</h3>
+          <p>אחרי ריצה במעלה הר, חוזרים להליכה. לא כי ההר נעלם — אלא כי הקצב שוב אנושי. כך גם חזרה ל־×1.</p>
         </section>
 <section>
-          <h3>חיזוקים בשלב ×10</h3>
-          <figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">t</mi><mtext> </mtext><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi></mrow><mo>≥</mo><msub><mi>C</mi><mtext>relevant margin</mtext></msub></mrow><annotation encoding="application/x-tex">\mathrm{net\,loss} \geq C_{\text{relevant margin}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord"><span class="mord mathrm">net</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathrm">loss</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">relevant margin</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(9)</span>
-    </div>
-    <figcaption>נוסחה 9. טריגר חיזוק ×10 מצטבר</figcaption>
-  </figure>
-<p>תקרת margin מצטברת בשלב ×10: $250. אם חיזוק ×10 הבא נדחה, מעבר אוטומטי למינוף מקסימלי של ה-instrument — רק מנתוני Bybit מאומתים; אחרת unresolved.</p>
-<aside class="callout unresolved">
-          <strong>מינוף מקסימלי ל-instrument</strong>
-          <p>maxInstrumentLeverage לא מוגדר גלובלית בספר עד אימות פר־symbol.</p>
-        </aside>
+          <h3>מסלול שיבה לימודי</h3>
+          <ul><li>מזהים צבע רמזור נוכחי ביומן.</li><li>מפעילים מימוש 75% לפי תוכנית — לא לפי פחד או תאווה.</li><li>בודקים כמות, מרג'ין ו־notional אחרי כל סבב.</li><li>חוזרים לקרוא את השוק ב־Lookback כשהרעש יורד.</li></ul>
+<p class="visual-cap"><em>איור: גם אחרי שיבה: avg entry ו־PnL נשארים סיפורים נפרדים מהכמות.</em></p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>מעבר אחרי Reject</h4>
-          <p>C_cum=$240 ב־×1; בקשה לחיזוק $20 → Reject; Q=3 נשמרת.</p>
-          <ol><li>רושמים דחיית חיזוק ×1.</li><li>מסמנים מעבר לשלב ×10 על אותה פוזיציה.</li><li>מחשבים רגישות PnL: אותו Δמחיר, רגישות גבוהה יותר ב-×10.</li></ol>
-          <p><strong>תוצאה:</strong> מעבר שלב אחד וברור.</p>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>יש מי שמתבייש לחזור לאיזון כי זה 'לא נראה כמו ניצחון'. Lookback הופך את הבושה למשמעת: לחזור לשביל זה מקצועיות.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>יומן שיבה</h4>
+          <p>פוזיציה בצהוב עם כמות 16 אחרי סערה.</p>
+          <ol><li>מימוש: נסגר 12; נותר 4.</li><li>מימוש נוסף: נסגר 3; נותר 1.</li><li>מסמנים: כיוון איזון ×1 לניהול — סיכון עדיין קיים.</li></ol>
+          <p><strong>תוצאה:</strong> המסלול שב לקנה מידה שניתן לנהל בלי אשליית ניצחון.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> הסבירו במשפט אחד ההבדל בין מעבר תקציבי לבין 'הפסד = 100% מהחיזוק האחרון'.</li>
-<li><strong>תרגיל 2.</strong> C_cum=$248; חיזוק $5. מה קורה בשלב ×1? מה הצעד הבא בשיטה?</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> מעבר ×1→×10 מאושר כאשר:</p>
-          <ol type="A"><li>יש רווח 75%</li><li>חיזוק ×1 נדחה בתקרת margin</li><li>מגיע swing high</li><li>תמיד אחרי 3 חיזוקים</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> טריגר חיזוק בשלב ×10:</p>
-          <ol type="A"><li>הפסד נקי ≥ margin הרלוונטי</li><li>כל מגע ב-90</li><li>סגירת 25%</li><li>רק funding</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> במעבר שלב:</p>
-          <ol type="A"><li>הכמות מתאפסת</li><li>הכמות נשמרת</li><li>חובה short</li><li>חובה פוזיציה שנייה</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>×1→×10 מבוסס תקרת margin; אותה פוזיציה long ושמירת כמות.</li><li>×10 מחזק לפי הפסד מצטבר; מקסימום מינוף instrument — unresolved בלי נתוני Bybit.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> מה אצלכם נחשב 'ניצחון' — ומה הספר מציע במקום זה?</li><li><strong>2.</strong> כתבו משפט אחד ליומן אחרי שיבה ל־×1 שאין בו הבטחת תשואה.</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> איזון הוא יעד ניהולי. מי שמחפש ניצחון מוחלט נשאר בסערה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>חזרה ל־×1 היא יעד ניהולי אחרי מימוש ושקט.</li><li>איזון אינו סיכון אפס ואינו ניצחון על השוק.</li></ul>
       </article>
 <article class="chapter" id="ch-7">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 7</p>
-          <h2>פרק 7. מחיר כניסה ממוצע</h2>
-          <p class="en" dir="ltr">Average Entry Price</p>
-          <p>חישוב <code dir="ltr" class="ltr">average entry</code> משוקלל כמות אחרי מספר מילויים בתרגיל סימולציה.</p>
+          <p class="eyebrow">תחנה 07 · הנפש</p>
+          <h2>פסיכולוגיית המסע</h2>
+          <p class="en" dir="ltr">Journey Psychology</p>
+          <p>לא להתאהב בעסקה. לשפר, לנהל, לממש, לחזור לאיזון — בלי להפוך את הפוזיציה לזהות.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>לחשב <code dir="ltr" class="ltr">average entry</code> משוקלל כמות אחרי מספר מילויים.</li><li>לקשר בין ממוצע כניסה לבין <code dir="ltr" class="ltr">PnL</code> פתוח בסימולציה.</li><li>להסביר למה ממוצע כניסה אינו מדד ביצועי עבר.</li></ul>
+        <blockquote class="story">בתחנת הנפש אין גרף על הקיר — רק מראה. מי שמביט רואה לא את המחיר, אלא את ההתקשרות: 'העסקה שלי', 'אני צודק', 'אסור לי לצאת עכשיו'. Lookback שובר את ההתקשרות בלי להשפיל: משפרים, מנהלים, מממשים, חוזרים לאיזון.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> אל תתאהבו בעסקה. הפוזיציה היא מסלול לניהול — לא זהות.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לזהות התקשרות רגשית לפוזיציה.</li><li>לחבר רמזור ומימוש לכלים אנטי־התקשרות.</li><li>להפריד בין ערך עצמי לבין תוצאת תרגיל סימולטיבי.</li></ul>
         <section>
-          <h3>ממוצע משוקלל לימודי</h3>
-          <p>כשיש כמה שכבות כניסה/חיזוק במחירים שונים, מחיר הכניסה הממוצע (<code dir="ltr" class="ltr">average entry</code>) הוא ממוצע משוקלל לפי כמות — לא ממוצע חשבוני פשוט של המחירים.</p>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>E</mi><mtext>avg</mtext></msub><mo>=</mo><mfrac><mrow><munder><mo>∑</mo><mi>i</mi></munder><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>×</mo><msub><mi>E</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>q</mi><mi>i</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">E_{\text{avg}} = \frac{\sum_i (q_i \times E_i)}{\sum_i q_i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">avg</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.4254em;vertical-align:-0.9857em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4397em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9857em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(10)</span>
-    </div>
-    <figcaption>נוסחה 10. מחיר כניסה ממוצע משוקלל כמות</figcaption>
-  </figure>
-<p class="visual-cap"><em>איור: מילויים נפרדים מתכנסים לממוצע משוקלל אחד לתרגיל.</em></p>
+          <h3>סיפור התחנה</h3>
+          <p>הפסיכולוגיה במסע אינה מודול נפרד של 'FOMO כללי'. היא המשך ישיר של השיטה: אם אין משמעת רגשית, הרמזור הופך לקישוט וה־75% הופך למשאלה.</p>
         </section>
 <section>
-          <h3>PnL מממוצע הכניסה</h3>
-          <figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">L</mi></mrow><mo>=</mo><mi>Q</mi><mo>×</mo><mo stretchy="false">(</mo><mi>M</mi><mo>−</mo><msub><mi>E</mi><mtext>avg</mtext></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{PnL} = Q \times (M - E_{\text{avg}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">PnL</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">avg</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(11)</span>
-    </div>
-    <figcaption>נוסחה 11. PnL לימודי ל־long לפי כמות כוללת וממוצע כניסה</figcaption>
-  </figure>
-<p>אפשר גם לסכום PnL של כל שכבה בנפרד — התוצאה שקולה אם אין עמלות. עמלות מאושרות: 2 bps round-trip בסגירה, slippage 1 bp לצד; funding 0.</p>
-<figure class="table-wrap">
-          <table>
-            <caption>דוגמת שכבות לחישוב ממוצע</caption>
-            <thead><tr><th>שכבה</th><th>כמות q</th><th>מחיר E</th><th>q×E</th></tr></thead>
-            <tbody><tr><td>0</td><td>40</td><td>100</td><td>4,000</td></tr><tr><td>1</td><td>50</td><td>90</td><td>4,500</td></tr><tr><td>2</td><td>60</td><td>80</td><td>4,800</td></tr><tr><td>סה״כ</td><td>150</td><td>—</td><td>13,300</td></tr></tbody>
-          </table>
-        </figure>
-<aside class="callout note">
-          <strong>חישוב סטנדרטי</strong>
-          <p>נוסחת הממוצע המשוקלל היא מתמטיקה כללית. שכבות נוצרות לפי סולם 100→90→80 והקצאת margin המאושרת.</p>
+          <h3>העיקרון</h3>
+          <ul><li>שפרו — בלי להעניש את עצמכם על מגע בסולם.</li><li>נהלו — לפי צבע רמזור, לא לפי כבוד.</li><li>ממשו — כדי לשחרר התקשרות לכמות.</li><li>חזרו לאיזון — כדי לשחרר התקשרות לדרמה.</li></ul>
+<aside class="callout insight">
+          <strong>משמעת במקום ניבוי רגשי</strong>
+          <p>השאלה אינה 'האם אני צודק?'. השאלה היא 'מה המסלול דורש עכשיו?'</p>
         </aside>
         </section>
 <section>
-          <h3>מלכודות נפוצות</h3>
-          <ul><li>ממוצע חשבוני של מחירים בלי משקל כמות — שגוי.</li><li>שכחת עדכון E_avg אחרי חיזוק — PnL פתוח ייחשב לא נכון.</li><li>הצגת שיפור ב־E_avg כ'הוכחת אסטרטגיה' — אסור; זו סימולציה.</li></ul>
+          <h3>דימוי מהחיים</h3>
+          <p>שחקן שמתאהב במהלך אחד מפסיק לקרוא את המשחק. מאמן טוב מחזיר אותו למערכת. Lookback הוא המאמן הפנימי.</p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>חישוב E_avg מהטבלה</h4>
-          <p>השתמשו בטבלת שלוש השכבות שבפרק (סה״כ q=150, ΣqE=13300).</p>
-          <ol><li>E_avg = 13300 / 150 ≈ 88.667.</li><li>אם M=95: PnL = 150 × (95 − 88.667) ≈ 950.</li><li>אם M=85: PnL = 150 × (85 − 88.667) ≈ −550.</li></ol>
-          <p><strong>תוצאה:</strong> ממוצע ≈ 88.67; PnL תלוי במחיר הסימולציה הנוכחי בלבד.</p>
+<section>
+          <h3>תרחיש לימודי</h3>
+          <p>פוזיציה בצהוב מציגה <code dir="ltr" class="ltr">PnL</code> לא ממומש שלילי. הדחף: 'אם אממש — הפסדתי את הצדק'. התשובה המתודית: מימוש 75% אינו הודאה בכישלון אישי; הוא צמצום חשיפה תחת מסלול.</p>
+<aside class="callout warning">
+          <strong>בלי הבטחות נפשיות</strong>
+          <p>השיטה אינה מבטיחה שקט נפשי מלא ואינה מבטיחה רווח. היא נותנת שפה למשמעת.</p>
+        </aside>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>כתבו ביומן לא רק מחיר — גם משפט התקשרות ששמעתם בראש. עצם הרישום מחזיר מרחק. המרחק הוא Lookback.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>פירוק התקשרות ביומן</h4>
+          <p>הלומד אומר: 'אני חייב להיות צודק בעסקה הזו'.</p>
+          <ol><li>מחליפים ל: 'המסלול דורש בדיקת רמזור'.</li><li>בודקים צבע וכלל מימוש.</li><li>מבצעים פעולה אחת קטנה לפי הכלל — או מתעדים דילוג מודע.</li></ol>
+          <p><strong>תוצאה:</strong> הזהות מתנתקת מהפוזיציה צעד אחד.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> חשבו E_avg למילויים: 20@110, 30@100, 10@95.</li>
-<li><strong>תרגיל 2.</strong> בהינתן E_avg=92 ו־Q=200, מצאו M כך ש־PnL הלימודי יהיה 0. <em>(רמז: ב־long, PnL=0 כאשר M=E_avg.)</em></li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> E_avg מחושב כ:</p>
-          <ol type="A"><li>ממוצע פשוט של מחירי השכבות</li><li>סכום (q×E) חלקי סכום הכמויות</li><li>המחיר האחרון בלבד</li><li>מינוף כפול העמלה</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> שיפור ב־E_avg בסימולציה מוכיח ביצועי עבר?</p>
-          <ol type="A"><li>כן</li><li>לא</li><li>רק ב־10x</li><li>רק אחרי פרק 12</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> ל־long, מתי PnL=0 לפי E_avg?</p>
-          <ol type="A"><li>כש־M &gt; E_avg</li><li>כש־M = E_avg</li><li>כש־M &lt; E_avg</li><li>תמיד אחרי חיזוק</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>E_avg הוא ממוצע משוקלל כמות אחרי חיזוקים בסולם 100/90/80.</li><li>עמלות 2 bps בסגירה מחוברות בתרגילים מתקדמים.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> איזה משפט התקשרות חוזר אצלכם מול פוזיציה?</li><li><strong>2.</strong> איך רמזור או מימוש 75% יכולים לקטוע את המשפט הזה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> כשהעסקה הופכת לסיפור עליכם — איבדתם את Lookback.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>הפסיכולוגיה כאן היא אנטי־התקשרות למסלול השיטה.</li><li>משפרים, מנהלים, מממשים, חוזרים לאיזון — בלי להפוך עסקה לזהות.</li></ul>
       </article>
 <article class="chapter" id="ch-8">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 8</p>
-          <h2>פרק 8. מימוש רווח</h2>
-          <p class="en" dir="ltr">Profit Realization</p>
-          <p>סגירת 75% מהכמות הפתוחה (נותרות 25%), ידני וחוזר על הנותר — לא משיכת רווח בלי שינוי כמות.</p>
+          <p class="eyebrow">תחנה 08 · התיק</p>
+          <h2>תיק המסלולים</h2>
+          <p class="en" dir="ltr">Portfolio of Routes</p>
+          <p>כמה מסלולים במקביל: הקצאת מרג'ין נפרדת לכל פוזיציה, תקרת $250, וסיכון תיק ולא רק סיכון עסקה.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>ליישם מימוש מאושר: סגירת 75% מהכמות הפתוחה.</li><li>לחשב כמות שנותרת ומימוש חוזר על 25%.</li><li>לכלול עמלות 2 bps בסגירה ו-slippage 1 bp לצד.</li></ul>
+        <blockquote class="story">בתחנת התיק נפתחת מפה עם כמה שבילים זוהרים במקביל. מי שמנסה לרוץ בכולם באותה נשימה מאבד את המפה. מי שלומד Lookback מבין: כל מסלול מקבל תקרת מרג'ין משלו — והתיק כולו הוא סיפור סיכון נפרד מכל עסקה בודדת.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> כל פוזיציה = מסלול עם תקרת $250; התיק נמדד בסכום החשיפות והמשמעת — לא בדרמה של עסקה אחת.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להפריד הקצאת מרג'ין בין פוזיציות סימולטיביות.</li><li>להסביר תקרת $250 לכל פוזיציה מול סיכון תיק.</li><li>להימנע מהעברת רגש מעסקה אחת לכל התיק.</li></ul>
         <section>
-          <h3>מימוש 75% בכמות</h3>
-          <p><code dir="ltr" class="ltr">Profit realization</code> המאושר הוא close_quantity_pct: סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; ניתן לחזור על 75% מהנותר.</p>
-<p class="visual-cap"><em>איור: 75% נסגרים · 25% נשארים — אין 'משיכת רווח' נפרדת.</em></p>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mtext>close</mtext></msub><mo>=</mo><mn>0.75</mn><mo>×</mo><mi>Q</mi><mo separator="true">,</mo><mspace width="1em"/><msub><mi>q</mi><mtext>remain</mtext></msub><mo>=</mo><mn>0.25</mn><mo>×</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">q_{\text{close}} = 0.75 \times Q,\quad q_{\text{remain}} = 0.25 \times Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">close</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.75</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">remain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.25</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(12)</span>
-    </div>
-    <figcaption>נוסחה 12. סגירת 75% מהכמות</figcaption>
-  </figure>
-<aside class="callout note">
-          <strong>הפעלה ידנית</strong>
-          <p>profitRealization.activation=manual; repeatableOnRemaining=true.</p>
+          <h3>סיפור התחנה</h3>
+          <p>ריבוי פוזיציות מותר בלימוד כאוסף מסלולים. כל אחת long-only במודל Cross One-Way, עם תקרת מרג'ין $250 Reject. ההצלחה אינה 'כולן ירוקות' — אלא שכל אחת מנוהלת כסיפור נפרד תחת אותה פילוסופיה.</p>
+<p class="visual-cap"><em>איור: מספר מסלולים במקביל — לכל אחד תקרה והקצאה משלו.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <ul><li>לא לערבב מרג'ין של פוזיציה א עם ב ביומן הלימודי.</li><li>לבדוק notional מצטבר מול collateral סימולטיבי.</li><li>לזכור: Cross יכול לקשר סיכונים גם כשהיומן מפריד.</li></ul>
+<aside class="callout warning">
+          <strong>Cross וריבוי מסלולים</strong>
+          <p>גם אם אתם מנהלים כל עסקה כמסלול נפרד, במודל Cross הביטחונות משותפים ברמת החשבון הסימולטיבי. פירוק יכול להגיע מאינטראקציה — לא רק מעסקה בודדת.</p>
         </aside>
         </section>
 <section>
-          <h3>עמלות בסגירה</h3>
-          <ul><li>roundTripBps: 2 בסגירה (במודל הלימודי).</li><li>slippageBpsPerSide: 1.</li><li>funding: 0; thresholdEpsilon: 0.</li></ul>
-<p>Realized PnL על החלק שנסגר = q_close×(M−E_avg) פחות עמלות לפי התרגיל.</p>
+          <h3>דימוי מהחיים</h3>
+          <p>כמה פרויקטים בעבודה: לכל אחד תקציב. אם פרויקט אחד בולע את כולם — זו לא 'גמישות'. זו קריסת מסגרת.</p>
         </section>
 <section>
-          <h3>משמעת אחרי מימוש</h3>
-          <ul><li>מתעדים Q לפני ואחרי כל מימוש.</li><li>לא מציגים מימוש לימודי כביצועי עבר.</li><li>בודקים שלב ×1/×10 והסיכון על הנותר.</li></ul>
+          <h3>דוגמת תיק לימודית</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>שלושה מסלולים תחת תקרות נפרדות</caption>
+            <thead><tr><th>מסלול</th><th>מרג'ין מוקצה</th><th>תקרה</th><th>סטטוס</th></tr></thead>
+            <tbody><tr><td>A</td><td>$120</td><td>$250</td><td>ירוק · פעיל</td></tr><tr><td>B</td><td>$250</td><td>$250</td><td>צהוב · ללא חיזוק נוסף</td></tr><tr><td>C</td><td>$80</td><td>$250</td><td>ירוק · מקום לחיזוק</td></tr></tbody>
+          </table>
+        </figure>
+<p class="visual-cap"><em>איור: סיכון תיק כשכבות — לא כדרמה של שורה אחת.</em></p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>מימוש ראשון וחוזר</h4>
-          <p>Q=20, E_avg=88, M=108.</p>
-          <ol><li>PnL פתוח ≈ 20×20=400 לפני עמלות.</li><li>מימוש 1: q_close=15, q_remain=5.</li><li>Realized ≈ 15×20=300; ניכוי עמלה 2 bps על נושא הסגירה.</li><li>מימוש 2 (אופציונלי): 75%×5→3.75→3 ב-Floor.</li></ol>
-          <p><strong>תוצאה:</strong> רצף כמותי מתועד.</p>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>כשמסלול אחד כואב, אל תענישו את האחרים. ואל תפצו על כאב במסלול חדש חסר גבול. זה רדיפה בתחפושת תיק.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>הפרדת תקרות</h4>
+          <p>שתי פוזיציות: $200 ו־$100. הלומד רוצה 'להעביר' $50.</p>
+          <ol><li>בודקים: כל פוזיציה עם תקרה עצמאית $250.</li><li>לא ממציאים העברת מרג'ין שעוקפת Reject.</li><li>מתעדים החלטה לכל מסלול בנפרד.</li></ol>
+          <p><strong>תוצאה:</strong> התיק נשאר אוסף מסלולים עם גבולות.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> Q=16. חשבו q_close ו־q_remain במימוש ראשון.</li>
-<li><strong>תרגיל 2.</strong> q_remain=8, E_avg=50, M=62. חשבו realized על 75% מהנותר.</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> מימוש מאושר פירושו:</p>
-          <ol type="A"><li>משיכת 75% מהרווח בלי שינוי כמות</li><li>סגירת 75% מהכמות</li><li>מינוף 75x</li><li>סגירת short</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> אחרי מימוש ראשון נשאר:</p>
-          <ol type="A"><li>0%</li><li>25% מהכמות המקורית</li><li>75%</li><li>short</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> עמלת round-trip במודל המאושר:</p>
-          <ol type="A"><li>20 bps</li><li>2 bps</li><li>0</li><li>1%</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>מימוש = סגירה ידנית של 75% מהכמות, עם חזרה על הנותר.</li><li>עמלות ו-slippage מאושרים בתרגיל — לא טיוטה.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> איך תסמנו ביומן הפרדה בין שלושה מסלולים בלי לערבב מרג'ין?</li><li><strong>2.</strong> מה Cross מלמד אתכם על גבול ההפרדה ה'נפשית' מול המודל?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> תיק בריא הוא אוסף מסלולים עם גבולות — לא אוסף הימורים שחולקים אותו פחד.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>כל פוזיציה תחת $250; התיק הוא אוסף מסלולים.</li><li>Cross יכול לקשר סיכונים גם כשהיומן מפריד.</li></ul>
       </article>
 <article class="chapter" id="ch-9">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 9</p>
-          <h2>פרק 9. מספר פוזיציות במקביל</h2>
-          <p class="en" dir="ltr">Multiple Concurrent Positions</p>
-          <p>ניהול כמה <code dir="ltr" class="ltr">positions</code> סימולטיביות במקביל, הקצאת מרג'ין נפרדת, ותקרת $250 לכל פוזיציה.</p>
+          <p class="eyebrow">תחנה 09 · העצירה</p>
+          <h2>לדעת מתי לעצור</h2>
+          <p class="en" dir="ltr">Knowing When to Stop</p>
+          <p>Reject לפי תקרה, דילוג על רמה, וסגירה ידנית — מתי המסלול נגמר בלי להפוך את העצירה לכישלון.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>לנהל כמה פוזיציות long מקבילות כישויות נפרדות.</li><li>להחיל תקרת $250 margin לכל פוזיציה.</li><li>להבחין בין שכבות באותה פוזיציה לבין פוזיציה שנייה.</li></ul>
+        <blockquote class="story">לפני היער האחרון יש שער קטן עם שלט: 'כאן עוצרים גם כשאפשר להמשיך'. מי שלא יודע לקרוא אותו יהפוך כל Reject לכישלון אישי. מי שכן — מבין שהעצירה היא חלק ממפת המסלול.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> עצירה כשרה: Reject בתקרה, דילוג מודע על רמה, סגירה ידנית, או יציאה כשהמסלול איבד משמעת.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>למנות מצבי עצירה לגיטימיים בשיטה.</li><li>להפריד בין עצירת משמעת לבין כניעה רגשית.</li><li>לתעד דילוג ו־Reject בלי בושה.</li></ul>
         <section>
-          <h3>כמה פוזיציות מקבילות</h3>
-          <p>תרגילים מתקדמים עשויים לכלול כמה פוזיציות long במקביל — למשל על symbols שונים בסימולציה. כל פוזיציה עם יומן, C_cum ותקרת $250 משלה. מעבר ×10 אינו פתיחת פוזיציה נפרדת; הוא שלב על אותה ישות.</p>
-<p class="visual-cap"><em>איור: מעטפות סיכון נפרדות — לא מיזוג יומנים.</em></p>
-<aside class="callout note">
-          <strong>תקרה פר פוזיציה</strong>
-          <p>perPositionMarginCapUsd=250 לכל פוזיציה בנפרד בשלב ×1.</p>
-        </aside>
+          <h3>סיפור התחנה</h3>
+          <p>בספר הזה עצירה אינה מילה גסה. חיזוק שנדחה, רמה שדולגה, מימוש שמסיים סיפור — כולם תחנות. בלי עצירות המסלול הופך לרדיפה אינסופית.</p>
         </section>
 <section>
-          <h3>בידוד הקצאה</h3>
-          <ul><li>מזהה, שלב ×1/×10, margin מצטבר, E_avg, Q.</li><li>אין שיתוף margin בין פוזיציות בלי צעד מפורש.</li><li>collateral ב-Cross משותף בשוק אמיתי — כאן מדגישים הפרדה פדגוגית.</li></ul>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>C</mi><mtext>cum</mtext><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>≤</mo><mn>250</mn></mrow><annotation encoding="application/x-tex">C^{(j)}_{\text{cum}} \leq 250</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.185em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-2.453em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cum</span></span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">250</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(13)</span>
-    </div>
-    <figcaption>נוסחה 13. תקרת margin לפוזיציה j</figcaption>
-  </figure>
-<figure class="table-wrap">
+          <h3>העיקרון</h3>
+          <figure class="table-wrap">
           <table>
-            <caption>יומן מקביל לדוגמה</caption>
-            <thead><tr><th>ID</th><th>שלב</th><th>C_cum</th><th>E_avg</th><th>סטטוס</th></tr></thead>
-            <tbody><tr><td>P1</td><td>×1</td><td>$200</td><td>92</td><td>פתוחה</td></tr><tr><td>P2</td><td>×10</td><td>$180</td><td>85</td><td>פתוחה</td></tr><tr><td>P3</td><td>×1</td><td>$250</td><td>110</td><td>מוצה תקרה</td></tr></tbody>
+            <caption>מצבי עצירה לימודיים</caption>
+            <thead><tr><th>מצב</th><th>מה קורה</th><th>איך מתעדים</th></tr></thead>
+            <tbody><tr><td>Reject תקרה</td><td>הוספת מרג'ין נדחית מעל $250</td><td>סיבת דחייה + יתרת מרג'ין</td></tr><tr><td>דילוג על רמה</td><td>Touch בלי חיזוק</td><td>רמה דולגה נשארת ביומן</td></tr><tr><td>מימוש / סגירה</td><td>צמצום או סיום כמות</td><td>סבב 75% או יציאה מלאה</td></tr><tr><td>עצירת משמעת</td><td>הרגש משתלט על הכלל</td><td>יציאה מהתרגיל עד חזרה לצלולות</td></tr></tbody>
           </table>
         </figure>
-        </section>
-<section>
-          <h3>מלכודות בלבול</h3>
-          <p>חיזוק על P1 הוא שכבה ב-P1 — לא פוזיציה P1-10x נפרדת. היסטורית למדו Path A/B; בגרסה המאושרת שלב ×10 על אותה פוזיציה.</p>
-<aside class="callout warning">
-          <strong>אין פיזור קסם</strong>
-          <p>ריבוי פוזיציות בסימולציה לא מבטיח תוצאה — רק ריבוי תרגול.</p>
+<aside class="callout note">
+          <strong>דילוג מתועד</strong>
+          <p>בשיטה המאושרת רמות שדולגו נשארות מתועדות. דילוג אינו 'מחיקה' של המסלול.</p>
         </aside>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>שתי פוזיציות</h4>
-          <p>P1 C_cum=$200; P2 C_cum=$150; שתיהן long.</p>
-          <ol><li>חיזוק $60 על P1 → $260 → Reject.</li><li>חיזוק $80 על P2 → $230 — תקין.</li><li>כל פוזיציה עם E_avg נפרד.</li></ol>
-          <p><strong>תוצאה:</strong> שתי תקרות נפרדות.</p>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>מטייל שמחליט לא לרדת לתהום היום אינו כישלון. הוא קורא מזג אוויר. כך גם Reject.</p>
+        </section>
+<section>
+          <h3>דוגמה</h3>
+          <p>Touch ב־L3. המרג'ין כבר $240. חיזוק מתוכנן $20 נדחה. העצירה הנכונה: לא 'למצוא פרצה', אלא לעבור לניהול הרמזור על מה שקיים — או לממש לפי תוכנית.</p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>יש עצירה בריאה ויש בריחה. ההבדל: האם פעלתם לפי כלל כתוב מראש, או לפי דחף רגעי שמחפש מנוחה מיידית בלי מסלול.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>יומן עצירה</h4>
+          <p>Reject על חיזוק + דחף 'לפתוח פוזיציה חדשה מיד'.</p>
+          <ol><li>מתעדים Reject.</li><li>עוצרים דקה וקוראים את כלל הרמזור.</li><li>מחליטים: ניהול הקיים / מימוש / יציאה מהתרגיל — לא פתיחה נקמנית.</li></ol>
+          <p><strong>תוצאה:</strong> העצירה שומרת על המסע.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> P1=$240 margin, P2=$100. חיזוק $20 על P1 — מה קורה? על P2?</li>
-<li><strong>תרגיל 2.</strong> כתבו כללי שמות ל-P1, P2 בלי Path A/B.</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> מעבר ×10 פירושו:</p>
-          <ol type="A"><li>פוזיציה חדשה תמיד</li><li>אותה פוזיציה, שלב שונה</li><li>short</li><li>ביטול תקרה</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> תקרת $250:</p>
-          <ol type="A"><li>לכל הפוזיציות ביחד בלבד</li><li>לכל פוזיציה בנפרד</li><li>רק בפרק 1</li><li>רק ל-short</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> Reinforcement הוא:</p>
-          <ol type="A"><li>שכבה באותה פוזיציה</li><li>תמיד פוזיציה שנייה</li><li>מימוש 75%</li><li>funding</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>פוזיציות מקבילות = יומנים נפרדים ותקרת $250 כל אחת.</li><li>שלב ×10 נשאר על אותה פוזיציה — לא Path A נפרד.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> מתי עצירה אצלכם הייתה משמעת — ומתי בריחה?</li><li><strong>2.</strong> נסחו כלל עצירה אישי שתואם תקרת $250 בלי להבטיח רווח.</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> לדעת מתי לעצור זה לא לפרוש מהמסע — זה לשמור עליו.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Reject, דילוג, מימוש ועצירת משמעת הם חלק מהמפה.</li><li>עצירה שומרת על המסע; נקמה שוברת אותו.</li></ul>
       </article>
 <article class="chapter" id="ch-10">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 10</p>
-          <h2>פרק 10. ניהול סיכונים</h2>
-          <p class="en" dir="ltr">Risk Management</p>
-          <p>הבחנה בין מרג'ין, notional, collateral ו־liquidation — ללא הבטחות תשואה.</p>
+          <p class="eyebrow">תחנה 10 · האופק</p>
+          <h2>מעבר למסחר</h2>
+          <p class="en" dir="ltr">Beyond Trading</p>
+          <p>פילוסופיית Lookback כמשמעת חיים: לעבוד עם תנועה, לא לרדוף אחריה — גם מחוץ לגרף.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>להגדיר סיכון לימודי כלחץ על הון מוקצה וחריגת סף — לא כהבטחת תשואה.</li><li>לבנות תרחיש <code dir="ltr" class="ltr">stress</code> פשוט על פוזיציה מדומה.</li><li>לחבר בין מינוף, חיזוקים ומגבלות הקצאה למשמעת סיכון.</li></ul>
+        <blockquote class="story">מעבר לגשר האחרון של הגרף נפתח נוף שאינו בורסה: אותה משמעת של מבט לאחור — בעבודה, בלמידה, בשיחה. Lookback אינו רק כלי מסחר. הוא אופן עמידה מול תנועה.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> לעבוד עם תנועה במקום לרדוף אחריה — עיקרון שחוצה את גבול הגרף.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לנסח את פילוסופיית Lookback מחוץ להקשר מסחר.</li><li>לחבר השבחה, רמזור, מימוש ואיזון לדימויי חיים.</li><li>לחזור לגבול: גם פילוסופיה יפה אינה ייעוץ השקעות.</li></ul>
         <section>
-          <h3>מהו סיכון באקדמיה?</h3>
-          <p>ניהול סיכונים כאן פירושו להבין איך מהלכי מחיר לימודיים פוגעים ב־<code dir="ltr" class="ltr">allocated margin</code>, מתי מתקרבים לתקרת $250 או לסף חיזוק ×10, ומה קורה אם נגמרת הרזרבה. אין הבטחה שהסיכון 'נשלט' בשוק אמיתי.</p>
-<aside class="callout definition">
-          <strong>ארבעה מושגים שלא מחליפים זה את זה</strong>
-          <p><code dir="ltr" class="ltr">margin</code> מוקצה ≠ <code dir="ltr" class="ltr">notional</code> ≠ <code dir="ltr" class="ltr">collateral</code> פנוי ≠ מחיר <code dir="ltr" class="ltr">liquidation</code> בבורסה. ערבוב ביניהם הוא טעות לימודית נפוצה.</p>
-        </aside>
-<p class="visual-cap"><em>איור: רצועות הקצאה / לחץ / חריגה — כלי חשיבה למעבדה.</em></p>
+          <h3>סיפור התחנה</h3>
+          <p>המסע לא נועד להפוך את חייכם לגרף. הוא נועד להראות שמשמעת מסלולים — הכנה, גבול, מימוש, שיבה — היא שפה אנושית לפני שהיא שפת בורסה.</p>
+<p class="visual-cap"><em>איור: אותו מסלול: מבט לאחור כדרך עמידה מול תנועה.</em></p>
         </section>
 <section>
-          <h3>תרגיל לחץ בסיסי</h3>
-          <figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">L</mi></mrow><mtext>stress</mtext></msub><mo>=</mo><mi>Q</mi><mo>×</mo><mo stretchy="false">(</mo><msub><mi>M</mi><mtext>stress</mtext></msub><mo>−</mo><msub><mi>E</mi><mtext>avg</mtext></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{PnL}_{\text{stress}} = Q \times (M_{\text{stress}} - E_{\text{avg}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">PnL</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">stress</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">stress</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">avg</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(14)</span>
-    </div>
-    <figcaption>נוסחה 14. PnL תחת מחיר לחץ לימודי ל־long</figcaption>
-  </figure>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><msub><mi>D</mi><mtext>alloc</mtext></msub><mo>=</mo><mfrac><mrow><mo>−</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">L</mi></mrow><mtext>stress</mtext></msub><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><msub><mi>C</mi><mtext>cum</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">DD_{\text{alloc}} = \frac{-\min(\mathrm{PnL}_{\text{stress}}, 0)}{C_{\text{cum}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">alloc</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.263em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">cum</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathrm">PnL</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">stress</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(15)</span>
-    </div>
-    <figcaption>נוסחה 15. שיעור לחץ ביחס להון מוקצה מצטבר (מדד לימודי)</figcaption>
-  </figure>
-<figure class="table-wrap">
-          <table>
-            <caption>גריד לחץ לדוגמה (לא בקטסט)</caption>
-            <thead><tr><th>M_stress מול E_avg</th><th>PnL (Q=100, E=90)</th><th>DD מול C_cum=6,000</th></tr></thead>
-            <tbody><tr><td>−5% (85.5)</td><td>100×(85.5−90)=−450</td><td>7.5%</td></tr><tr><td>−10% (80)</td><td>−1,000</td><td>16.7%</td></tr><tr><td>−20% (70)</td><td>−2,000</td><td>33.3%</td></tr></tbody>
-          </table>
-        </figure>
-<aside class="callout sim">
-          <strong>לא ביצועי עבר</strong>
-          <p>הטבלה היא גריד תרגיל. אסור להציג אותה כתוצאות היסטוריות של השיטה.</p>
-        </aside>
+          <h3>העיקרון</h3>
+          <ul><li>השבחה בחיים: לשפר מערכת במקום להחליף אותה בכל בהלה.</li><li>רמזור: לדעת מתי להאט בלי להתבייש.</li><li>75%: לשחרר רוב העומס ולהשאיר ליבה.</li><li>איזון: לחזור לקצב אנושי אחרי סערה.</li></ul>
         </section>
 <section>
-          <h3>בקרות משמעת</h3>
-          <ul><li>תקרת הקצאה כוללת לתירגול.</li><li>רזרבה מינימלית לפני חיזוק נוסף.</li><li>תיעוד מעבר שלב ×1→×10 כשחוזרים מדחיית תקרת margin.</li><li>הבחנה margin / notional / collateral / liquidation בסימולציית Cross.</li><li>עצירת תרגיל כשנגמרת הרזרבה — וניתוח מה קרה.</li></ul>
-<p>עמלות מאושרות: 2 bps round-trip בסגירה, slippage 1 bp לצד — מחמירות לחץ קל בתרגילים מתקדמים.</p>
+          <h3>דימוי מהחיים</h3>
+          <p>שיחה קשה: במקום לרדוף אחרי 'המילה האחרונה', מביטים לאחור על מה כבר נאמר — ומכינים מסלול תשובה. זה Lookback בלי טיקר.</p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>בניית גריד לחץ אישי</h4>
-          <p>Q=80, E_avg=125, C_cum=5,000. בדקו M=118 ו־M=100.</p>
-          <ol><li>PnL(118)=80×(118−125)=−560 → DD=560/5000=11.2%.</li><li>PnL(100)=80×(100−125)=−2,000 → DD=40%.</li><li>רושמים האם הרזרבה הנותרת מאפשרת חיזוק נוסף בתרגיל.</li></ol>
-          <p><strong>תוצאה:</strong> שני מצבי לחץ מתועדים בלי טענת ביצועים.</p>
+<section>
+          <h3>חזרה לגבול הלימודי</h3>
+          <aside class="callout sim">
+          <strong>פילוסופיה ≠ איתות</strong>
+          <p>גם כשהסיפור מתרחב מעבר למסחר, האקדמיה נשארת סימולציה וחינוך. אין כאן המלצה לפתוח פוזיציה בחיים האמיתיים.</p>
+        </aside>
+<p>חזרו לדפי השיטה ולמדריך המעשי כשאתם רוצים את המכניקה. חזרו לכאן כשאתם צריכים את המצפן.</p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הסכנה בפילוסופיה יפה היא שתשמש תירוץ להימנעות ממשמעת מספרית. Lookback האמיתי מחזיק גם סיפור וגם תקרה.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>מסלול יומי לא־מסחרי</h4>
+          <p>יום עמוס עם שלושה משברים קטנים.</p>
+          <ol><li>מבט לאחור: מה כבר קרה לפני התגובה הבאה.</li><li>רמזור אישי: ירוק/צהוב/אדום לפי עומס.</li><li>מימוש 75%: משחררים רוב המשימות הלא־קריטיות.</li></ol>
+          <p><strong>תוצאה:</strong> תרגול שפת המסע מחוץ לגרף — בלי לטעון לרווח פיננסי.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> בנו גריד לחץ לשלושה מחירי M לבחירתכם עבור Q=50, E_avg=200, C_cum=4,000.</li>
-<li><strong>תרגיל 2.</strong> נסחו ארבע בקרות משמעת אישיות לשימוש במעבדת הסיכון.</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> DD_alloc בפרק זה מודד:</p>
-          <ol type="A"><li>תשואת תיק אמיתי</li><li>לחץ לימודי ביחס להון מוקצה</li><li>עמלת מימון חיה</li><li>דירוג אשראי</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> מה עושים כשנגמרת הרזרבה בתרגיל?</p>
-          <ol type="A"><li>ממציאים הון חדש בשקט</li><li>עוצרים ומתעדים</li><li>עוברים מיד ל־100x</li><li>מוחקים את היומן</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> האם גריד הלחץ הוא בקטסט מאומת?</p>
-          <ol type="A"><li>כן</li><li>לא — תרגיל לימודי בלבד</li><li>רק אם PnL חיובי</li><li>רק בשלב ×10</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>סיכון לימודי נמדד ב-DD מול margin מצטבר, לא בביצועי עבר.</li><li>שינוי מינוף אינו ביטוח מפני liquidation; עמלות מאושרות.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> היכן בחייכם אתם עדיין רודפים אופק במקום להכין מסלול?</li><li><strong>2.</strong> איך תשמרו על הגבול בין השראה פילוסופית לבין סימולציה בלבד?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> אם השיטה חיה רק מול מסך — היא עדיין לא Lookback. אם היא משנה איך אתם עוצרים בחיים — היא התחילה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Lookback הוא משמעת תנועה גם מחוץ לגרף.</li><li>הפילוסופיה אינה מחליפה תקרות, רמזור ומימוש — ואינה ייעוץ השקעות.</li></ul>
       </article>
 <article class="chapter" id="ch-11">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 11</p>
-          <h2>פרק 11. מעבדת סימולציה מעשית</h2>
-          <p class="en" dir="ltr">Practical Simulation Laboratory</p>
-          <p>פרוטוקול תרגול עם השיטה המאושרת וזרע דטרמיניסטי לתרגילים מדורגים.</p>
+          <p class="eyebrow">תחנה 11 · השפה</p>
+          <h2>מילון פשוט</h2>
+          <p class="en" dir="ltr">Simple Glossary</p>
+          <p>מילון נרטיבי קצר: margin, notional, quantity, avg, PnL, collateral, liquidation — בלי לערבב ביניהם.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>להריץ פרוטוקול מעבדה מדורג עם זרע דטרמיניסטי רשום.</li><li>לחבר בין סימולטור, מעבדת מינוף ומעבדת סיכון כתרגיל אחד.</li><li>לתעד תוצאות בלי להפוך אותן לביצועי עבר.</li></ul>
+        <blockquote class="story">בתחנת השפה תלויים שלטים קצרים. מי שמערבב ביניהם נכשל עוד לפני המספרים. מי שלומד להפריד — מדבר Lookback בבהירות.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> כל מונח = משמעות אחת. Margin אינו notional; PnL אינו collateral; liquidation אינו 'צבע רמזור'.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להגדיר את מונחי הליבה בעברית פשוטה.</li><li>להצביע על בלבולים נפוצים בין המונחים.</li><li>לחבר כל מונח למסלול Lookback במקום אחד.</li></ul>
         <section>
-          <h3>פרוטוקול מעבדה</h3>
-          <p>מעבדת הסימולציה המעשית מאחדת את מה שלמדתם: הון לימודי, פוזיציה long, חיזוקים בסולם 100→90→80, מעבר ×10 תקציבי, מימוש 75% בכמות, וגריד סיכון. תרגילים מדורגים עם זרע (<code dir="ltr" class="ltr">seed</code>) גלוי לשחזור.</p>
-<figure class="table-wrap">
+          <h3>למה מילון עכשיו?</h3>
+          <p>אחרי המסע הנרטיבי מגיעה תחנת שפה קצרה. לא כדי לחזור למבחן — כדי לנעול משמעויות לפני המדריך המעשי וההצהרה.</p>
+        </section>
+<section>
+          <h3>מונחי ליבה</h3>
+          <figure class="table-wrap">
           <table>
-            <caption>שלבים מומלצים לתרגיל מעבדה</caption>
-            <thead><tr><th>שלב</th><th>פעולה</th><th>פלט ליומן</th></tr></thead>
-            <tbody><tr><td>1</td><td>קבעו seed ו־C_total</td><td>seed=…; C_total=…</td></tr><tr><td>2</td><td>פתחו P1 עם רזרבה</td><td>q0, E0, C0</td></tr><tr><td>3</td><td>סמנו rungs 100/90/80</td><td>P_k רשומים</td></tr><tr><td>4</td><td>חיזוק במגע / דילוג מתועד</td><td>שכבות + C_cum עד $250</td></tr><tr><td>5</td><td>גריד לחץ + מסקנה</td><td>DD_alloc; לקחים</td></tr></tbody>
+            <caption>מילון פשוט — הפרדות חובה</caption>
+            <thead><tr><th>מונח</th><th>במילים פשוטות</th><th>אל תבלבלו עם</th></tr></thead>
+            <tbody><tr><td><code dir="ltr" class="ltr">margin</code> מוקצה</td><td>הון שולי שהוקצה לפוזיציה בתרגיל</td><td>notional / יתרת בנק</td></tr><tr><td><code dir="ltr" class="ltr">notional</code></td><td>חשיפה רעיונית (גדולה יותר עם מינוף)</td><td>מרג'ין או 'כסף בכיס'</td></tr><tr><td><code dir="ltr" class="ltr">quantity</code></td><td>גודל הפוזיציה ביחידות</td><td>PnL או צבע רמזור</td></tr><tr><td><code dir="ltr" class="ltr">average entry</code></td><td>מחיר כניסה ממוצע משוקלל כמות</td><td>מחיר שוק נוכחי</td></tr><tr><td><code dir="ltr" class="ltr">PnL</code></td><td>רווח/הפסד ממומש או לא ממומש</td><td>collateral פנוי</td></tr><tr><td><code dir="ltr" class="ltr">collateral</code></td><td>ביטחונות פנויים במודל הסימולציה</td><td>רווח מובטח</td></tr><tr><td><code dir="ltr" class="ltr">liquidation</code></td><td>סגירה כפויה במודל בורסה כשביטחונות לא מספיקים</td><td>רמזור צהוב/אדום</td></tr><tr><td>Cross</td><td>ביטחונות משותפים ברמת חשבון סימולטיבי</td><td>ביטוח מפני פירוק</td></tr></tbody>
           </table>
         </figure>
-<aside class="callout note">
-          <strong>זרע דטרמיניסטי</strong>
-          <p>בתרגילים מדורגים הזרע חובה וגלוי. בארגז חול חופשי אפשר זרע אקראי — אבל עדיין לרשום אותו אם רוצים שחזור.</p>
+<aside class="callout definition">
+          <strong>75% / Lookback / השבחה</strong>
+          <p>75% = סגירת שלושה רבעים מהכמות הנותרת. Lookback = מבט לאחור על תנועה. השבחת העסקה = שיפור מדוד של פוזיציה תחת תקרה — לא הבטחת תשואה.</p>
         </aside>
         </section>
 <section>
-          <h3>משטחי התרגול במוצר</h3>
-          <ul><li><code dir="ltr" class="ltr">/simulator</code> — מעבר אסטרטגיה (Phase 5+; כעת placeholder עם הנחיות).</li><li><code dir="ltr" class="ltr">/labs/leverage</code> — תרגול שלב ×1/×10 ומעבר תקציבי.</li><li><code dir="ltr" class="ltr">/labs/risk</code> — תרגילי לחץ והקצאה.</li><li>דפי <code dir="ltr" class="ltr">/method</code> — חזרה לכללים לפני הרצה.</li></ul>
-<p>גם כשהמנועים האינטראקטיביים עדיין מתפתחים, הפרוטוקול בפרק זה תקף על נייר או בגיליון — העיקר המשמעת והתיעוד.</p>
+          <h3>דימוי מהחיים</h3>
+          <p>במטבח לא קוראים למלח סוכר. בשיטה לא קוראים ל־notional בשם מרג'ין. אותו עיקרון.</p>
         </section>
 <section>
-          <h3>דוח מעבדה מינימלי</h3>
-          <ul><li>כותרת, תאריך, seed.</li><li>כללים מאושרים (סולם לינארי, תקרה $250, מימוש כמות).</li><li>טבלת שכבות / פוזיציות.</li><li>גריד לחץ קצר.</li><li>מסקנות + פריט unresolved (מינוף max) אם רלוונטי.</li></ul>
-<aside class="callout warning">
-          <strong>אין שורות 'win rate'</strong>
-          <p>דוח מעבדה אינו מציג אחוזי הצלחה מבוימים או הבטחות תשואה.</p>
-        </aside>
+          <h3>הערה פסיכולוגית</h3>
+          <p>בלבול מונחים נוח לרגש: הוא מאפשר להגיד 'יש לי מקום' כשבעצם יש חשיפה רעיונית גדולה. דיוק לשוני הוא אנטי־הכחשה.</p>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>הרצת נייר עם seed</h4>
-          <p>seed=42, C_total=10,000, פתיחה C0=3,000 ב־E0=100.</p>
-          <ol><li>רושמים seed=42 בראש הדוח.</li><li>סולם מאושר: 90 ו־80.</li><li>מוסיפים חיזוק מתועד ב־90 עם margin $80 (תחת $250).</li><li>מריצים גריד לחץ ל־M=85 ו־M=70 ועוצרים לניתוח.</li></ol>
-          <p><strong>תוצאה:</strong> דוח קצר שחזורי — בלי טענת ביצועים.</p>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>הפרדת שלושה מספרים</h4>
+          <p>בתרגיל: מרג'ין $100, מינוף לימודי ×10, מחיר ירד.</p>
+          <ol><li>רושמים margin = 100.</li><li>רושמים notional בקירוב לימודי כחשיפה רעיונית נפרדת.</li><li>רושמים PnL לא ממומש כשורה שלישית — לא כ'יתרה למשיכה'.</li></ol>
+          <p><strong>תוצאה:</strong> שלושה מספרים, שלושה שמות — בלי ערבוב.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> כתבו תבנית דוח מעבדה ריקה עם כל השדות מהפרק.</li>
-<li><strong>תרגיל 2.</strong> תכננו תרגיל אחד שמשלב <code dir="ltr" class="ltr">/labs/leverage</code> ואז <code dir="ltr" class="ltr">/labs/risk</code> עם seed קבוע.</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> למה רושמים seed בתרגיל מדורג?</p>
-          <ol type="A"><li>כדי לחבר ברוקר</li><li>כדי לאפשר שחזור דטרמיניסטי</li><li>כדי להבטיח רווח</li><li>כדי להסתיר עמלות</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> מה אסור לכלול בדוח מעבדה?</p>
-          <ol type="A"><li>טבלת שכבות</li><li>כללים מאושרים</li><li>win-rate מבוים</li><li>גריד לחץ</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> הפרוטוקול בפרק זה תקף גם בלי מנוע אינטראקטיבי מלא?</p>
-          <ol type="A"><li>לא</li><li>כן — על נייר/גיליון עם אותה משמעת</li><li>רק ב־10x</li><li>רק אחרי בחינה</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>פרוטוקול מעבדה עם seed, סולם 100/90/80 ותקרת margin.</li><li>דוח לימודי בלי win-rate; מינוף max — unresolved בלי Bybit.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> בחרו שני מונחים שבלבלתם בעבר — והפרידו אותם במשפט אחד כל אחד.</li><li><strong>2.</strong> למה liquidation אינו זהה לרמזור אדום?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> שפה מדויקת היא חלק מניהול הסיכון.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>מילון פשוט נועל משמעויות לפני המדריך המעשי.</li><li>הפרדת margin / notional / quantity / avg / PnL / collateral / liquidation היא חובה.</li></ul>
       </article>
 <article class="chapter" id="ch-12">
         <header class="chapter-open">
-          <p class="eyebrow">Chapter 12</p>
-          <h2>פרק 12. בחינה מסכמת</h2>
-          <p class="en" dir="ltr">Final Examination</p>
-          <p>סינתזת השיטה המאושרת ושאלות ידע מסכמות — תעודת הבנה לימודית, לא רישיון מסחר.</p>
+          <p class="eyebrow">תחנה 12 · המדריך</p>
+          <h2>מדריך מעשי</h2>
+          <p class="en" dir="ltr">Practical Reference</p>
+          <p>דף עבודה אחד: סולם, רמזור, תקרות, עמלות, סליפג', מימון ופערים — לתרגול סימולטיבי בלבד.</p>
         </header>
-        <h3>מטרות למידה</h3>
-        <ul><li>לחבר את רכיבי השיטה המאושרת לרצף קבלת החלטות אחד.</li><li>לעמוד במבחן ידע מסכם — ללא רישיון מסחר.</li><li>לזהות פריט unresolved (מינוף מקסימלי instrument) בלי להמציא.</li></ul>
+        <blockquote class="story">בתחנת המדריך פורסים דף עבודה אחד על השולחן. לא כדי להחליף את הסיפור — כדי שתוכלו לחזור אליו כשהסימולטור פתוח והראש מלא.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> דף ייחוס אחד: סולם, רמזור, תקרות, מימוש, עלויות ופערים — לתרגול סימולטיבי בלבד.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לשלוף במהירות את כללי השיטה המאושרים.</li><li>לזכור עלויות בסיס וחריגים.</li><li>להשתמש בדף כעוגן משמעת בסימולציה.</li></ul>
         <section>
-          <h3>סינתזת ZigZag</h3>
-          <p>בסיום המסלול אתם מתארים: סימולציה Bybit Linear long בלבד → בניית פוזיציה margin ותקרה $250 → סולם 100→90→80 במגע → מעבר ×10 תקציבי → חיזוק ×10 לפי הפסד מצטבר → E_avg → מימוש 75% בכמות → ריבוי פוזיציות → סיכון ומעבדה.</p>
-<figure class="table-wrap">
+          <h3>דף העבודה</h3>
+          <p>המדריך המעשי אינו בחינה. הוא מפת כיס למסע. השתמשו בו אחרי שקראתם את הסיפור — לא במקומו.</p>
+        </section>
+<section>
+          <h3>כללים מאושרים בקצרה</h3>
+          <figure class="table-wrap">
           <table>
-            <caption>מפת סינתזה</caption>
-            <thead><tr><th>נושא</th><th>פרק</th><th>סטטוס</th></tr></thead>
-            <tbody><tr><td>מבנה ומונחים</td><td>1–3</td><td>מאושר / לימודי</td></tr><tr><td>בנייה, חיזוק, מינוף</td><td>4–6</td><td>מאושר</td></tr><tr><td>ממוצע ומימוש</td><td>7–8</td><td>מאושר</td></tr><tr><td>ריבוי וסיכון</td><td>9–11</td><td>מאושר</td></tr><tr><td>Unresolved</td><td>מינוף max פר symbol</td><td>רק Bybit</td></tr></tbody>
+            <caption>ייחוס מהיר — מתודולוגיה מאושרת 2026-11-24</caption>
+            <thead><tr><th>נושא</th><th>כלל</th></tr></thead>
+            <tbody><tr><td>כיוון</td><td>Long בלבד</td></tr><tr><td>סולם</td><td>10% adverse מ־P₀ · Touch · Decimal מדויק</td></tr><tr><td>חיזוק</td><td>אופציונלי לרמה · דילוגים מתועדים</td></tr><tr><td>הקצאה</td><td>Margin מצטבר · Floor לכמות</td></tr><tr><td>תקרה</td><td>$250 לפוזיציה · Reject</td></tr><tr><td>×1→×10</td><td>תקציבי · שומר כמות</td></tr><tr><td>×10 חיזוק</td><td>הפסד נטו ≥ מרג'ין רלוונטי</td></tr><tr><td>מינוף max</td><td>רק מ־Bybit מאומת · אחרת unresolved</td></tr><tr><td>מימוש</td><td>סגירת 75% מהכמות הנותרת · ידני · חוזר</td></tr><tr><td>עמלות</td><td>2 bps סיבוב · סליפג' 1 bp/צד · מימון 0 בבסיס</td></tr></tbody>
           </table>
         </figure>
+<aside class="callout warning">
+          <strong>$250 מול דפוס $320</strong>
+          <p>דפוס ההכפלה האיורי עד $320 אינו דוחה את תקרת $250. בביצוע לימודי — Reject כשחורגים.</p>
+        </aside>
+<p class="visual-cap"><em>איור: תזכורת חזותית לסולם ולמגע.</em></p>
         </section>
 <section>
-          <h3>כללי הבחינה</h3>
-          <ul><li>שאלות הידע למטה; אפשר לחזור לפרקים.</li><li>ציון גבוה אינו הרשאת מסחר.</li><li>על unresolved — לציין שאין המצאת מספר.</li></ul>
+          <h3>עלויות, פערים ו־Cross</h3>
+          <ul><li>עמלות וסליפג' מכרסמים בתוצאה גם כשהסיפור 'נכון'.</li><li>מימון יכול להיות מופעל בתרגילים מתקדמים — לפני ספים.</li><li>פערי מחיר (gaps) יכולים לדלג מעל מגע מדומיין.</li><li>Cross margin: ביטחונות משותפים; לא ביטוח.</li></ul>
 <aside class="callout sim">
-          <strong>תעודת הבנה לימודית</strong>
-          <p>הבחינה בודקת הבנה באקדמיה — לא ייעוץ או ביצועים.</p>
+          <strong>שימוש בדף</strong>
+          <p>הדפיסו או שמרו PDF. כל תרגול סימולטיבי מתחיל בקריאה חוזרת של השורות האלה.</p>
         </aside>
         </section>
 <section>
-          <h3>פריט unresolved</h3>
-          <p>maxInstrumentLeverage דורש אימות מ-Bybit לכל instrument. עד אז מסמנים unresolved ולא קובעים מספר גלובלי בספר.</p>
-<aside class="callout unresolved">
-          <strong>ללא המצאת מינוף</strong>
-          <p>אם חסר נתון exchange — עוצרים ומסמנים; לא ממציאים כדי 'להשלים' תרגיל.</p>
+          <h3>הערה פסיכולוגית</h3>
+          <p>דף הייחוס קיים כי הזיכרון בלחץ משקר. אל תסמכו על 'אני זוכר את השיטה' כשהרמזור צהוב.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>צ'ק־ליסט לפני תרגיל</h4>
+          <p>פתיחת סימולטור לתרגול ערב.</p>
+          <ol><li>קוראים תקרה + Reject.</li><li>מסמנים צבע רמזור התחלתי.</li><li>מאשרים שמימוש = 75% כמות — לא משיכת רווח מילולית.</li></ol>
+          <p><strong>תוצאה:</strong> התרגיל נפתח עם מסלול, לא עם אימפרוביזציה.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> אילו שלוש שורות מהטבלה תשימו מול העיניים בזמן תרגול?</li><li><strong>2.</strong> איך תתעדו פערי מחיר אם Touch 'דילג' בסימולציה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> כשהסערה מתחילה — חוזרים לדף, לא לאינטואיציה הרגעית.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>מדריך מעשי = מפת כיס לכללי השיטה והעלויות.</li><li>חוזרים לדף בלחץ; לא ממציאים בזיכרון.</li></ul>
+      </article>
+<article class="chapter" id="ch-13">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 13 · הגבול</p>
+          <h2>הצהרה ברורה</h2>
+          <p class="en" dir="ltr">Clear Disclaimer</p>
+          <p>סימולציה וחינוך בלבד. אין הבטחות, אין סיכון אפס, אין מסחר אמיתי — ומה כן נשאר בידיים אחרי הספר.</p>
+        </header>
+        <blockquote class="story">בסוף המסע עומדים מול שער יציאה מואר. על המשקוף חרוטה הצהרה שאי אפשר לפספס: כל מה שעברתם היה לימוד. לא הבטחה. לא חשבון. לא קיצור דרך לכסף קל.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> סימולציה וחינוך בלבד — בלי סיכון אפס, בלי תשואה מובטחת, בלי מסחר אמיתי.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לנסח את גבולות האקדמיה בבהירות.</li><li>לדחות טענות סיכון־אפס או ביצועי עבר.</li><li>לסיים את המסע עם מצפן — לא עם הבטחה.</li></ul>
+        <section>
+          <h3>הצהרה ברורה</h3>
+          <aside class="callout warning">
+          <strong>לא ייעוץ השקעות · לא מסחר אמיתי</strong>
+          <p>ZIGZAG TRADING ACADEMY וספר LOOKBACK הם מוצר לימודי לסימולציה בלבד. אין הפקדות, אין תיווך, אין ניהול תיקים, ואין הבטחת רווח או מניעת הפסד.</p>
+        </aside>
+<p>הדוגמאות המספריות — כולל דפוסי חיזוק, מקרה XRP כתרגיל, וסדרות 75% — הן כלים חינוכיים. הן אינן ביצועי עבר ואינן תחזית.</p>
+        </section>
+<section>
+          <h3>שלמות סיכון</h3>
+          <ul><li>אין טענת סיכון אפס — בשום צבע רמזור.</li><li>שינוי מינוף אינו מבטיח משיכת הון או חסימת liquidation.</li><li>יש להבחין תמיד בין margin, notional, quantity, avg, PnL, collateral ו־liquidation.</li><li>Cross margin, עמלות, סליפג', מימון ופערים הם חלק מהמודל הלימודי.</li></ul>
+<aside class="callout note">
+          <strong>מודל ייחוס</strong>
+          <p>הפדגוגיה מתייחסת ל־Bybit Linear USDT Perpetual, Cross, One-Way. פרמטרי instrument לא מאומתים מסומנים unresolved — ולא מומצאים.</p>
         </aside>
         </section>
-        <h3>דוגמאות מספריות</h3>
-        <div class="example">
-          <h4>תשובת סינתזה (90 שניות)</h4>
-          <p>מהי שיטת ZigZag באקדמיה?</p>
-          <ol><li>סימולציה long; margin וסולם לינארי.</li><li>תקרה $250; מעבר ×10; מימוש 75% כמות.</li><li>עמלות מאושרות; מינוף max — unresolved בלי Bybit.</li></ol>
-          <p><strong>תוצאה:</strong> מסר מדויק בלי הבטחות תשואה.</p>
+<section>
+          <h3>מה כן נשאר בידיים</h3>
+          <p>נשארת שפת מסלול: מבט לאחור, השבחה תחת תקרה, רמזור ניהול, מימוש 75%, חזרה לאיזון, ואומץ לעצור. זה המצפן. לא המפה לכסף קל.</p>
+<p class="visual-cap"><em>איור: סיום המסע: אותן תחנות — עם גבול מואר ביציאה.</em></p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית אחרונה</h3>
+          <p>אם אחרי הספר אתם מרגישים דחף 'לנסות על אמיתי מיד' — זה בדיוק הרגע לחזור להצהרה הזו. Lookback מתחיל בעצירה מול אשליה.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>בדיקת גבול אישית</h4>
+          <p>חבר שואל: 'אז השיטה בטוחה?'</p>
+          <ol><li>עונים: זו סימולציה לימודית — לא ביטוח.</li><li>מזכירים תקרת $250 ו־Reject כמשמעת, לא כהבטחה.</li><li>מפנים להצהרה ולמילון ההפרדות.</li></ol>
+          <p><strong>תוצאה:</strong> הגבול נשמר גם בשיחה חברתית.</p>
         </div>
-        <h3>תרגילים</h3>
-        <ol><li><strong>תרגיל 1.</strong> צ'ק־ליסט 8 פריטים לפני מעבדה מסכמת.</li>
-<li><strong>תרגיל 2.</strong> הסבירו מעבר ×1→×10 בלי Path A/B.</li></ol>
-        <h3>שאלות ידע</h3>
-        <div class="quiz">
-          <p><strong>שאלת ידע 1.</strong> אופי האקדמיה:</p>
-          <ol type="A"><li>מסחר חי</li><li>לימוד וסימולציה</li><li>Edge Lab</li><li>הבטחת תשואה</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 2.</strong> P₂ מ־P₀=100:</p>
-          <ol type="A"><li>81</li><li>80</li><li>72</li><li>90</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 3.</strong> כשחסר מינוף max ל-symbol:</p>
-          <ol type="A"><li>ממציאים 100x</li><li>מסמנים unresolved</li><li>מוחקים פרק 6</li><li>עוברים ל-short</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 4.</strong> E_avg הוא:</p>
-          <ol type="A"><li>ממוצע פשוט</li><li>ממוצע משוקלל כמות</li><li>מחיר ראשון בלבד</li><li>funding</li></ol>
-        </div>
-<div class="quiz">
-          <p><strong>שאלת ידע 5.</strong> מימוש מאושר:</p>
-          <ol type="A"><li>משיכת רווח 75%</li><li>סגירת 75% מהכמות</li><li>מינוף 75x</li><li>סגירת short</li></ol>
-        </div>
-        <h3>סיכום הפרק</h3>
-        <ul><li>השיטה המאושרת: long, סולם לינארי, תקרות margin, מימוש כמותי.</li><li>בחינה בודקת הבנה; מינוף max instrument נשאר unresolved בלי Bybit.</li></ul>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> נסחו ב־3 משפטים את גבול האקדמיה שתשמרו לעצמכם.</li><li><strong>2.</strong> מה המצפן שאתם לוקחים מהמסע — בלי מספר תשואה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> הגבול הברור הוא חלק מהיופי של המסע: הוא שומר עליכם מפני אשליה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>הצהרה ברורה: לימוד וסימולציה בלבד — בלי הבטחות.</li><li>מה שנשאר הוא מצפן משמעת, לא קיצור דרך לכסף.</li></ul>
       </article>
 
   <section class="chapter" id="glossary">
     <header class="chapter-open">
       <p class="eyebrow">Appendix</p>
-      <h2>מילון מונחים</h2>
+      <h2>מילון מונחים מורחב</h2>
     </header>
     <div class="gloss">
+      <h4>מבט לאחור <span dir="ltr" class="en">Lookback</span></h4>
+      <p>פילוסופיית המסע: לקרוא תנועה שכבר קרתה ולהכין מסלול ניהול — לא לרדוף אחרי האופק. אינה אות כניסה ואינה הבטחת תשואה.</p>
+    </div>
+<div class="gloss">
+      <h4>השבחת העסקה <span dir="ltr" class="en">Trade improvement</span></h4>
+      <p>שיפור מדוד של פוזיציה באמצעות חיזוקים אופציונליים תחת תקרת מרג'ין — לא הגדלה רגשית חסרת גבול.</p>
+    </div>
+<div class="gloss">
       <h4>מרג'ין מוקצה <span dir="ltr" class="en">Allocated margin</span></h4>
       <p>הון שולי שהוקצה במפורש לפוזיציה בתרגיל. אינו זהה ל־notional, לביטחונות פנויים בחשבון, או למחיר פירוק בבורסה.</p>
+    </div>
+<div class="gloss">
+      <h4>כמות <span dir="ltr" class="en">Quantity</span></h4>
+      <p>גודל הפוזיציה ביחידות. מימוש 75% משנה כמות; אינו זהה ל־PnL או לצבע רמזור.</p>
     </div>
 <div class="gloss">
       <h4>חשיפה רעיונית <span dir="ltr" class="en">Notional</span></h4>
@@ -1047,124 +943,6 @@
       <h4>מדיניות Reject <span dir="ltr" class="en">Reject cap policy</span></h4>
       <p>אם חיזוק היה חורג מתקרת המרג'ין ($250), הבקשה נדחית. ב־×1 דחייה כזו מניעה מעבר תקציבי ל־×10; ב־×10 דחייה מניעה מעבר למינוף מכשיר מרבי (אם ידוע).</p>
     </div>
-  </section>
-
-  <section class="chapter" id="method">
-    <header class="chapter-open">
-      <p class="eyebrow">Method pages</p>
-      <h2>דפי השיטה</h2>
-      <p>אותו מקור כמו בממשק הדיגיטלי — מתודולוגיה מאושרת.</p>
-    </header>
-    <article class="chapter">
-        <header class="chapter-open">
-          <p class="eyebrow">Method</p>
-          <h2>סקירת מתודולוגיית ZigZag</h2>
-          <p class="en" dir="ltr">ZigZag Method Overview</p>
-          <p>מפת השיטה המאושרת: חיזוקים בסולם adverse, מעבר ×1↔×10 לפי תקרת הקצאה, ומימוש 75% בכמות — סימולציה בלבד.</p>
-        </header>
-        <section><h3>שלושת עמודי השיטה באקדמיה</h3><p>מתודולוגיית ZigZag באקדמיה נלמדת כמערכת שכבות על מודל Bybit Linear USDT Perp (Cross, One-Way, long בלבד): בניית <code dir="ltr" class="ltr">position</code>, <code dir="ltr" class="ltr">reinforcement</code> בתגובה למגע בסולם adverse, ניהול שלב ×1 ושלב ×10, ומימוש רווח בסגירת 75% מהכמות. החישובים בפדגוגיה מתייחסים ל־Decimal.js במנוע.</p>
-<figure class="table-wrap">
-          <table>
-            <caption>עמודים וקישורים</caption>
-            <thead><tr><th>עמוד</th><th>מיקוד</th><th>סטטוס</th></tr></thead>
-            <tbody><tr><td>Reinforcement</td><td>הקצאת margin מצטברת, סולם 10% מ־P₀</td><td>מאושר</td></tr><tr><td>Leverage 1x↔10x</td><td>מעבר תקציבי; ×10 לפי הפסד מצטבר</td><td>מאושר</td></tr><tr><td>Profit realization</td><td>סגירה ידנית של 75% מהכמות</td><td>מאושר</td></tr></tbody>
-          </table>
-        </figure>
-<aside class="callout sim">
-          <strong>סימולציה בלבד</strong>
-          <p>דפי השיטה אינם אותות מסחר ואינם כוללים ביצועי עבר. כל מספר הוא לימודי.</p>
-        </aside></section>
-<section><h3>כללים מאושרים (2026-11-24)</h3><ul><li>גודל בשלב ×1: cumulative allocated capital על בסיס margin; תקרה $250 לפוזיציה — דחייה (Reject).</li><li>סולם adverse: P_k = P₀×(1−0.10×k) ממחיר ייחוס מקורי; הפעלה במגע (Touch).</li><li>מעבר ×1→×10: כשתקרת ההקצאה חוסמת חיזוק ×1 נוסף — שומרים כמות, עוברים שלב.</li><li>שלב ×10: חיזוק כשההפסד הנקי ≥ ה-margin שהוקצה לרמת הרלוונטית; תקרה מצטברת $250.</li><li>מימוש: סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; חזרתי על הנותר.</li><li>עמלות: 2 bps round-trip בסגירה; slippage 1 bp לצד; funding 0; epsilon 0.</li></ul>
-<aside class="callout note">
-          <strong>מתודולוגיה מאושרת על ידי הבעלים</strong>
-          <p>כללי Phase 4 נלמדים כאן כשיטה קנונית. מקסימום מינוף לכל instrument נלמד רק מנתוני Bybit מאומתים — אחרת מסומן unresolved.</p>
-        </aside></section>
-      </article>
-<article class="chapter">
-        <header class="chapter-open">
-          <p class="eyebrow">Method</p>
-          <h2>Reinforcement</h2>
-          <p class="en" dir="ltr">Reinforcement Mechanics</p>
-          <p>שכבות חיזוק על בסיס margin מצטבר, סולם 10% ממחיר ייחוס מקורי, והפעלה במגע.</p>
-        </header>
-        <section><h3>הגדרה לימודית</h3><p><code dir="ltr" class="ltr">Reinforcement</code> מוסיף הקצאת margin (וכמות) לפוזיציה long קיימת לאחר מגע ברמת סולם adverse. החיזוק אופציונלי לכל רמה; רמות שדולגו נשארות מתועדות. גודל השכבה בשלב ×1 מבוסס על cumulative allocated capital — סכום ה-margin שהוקצה במפורש.</p>
-<p class="visual-cap"><em>איור: סולם 10% ממחיר ייחוס מקורי P₀ — לא מרכיב.</em></p>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mi>k</mi></msub><mo>=</mo><msub><mi>P</mi><mn>0</mn></msub><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>0.10</mn><mo>×</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_k = P_0 \times (1 - 0.10 \times k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">)</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(16)</span>
-    </div>
-    <figcaption>נוסחה 16. רמת מחיר k בסולם (מרווח 10% מהייחוס המקורי)</figcaption>
-  </figure>
-<aside class="callout definition">
-          <strong>דוגמה מספרית</strong>
-          <p>P₀=100 → k=1 נותן 90; k=2 נותן 80 — לא 81 (אין הרכבה של 10%×10%).</p>
-        </aside></section>
-<section><h3>גודל וכמות בשלב ×1</h3><figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mi>i</mi></msub><mo>=</mo><mo stretchy="false">⌊</mo><msub><mi>C</mi><mi>i</mi></msub><mi mathvariant="normal">/</mi><msub><mi>P</mi><mtext>exec</mtext></msub><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">q_i = \lfloor C_i / P_{\text{exec}} \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">exec</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⌋</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(17)</span>
-    </div>
-    <figcaption>נוסחה 17. כמות לאחר Floor על בסיס margin ביחס למחיר ביצוע (פישוט לימודי)</figcaption>
-  </figure>
-<figure class="table-wrap">
-          <table>
-            <caption>מדיניות הקצאה ×1</caption>
-            <thead><tr><th>פרמטר</th><th>ערך</th><th>הערה</th></tr></thead>
-            <tbody><tr><td>בסיס</td><td>margin (לא notional בלבד)</td><td>allocationBasis=margin</td></tr><tr><td>תקרה</td><td>$250 לפוזיציה</td><td>חריגה → Reject</td></tr><tr><td>עיגול</td><td>Floor</td><td>tick לימודי: שמרני לכיוון adverse</td></tr></tbody>
-          </table>
-        </figure>
-<aside class="callout warning">
-          <strong>הפרדה פדגוגית</strong>
-          <p>margin הוא ההקצאה לפוזיציה; notional הוא גודל החשיפה; collateral הוא בטוחה לחשבון Cross; liquidation אירוע נפרד — שינוי מינוף לא מבטיח משיכה או מניעת פירוק.</p>
-        </aside></section>
-      </article>
-<article class="chapter">
-        <header class="chapter-open">
-          <p class="eyebrow">Method</p>
-          <h2>מינוף 1x↔10x</h2>
-          <p class="en" dir="ltr">Leverage 1x ↔ 10x</p>
-          <p>מעבר ×1→×10 לפי תקרת תקציב; שלב ×10 עם חיזוק לפי הפסד מצטבר ותקרת $250 מצטברת.</p>
-        </header>
-        <section><h3>מעבר שלב ×1 → שלב ×10</h3><p>כשחיזוק ×1 נוסף נדחה כי cumulative margin היה עובר את תקרת $250, השיטה עוברת לשלב ×10 על אותה פוזיציה תוך שמירת הכמות — לא פתיחת פוזיציה נפרדת. זה מעבר תקציבי, לא מבוסס על 'הפסד = 100% מהחיזוק האחרון' כתנאי יחיד.</p>
-<aside class="callout note">
-          <strong>שמירת כמות</strong>
-          <p>stage1ToStage10PreservesQuantity: אותה ישות פוזיציה, רגישות מינוף שונה.</p>
-        </aside></section>
-<section><h3>חיזוקים בשלב ×10</h3><figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">t</mi><mtext> </mtext><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi></mrow><mo>≥</mo><msub><mi>C</mi><mtext>relevant margin</mtext></msub></mrow><annotation encoding="application/x-tex">\mathrm{net\,loss} \ge C_{\text{relevant margin}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord"><span class="mord mathrm">net</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathrm">loss</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">relevant margin</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(18)</span>
-    </div>
-    <figcaption>נוסחה 18. תנאי חיזוק ×10 מצטבר</figcaption>
-  </figure>
-<p>תקרת margin מצטברת בשלב ×10 היא $250. כשחיזוק ×10 הבא נדחה בגלל התקרה, המערכת עוברת אוטומטית למינוף מקסימלי של ה-instrument — רק אם המספר אומת מנתוני Bybit; אחרת מסומן unresolved ולא ממציאים ערך.</p>
-<aside class="callout unresolved">
-          <strong>מינוף מקסימלי לכל instrument</strong>
-          <p>maxInstrumentLeverage אינו גלובלי קבוע בספר לימוד עד אימות פר־symbol מ-Bybit.</p>
-        </aside></section>
-      </article>
-<article class="chapter">
-        <header class="chapter-open">
-          <p class="eyebrow">Method</p>
-          <h2>מימוש רווח</h2>
-          <p class="en" dir="ltr">Profit Realization</p>
-          <p>סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; חזרתי על הנותר.</p>
-        </header>
-        <section><h3>מימוש לפי כמות</h3><p class="visual-cap"><em>איור: 75% נסגרים · 25% נשארים בפוזיציה.</em></p>
-<figure class="formula">
-    <div class="formula-row">
-      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mtext>close</mtext></msub><mo>=</mo><mn>0.75</mn><mo>×</mo><mi>Q</mi><mo separator="true">,</mo><mspace width="1em"/><msub><mi>q</mi><mtext>remain</mtext></msub><mo>=</mo><mn>0.25</mn><mo>×</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">q_{\text{close}} = 0.75 \times Q,\quad q_{\text{remain}} = 0.25 \times Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">close</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.75</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">remain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.25</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span></span></span></span></span></div>
-      <span class="formula-num" dir="ltr">(19)</span>
-    </div>
-    <figcaption>נוסחה 19. סגירת 75% מהכמות הפתוחה (מימוש מאושר)</figcaption>
-  </figure>
-<ul><li>הפעלה: ידנית (manual) בתרגיל או במנוע.</li><li>ניתן לחזור על מימוש 75% מהכמות הנותרת.</li><li>עמלות: 2 bps על סגירה (round-trip במודל הלימודי); slippage 1 bp לצד.</li></ul>
-<aside class="callout note">
-          <strong>ללא 'משיכת רווח' נפרדת</strong>
-          <p>הפרשנות הקנונית היא close_quantity_pct בלבד — לא משיכת 75% מ־open PnL בלי שינוי כמות.</p>
-        </aside></section>
-      </article>
   </section>
 </body>
 </html>

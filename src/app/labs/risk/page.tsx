@@ -18,10 +18,10 @@ export default function RiskLabPage() {
       <ul className="mt-4 space-y-2 text-sm">
         <li>
           <Link
-            href="/textbook/risk-management"
+            href="/textbook/knowing-when-to-stop"
             className="text-[var(--zz-cyan)] hover:underline"
           >
-            פרק 10 — ניהול סיכונים
+            תחנה 9 — לדעת מתי לעצור
           </Link>
         </li>
         <li>

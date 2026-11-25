@@ -1,175 +1,156 @@
 import type { ChapterBodyInput } from "../schemas";
 
 export const chapter05Body = {
-  slug: "reinforcement-mechanism",
+  slug: "realize-seventy-five",
+  openingStoryHe:
+    "בתחנת המימוש עומדים מול שולחן שעליו ערימת אבנים זוהרות. מי שלוקח הכול בבת אחת נשבר מהמשקל. מי שלומד Lookback לוקח שלושה רבעים — ומשאיר רבע חי על השולחן. אחר כך שוב. ושוב. עד שהערימה חוזרת לקנה מידה אנושי.",
+  principleHe:
+    "מימוש = סגירת 75% מהכמות הפתוחה הנותרת, ידנית וחוזרת — לא 'משיכת רווח' בלי שינוי כמות.",
+  memorableInsightHe:
+    "רווח שלא מומש בכמות נשאר סיפור. מימוש 75% הופך סיפור למשמעת.",
   learningObjectivesHe: [
-    "להסביר `reinforcement` כהוספת margin לאחר מגע בסולם adverse.",
-    "ליישם P_k = P₀×(1−0.10×k) ולדוגמה 100→90→80.",
-    "לתעד cumulative allocated capital ותקרת $250.",
+    "להגדיר מימוש כסגירת 75% מהכמות הנותרת.",
+    "לחשב סדרת מימושים חוזרים על היתרה.",
+    "להפריד בין PnL לא ממומש לבין כמות שנסגרה.",
   ],
   sections: [
     {
-      id: "what-is-reinforcement",
-      titleHe: "מהו Reinforcement?",
+      id: "opening",
+      titleHe: "סיפור התחנה",
+      role: "opening" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "`Reinforcement` מוסיף margin וכמות long לפוזיציה קיימת. ההפעלה במגע (Touch) ברמת סולם. חיזוק אופציונלי לרמה; רמות שדולגו נשארות ברישום.",
+            "בשיטת ZigZag מימוש רווח אינו קסם חשבונאי. סוגרים 75% מהכמות הפתוחה; נשארים 25%. אפשר לחזור על הפעולה על הנותר. ההפעלה ידנית — כי המשמעת שייכת לאדם, לא לאוטומט עיוור.",
         },
-        {
-          type: "callout",
-          tone: "note",
-          titleHe: "גודל מאושר",
-          textHe:
-            "בשלב ×1: cumulative allocated capital על בסיס margin — סכום ההקצאות המפורשות עד כה.",
-        },
-      ],
-    },
-    {
-      id: "adverse-context",
-      titleHe: "סולם adverse",
-      blocks: [
         {
           type: "visual",
-          kind: "adverse-ladder",
-          captionHe: "סולם 10% ממחיר ייחוס מקורי P₀.",
-        },
-        {
-          type: "formula",
-          id: "ladder-price",
-          latex: "P_k = P_0 \\times (1 - 0.10 \\times k)",
-          captionHe: "מחיר רמה k — מרווח מהייחוס המקורי",
-          awaitingConfirmation: false,
-        },
-        {
-          type: "callout",
-          tone: "warning",
-          titleHe: "לא מרכיב",
-          textHe: "מ־100: k=1→90, k=2→80. לא 81 (זה היה (1−0.10)²).",
+          kind: "profit-split",
+          captionHe: "75% נסגרים · 25% נשארים — וחוזר חלילה על היתרה.",
         },
       ],
     },
     {
-      id: "sizing",
-      titleHe: "חישוב margin וכמות",
+      id: "principle",
+      titleHe: "העיקרון",
+      role: "principle" as const,
       blocks: [
         {
           type: "formula",
-          id: "cum-alloc",
-          latex: "C_{\\text{cum}} = \\sum_{i=0}^{n} C_i",
-          captionHe: "margin מצטבר אחרי n שכבות",
-          awaitingConfirmation: false,
-        },
-        {
-          type: "formula",
-          id: "qty-i",
-          latex: "q_i = \\lfloor C_i / P_{\\text{exec}} \\rfloor",
-          captionHe: "כמות שכבה i",
-          awaitingConfirmation: false,
-        },
-        {
-          type: "table",
-          id: "reinforcement-log",
-          captionHe: "יומן חיזוקים לדוגמה",
-          headersHe: ["שכבה", "מחיר סולם", "margin C_i", "C_cum", "q (Floor)"],
-          rows: [
-            ["0 פתיחה", "100", "$100", "$100", "1"],
-            ["1 חיזוק @90", "90", "$70", "$170", "0"],
-            ["2 חיזוק @80", "80", "$80", "$250", "1"],
-          ],
-          awaitingConfirmation: false,
+          id: "q-close",
+          latex: "q_{\\mathrm{close}} = 0.75 \\, q_{\\mathrm{open}}",
+          captionHe: "כמות לסגירה בכל מימוש — אחרי שהסיפור ברור.",
         },
         {
           type: "paragraph",
           textHe:
-            "בשכבה 1, floor(70/90)=0 — בתרגיל פדגוגי מעלים margin או מסבירים דחייה. בשכבה 2, margin $80 נותן q=1; C_cum מגיע בדיוק ל-$250.",
+            "עמלות בתרגול הבסיסי: 2 bps לסיבוב מלא (מודל פעם אחת בסגירה). סליפג': 1 bp לכל צד. מימון: 0 בתרגול הבסיסי; כשמופעל — לפני בדיקות סף. Threshold epsilon: 0.",
+        },
+        {
+          type: "callout",
+          tone: "definition",
+          titleHe: "לא משיכת רווח בלי כמות",
+          textHe:
+            "מימוש כאן משנה `quantity`. הוא אינו 'להוציא רווח מהחשבון' בלי לצמצם חשיפה.",
+        },
+      ],
+    },
+    {
+      id: "analogy",
+      titleHe: "דימוי מהחיים",
+      role: "analogy" as const,
+      blocks: [
+        {
+          type: "paragraph",
+          textHe:
+            "קציר: לא עוקרים את כל השדה בבת אחת אם רוצים להשאיר זרעים. לוקחים את רוב היבול — ומשאירים חלק שימשיך לגדול תחת שליטה.",
+        },
+      ],
+    },
+    {
+      id: "trading",
+      titleHe: "סדרת מימוש חוזרת",
+      role: "trading" as const,
+      blocks: [
+        {
+          type: "table",
+          id: "realize-series",
+          captionHe: "דוגמה: התחלה מ־100 יחידות (מספרים מעוגלים להמחשה)",
+          headersHe: ["סבב", "כמות לפני", "נסגר 75%", "נותר 25%"],
+          rows: [
+            ["1", "100", "75", "25"],
+            ["2", "25", "18.75", "6.25"],
+            ["3", "6.25", "4.6875", "1.5625"],
+          ],
+        },
+        {
+          type: "paragraph",
+          textHe:
+            "כל סבב מקרב את הפוזיציה לקנה מידה שקט יותר — ואל עבר חזרה לאיזון ×1 בפרק הבא. זה לא מבטיח רווח חיובי אחרי עמלות וסליפג'.",
+        },
+      ],
+    },
+    {
+      id: "psychology",
+      titleHe: "הערה פסיכולוגית",
+      role: "psychology" as const,
+      blocks: [
+        {
+          type: "paragraph",
+          textHe:
+            "הקושי אינו מתמטי. הקושי הוא לשחרר 75% כשהסיפור 'עוד יכול לעלות'. Lookback מזכיר: התאהבות בעסקה מתחילה כשמסרבים לממש.",
         },
       ],
     },
   ],
   workedExamples: [
     {
-      id: "ex-reinf",
-      titleHe: "שני מגעים עד התקרה",
-      setupHe:
-        "P₀=100; margin פתיחה $100 (q=1); חיזוק $100 ב־90 (q=1); חיזוק $50 ב־80 דחוי — C_cum היה $250 כבר.",
+      id: "ex-75-twice",
+      titleHe: "שני סבבי מימוש",
+      setupHe: "כמות פתוחה 40. מפעילים מימוש פעמיים.",
       stepsHe: [
-        "סולם: 100, 90, 80.",
-        "אחרי פתיחה וחיזוק ב־90: C_cum=$200, Q=2.",
-        "חיזוק נוסף $50 מביא ל-$250 — אחר כך Reject; מתכוננים למעבר ×10 בפרק 6.",
-        "מעדכנים E_avg בפרק 7.",
+        "סבב א: סוגרים 0.75×40 = 30; נותר 10.",
+        "סבב ב: סוגרים 0.75×10 = 7.5; נותר 2.5.",
+        "רושמים שעמלות/סליפג' בתרגיל הבסיסי ממודלים בנפרד על הסגירות.",
       ],
-      resultHe: "יומן reinforcement עד תקרת $250.",
-      awaitingConfirmation: false,
+      resultHe: "החשיפה ירדה דרמטית בלי להעמיד פני 'סיכון אפס'.",
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-journal",
-        titleHe: "חיזוק עם תיעוד מלא",
-        narrativeHe:
-          "כל שכבה: מגע סולם, C_i, C_cum, q ב-Floor.",
-        outcomeHe: "ביקורת וחישוב ממוצע.",
-        lessonHe: "Reinforcement בלי יומן הוא ניחוש.",
+        id: "ok-realize",
+        titleHe: "מימוש ידני בזמן",
+        narrativeHe: "הלומד מפעיל 75% לפי תוכנית המסלול — לא לפי מצב רוח.",
+        outcomeHe: "הכמות יורדת במשמעת.",
+        lessonHe: "מימוש הוא מעשה ניהול.",
       },
     ],
     failure: [
       {
-        id: "fail-compound",
-        titleHe: "סולם מרכיב שגוי",
-        narrativeHe:
-          "משתמשים ב־80→72 כרמה 2 במקום 80.",
-        outcomeHe: "סטייה מהמתודולוגיה המאושרת.",
-        lessonHe: "הנוסחה לינארית ב-k מהייחוס המקורי.",
+        id: "fail-hold-all",
+        titleHe: "סירוב לממש",
+        narrativeHe: "הלומד מחכה שהכול 'ייסגר בשיא' ולא נוגע בכמות.",
+        outcomeHe: "הרווח נשאר סיפור רגשי.",
+        lessonHe: "בלי סגירת כמות אין מימוש בשיטה.",
       },
     ],
   },
-  exercises: [
+  reflections: [
     {
-      id: "ex1",
-      promptHe:
-        "P₀=50: חשבו P₁ ו־P₂. תעדו margin $40 לכל שכבה אם מגע.",
+      id: "r1",
+      promptHe: "חשבו סבב רביעי אחרי היתרה 1.5625 — מה נסגר ומה נותר?",
+      hintHe: "0.75 ו־0.25 מהיתרה.",
     },
     {
-      id: "ex2",
-      promptHe:
-        "הסבירו מה קורה כש-C_cum+$20 היה עובר $250.",
-      hintHe: "capPolicy=reject.",
-    },
-  ],
-  knowledgeQuestions: [
-    {
-      id: "q1",
-      promptHe: "P₂ כש־P₀=100:",
-      choicesHe: ["81", "80", "90", "100"],
-      correctIndex: 1,
-      explanationHe: "100×(1−0.20)=80.",
-    },
-    {
-      id: "q2",
-      promptHe: "הפעלת חיזוק על הסולם:",
-      choicesHe: ["במגע (Touch)", "רק בסגירת נר", "אוטומטי בכל דקה", "רק ב-short"],
-      correctIndex: 0,
-      explanationHe: "ladderActivation=touch.",
-    },
-    {
-      id: "q3",
-      promptHe: "בסיס גודל בשלב ×1:",
-      choicesHe: [
-        "cumulative allocated margin",
-        "יתרת בנק",
-        "funding בלבד",
-        "short equity",
-      ],
-      correctIndex: 0,
-      explanationHe: "reinforcementSizingMode=cumulative_allocated_capital.",
+      id: "r2",
+      promptHe: "איזו התנגדות רגשית עולה בכם מול שחרור 75%?",
     },
   ],
   chapterSummaryHe: [
-    "סולם 100→90→80 ממחיר מקורי; חיזוק במגע עם margin מצטבר.",
-    "תקרת $250 וכמות Floor הם חלק מהפרוטוקול המאושר.",
+    "מימוש = 75% מהכמות הנותרת, ידני וחוזר.",
+    "עמלות, סליפג' ופערים נשארים חלק מהמציאות הלימודית.",
   ],
   awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

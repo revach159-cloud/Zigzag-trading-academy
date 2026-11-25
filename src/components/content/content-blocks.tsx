@@ -120,12 +120,16 @@ function ContentBlockView({
                   ? "rounded-lg border border-[var(--zz-line)] bg-[var(--zz-navy)]/50 px-4 py-3"
                   : block.tone === "definition"
                     ? "rounded-lg border border-[var(--zz-cyan)]/35 bg-[rgba(46,230,255,0.07)] px-4 py-3"
-                    : "rounded-lg border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.06)] px-4 py-3"
+                    : block.tone === "insight"
+                      ? "rounded-lg border border-[var(--zz-gold)]/35 bg-[rgba(201,168,76,0.08)] px-4 py-3"
+                      : "rounded-lg border border-[var(--zz-cyan)]/30 bg-[rgba(46,230,255,0.06)] px-4 py-3"
           }
         >
           <p
             className={
-              block.tone === "awaiting" || block.tone === "unresolved"
+              block.tone === "awaiting" ||
+              block.tone === "unresolved" ||
+              block.tone === "insight"
                 ? "text-sm font-medium text-[var(--zz-gold)]"
                 : block.tone === "warning"
                   ? "text-sm font-medium text-[var(--zz-danger)]"
@@ -135,9 +139,11 @@ function ContentBlockView({
             {block.tone === "definition" ? `הגדרה · ${block.titleHe}` : null}
             {block.tone === "warning" ? `אזהרה · ${block.titleHe}` : null}
             {block.tone === "unresolved" ? `Unresolved · ${block.titleHe}` : null}
+            {block.tone === "insight" ? `תובנה · ${block.titleHe}` : null}
             {block.tone !== "definition" &&
             block.tone !== "warning" &&
-            block.tone !== "unresolved"
+            block.tone !== "unresolved" &&
+            block.tone !== "insight"
               ? block.titleHe
               : null}
           </p>

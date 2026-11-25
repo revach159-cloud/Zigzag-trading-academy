@@ -27,7 +27,6 @@ describe("method pages", () => {
     for (const page of listMethodPages()) {
       expect(page.awaitingConfirmation).toBe(false);
       expect(page.sections.length).toBeGreaterThanOrEqual(1);
-      expect(page.knowledgeQuestions.length).toBeGreaterThanOrEqual(2);
     }
   });
 

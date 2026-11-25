@@ -5,142 +5,183 @@ import {
 } from "./schemas";
 
 /**
- * 12-chapter Hebrew ZigZag textbook catalog.
- * Methodology aligned to owner-confirmed approved-methodology.md (2026-11-24).
+ * LOOKBACK · מסע המסלולים — 13-station narrative digital book.
+ * Methodology aligned to approved-methodology.md (2026-11-24)
+ * and lookback-philosophy.md (2026-11-25).
  */
 const rawCatalog = {
-  version: 1 as const,
+  version: 2 as const,
   simulationOnly: true as const,
+  narrativeId: "prepared-routes" as const,
+  bookTitleHe: "LOOKBACK · המבט לאחור",
+  bookTitleEn: "LOOKBACK",
   chapters: [
     {
       id: "ch-01",
-      slug: "introduction-to-zigzag",
+      slug: "opening-the-journey",
       number: 1,
-      titleHe: "מבוא ל־ZigZag",
-      titleEn: "Introduction to ZigZag",
+      titleHe: "פתיחת המסע",
+      titleEn: "Opening the Journey",
+      stationHe: "תחנה 01 · השער",
+      scene: "cover" as const,
       summaryHe:
-        "מהי אקדמיית ZigZag, מהי סימולציה בלבד, ואיך בנוי מסלול 12 הפרקים סביב השיטה המאושרת.",
+        "איך נכנסים למסע המסלולים: מהו Lookback, מהי השבחת העסקה, ולמה זה ספר סיפור — לא מחברת נוסחאות.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-02",
-      slug: "market-structure-and-price-movement",
+      slug: "lookback-discovery",
       number: 2,
-      titleHe: "מבנה שוק ותנועת מחיר",
-      titleEn: "Market Structure and Price Movement",
+      titleHe: "גילוי המבט לאחור",
+      titleEn: "Lookback Discovery",
+      stationHe: "תחנה 02 · המבט",
+      scene: "zigzag" as const,
       summaryHe:
-        "זיהוי מבנה, `swing high` / `swing low`, ושפת תנועה לניתוח לימודי של ZigZag.",
+        "ללמוד לראות תנועה בזיגזג במקום לרדוף אחרי אופק. המבט לאחור הוא משמעת, לא אות כניסה.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-03",
-      slug: "trading-fundamentals",
+      slug: "trade-improvement",
       number: 3,
-      titleHe: "יסודות מסחר לימודיים",
-      titleEn: "Trading Fundamentals",
+      titleHe: "השבחת העסקה",
+      titleEn: "Trade Improvement",
+      stationHe: "תחנה 03 · השבחה",
+      scene: "improvement" as const,
       summaryHe:
-        "מונחי בסיס: `margin`, `notional`, `collateral`, `liquidation`, `position` — ללא ברוקר או הפקדה.",
+        "איך משפרים פוזיציה דרך חיזוקים מדודים בסולם 10%, תקרת $250, והבחנה בין דוגמת XRP ל־$320 לבין הכלל המאושר.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-04",
-      slug: "position-construction",
+      slug: "traffic-light",
       number: 4,
-      titleHe: "בניית פוזיציה",
-      titleEn: "Position Construction",
+      titleHe: "רמזור הניהול",
+      titleEn: "Traffic Light",
+      stationHe: "תחנה 04 · הרמזור",
+      scene: "traffic-light" as const,
       summaryHe:
-        "בניית `position` long-only בשכבות מרג'ין, תקרת $250, עיגול Floor, ומודל Bybit Linear.",
+        "ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי לניהול, לא שינוי במכניקת פירוק.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-05",
-      slug: "reinforcement-mechanism",
+      slug: "realize-seventy-five",
       number: 5,
-      titleHe: "מנגנון Reinforcement",
-      titleEn: "Reinforcement Mechanism",
+      titleHe: "מימוש השבעים וחמישה",
+      titleEn: "Realize 75%",
+      stationHe: "תחנה 05 · המימוש",
+      scene: "realize-75" as const,
       summaryHe:
-        "חיזוק אופציונלי בסולם 10% מ־P₀ ב־Touch, לפי מרג'ין מצטבר, עם תיעוד רמות שדולגו.",
+        "סגירת 75% מהכמות הנותרת — שוב ושוב — כדי להפוך רווח לא ממומש למשמעת, לא לאשליה.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-06",
-      slug: "leverage-system",
+      slug: "return-to-balance",
       number: 6,
-      titleHe: "מערכת מינוף",
-      titleEn: "Leverage System",
+      titleHe: "חזרה לאיזון ×1",
+      titleEn: "Return to ×1 Balance",
+      stationHe: "תחנה 06 · האיזון",
+      scene: "return-balance" as const,
       summaryHe:
-        "מעבר ×1→×10 לפי תקרת תקציב (שומר כמות), חיזוק ×10 לפי הפסד נטו, ומינוף מכשיר מרבי מ־Bybit בלבד.",
+        "לחזור לכיוון ×1 אחרי סערה: לא ניצחון מוחלט, אלא חזרה למסלול מוכן ושקט יותר.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-07",
-      slug: "average-entry-price",
+      slug: "journey-psychology",
       number: 7,
-      titleHe: "מחיר כניסה ממוצע",
-      titleEn: "Average Entry Price",
+      titleHe: "פסיכולוגיית המסע",
+      titleEn: "Journey Psychology",
+      stationHe: "תחנה 07 · הנפש",
+      scene: "none" as const,
       summaryHe:
-        "חישוב `average entry` משוקלל כמות אחרי מספר מילויים בתרגיל סימולציה.",
+        "לא להתאהב בעסקה. לשפר, לנהל, לממש, לחזור לאיזון — בלי להפוך את הפוזיציה לזהות.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-08",
-      slug: "profit-realization",
+      slug: "portfolio-of-routes",
       number: 8,
-      titleHe: "מימוש רווח",
-      titleEn: "Profit Realization",
+      titleHe: "תיק המסלולים",
+      titleEn: "Portfolio of Routes",
+      stationHe: "תחנה 08 · התיק",
+      scene: "none" as const,
       summaryHe:
-        "סגירת 75% מהכמות הפתוחה (נותרות 25%), ידני וחוזר על הנותר — לא משיכת רווח בלי שינוי כמות.",
+        "כמה מסלולים במקביל: הקצאת מרג'ין נפרדת לכל פוזיציה, תקרת $250, וסיכון תיק ולא רק סיכון עסקה.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-09",
-      slug: "multiple-concurrent-positions",
+      slug: "knowing-when-to-stop",
       number: 9,
-      titleHe: "מספר פוזיציות במקביל",
-      titleEn: "Multiple Concurrent Positions",
+      titleHe: "לדעת מתי לעצור",
+      titleEn: "Knowing When to Stop",
+      stationHe: "תחנה 09 · העצירה",
+      scene: "none" as const,
       summaryHe:
-        "ניהול כמה `positions` סימולטיביות במקביל, הקצאת מרג'ין נפרדת, ותקרת $250 לכל פוזיציה.",
+        "Reject לפי תקרה, דילוג על רמה, וסגירה ידנית — מתי המסלול נגמר בלי להפוך את העצירה לכישלון.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-10",
-      slug: "risk-management",
+      slug: "beyond-trading",
       number: 10,
-      titleHe: "ניהול סיכונים",
-      titleEn: "Risk Management",
+      titleHe: "מעבר למסחר",
+      titleEn: "Beyond Trading",
+      stationHe: "תחנה 10 · האופק",
+      scene: "zigzag" as const,
       summaryHe:
-        "הבחנה בין מרג'ין, notional, collateral ו־liquidation — ללא הבטחות תשואה.",
+        "פילוסופיית Lookback כמשמעת חיים: לעבוד עם תנועה, לא לרדוף אחריה — גם מחוץ לגרף.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-11",
-      slug: "practical-simulation-laboratory",
+      slug: "simple-glossary",
       number: 11,
-      titleHe: "מעבדת סימולציה מעשית",
-      titleEn: "Practical Simulation Laboratory",
+      titleHe: "מילון פשוט",
+      titleEn: "Simple Glossary",
+      stationHe: "תחנה 11 · השפה",
+      scene: "none" as const,
       summaryHe:
-        "פרוטוקול תרגול עם השיטה המאושרת וזרע דטרמיניסטי לתרגילים מדורגים.",
+        "מילון נרטיבי קצר: margin, notional, quantity, avg, PnL, collateral, liquidation — בלי לערבב ביניהם.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
     {
       id: "ch-12",
-      slug: "final-examination",
+      slug: "practical-reference",
       number: 12,
-      titleHe: "בחינה מסכמת",
-      titleEn: "Final Examination",
+      titleHe: "מדריך מעשי",
+      titleEn: "Practical Reference",
+      stationHe: "תחנה 12 · המדריך",
+      scene: "none" as const,
       summaryHe:
-        "סינתזת השיטה המאושרת ושאלות ידע מסכמות — תעודת הבנה לימודית, לא רישיון מסחר.",
+        "דף עבודה אחד: סולם, רמזור, תקרות, עמלות, סליפג', מימון ופערים — לתרגול סימולטיבי בלבד.",
+      status: "published" as const,
+      awaitingConfirmation: false,
+    },
+    {
+      id: "ch-13",
+      slug: "clear-disclaimer",
+      number: 13,
+      titleHe: "הצהרה ברורה",
+      titleEn: "Clear Disclaimer",
+      stationHe: "תחנה 13 · הגבול",
+      scene: "none" as const,
+      summaryHe:
+        "סימולציה וחינוך בלבד. אין הבטחות, אין סיכון אפס, אין מסחר אמיתי — ומה כן נשאר בידיים אחרי הספר.",
       status: "published" as const,
       awaitingConfirmation: false,
     },
@@ -168,5 +209,21 @@ export function getAdjacentChapters(slug: string): {
   return {
     prev: index > 0 ? chapters[index - 1] : undefined,
     next: index < chapters.length - 1 ? chapters[index + 1] : undefined,
+  };
+}
+
+export function getReadingProgress(completedSlugs: string[]): {
+  completed: number;
+  total: number;
+  percent: number;
+} {
+  const total = chapterCatalog.chapters.length;
+  const completed = chapterCatalog.chapters.filter((c) =>
+    completedSlugs.includes(c.slug),
+  ).length;
+  return {
+    completed,
+    total,
+    percent: total === 0 ? 0 : Math.round((completed / total) * 100),
   };
 }

@@ -1,174 +1,140 @@
 import type { ChapterBodyInput } from "../schemas";
 
 export const chapter09Body = {
-  slug: "multiple-concurrent-positions",
+  slug: "knowing-when-to-stop",
+  openingStoryHe:
+    "לפני היער האחרון יש שער קטן עם שלט: 'כאן עוצרים גם כשאפשר להמשיך'. מי שלא יודע לקרוא אותו יהפוך כל Reject לכישלון אישי. מי שכן — מבין שהעצירה היא חלק ממפת המסלול.",
+  principleHe:
+    "עצירה כשרה: Reject בתקרה, דילוג מודע על רמה, סגירה ידנית, או יציאה כשהמסלול איבד משמעת.",
+  memorableInsightHe:
+    "לדעת מתי לעצור זה לא לפרוש מהמסע — זה לשמור עליו.",
   learningObjectivesHe: [
-    "לנהל כמה פוזיציות long מקבילות כישויות נפרדות.",
-    "להחיל תקרת $250 margin לכל פוזיציה.",
-    "להבחין בין שכבות באותה פוזיציה לבין פוזיציה שנייה.",
+    "למנות מצבי עצירה לגיטימיים בשיטה.",
+    "להפריד בין עצירת משמעת לבין כניעה רגשית.",
+    "לתעד דילוג ו־Reject בלי בושה.",
   ],
   sections: [
     {
-      id: "why-multi",
-      titleHe: "כמה פוזיציות מקבילות",
+      id: "opening",
+      titleHe: "סיפור התחנה",
+      role: "opening" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "תרגילים מתקדמים עשויים לכלול כמה פוזיציות long במקביל — למשל על symbols שונים בסימולציה. כל פוזיציה עם יומן, C_cum ותקרת $250 משלה. מעבר ×10 אינו פתיחת פוזיציה נפרדת; הוא שלב על אותה ישות.",
+            "בספר הזה עצירה אינה מילה גסה. חיזוק שנדחה, רמה שדולגה, מימוש שמסיים סיפור — כולם תחנות. בלי עצירות המסלול הופך לרדיפה אינסופית.",
         },
+      ],
+    },
+    {
+      id: "principle",
+      titleHe: "העיקרון",
+      role: "principle" as const,
+      blocks: [
         {
-          type: "visual",
-          kind: "multi-position",
-          captionHe: "מעטפות סיכון נפרדות — לא מיזוג יומנים.",
+          type: "table",
+          id: "stop-modes",
+          captionHe: "מצבי עצירה לימודיים",
+          headersHe: ["מצב", "מה קורה", "איך מתעדים"],
+          rows: [
+            ["Reject תקרה", "הוספת מרג'ין נדחית מעל $250", "סיבת דחייה + יתרת מרג'ין"],
+            ["דילוג על רמה", "Touch בלי חיזוק", "רמה דולגה נשארת ביומן"],
+            ["מימוש / סגירה", "צמצום או סיום כמות", "סבב 75% או יציאה מלאה"],
+            ["עצירת משמעת", "הרגש משתלט על הכלל", "יציאה מהתרגיל עד חזרה לצלולות"],
+          ],
         },
         {
           type: "callout",
           tone: "note",
-          titleHe: "תקרה פר פוזיציה",
-          textHe: "perPositionMarginCapUsd=250 לכל פוזיציה בנפרד בשלב ×1.",
+          titleHe: "דילוג מתועד",
+          textHe:
+            "בשיטה המאושרת רמות שדולגו נשארות מתועדות. דילוג אינו 'מחיקה' של המסלול.",
         },
       ],
     },
     {
-      id: "isolation",
-      titleHe: "בידוד הקצאה",
-      blocks: [
-        {
-          type: "list",
-          itemsHe: [
-            "מזהה, שלב ×1/×10, margin מצטבר, E_avg, Q.",
-            "אין שיתוף margin בין פוזיציות בלי צעד מפורש.",
-            "collateral ב-Cross משותף בשוק אמיתי — כאן מדגישים הפרדה פדגוגית.",
-          ],
-        },
-        {
-          type: "formula",
-          id: "cap-each",
-          latex: "C^{(j)}_{\\text{cum}} \\leq 250",
-          captionHe: "תקרת margin לפוזיציה j",
-          awaitingConfirmation: false,
-        },
-        {
-          type: "table",
-          id: "multi-ledger",
-          captionHe: "יומן מקביל לדוגמה",
-          headersHe: ["ID", "שלב", "C_cum", "E_avg", "סטטוס"],
-          rows: [
-            ["P1", "×1", "$200", "92", "פתוחה"],
-            ["P2", "×10", "$180", "85", "פתוחה"],
-            ["P3", "×1", "$250", "110", "מוצה תקרה"],
-          ],
-          awaitingConfirmation: false,
-        },
-      ],
-    },
-    {
-      id: "confusion-traps",
-      titleHe: "מלכודות בלבול",
+      id: "analogy",
+      titleHe: "דימוי מהחיים",
+      role: "analogy" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "חיזוק על P1 הוא שכבה ב-P1 — לא פוזיציה P1-10x נפרדת. היסטורית למדו Path A/B; בגרסה המאושרת שלב ×10 על אותה פוזיציה.",
+            "מטייל שמחליט לא לרדת לתהום היום אינו כישלון. הוא קורא מזג אוויר. כך גם Reject.",
         },
+      ],
+    },
+    {
+      id: "trading",
+      titleHe: "דוגמה",
+      role: "trading" as const,
+      blocks: [
         {
-          type: "callout",
-          tone: "warning",
-          titleHe: "אין פיזור קסם",
+          type: "paragraph",
           textHe:
-            "ריבוי פוזיציות בסימולציה לא מבטיח תוצאה — רק ריבוי תרגול.",
+            "Touch ב־L3. המרג'ין כבר $240. חיזוק מתוכנן $20 נדחה. העצירה הנכונה: לא 'למצוא פרצה', אלא לעבור לניהול הרמזור על מה שקיים — או לממש לפי תוכנית.",
+        },
+      ],
+    },
+    {
+      id: "psychology",
+      titleHe: "הערה פסיכולוגית",
+      role: "psychology" as const,
+      blocks: [
+        {
+          type: "paragraph",
+          textHe:
+            "יש עצירה בריאה ויש בריחה. ההבדל: האם פעלתם לפי כלל כתוב מראש, או לפי דחף רגעי שמחפש מנוחה מיידית בלי מסלול.",
         },
       ],
     },
   ],
   workedExamples: [
     {
-      id: "ex-multi-cap",
-      titleHe: "שתי פוזיציות",
-      setupHe: "P1 C_cum=$200; P2 C_cum=$150; שתיהן long.",
+      id: "ex-stop-journal",
+      titleHe: "יומן עצירה",
+      setupHe: "Reject על חיזוק + דחף 'לפתוח פוזיציה חדשה מיד'.",
       stepsHe: [
-        "חיזוק $60 על P1 → $260 → Reject.",
-        "חיזוק $80 על P2 → $230 — תקין.",
-        "כל פוזיציה עם E_avg נפרד.",
+        "מתעדים Reject.",
+        "עוצרים דקה וקוראים את כלל הרמזור.",
+        "מחליטים: ניהול הקיים / מימוש / יציאה מהתרגיל — לא פתיחה נקמנית.",
       ],
-      resultHe: "שתי תקרות נפרדות.",
+      resultHe: "העצירה שומרת על המסע.",
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-ids",
-        titleHe: "מזהים ברורים",
-        narrativeHe:
-          "P1-שלב×10 עדיין P1 ביומן.",
-        outcomeHe: "חישובים נקיים.",
-        lessonHe: "שלב אינו מזהה פוזיציה חדשה.",
+        id: "ok-stop",
+        titleHe: "Reject כגבול חי",
+        narrativeHe: "הלומד מקבל דחייה ועובר לניהול.",
+        outcomeHe: "התקרה נשמרת.",
+        lessonHe: "עצירה = שמירה על מסלול.",
       },
     ],
     failure: [
       {
-        id: "fail-merge",
-        titleHe: "E_avg משולב",
-        narrativeHe:
-          "מחברים שכבות משתי פוזיציות.",
-        outcomeHe: "PnL שגוי.",
-        lessonHe: "ממוצע per-position.",
+        id: "fail-revenge",
+        titleHe: "פתיחה נקמנית",
+        narrativeHe: "אחרי Reject נפתחת פוזיציה חדשה מתוך כעס.",
+        outcomeHe: "הגבול נשבר במקום אחר.",
+        lessonHe: "נקמה אינה Lookback.",
       },
     ],
   },
-  exercises: [
+  reflections: [
     {
-      id: "ex1",
-      promptHe:
-        "P1=$240 margin, P2=$100. חיזוק $20 על P1 — מה קורה? על P2?",
+      id: "r1",
+      promptHe: "מתי עצירה אצלכם הייתה משמעת — ומתי בריחה?",
     },
     {
-      id: "ex2",
-      promptHe: "כתבו כללי שמות ל-P1, P2 בלי Path A/B.",
-    },
-  ],
-  knowledgeQuestions: [
-    {
-      id: "q1",
-      promptHe: "מעבר ×10 פירושו:",
-      choicesHe: [
-        "פוזיציה חדשה תמיד",
-        "אותה פוזיציה, שלב שונה",
-        "short",
-        "ביטול תקרה",
-      ],
-      correctIndex: 1,
-      explanationHe: "preserves quantity על אותה ישות.",
-    },
-    {
-      id: "q2",
-      promptHe: "תקרת $250:",
-      choicesHe: [
-        "לכל הפוזיציות ביחד בלבד",
-        "לכל פוזיציה בנפרד",
-        "רק בפרק 1",
-        "רק ל-short",
-      ],
-      correctIndex: 1,
-      explanationHe: "cap לכל פוזיציה בסימולציה מקבילה.",
-    },
-    {
-      id: "q3",
-      promptHe: "Reinforcement הוא:",
-      choicesHe: [
-        "שכבה באותה פוזיציה",
-        "תמיד פוזיציה שנייה",
-        "מימוש 75%",
-        "funding",
-      ],
-      correctIndex: 0,
-      explanationHe: "שכבות על אותה ישות תיעוד.",
+      id: "r2",
+      promptHe: "נסחו כלל עצירה אישי שתואם תקרת $250 בלי להבטיח רווח.",
     },
   ],
   chapterSummaryHe: [
-    "פוזיציות מקבילות = יומנים נפרדים ותקרת $250 כל אחת.",
-    "שלב ×10 נשאר על אותה פוזיציה — לא Path A נפרד.",
+    "Reject, דילוג, מימוש ועצירת משמעת הם חלק מהמפה.",
+    "עצירה שומרת על המסע; נקמה שוברת אותו.",
   ],
   awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

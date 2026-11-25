@@ -6,7 +6,10 @@ type VisualKind =
   | "avg-entry"
   | "profit-split"
   | "multi-position"
-  | "risk-bands";
+  | "risk-bands"
+  | "traffic-light"
+  | "return-balance"
+  | "lookback-path";
 
 export function ContentVisual({
   kind,
@@ -207,6 +210,71 @@ function VisualSvg({ kind }: { kind: VisualKind }) {
           </text>
           <text x="480" y="95" fill="#e8eef8" fontSize="13" textAnchor="middle">
             breach zone
+          </text>
+        </svg>
+      );
+    case "traffic-light":
+      return (
+        <svg viewBox="0 0 640 240" className="mx-auto h-auto w-full max-w-2xl" role="img" aria-label="Traffic light stages">
+          <rect x="270" y="24" width="100" height="192" rx="16" fill="rgba(16,26,46,0.9)" stroke="rgba(125,211,252,0.35)" />
+          <circle cx="320" cy="70" r="22" fill="#3DDC97" />
+          <circle cx="320" cy="120" r="22" fill="#F5C542" />
+          <circle cx="320" cy="170" r="22" fill="#F07178" />
+          <text x="200" y="76" fill="#8fa0b8" fontSize="13" textAnchor="end">
+            ×1 green
+          </text>
+          <text x="440" y="126" fill="#8fa0b8" fontSize="13">
+            ×10 yellow
+          </text>
+          <text x="200" y="176" fill="#8fa0b8" fontSize="13" textAnchor="end">
+            max red
+          </text>
+        </svg>
+      );
+    case "return-balance":
+      return (
+        <svg viewBox="0 0 640 220" className="mx-auto h-auto w-full max-w-2xl" role="img" aria-label="Return to balance">
+          <path
+            d="M60 160 C140 40, 220 200, 300 90 S460 40, 580 130"
+            fill="none"
+            stroke="#2ee6ff"
+            strokeWidth="3"
+          />
+          <circle cx="580" cy="130" r="10" fill="#c9a84c" />
+          <text x="80" y="190" fill="#8fa0b8" fontSize="12">
+            storm
+          </text>
+          <text x="520" y="190" fill="#c9a84c" fontSize="12">
+            toward ×1
+          </text>
+        </svg>
+      );
+    case "lookback-path":
+      return (
+        <svg viewBox="0 0 640 220" className="mx-auto h-auto w-full max-w-2xl" role="img" aria-label="Lookback prepared routes">
+          <defs>
+            <linearGradient id="lb-path" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stopColor="#2ee6ff" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#c9a84c" stopOpacity="0.45" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M40 170 L120 90 L200 140 L280 60 L360 120 L440 50 L520 110 L600 70"
+            fill="none"
+            stroke="url(#lb-path)"
+            strokeWidth="4"
+          />
+          {[40, 120, 200, 280, 360, 440, 520, 600].map((x, i) => (
+            <circle
+              key={x}
+              cx={x}
+              cy={[170, 90, 140, 60, 120, 50, 110, 70][i]}
+              r={i === 0 || i === 7 ? 7 : 4}
+              fill={i === 7 ? "#c9a84c" : "#2ee6ff"}
+            />
+          ))}
+          <text x="320" y="200" fill="#8fa0b8" fontSize="13" textAnchor="middle">
+            prepared routes · Lookback
           </text>
         </svg>
       );

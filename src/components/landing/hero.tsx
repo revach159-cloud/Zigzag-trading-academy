@@ -63,7 +63,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: reduceMotion ? 0 : 0.32 }}
         >
           <Button href="/textbook" size="lg">
-            התחל בספר הלימוד
+            פתיחת LOOKBACK
           </Button>
           <Button href="/method" variant="secondary" size="lg">
             הכר את השיטה

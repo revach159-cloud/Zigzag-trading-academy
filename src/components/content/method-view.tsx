@@ -55,9 +55,9 @@ export function MethodHub() {
       </ol>
 
       <p className="mt-8 text-sm text-[var(--zz-muted)]">
-        להמשך לימוד מובנה עברו ל־
+        להמשך מסע נרטיבי עברו ל־
         <Link href="/textbook" className="text-[var(--zz-cyan)] hover:underline">
-          ספר הלימוד בן 12 הפרקים
+          ספר LOOKBACK · 13 תחנות
         </Link>
         .
       </p>
@@ -206,14 +206,16 @@ export function MethodPageView({ page }: { page: MethodPage }) {
         </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
-          שאלות ידע
-        </h2>
-        <div className="mt-4">
-          <KnowledgeCheck questions={page.knowledgeQuestions} />
-        </div>
-      </section>
+      {page.knowledgeQuestions.length > 0 ? (
+        <section className="mt-12">
+          <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--zz-ink)]">
+            שאלות ידע
+          </h2>
+          <div className="mt-4">
+            <KnowledgeCheck questions={page.knowledgeQuestions} />
+          </div>
+        </section>
+      ) : null}
 
       <EduDisclaimer className="mt-12" />
 

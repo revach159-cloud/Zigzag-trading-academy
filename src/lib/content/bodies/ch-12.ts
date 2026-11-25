@@ -1,182 +1,152 @@
 import type { ChapterBodyInput } from "../schemas";
 
 export const chapter12Body = {
-  slug: "final-examination",
+  slug: "practical-reference",
+  openingStoryHe:
+    "בתחנת המדריך פורסים דף עבודה אחד על השולחן. לא כדי להחליף את הסיפור — כדי שתוכלו לחזור אליו כשהסימולטור פתוח והראש מלא.",
+  principleHe:
+    "דף ייחוס אחד: סולם, רמזור, תקרות, מימוש, עלויות ופערים — לתרגול סימולטיבי בלבד.",
+  memorableInsightHe:
+    "כשהסערה מתחילה — חוזרים לדף, לא לאינטואיציה הרגעית.",
   learningObjectivesHe: [
-    "לחבר את רכיבי השיטה המאושרת לרצף קבלת החלטות אחד.",
-    "לעמוד במבחן ידע מסכם — ללא רישיון מסחר.",
-    "לזהות פריט unresolved (מינוף מקסימלי instrument) בלי להמציא.",
+    "לשלוף במהירות את כללי השיטה המאושרים.",
+    "לזכור עלויות בסיס וחריגים.",
+    "להשתמש בדף כעוגן משמעת בסימולציה.",
   ],
   sections: [
     {
-      id: "synthesis",
-      titleHe: "סינתזת ZigZag",
+      id: "opening",
+      titleHe: "דף העבודה",
+      role: "opening" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "בסיום המסלול אתם מתארים: סימולציה Bybit Linear long בלבד → בניית פוזיציה margin ותקרה $250 → סולם 100→90→80 במגע → מעבר ×10 תקציבי → חיזוק ×10 לפי הפסד מצטבר → E_avg → מימוש 75% בכמות → ריבוי פוזיציות → סיכון ומעבדה.",
-        },
-        {
-          type: "table",
-          id: "synth-map",
-          captionHe: "מפת סינתזה",
-          headersHe: ["נושא", "פרק", "סטטוס"],
-          rows: [
-            ["מבנה ומונחים", "1–3", "מאושר / לימודי"],
-            ["בנייה, חיזוק, מינוף", "4–6", "מאושר"],
-            ["ממוצע ומימוש", "7–8", "מאושר"],
-            ["ריבוי וסיכון", "9–11", "מאושר"],
-            ["Unresolved", "מינוף max פר symbol", "רק Bybit"],
-          ],
+            "המדריך המעשי אינו בחינה. הוא מפת כיס למסע. השתמשו בו אחרי שקראתם את הסיפור — לא במקומו.",
         },
       ],
     },
     {
-      id: "exam-rules",
-      titleHe: "כללי הבחינה",
+      id: "rules",
+      titleHe: "כללים מאושרים בקצרה",
+      role: "reference" as const,
+      blocks: [
+        {
+          type: "table",
+          id: "quick-rules",
+          captionHe: "ייחוס מהיר — מתודולוגיה מאושרת 2026-11-24",
+          headersHe: ["נושא", "כלל"],
+          rows: [
+            ["כיוון", "Long בלבד"],
+            ["סולם", "10% adverse מ־P₀ · Touch · Decimal מדויק"],
+            ["חיזוק", "אופציונלי לרמה · דילוגים מתועדים"],
+            ["הקצאה", "Margin מצטבר · Floor לכמות"],
+            ["תקרה", "$250 לפוזיציה · Reject"],
+            ["×1→×10", "תקציבי · שומר כמות"],
+            ["×10 חיזוק", "הפסד נטו ≥ מרג'ין רלוונטי"],
+            ["מינוף max", "רק מ־Bybit מאומת · אחרת unresolved"],
+            ["מימוש", "סגירת 75% מהכמות הנותרת · ידני · חוזר"],
+            ["עמלות", "2 bps סיבוב · סליפג' 1 bp/צד · מימון 0 בבסיס"],
+          ],
+        },
+        {
+          type: "callout",
+          tone: "warning",
+          titleHe: "$250 מול דפוס $320",
+          textHe:
+            "דפוס ההכפלה האיורי עד $320 אינו דוחה את תקרת $250. בביצוע לימודי — Reject כשחורגים.",
+        },
+        {
+          type: "visual",
+          kind: "adverse-ladder",
+          captionHe: "תזכורת חזותית לסולם ולמגע.",
+        },
+      ],
+    },
+    {
+      id: "costs",
+      titleHe: "עלויות, פערים ו־Cross",
+      role: "reference" as const,
       blocks: [
         {
           type: "list",
           itemsHe: [
-            "שאלות הידע למטה; אפשר לחזור לפרקים.",
-            "ציון גבוה אינו הרשאת מסחר.",
-            "על unresolved — לציין שאין המצאת מספר.",
+            "עמלות וסליפג' מכרסמים בתוצאה גם כשהסיפור 'נכון'.",
+            "מימון יכול להיות מופעל בתרגילים מתקדמים — לפני ספים.",
+            "פערי מחיר (gaps) יכולים לדלג מעל מגע מדומיין.",
+            "Cross margin: ביטחונות משותפים; לא ביטוח.",
           ],
         },
         {
           type: "callout",
           tone: "sim",
-          titleHe: "תעודת הבנה לימודית",
+          titleHe: "שימוש בדף",
           textHe:
-            "הבחינה בודקת הבנה באקדמיה — לא ייעוץ או ביצועים.",
+            "הדפיסו או שמרו PDF. כל תרגול סימולטיבי מתחיל בקריאה חוזרת של השורות האלה.",
         },
       ],
     },
     {
-      id: "open-items",
-      titleHe: "פריט unresolved",
+      id: "psychology",
+      titleHe: "הערה פסיכולוגית",
+      role: "psychology" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "maxInstrumentLeverage דורש אימות מ-Bybit לכל instrument. עד אז מסמנים unresolved ולא קובעים מספר גלובלי בספר.",
-        },
-        {
-          type: "callout",
-          tone: "unresolved",
-          titleHe: "ללא המצאת מינוף",
-          textHe:
-            "אם חסר נתון exchange — עוצרים ומסמנים; לא ממציאים כדי 'להשלים' תרגיל.",
+            "דף הייחוס קיים כי הזיכרון בלחץ משקר. אל תסמכו על 'אני זוכר את השיטה' כשהרמזור צהוב.",
         },
       ],
     },
   ],
   workedExamples: [
     {
-      id: "ex-oral",
-      titleHe: "תשובת סינתזה (90 שניות)",
-      setupHe: "מהי שיטת ZigZag באקדמיה?",
+      id: "ex-checklist",
+      titleHe: "צ'ק־ליסט לפני תרגיל",
+      setupHe: "פתיחת סימולטור לתרגול ערב.",
       stepsHe: [
-        "סימולציה long; margin וסולם לינארי.",
-        "תקרה $250; מעבר ×10; מימוש 75% כמות.",
-        "עמלות מאושרות; מינוף max — unresolved בלי Bybit.",
+        "קוראים תקרה + Reject.",
+        "מסמנים צבע רמזור התחלתי.",
+        "מאשרים שמימוש = 75% כמות — לא משיכת רווח מילולית.",
       ],
-      resultHe: "מסר מדויק בלי הבטחות תשואה.",
+      resultHe: "התרגיל נפתח עם מסלול, לא עם אימפרוביזציה.",
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-honest",
-        titleHe: "זיהוי unresolved",
-        narrativeHe:
-          "נבחן אומר שאין מספר מינוף max גלובלי בלי נתוני symbol.",
-        outcomeHe: "תשובה נכונה.",
-        lessonHe: "יושר מתודולוגי.",
+        id: "ok-ref",
+        titleHe: "חזרה לדף",
+        narrativeHe: "בלחץ הלומד פותח את המדריך לפני פעולה.",
+        outcomeHe: "ההחלטה מיושרת לכלל.",
+        lessonHe: "ייחוס לפני תגובה.",
       },
     ],
     failure: [
       {
-        id: "fail-license",
-        titleHe: "בחינה כרישיון",
-        narrativeHe:
-          "פרסום 'מוסמך לסחור' אחרי פרק 12.",
-        outcomeHe: "הפרת מסר המוצר.",
-        lessonHe: "הבנה ≠ הרשאה.",
+        id: "fail-memory",
+        titleHe: "זיכון בלחץ",
+        narrativeHe: "הלומד 'זוכר' שמימוש הוא משיכת רווח בלי כמות.",
+        outcomeHe: "שבירת השיטה.",
+        lessonHe: "בלי דף — יש עיוות.",
       },
     ],
   },
-  exercises: [
+  reflections: [
     {
-      id: "ex1",
-      promptHe: "צ'ק־ליסט 8 פריטים לפני מעבדה מסכמת.",
+      id: "r1",
+      promptHe: "אילו שלוש שורות מהטבלה תשימו מול העיניים בזמן תרגול?",
     },
     {
-      id: "ex2",
-      promptHe: "הסבירו מעבר ×1→×10 בלי Path A/B.",
-    },
-  ],
-  knowledgeQuestions: [
-    {
-      id: "q1",
-      promptHe: "אופי האקדמיה:",
-      choicesHe: [
-        "מסחר חי",
-        "לימוד וסימולציה",
-        "Edge Lab",
-        "הבטחת תשואה",
-      ],
-      correctIndex: 1,
-      explanationHe: "simulationOnly=true.",
-    },
-    {
-      id: "q2",
-      promptHe: "P₂ מ־P₀=100:",
-      choicesHe: ["81", "80", "72", "90"],
-      correctIndex: 1,
-      explanationHe: "100×(1−0.2)=80.",
-    },
-    {
-      id: "q3",
-      promptHe: "כשחסר מינוף max ל-symbol:",
-      choicesHe: [
-        "ממציאים 100x",
-        "מסמנים unresolved",
-        "מוחקים פרק 6",
-        "עוברים ל-short",
-      ],
-      correctIndex: 1,
-      explanationHe: "maxLeverageSource=verified_bybit_instrument_only.",
-    },
-    {
-      id: "q4",
-      promptHe: "E_avg הוא:",
-      choicesHe: [
-        "ממוצע פשוט",
-        "ממוצע משוקלל כמות",
-        "מחיר ראשון בלבד",
-        "funding",
-      ],
-      correctIndex: 1,
-      explanationHe: "Σ(qE)/Σq.",
-    },
-    {
-      id: "q5",
-      promptHe: "מימוש מאושר:",
-      choicesHe: [
-        "משיכת רווח 75%",
-        "סגירת 75% מהכמות",
-        "מינוף 75x",
-        "סגירת short",
-      ],
-      correctIndex: 1,
-      explanationHe: "close_quantity_pct.",
+      id: "r2",
+      promptHe: "איך תתעדו פערי מחיר אם Touch 'דילג' בסימולציה?",
     },
   ],
   chapterSummaryHe: [
-    "השיטה המאושרת: long, סולם לינארי, תקרות margin, מימוש כמותי.",
-    "בחינה בודקת הבנה; מינוף max instrument נשאר unresolved בלי Bybit.",
+    "מדריך מעשי = מפת כיס לכללי השיטה והעלויות.",
+    "חוזרים לדף בלחץ; לא ממציאים בזיכרון.",
   ],
-  awaitingNotesHe: [],
+  awaitingNotesHe: [
+    "max leverage לכל instrument — unresolved עד אימות Bybit.",
+  ],
 } satisfies ChapterBodyInput;

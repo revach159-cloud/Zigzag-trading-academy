@@ -43,6 +43,15 @@ export const zigzagAssumptions = {
   },
   thresholdEpsilon: 0,
   gradedRandomness: "seeded_deterministic" as const,
+  /**
+   * Illustrative doubling pattern $5→$5→$10→$20→$40→$80→$160 (= $320)
+   * is pedagogy-only for shape. It must NOT silently override the $250 cap.
+   * XRP case studies are educational and must be recalculated vs contracts/qty.
+   */
+  illustrativeReinforcementPatternUsd: [5, 5, 10, 20, 40, 80, 160] as const,
+  illustrativePatternTotalUsd: 320 as const,
+  illustrationVsCapNote:
+    "Pattern total $320 illustrates doubling only; approved per-position margin cap remains $250 with Reject.",
 } as const;
 
 export type ZigzagAssumptions = typeof zigzagAssumptions;

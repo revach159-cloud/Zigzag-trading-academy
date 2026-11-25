@@ -19,10 +19,10 @@ export default function LeverageLabPage() {
       <ul className="mt-4 space-y-2 text-sm">
         <li>
           <Link
-            href="/textbook/leverage-system"
+            href="/textbook/traffic-light"
             className="text-[var(--zz-cyan)] hover:underline"
           >
-            פרק 6 — מערכת מינוף
+            תחנה 4 — רמזור הניהול
           </Link>
         </li>
         <li>

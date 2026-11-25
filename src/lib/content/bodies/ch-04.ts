@@ -1,167 +1,178 @@
 import type { ChapterBodyInput } from "../schemas";
 
 export const chapter04Body = {
-  slug: "position-construction",
+  slug: "traffic-light",
+  openingStoryHe:
+    "באמצע המסע מופיע רמזור תלוי מעל צומת של ערפל. הירוק לא אומר 'אין סכנה'. הצהוב לא אומר 'הפסד מובטח'. האדום לא אומר 'סוף'. שלושתם שפה של ניהול תודעתי — כדי שלא תנהגו באותה מהירות בכל מזג אוויר.",
+  principleHe:
+    "רמזור ZigZag: ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי; אינו משנה את מכניקת ה־liquidation.",
+  memorableInsightHe:
+    "צבע הרמזור משנה את אופן הניהול שלכם — לא את חוקי הבורסה.",
   learningObjectivesHe: [
-    "לתאר בניית `position` long בשלב ×1 על מודל Bybit Linear USDT Perp (Cross, One-Way).",
-    "לחשב כמות עם Floor מ-margin ביחס למחיר ביצוע.",
-    "להכיר תקרת $250 margin לפוזיציה ומדיניות Reject.",
+    "למפות ירוק / צהוב / אדום לשלבי ×1, ×10 ומינוף מכשיר מרבי.",
+    "להסביר שמעבר ×1→×10 הוא תקציבי ושומר כמות.",
+    "להפריד בין סיווג פסיכולוגי לבין מחיר פירוק בבורסה.",
   ],
   sections: [
     {
-      id: "layers",
-      titleHe: "פוזיציה כמבנה שכבות",
+      id: "opening",
+      titleHe: "סיפור התחנה",
+      role: "opening" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "ב־ZigZag, `position construction` מתחיל מהקצאת margin לימודית בשלב ×1, כמות long בלבד, ותיעוד לשכבות `reinforcement` עתידיות. Short מבוטל בשיטה המאושרת.",
+            "הרמזור הוא כלי Lookback לניהול עצמי. הוא עוזר לסווג איפה אתם במסלול — לא כדי להבטיח תוצאה, אלא כדי למנוע נהיגה עיוורת.",
         },
         {
           type: "visual",
-          kind: "position-stack",
-          captionHe: "שכבות הקצאת margin — הכניסה הראשונה אינה בהכרח סוף ההיסטוריה.",
+          kind: "traffic-light",
+          captionHe: "רמזור ניהול: ירוק ×1 · צהוב ×10 · אדום max leverage (מאומת בלבד).",
+        },
+      ],
+    },
+    {
+      id: "principle",
+      titleHe: "העיקרון",
+      role: "principle" as const,
+      blocks: [
+        {
+          type: "table",
+          id: "lights",
+          captionHe: "שפת הרמזור (לימודית)",
+          headersHe: ["צבע", "שלב", "קריאה פסיכולוגית", "הערת סיכון"],
+          rows: [
+            [
+              "ירוק",
+              "×1",
+              "סביבת ניהול רגועה יותר (~10% adverse בסולם)",
+              "עדיין יש סיכון, עמלות ופערים",
+            ],
+            [
+              "צהוב",
+              "×10",
+              "דריכות גבוהה (~הפסד מול מרג'ין מוקצה רלוונטי)",
+              "חשיפת notional גדלה; Cross לא מבטל פירוק",
+            ],
+            [
+              "אדום",
+              "מינוף מכשיר מרבי",
+              "אזור קיצון (~200–300% כפוף לבורסה)",
+              "רק מנתוני instrument מאומתים; אחרת unresolved",
+            ],
+          ],
+        },
+        {
+          type: "paragraph",
+          textHe:
+            "מעבר ×1→×10 באקדמיה הוא לפי תקרת תקציב (budget-cap), לא טריגר של 'הפסדתי מספיק'. המעבר שומר על הכמות הקיימת. ב־×10 חיזוק נשקל כשהפסד נטו ≥ המרג'ין הרלוונטי שהוקצה.",
         },
         {
           type: "callout",
-          tone: "definition",
-          titleHe: "margin מול notional",
+          tone: "warning",
+          titleHe: "רמזור ≠ ביטוח",
           textHe:
-            "margin הוא הבסיס להקצאה (allocationBasis=margin). notional גדל עם מינוף; collateral שייך לחשבון Cross; liquidation אינו זהה ל'סיום תרגיל'.",
+            "שינוי מינוף לימודי או צבע רמזור אינו מבטיח משיכת הון ואינו מונע liquidation. יש להבחין בין מרג'ין מוקצה, notional, collateral פנוי ומחיר פירוק.",
         },
       ],
     },
     {
-      id: "opening",
-      titleHe: "פתיחת שכבה ראשונה",
+      id: "analogy",
+      titleHe: "דימוי מהחיים",
+      role: "analogy" as const,
       blocks: [
-        {
-          type: "formula",
-          id: "qty-from-margin",
-          latex: "q_0 = \\lfloor C_0 / E_0 \\rfloor",
-          captionHe: "כמות פתיחה מ-margin וממחיר ביצוע (Floor, שלב ×1)",
-          awaitingConfirmation: false,
-        },
         {
           type: "paragraph",
           textHe:
-            "בשלב ×1, sizing מצטבר לפי cumulative allocated capital על בסיס margin. תקרה $250 לפוזיציה — ניסיון חריגה נדחה.",
-        },
-        {
-          type: "table",
-          id: "construction-checklist",
-          captionHe: "רשימת בניית פוזיציה לתרגיל",
-          headersHe: ["שלב", "שאלה לבדיקה"],
-          rows: [
-            ["כוונה", "long בלבד — למה בתרגיל?"],
-            ["הקצאה", "כמה margin ב־C₀ ומה נשאר מתחת ל-$250?"],
-            ["כניסה", "מהו E₀ ואיך מעגלים tick לכיוון adverse?"],
-            ["תיעוד", "margin, כמות, מחיר — ביומן?"],
-            ["גבול", "מה קורה במגע בסולם P_k = P₀×(1−0.10×k)?"],
-          ],
+            "רמזור בצומת לא מבטל תאונות. הוא משנה התנהגות: בירוק ממשיכים בזהירות, בצהוב נערכים, באדום לא מאיצים 'כי ממהרים'. אותה לוגיקה בעסקה.",
         },
       ],
     },
     {
-      id: "reserve",
-      titleHe: "תקרה ורזרבה פדגוגית",
+      id: "trading",
+      titleHe: "דוגמה מסחרית־לימודית",
+      role: "trading" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "התקרה הקנונית היא $250 margin מצטבר לפוזיציה בשלב ×1. רזרבה בתוך התקרה משמשת לתרגול חיזוקים — לא 'הון אינסופי'.",
+            "פוזיציה בשלב ירוק (×1) עם מרג'ין מצטבר מתקרב לתקרה. המעבר לצהוב (×10) נעשה כי התקציב מוצה — והכמות נשמרת. זה לא 'פרס', זו עליית דריכות.",
         },
         {
-          type: "list",
-          itemsHe: [
-            "דוגמה: פתיחה margin $120, נשאר מקום עד $250 לחיזוקים.",
-            "חריגה → Reject — לא דחיפת עודף לפוזיציה.",
-            "Decimal מדויק לסולם; כמות ב-Floor.",
-          ],
+          type: "visual",
+          kind: "leverage-paths",
+          captionHe: "מעבר תקציבי ×1→×10 שומר כמות; האדום רק מנתוני Bybit מאומתים.",
+        },
+        {
+          type: "callout",
+          tone: "unresolved",
+          titleHe: "אדום ממתין לאימות",
+          textHe:
+            "מינוף מכשיר מרבי לא מומצא. בלי נתון Bybit מאומת לכל instrument — האדום מסומן unresolved.",
+        },
+      ],
+    },
+    {
+      id: "psychology",
+      titleHe: "הערה פסיכולוגית",
+      role: "psychology" as const,
+      blocks: [
+        {
+          type: "paragraph",
+          textHe:
+            "אנשים שומעים 'ירוק' ומרגישים ביטחון־יתר. Lookback מלמד: ירוק הוא רשות לנהל — לא רשות להירדם.",
         },
       ],
     },
   ],
   workedExamples: [
     {
-      id: "ex-open",
-      titleHe: "פתיחה תחת $250",
-      setupHe: "P₀=100; margin C₀=$120 לפתיחה בשלב ×1.",
+      id: "ex-light-switch",
+      titleHe: "סיווג צבע אחרי מעבר תקציבי",
+      setupHe: "פוזיציה עברה ל־×10 כי נדחתה הוספת מרג'ין נוספת תחת התקרה.",
       stepsHe: [
-        "q₀ = floor(120/100) = 1.",
-        "C_cum=$120; נותר מקום עד $130 לחיזוקים לפני תקרה.",
-        "ביומן: long, q=1, E=100, margin=$120.",
+        "מסמנים ביומן: צבע = צהוב.",
+        "מאשרים שהכמות נשמרה.",
+        "כותבים במפורש: liquidation נקבעת במודל הבורסה — לא לפי הצבע.",
       ],
-      resultHe: "פוזיציית פתיחה מוגדרת בתוך תקרת margin.",
-      awaitingConfirmation: false,
+      resultHe: "הסיווג משרת ניהול עצמי בלי לייצר אשליית ביטוח.",
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-reserve",
-        titleHe: "פתיחה מתועדת",
-        narrativeHe:
-          "הלומד פותח שכבה עם margin מפורש ומשאיר מקום לחיזוקים עד $250.",
-        outcomeHe: "תיעוד מוכן לפרק 5.",
-        lessonHe: "בנייה טובה מתחילה ב-margin, לא במינוף.",
+        id: "ok-yellow",
+        titleHe: "צהוב כדריכות",
+        narrativeHe: "הלומד מוריד קצב החלטות בצהוב ובודק מרג'ין מול notional.",
+        outcomeHe: "הניהול נשאר צלול.",
+        lessonHe: "צבע הוא תזכורת התנהגותית.",
       },
     ],
     failure: [
       {
-        id: "fail-cap",
-        titleHe: "חריגה מ-$250 מיד",
-        narrativeHe:
-          "margin פתיחה $300 בשלב ×1.",
-        outcomeHe: "דחייה (Reject) לפי השיטה.",
-        lessonHe: "התקרה היא כלל מאושר — לא עיצוב UI.",
+        id: "fail-green-safe",
+        titleHe: "ירוק כ'בטוח'",
+        narrativeHe: "הלומד מפרש ירוק כסיכון אפס ומתעלם מעמלות ופערים.",
+        outcomeHe: "נוצרת שאננות מסוכנת.",
+        lessonHe: "אין צבע שמבטל סיכון.",
       },
     ],
   },
-  exercises: [
+  reflections: [
     {
-      id: "ex1",
-      promptHe:
-        "margin $150, מחיר 75. חשבו q₀ ב-Floor. מה נשאר עד תקרה $250?",
-      hintHe: "q=⌊150/75⌋; נותר 250−150.",
+      id: "r1",
+      promptHe: "תרגמו ירוק/צהוב/אדום למשפט התנהגות אחד כל אחד — בלי להבטיח תוצאה.",
     },
     {
-      id: "ex2",
-      promptHe:
-        "כתבו צ'ק־ליסט בניית פוזיציה long בסימולטור (5 סעיפים).",
-    },
-  ],
-  knowledgeQuestions: [
-    {
-      id: "q1",
-      promptHe: "תקרת margin לפוזיציה בשלב ×1:",
-      choicesHe: [
-        "$250 עם Reject",
-        "ללא תקרה",
-        "רק ל-short",
-        "$2,500 תמיד",
-      ],
-      correctIndex: 0,
-      explanationHe: "perPositionMarginCapUsd=250; capPolicy=reject.",
-    },
-    {
-      id: "q2",
-      promptHe: "כמות בשלב ×1 מחושבת כ:",
-      choicesHe: ["C₀ × E₀", "⌊C₀ / E₀⌋", "E₀ − C₀", "PnL / E₀"],
-      correctIndex: 1,
-      explanationHe: "quantityRounding=floor.",
-    },
-    {
-      id: "q3",
-      promptHe: "כיוון מסחר מאושר:",
-      choicesHe: ["long ו-short", "long בלבד", "short בלבד", "אין פוזיציה"],
-      correctIndex: 1,
-      explanationHe: "direction=long_only; shortEnabled=false.",
+      id: "r2",
+      promptHe: "למה חשוב שהרמזור לא ישנה את מכניקת הפירוק?",
     },
   ],
   chapterSummaryHe: [
-    "פוזיציה נבנית משכבות margin long עם כמות Floor ותקרה $250.",
-    "מבחינים margin, notional ו-collateral — liquidation נושא נפרד.",
+    "רמזור = סיווג פסיכולוגי לשלבי ×1 / ×10 / max.",
+    "מעבר ×10 תקציבי ושומר כמות; אדום רק מנתונים מאומתים.",
   ],
-  awaitingNotesHe: [],
+  awaitingNotesHe: [
+    "טווח 200–300% לאדום הוא כיוון כללי כפוף לבורסה — לא מספר קבוע להמצאה.",
+  ],
 } satisfies ChapterBodyInput;

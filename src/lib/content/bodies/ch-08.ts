@@ -1,155 +1,152 @@
 import type { ChapterBodyInput } from "../schemas";
 
 export const chapter08Body = {
-  slug: "profit-realization",
+  slug: "portfolio-of-routes",
+  openingStoryHe:
+    "בתחנת התיק נפתחת מפה עם כמה שבילים זוהרים במקביל. מי שמנסה לרוץ בכולם באותה נשימה מאבד את המפה. מי שלומד Lookback מבין: כל מסלול מקבל תקרת מרג'ין משלו — והתיק כולו הוא סיפור סיכון נפרד מכל עסקה בודדת.",
+  principleHe:
+    "כל פוזיציה = מסלול עם תקרת $250; התיק נמדד בסכום החשיפות והמשמעת — לא בדרמה של עסקה אחת.",
+  memorableInsightHe:
+    "תיק בריא הוא אוסף מסלולים עם גבולות — לא אוסף הימורים שחולקים אותו פחד.",
   learningObjectivesHe: [
-    "ליישם מימוש מאושר: סגירת 75% מהכמות הפתוחה.",
-    "לחשב כמות שנותרת ומימוש חוזר על 25%.",
-    "לכלול עמלות 2 bps בסגירה ו-slippage 1 bp לצד.",
+    "להפריד הקצאת מרג'ין בין פוזיציות סימולטיביות.",
+    "להסביר תקרת $250 לכל פוזיציה מול סיכון תיק.",
+    "להימנע מהעברת רגש מעסקה אחת לכל התיק.",
   ],
   sections: [
     {
-      id: "seventy-five",
-      titleHe: "מימוש 75% בכמות",
+      id: "opening",
+      titleHe: "סיפור התחנה",
+      role: "opening" as const,
       blocks: [
         {
           type: "paragraph",
           textHe:
-            "`Profit realization` המאושר הוא close_quantity_pct: סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; ניתן לחזור על 75% מהנותר.",
+            "ריבוי פוזיציות מותר בלימוד כאוסף מסלולים. כל אחת long-only במודל Cross One-Way, עם תקרת מרג'ין $250 Reject. ההצלחה אינה 'כולן ירוקות' — אלא שכל אחת מנוהלת כסיפור נפרד תחת אותה פילוסופיה.",
         },
         {
           type: "visual",
-          kind: "profit-split",
-          captionHe: "75% נסגרים · 25% נשארים — אין 'משיכת רווח' נפרדת.",
+          kind: "multi-position",
+          captionHe: "מספר מסלולים במקביל — לכל אחד תקרה והקצאה משלו.",
         },
+      ],
+    },
+    {
+      id: "principle",
+      titleHe: "העיקרון",
+      role: "principle" as const,
+      blocks: [
         {
-          type: "formula",
-          id: "close-qty",
-          latex: "q_{\\text{close}} = 0.75 \\times Q,\\quad q_{\\text{remain}} = 0.25 \\times Q",
-          captionHe: "סגירת 75% מהכמות",
-          awaitingConfirmation: false,
+          type: "list",
+          itemsHe: [
+            "לא לערבב מרג'ין של פוזיציה א עם ב ביומן הלימודי.",
+            "לבדוק notional מצטבר מול collateral סימולטיבי.",
+            "לזכור: Cross יכול לקשר סיכונים גם כשהיומן מפריד.",
+          ],
         },
         {
           type: "callout",
-          tone: "note",
-          titleHe: "הפעלה ידנית",
-          textHe: "profitRealization.activation=manual; repeatableOnRemaining=true.",
+          tone: "warning",
+          titleHe: "Cross וריבוי מסלולים",
+          textHe:
+            "גם אם אתם מנהלים כל עסקה כמסלול נפרד, במודל Cross הביטחונות משותפים ברמת החשבון הסימולטיבי. פירוק יכול להגיע מאינטראקציה — לא רק מעסקה בודדת.",
         },
       ],
     },
     {
-      id: "fees",
-      titleHe: "עמלות בסגירה",
+      id: "analogy",
+      titleHe: "דימוי מהחיים",
+      role: "analogy" as const,
       blocks: [
-        {
-          type: "list",
-          itemsHe: [
-            "roundTripBps: 2 בסגירה (במודל הלימודי).",
-            "slippageBpsPerSide: 1.",
-            "funding: 0; thresholdEpsilon: 0.",
-          ],
-        },
         {
           type: "paragraph",
           textHe:
-            "Realized PnL על החלק שנסגר = q_close×(M−E_avg) פחות עמלות לפי התרגיל.",
+            "כמה פרויקטים בעבודה: לכל אחד תקציב. אם פרויקט אחד בולע את כולם — זו לא 'גמישות'. זו קריסת מסגרת.",
         },
       ],
     },
     {
-      id: "discipline",
-      titleHe: "משמעת אחרי מימוש",
+      id: "trading",
+      titleHe: "דוגמת תיק לימודית",
+      role: "trading" as const,
       blocks: [
         {
-          type: "list",
-          itemsHe: [
-            "מתעדים Q לפני ואחרי כל מימוש.",
-            "לא מציגים מימוש לימודי כביצועי עבר.",
-            "בודקים שלב ×1/×10 והסיכון על הנותר.",
+          type: "table",
+          id: "portfolio-caps",
+          captionHe: "שלושה מסלולים תחת תקרות נפרדות",
+          headersHe: ["מסלול", "מרג'ין מוקצה", "תקרה", "סטטוס"],
+          rows: [
+            ["A", "$120", "$250", "ירוק · פעיל"],
+            ["B", "$250", "$250", "צהוב · ללא חיזוק נוסף"],
+            ["C", "$80", "$250", "ירוק · מקום לחיזוק"],
           ],
+        },
+        {
+          type: "visual",
+          kind: "risk-bands",
+          captionHe: "סיכון תיק כשכבות — לא כדרמה של שורה אחת.",
+        },
+      ],
+    },
+    {
+      id: "psychology",
+      titleHe: "הערה פסיכולוגית",
+      role: "psychology" as const,
+      blocks: [
+        {
+          type: "paragraph",
+          textHe:
+            "כשמסלול אחד כואב, אל תענישו את האחרים. ואל תפצו על כאב במסלול חדש חסר גבול. זה רדיפה בתחפושת תיק.",
         },
       ],
     },
   ],
   workedExamples: [
     {
-      id: "ex-realize",
-      titleHe: "מימוש ראשון וחוזר",
-      setupHe: "Q=20, E_avg=88, M=108.",
+      id: "ex-separate-caps",
+      titleHe: "הפרדת תקרות",
+      setupHe: "שתי פוזיציות: $200 ו־$100. הלומד רוצה 'להעביר' $50.",
       stepsHe: [
-        "PnL פתוח ≈ 20×20=400 לפני עמלות.",
-        "מימוש 1: q_close=15, q_remain=5.",
-        "Realized ≈ 15×20=300; ניכוי עמלה 2 bps על נושא הסגירה.",
-        "מימוש 2 (אופציונלי): 75%×5→3.75→3 ב-Floor.",
+        "בודקים: כל פוזיציה עם תקרה עצמאית $250.",
+        "לא ממציאים העברת מרג'ין שעוקפת Reject.",
+        "מתעדים החלטה לכל מסלול בנפרד.",
       ],
-      resultHe: "רצף כמותי מתועד.",
-      awaitingConfirmation: false,
+      resultHe: "התיק נשאר אוסף מסלולים עם גבולות.",
     },
   ],
   scenarios: {
     success: [
       {
-        id: "ok-label",
-        titleHe: "יומן מימוש",
-        narrativeHe:
-          "הלומד רושם כל סגירת 75% עם עמלות.",
-        outcomeHe: "ביקורת עקבית.",
-        lessonHe: "מימוש = הפחתת כמות.",
+        id: "ok-portfolio",
+        titleHe: "ניהול מקביל שקט",
+        narrativeHe: "הלומד עובר מסלול־מסלול עם רמזור ויומן נפרדים.",
+        outcomeHe: "אין הדבקת פאניקה.",
+        lessonHe: "תיק = משמעת מרובה, לא רעש מרובה.",
       },
     ],
     failure: [
       {
-        id: "fail-withdraw",
-        titleHe: "משיכת 75% מ-PnL בלי סגירה",
-        narrativeHe:
-          "מקטינים 'רווח במחברת' אך Q נשארת 20.",
-        outcomeHe: "סתירה למתודולוגיה.",
-        lessonHe: "mode=close_quantity_pct בלבד.",
+        id: "fail-contagion",
+        titleHe: "הדבקה רגשית",
+        narrativeHe: "הפסד במסלול א גורם לסגירה היסטרית ב־ב ו־ג.",
+        outcomeHe: "התיק מתנהג כהימור אחד.",
+        lessonHe: "בלי הפרדה אין Lookback תיקי.",
       },
     ],
   },
-  exercises: [
+  reflections: [
     {
-      id: "ex1",
-      promptHe: "Q=16. חשבו q_close ו־q_remain במימוש ראשון.",
+      id: "r1",
+      promptHe: "איך תסמנו ביומן הפרדה בין שלושה מסלולים בלי לערבב מרג'ין?",
     },
     {
-      id: "ex2",
-      promptHe:
-        "q_remain=8, E_avg=50, M=62. חשבו realized על 75% מהנותר.",
-    },
-  ],
-  knowledgeQuestions: [
-    {
-      id: "q1",
-      promptHe: "מימוש מאושר פירושו:",
-      choicesHe: [
-        "משיכת 75% מהרווח בלי שינוי כמות",
-        "סגירת 75% מהכמות",
-        "מינוף 75x",
-        "סגירת short",
-      ],
-      correctIndex: 1,
-      explanationHe: "profitRealization.mode=close_quantity_pct.",
-    },
-    {
-      id: "q2",
-      promptHe: "אחרי מימוש ראשון נשאר:",
-      choicesHe: ["0%", "25% מהכמות המקורית", "75%", "short"],
-      correctIndex: 1,
-      explanationHe: "remainingPct=25.",
-    },
-    {
-      id: "q3",
-      promptHe: "עמלת round-trip במודל המאושר:",
-      choicesHe: ["20 bps", "2 bps", "0", "1%"],
-      correctIndex: 1,
-      explanationHe: "fees.roundTripBps=2 בסגירה.",
+      id: "r2",
+      promptHe: "מה Cross מלמד אתכם על גבול ההפרדה ה'נפשית' מול המודל?",
     },
   ],
   chapterSummaryHe: [
-    "מימוש = סגירה ידנית של 75% מהכמות, עם חזרה על הנותר.",
-    "עמלות ו-slippage מאושרים בתרגיל — לא טיוטה.",
+    "כל פוזיציה תחת $250; התיק הוא אוסף מסלולים.",
+    "Cross יכול לקשר סיכונים גם כשהיומן מפריד.",
   ],
   awaitingNotesHe: [],
 } satisfies ChapterBodyInput;

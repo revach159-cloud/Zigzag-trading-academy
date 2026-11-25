@@ -19,10 +19,10 @@ export default function SimulatorPage() {
       <ul className="mt-4 space-y-2 text-sm text-[var(--zz-muted)]">
         <li>
           <Link
-            href="/textbook/practical-simulation-laboratory"
+            href="/textbook/practical-reference"
             className="text-[var(--zz-cyan)] hover:underline"
           >
-            פרק 11 — מעבדת סימולציה מעשית
+            תחנה 12 — מדריך מעשי
           </Link>
         </li>
         <li>

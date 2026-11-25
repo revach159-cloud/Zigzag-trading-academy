@@ -13,26 +13,36 @@ export default function TestsPage() {
         מבחני ידע
       </h1>
       <p className="mt-4 text-[var(--zz-muted)]">
-        מבחני הבנה לפרקים ולשיטה. ציון הוא השלמת לימוד בלבד — לא תעודת מיומנות
-        מסחר ולא הבטחת תשואה. שאלות ידע כבר משולבות בסוף כל פרק ובדפי השיטה.
+        ספר LOOKBACK הוא מסע נרטיבי — בלי חידוני אמריקאי. להרהור ולמשמעת השתמשו
+        בשאלות ההרהור שבכל תחנה ובדפי השיטה. ציון אינו תעודת מסחר ואינו הבטחת
+        תשואה.
       </p>
       <ul className="mt-4 space-y-2 text-sm">
         <li>
           <Link
-            href="/textbook/final-examination"
+            href="/textbook/clear-disclaimer"
             className="text-[var(--zz-cyan)] hover:underline"
           >
-            פרק 12 — בחינה מסכמת
+            תחנה 13 — הצהרה ברורה
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/textbook/practical-reference"
+            className="text-[var(--zz-cyan)] hover:underline"
+          >
+            תחנה 12 — מדריך מעשי
           </Link>
         </li>
         <li>
           <Link href="/textbook" className="text-[var(--zz-cyan)] hover:underline">
-            כל פרקי ספר הלימוד
+            מפת מסע LOOKBACK
           </Link>
         </li>
       </ul>
       <div className="mt-6 border border-dashed border-[var(--zz-line)] bg-[var(--zz-panel)]/30 p-8 text-center text-sm text-[var(--zz-muted)]">
-        מודול מבחנים מרוכז יתווסף בשלב ייעודי; בינתיים השתמשו בשאלות שבפרקים.
+        מודול מבחנים מרוכז אינו חלק מספר Lookback הנרטיבי; המסע מחליף חידונים
+        בהרהור ובמשמעת מסלול.
         <div className="mt-3">
           <SimDisclaimer compact />
         </div>

@@ -21,11 +21,32 @@ const rawGlossary = {
   simulationOnly: true as const,
   entries: [
     {
+      id: "lookback",
+      termHe: "מבט לאחור",
+      termEn: "Lookback",
+      definitionHe:
+        "פילוסופיית המסע: לקרוא תנועה שכבר קרתה ולהכין מסלול ניהול — לא לרדוף אחרי האופק. אינה אות כניסה ואינה הבטחת תשואה.",
+    },
+    {
+      id: "trade-improvement",
+      termHe: "השבחת העסקה",
+      termEn: "Trade improvement",
+      definitionHe:
+        "שיפור מדוד של פוזיציה באמצעות חיזוקים אופציונליים תחת תקרת מרג'ין — לא הגדלה רגשית חסרת גבול.",
+    },
+    {
       id: "margin",
       termHe: "מרג'ין מוקצה",
       termEn: "Allocated margin",
       definitionHe:
         "הון שולי שהוקצה במפורש לפוזיציה בתרגיל. אינו זהה ל־notional, לביטחונות פנויים בחשבון, או למחיר פירוק בבורסה.",
+    },
+    {
+      id: "quantity",
+      termHe: "כמות",
+      termEn: "Quantity",
+      definitionHe:
+        "גודל הפוזיציה ביחידות. מימוש 75% משנה כמות; אינו זהה ל־PnL או לצבע רמזור.",
     },
     {
       id: "notional",
