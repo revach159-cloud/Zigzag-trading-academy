@@ -24,9 +24,15 @@ export function SceneFallback2D({ kind }: { kind: Exclude<SceneKind, "none"> }) 
       );
     case "realize-75":
       return (
-        <div className="flex h-full items-end justify-center gap-1 bg-[#03050c] px-8 pb-8">
-          <div className="h-[70%] w-2/3 rounded-t-md bg-[rgba(46,230,255,0.35)]" />
-          <div className="h-[28%] w-1/4 rounded-t-md bg-[rgba(201,168,76,0.4)]" />
+        <div className="flex h-full flex-col items-center justify-center gap-3 bg-[#03050c] px-8">
+          <div className="flex w-full max-w-sm items-end gap-2">
+            <div className="flex h-24 w-3/4 items-center justify-center rounded-md bg-[rgba(46,230,255,0.35)] text-sm font-semibold text-[var(--zz-ink)]">
+              75%
+            </div>
+            <div className="flex h-14 w-1/4 items-center justify-center rounded-md bg-[rgba(201,168,76,0.4)] text-xs font-medium text-[var(--zz-ink)]">
+              25%
+            </div>
+          </div>
         </div>
       );
     case "return-balance":
@@ -39,6 +45,25 @@ export function SceneFallback2D({ kind }: { kind: Exclude<SceneKind, "none"> }) 
               stroke="#2EE6FF"
               strokeWidth="3"
             />
+            <rect
+              x="148"
+              y="58"
+              width="24"
+              height="24"
+              rx="3"
+              fill="rgba(46,230,255,0.35)"
+              stroke="#2EE6FF"
+            />
+            <text
+              x="160"
+              y="75"
+              textAnchor="middle"
+              fill="#E8EEF8"
+              fontSize="11"
+              fontFamily="monospace"
+            >
+              ×1
+            </text>
             <circle cx="300" cy="70" r="6" fill="#C9A84C" />
           </svg>
         </div>
@@ -56,6 +81,15 @@ export function SceneFallback2D({ kind }: { kind: Exclude<SceneKind, "none"> }) 
       return (
         <div className="flex h-full items-center justify-center bg-[#03050c]">
           <svg viewBox="0 0 320 120" className="h-28 w-full max-w-md">
+            <line
+              x1="20"
+              y1="60"
+              x2="300"
+              y2="60"
+              stroke="rgba(143,160,184,0.35)"
+              strokeWidth="1.5"
+              strokeDasharray="4 5"
+            />
             <polyline
               fill="none"
               stroke="#2EE6FF"

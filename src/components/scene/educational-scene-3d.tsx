@@ -61,6 +61,15 @@ function ZigzagMesh() {
       ] as [number, number, number][],
     [],
   );
+  /** Ghost straight path — what chasing looks like vs zigzag market motion */
+  const chaseLine = useMemo(
+    () =>
+      [
+        [-2.3, 0.05, -0.35],
+        [2.3, 0.05, -0.35],
+      ] as [number, number, number][],
+    [],
+  );
   useFrame((_, delta) => {
     if (!group.current) return;
     group.current.rotation.y += delta * 0.18;
@@ -69,6 +78,16 @@ function ZigzagMesh() {
   return (
     <Float speed={1} floatIntensity={0.28} rotationIntensity={0.08}>
       <group ref={group} position={[0, 0.1, 0]}>
+        <Line
+          points={chaseLine}
+          color="#8FA0B8"
+          lineWidth={1.2}
+          transparent
+          opacity={0.28}
+          dashed
+          dashSize={0.12}
+          gapSize={0.1}
+        />
         <Line
           points={points}
           color="#2EE6FF"
@@ -149,6 +168,7 @@ function ImprovementStack() {
     if (!ref.current) return;
     ref.current.rotation.y += delta * 0.14;
   });
+  /** Layered reinforcement — base exposure → developed position → refined core */
   const layers = [
     { y: -0.7, w: 2.1, d: 1.15, color: "#0E6F86", emissive: "#1AA8C4" },
     { y: -0.15, w: 1.55, d: 1.0, color: "#2EE6FF", emissive: "#1AA8C4" },
@@ -156,6 +176,16 @@ function ImprovementStack() {
   ];
   return (
     <group ref={ref}>
+      <mesh position={[0, -0.15, 0]}>
+        <cylinderGeometry args={[0.04, 0.04, 1.55, 12]} />
+        <meshStandardMaterial
+          color="#2EE6FF"
+          emissive="#1AA8C4"
+          emissiveIntensity={0.35}
+          transparent
+          opacity={0.55}
+        />
+      </mesh>
       {layers.map((layer) => (
         <mesh key={layer.color} position={[0, layer.y, 0]} castShadow={false}>
           <boxGeometry args={[layer.w, 0.42, layer.d]} />
@@ -182,10 +212,11 @@ function Realize75Mesh() {
     if (!big.current) return;
     big.current.scale.y = 0.92 + Math.sin(clock.elapsedTime * 0.9) * 0.05;
   });
+  /** 75% closed (cyan mass) vs 25% remaining (gold) — clear quantity split */
   return (
     <group position={[0, -0.1, 0]}>
-      <mesh ref={big} position={[-0.4, 0.15, 0]}>
-        <boxGeometry args={[2.0, 1.55, 0.55]} />
+      <mesh ref={big} position={[-0.55, 0.2, 0]}>
+        <boxGeometry args={[2.25, 1.6, 0.55]} />
         <meshPhysicalMaterial
           color="#2EE6FF"
           emissive="#1AA8C4"
@@ -197,16 +228,26 @@ function Realize75Mesh() {
           transmission={0.12}
         />
       </mesh>
-      <mesh position={[1.15, -0.25, 0]}>
-        <boxGeometry args={[0.7, 0.75, 0.55]} />
+      <mesh position={[1.25, -0.35, 0]}>
+        <boxGeometry args={[0.72, 0.72, 0.55]} />
         <meshPhysicalMaterial
           color="#C9A84C"
           emissive="#8A7030"
-          emissiveIntensity={0.4}
+          emissiveIntensity={0.45}
           metalness={0.5}
           roughness={0.25}
           transparent
-          opacity={0.85}
+          opacity={0.88}
+        />
+      </mesh>
+      <mesh position={[0.7, 0.05, 0.32]}>
+        <boxGeometry args={[0.04, 1.35, 0.04]} />
+        <meshStandardMaterial
+          color="#E8EEF8"
+          emissive="#E8EEF8"
+          emissiveIntensity={0.25}
+          transparent
+          opacity={0.55}
         />
       </mesh>
     </group>
@@ -220,6 +261,7 @@ function ReturnBalanceMesh() {
     ref.current.position.y = Math.sin(clock.elapsedTime * 0.75) * 0.1;
     ref.current.rotation.z = -0.35 + Math.sin(clock.elapsedTime * 0.4) * 0.05;
   });
+  /** Arc home to ×1 — quiet single-unit scale at the center */
   return (
     <group ref={ref}>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
@@ -230,6 +272,18 @@ function ReturnBalanceMesh() {
           emissiveIntensity={0.65}
           metalness={0.6}
           roughness={0.2}
+        />
+      </mesh>
+      <mesh position={[0, -0.35, 0]}>
+        <boxGeometry args={[0.42, 0.42, 0.42]} />
+        <meshPhysicalMaterial
+          color="#2EE6FF"
+          emissive="#1AA8C4"
+          emissiveIntensity={0.4}
+          metalness={0.45}
+          roughness={0.22}
+          transparent
+          opacity={0.8}
         />
       </mesh>
       <mesh position={[1.15, -0.55, 0.15]}>

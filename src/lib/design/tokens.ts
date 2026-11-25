@@ -14,6 +14,9 @@ export const brand = {
   narrativeConceptEn: "Journey of Prepared Routes",
   taglineEn: "Stop chasing the market. Learn how to work with its movement.",
   taglineHe: "אל תרדוף אחרי השוק. למד לעבוד עם התנועה שלו.",
+  /** Author credit — exact name only; no invented titles */
+  authorHe: "אביאל רווח",
+  authorCreditHe: "יוצר שיטת ZIGZAG · LOOKBACK",
   supportHe:
     "ספר דיגיטלי נרטיבי למתודולוגיית ZigZag — השבחת העסקה, רמזור ניהול, מימוש 75% וחזרה לאיזון. סימולציה וחינוך בלבד.",
 } as const;

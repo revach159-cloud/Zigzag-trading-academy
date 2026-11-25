@@ -42,31 +42,31 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         <ReadingProgressBar slug={chapter.slug} />
       </div>
 
-      {/* Cinematic station opening — scene as environment, not a card */}
+      {/* Editorial station opening — literary, not a website card */}
       <motion.header
-        className="book-chapter-open relative mt-8 overflow-hidden"
+        className="book-chapter-open relative mt-10 overflow-hidden"
         {...fade}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.75 }}
       >
         {chapter.scene !== "none" ? (
-          <div className="book-scene-stage mb-8 h-56 w-full sm:h-72">
+          <div className="book-scene-stage mb-10 h-64 w-full sm:h-80">
             <EducationalScene
               kind={chapter.scene}
               className="absolute inset-0 h-full w-full"
             />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--zz-void)] via-[var(--zz-void)]/70 to-transparent px-5 pb-5 pt-16">
-              <p className="text-[11px] font-medium tracking-[0.32em] text-[var(--zz-cyan)] uppercase">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--zz-void)] via-[var(--zz-void)]/75 to-transparent px-5 pb-6 pt-20">
+              <p className="text-xs font-medium tracking-[0.28em] text-[var(--zz-cyan)]">
                 {chapter.stationHe}
               </p>
             </div>
           </div>
         ) : (
-          <p className="text-[11px] font-medium tracking-[0.32em] text-[var(--zz-cyan)] uppercase">
+          <p className="text-xs font-medium tracking-[0.28em] text-[var(--zz-cyan)]">
             {chapter.stationHe}
           </p>
         )}
 
-        <h1 className="zz-title-chapter mt-3 text-[var(--zz-ink)]">
+        <h1 className="zz-title-chapter mt-2 text-[var(--zz-ink)]">
           {chapter.titleHe}
         </h1>
         <p
@@ -75,21 +75,19 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         >
           {chapter.titleEn}
         </p>
-        <p className="mt-5 max-w-[40rem] text-base font-normal leading-8 text-[var(--zz-muted)]">
+        <p className="book-chapter-lede mt-7 max-w-[38rem]">
           <RichText text={chapter.summaryHe} />
         </p>
-        <div className="mt-4">
+        <div className="mt-5">
           <SimDisclaimer compact />
         </div>
       </motion.header>
 
       <div className="book-visual-pause" aria-hidden />
 
-      <section id="story">
-        <p className="text-[11px] font-medium tracking-[0.28em] text-[var(--zz-gold)] uppercase">
-          סיפור התחנה
-        </p>
-        <p className="book-story mt-5">
+      <section id="story" className="book-story-section">
+        <p className="book-section-eyebrow">סיפור התחנה</p>
+        <p className="book-story mt-6">
           <RichText text={body.openingStoryHe} />
         </p>
         <p className="book-principle">
@@ -244,10 +242,8 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
       ) : null}
 
       <section className="book-insight" id="insight">
-        <p className="text-[11px] font-medium tracking-[0.28em] text-[var(--zz-gold)] uppercase">
-          תובנה לזכור
-        </p>
-        <p className="mt-4 text-2xl font-bold leading-10 text-[var(--zz-ink)]">
+        <p className="book-section-eyebrow">תובנה לזכור</p>
+        <p className="mt-5 text-2xl font-bold leading-[1.55] text-[var(--zz-ink)]">
           <RichText text={body.memorableInsightHe} />
         </p>
       </section>
