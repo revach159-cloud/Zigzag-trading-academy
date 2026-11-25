@@ -16,7 +16,11 @@ import type { ContentBlock } from "../src/lib/content/schemas";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const outDir = path.join(root, "public", "downloads");
-const outFile = path.join(outDir, "zigzag-academy-textbook.pdf");
+/** Canonical final edition */
+const outFileFinal = path.join(outDir, "zigzag-lookback-final.pdf");
+/** Legacy download path — kept in sync for existing links */
+const outFileLegacy = path.join(outDir, "zigzag-academy-textbook.pdf");
+const outFile = outFileFinal;
 
 function escapeHtml(value: string): string {
   return value
@@ -260,10 +264,43 @@ function buildHtml(): string {
   <meta charset="utf-8" />
   <title>${escapeHtml(brand.bookTitleHe)} — ${escapeHtml(brand.fullName)}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    /* Self-hosted Rubik (Hebrew + Latin) — embedded into PDF; no CDN race */
+    ${[300, 400, 500, 600, 700, 800]
+      .map(
+        (w) => `
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: ${w};
+      font-display: block;
+      src: url("file://${path.join(root, "public/fonts/rubik", `rubik-hebrew-${w}.woff2`)}") format("woff2");
+      unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+    }
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: ${w};
+      font-display: block;
+      src: url("file://${path.join(root, "public/fonts/rubik", `rubik-latin-${w}.woff2`)}") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }`,
+      )
+      .join("\n")}
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("file://${path.join(root, "public/fonts/plex-mono/ibm-plex-mono-latin-400-normal.woff2")}") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("file://${path.join(root, "public/fonts/plex-mono/ibm-plex-mono-latin-500-normal.woff2")}") format("woff2");
+    }
     :root {
       --void: #03050c;
       --ink: #e8eef8;
@@ -283,6 +320,7 @@ function buildHtml(): string {
       font-size: 12.5pt;
       line-height: 1.95;
       background: var(--void);
+      -webkit-font-smoothing: antialiased;
     }
     p { margin: 0 0 0.95em; }
     ul, ol { margin: 0 0 1.1em; padding-inline-start: 1.2em; line-height: 1.95; }
@@ -491,20 +529,25 @@ function buildHtml(): string {
       color: var(--muted);
       font-size: 11pt;
     }
-    @page { size: A4; margin: 22mm 18mm 22mm 18mm; }
+    html { background: var(--void); }
+    @page {
+      size: A4;
+      margin: 22mm 18mm 22mm 18mm;
+      background: #03050c;
+    }
   </style>
 </head>
 <body>
   <section class="cover">
-    <p class="eyebrow">Digital narrative book · Simulation only</p>
+    <p class="eyebrow">Digital narrative book · Simulation only · Final edition</p>
     <h1 class="brand">${escapeHtml(brand.name)}</h1>
     <p class="book">${escapeHtml(brand.bookTitleHe)}</p>
-    <p class="method">${escapeHtml(brand.methodHe)} · ${escapeHtml(brand.narrativeConceptHe)}</p>
-    <p class="author-name">${escapeHtml(brand.authorHe)}</p>
+    <p class="method">${escapeHtml(brand.methodHe)}</p>
+    <p class="author-name">${escapeHtml(brand.authorBylineHe)}</p>
     <p class="author-credit">${escapeHtml(brand.authorCreditHe)}</p>
     <p class="tag">${escapeHtml(brand.taglineHe)}</p>
     <p dir="ltr" class="en">${escapeHtml(brand.taglineEn)}</p>
-    <p>${chapterCatalog.chapters.length} תחנות מסע נרטיבי — אותו מקור כמו בקורא הדיגיטלי.</p>
+    <p>${chapterCatalog.chapters.length} תחנות מסע נרטיבי — אותו מקור כמו בקורא הדיגיטלי · ${escapeHtml(brand.narrativeConceptHe)}.</p>
     <div class="disclaimer">
       <strong>הצהרה חינוכית.</strong>
       תוכן זה ללימוד וסימולציה בלבד (Bybit Linear USDT Perp, Cross, One-Way).
@@ -535,8 +578,29 @@ function buildHtml(): string {
 async function main() {
   await mkdir(outDir, { recursive: true });
   const html = buildHtml();
-  const htmlPath = path.join(outDir, "zigzag-academy-textbook.print.html");
+  const htmlPath = path.join(outDir, "zigzag-lookback-final.print.html");
   await writeFile(htmlPath, html, "utf8");
+  // Keep legacy print HTML filename for tooling that still references it
+  await writeFile(
+    path.join(outDir, "zigzag-academy-textbook.print.html"),
+    html,
+    "utf8",
+  );
+
+  const chapters = listChapters();
+  const missingBodies = chapters.filter((ch) => !getChapterBodyBySlug(ch.slug));
+  if (chapters.length !== 13) {
+    throw new Error(`Expected 13 chapters, got ${chapters.length}`);
+  }
+  if (missingBodies.length > 0) {
+    throw new Error(
+      `Missing chapter bodies: ${missingBodies.map((c) => c.slug).join(", ")}`,
+    );
+  }
+  const glossary = listGlossaryEntries();
+  if (glossary.length < 1) {
+    throw new Error("Glossary is empty — refusing to write final PDF");
+  }
 
   const browser = await chromium.launch({
     executablePath: process.env.PLAYWRIGHT_CHROME || "/usr/local/bin/google-chrome",
@@ -545,20 +609,44 @@ async function main() {
   try {
     const page = await browser.newPage();
     await page.goto(`file://${htmlPath}`, { waitUntil: "networkidle" });
+    // Wait for self-hosted Rubik (+ mono) to load before embedding
+    await page.evaluate(async () => {
+      if (document.fonts?.ready) await document.fonts.ready;
+      // Force resolve common weights used in the book
+      await Promise.all(
+        [300, 400, 500, 600, 700, 800].map((w) =>
+          document.fonts.load(`${w} 16px Rubik`),
+        ),
+      );
+    });
+    const fontOk = await page.evaluate(() => {
+      const faces = [...document.fonts].map(
+        (f) => `${f.family}:${f.weight}:${f.status}`,
+      );
+      return {
+        faces: faces.filter((f) => f.includes("Rubik") || f.includes("Plex")),
+        check400: document.fonts.check("400 16px Rubik"),
+        check700: document.fonts.check("700 24px Rubik"),
+        check800: document.fonts.check("800 40px Rubik"),
+      };
+    });
+    console.log("font_probe", JSON.stringify(fontOk));
+    await page.waitForTimeout(400);
     await page.pdf({
-      path: outFile,
+      path: outFileFinal,
       format: "A4",
       printBackground: true,
+      preferCSSPageSize: true,
       displayHeaderFooter: true,
       headerTemplate: `
-        <div style="width:100%;font-size:9px;color:#8fa0b8;padding:0 18mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;background:transparent;">
+        <div style="width:100%;height:100%;font-size:9px;color:#8fa0b8;padding:8px 18mm 0;display:flex;justify-content:space-between;align-items:flex-end;font-family:Rubik,sans-serif;direction:rtl;background:#03050c;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
           <span>ZIGZAG · LOOKBACK</span>
           <span>סימולציה בלבד</span>
         </div>`,
       footerTemplate: `
-        <div style="width:100%;font-size:9px;color:#8fa0b8;padding:0 18mm;display:flex;justify-content:space-between;font-family:Rubik,sans-serif;direction:rtl;background:transparent;">
+        <div style="width:100%;height:100%;font-size:9px;color:#8fa0b8;padding:0 18mm 8px;display:flex;justify-content:space-between;align-items:flex-start;font-family:Rubik,sans-serif;direction:rtl;background:#03050c;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
           <span>השבחת העסקה · לא מסחר אמיתי</span>
-          <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
+          <span dir="ltr" style="unicode-bidi:isolate;direction:ltr;"><span class="pageNumber"></span> / <span class="totalPages"></span></span>
         </div>`,
       margin: { top: "22mm", bottom: "22mm", left: "18mm", right: "18mm" },
     });
@@ -566,7 +654,17 @@ async function main() {
     await browser.close();
   }
 
-  console.log(`Wrote ${outFile}`);
+  const { copyFile } = await import("node:fs/promises");
+  await copyFile(outFileFinal, outFileLegacy);
+
+  console.log(
+    JSON.stringify({
+      final: outFileFinal,
+      legacy: outFileLegacy,
+      chapters: chapters.length,
+      glossary: glossary.length,
+    }),
+  );
 }
 
 main().catch((error) => {

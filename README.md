@@ -40,4 +40,5 @@ npm run pdf
 | `/simulator` | Strategy simulator placeholder |
 | `/labs/leverage` · `/labs/risk` | Lab stubs |
 | `/tests` | Knowledge tests hub (legacy surface; book has no MCQs) |
-| `/downloads/zigzag-academy-textbook.pdf` | Same-source A4 RTL PDF |
+| `/downloads/zigzag-lookback-final.pdf` | Final same-source A4 RTL LOOKBACK PDF |
+| `/downloads/zigzag-academy-textbook.pdf` | Legacy alias (same bytes as final) |

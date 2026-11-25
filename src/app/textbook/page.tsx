@@ -8,7 +8,7 @@ import { PdfDownloadCta } from "@/components/content/pdf-download-cta";
 import { EduDisclaimer } from "@/components/content/edu-disclaimer";
 import { EducationalScene } from "@/components/scene/educational-scene";
 import { TextbookCoverClient } from "@/components/content/textbook-cover-client";
-import { AuthorCredit } from "@/components/content/author-credit";
+
 
 export const metadata: Metadata = {
   title: `${brand.bookTitleHe} — ספר דיגיטלי`,
@@ -58,9 +58,14 @@ export default function TextbookPage() {
             {brand.bookTitleHe}
           </p>
           <p className="mt-3 text-sm font-medium tracking-[0.06em] text-[var(--zz-gold)]">
-            {brand.methodHe} · {brand.narrativeConceptHe}
+            {brand.methodHe}
           </p>
-          <AuthorCredit className="mt-6" size="cover" />
+          <p className="mt-6 text-lg font-medium tracking-[0.04em] text-[var(--zz-gold)] sm:text-xl">
+            {brand.authorBylineHe}
+          </p>
+          <p className="mt-1.5 text-sm font-normal tracking-[0.02em] text-[var(--zz-cyan)]/85">
+            {brand.authorCreditHe}
+          </p>
           <p className="mt-8 max-w-xl text-lg font-normal leading-9 text-[var(--zz-muted)] sm:text-xl">
             {brand.taglineHe}
           </p>

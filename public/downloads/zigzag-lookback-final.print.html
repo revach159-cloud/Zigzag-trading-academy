@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <title>LOOKBACK – המבט לאחור — ZIGZAG TRADING ACADEMY</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" />
+  <style>
+    /* Self-hosted Rubik (Hebrew + Latin) — embedded into PDF; no CDN race */
+    
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 300;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-hebrew-300.woff2") format("woff2");
+      unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+    }
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 300;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-latin-300.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-hebrew-400.woff2") format("woff2");
+      unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+    }
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-latin-400.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-hebrew-500.woff2") format("woff2");
+      unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+    }
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-latin-500.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 600;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-hebrew-600.woff2") format("woff2");
+      unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+    }
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 600;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-latin-600.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 700;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-hebrew-700.woff2") format("woff2");
+      unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+    }
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 700;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-latin-700.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 800;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-hebrew-800.woff2") format("woff2");
+      unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+    }
+    @font-face {
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 800;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/rubik/rubik-latin-800.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/plex-mono/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("file:///agent/repos/Zigzag-trading-academy/public/fonts/plex-mono/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+    }
+    :root {
+      --void: #03050c;
+      --ink: #e8eef8;
+      --muted: #8fa0b8;
+      --line: rgba(125, 211, 252, 0.22);
+      --cyan: #2ee6ff;
+      --gold: #c9a84c;
+      --panel: #101a2e;
+      --navy: #0b1528;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Rubik", sans-serif;
+      font-weight: 400;
+      font-size: 12.5pt;
+      line-height: 1.95;
+      background: var(--void);
+      -webkit-font-smoothing: antialiased;
+    }
+    p { margin: 0 0 0.95em; }
+    ul, ol { margin: 0 0 1.1em; padding-inline-start: 1.2em; line-height: 1.95; }
+    li { margin-bottom: 0.45em; }
+    .ltr { unicode-bidi: isolate; direction: ltr; }
+    h1, h2, h3, h4 {
+      font-family: "Rubik", sans-serif;
+      page-break-after: avoid;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    h2 { font-size: 22pt; line-height: 1.3; margin: 0 0 0.35em; }
+    h3 { font-size: 14.5pt; font-weight: 600; margin: 1.4em 0 0.55em; line-height: 1.4; }
+    h4 { font-size: 12.5pt; font-weight: 600; margin: 0.9em 0 0.4em; }
+    a { color: var(--cyan); text-decoration: none; }
+    .cover {
+      min-height: 92vh;
+      padding: 56px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+      background:
+        radial-gradient(ellipse at 18% 15%, rgba(46,230,255,0.16), transparent 42%),
+        radial-gradient(ellipse at 85% 25%, rgba(201,168,76,0.1), transparent 40%),
+        linear-gradient(160deg, #03050c 0%, #0a1224 48%, #070b16 100%);
+    }
+    .cover .brand {
+      font-family: "Rubik", sans-serif;
+      font-weight: 800;
+      font-size: 42pt;
+      letter-spacing: 0.12em;
+      margin: 0;
+      color: var(--ink);
+    }
+    .cover .book {
+      font-family: "Rubik", sans-serif;
+      font-weight: 700;
+      color: var(--cyan);
+      font-size: 20pt;
+      margin-top: 14px;
+      line-height: 1.35;
+    }
+    .cover .method {
+      font-weight: 500;
+      color: var(--gold);
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+      font-size: 12pt;
+    }
+    .cover .author-name {
+      margin-top: 28px;
+      font-family: "Rubik", sans-serif;
+      font-weight: 500;
+      font-size: 14pt;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .cover .author-credit {
+      margin-top: 4px;
+      font-family: "Rubik", sans-serif;
+      font-weight: 400;
+      font-size: 11pt;
+      color: rgba(46, 230, 255, 0.88);
+    }
+    .cover .tag {
+      margin-top: 28px;
+      max-width: 32em;
+      color: var(--muted);
+      font-size: 13pt;
+      font-weight: 400;
+      line-height: 1.9;
+    }
+    .disclaimer {
+      margin-top: 40px;
+      padding: 18px 16px;
+      border-right: 2px solid var(--gold);
+      background: rgba(16,26,46,0.55);
+      font-size: 10.5pt;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+    .toc {
+      page-break-after: always;
+      padding: 36px 4px;
+      background: var(--void);
+    }
+    .toc h2 { color: var(--ink); font-weight: 700; }
+    .toc ol { line-height: 2.2; color: var(--muted); font-weight: 400; font-size: 12pt; }
+    .chapter { page-break-before: always; }
+    .chapter-open {
+      padding: 28px 0 24px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(46,230,255,0.1), transparent 48%);
+    }
+    .chapter-open .lede {
+      margin-top: 14px;
+      max-width: 34em;
+      font-size: 12.5pt;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+    .eyebrow {
+      color: var(--cyan);
+      letter-spacing: 0.14em;
+      font-size: 10.5pt;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .en { color: var(--muted); font-size: 11pt; font-weight: 500; margin-top: 6px; }
+    blockquote.story {
+      margin: 0 0 22px;
+      padding: 4px 0 4px 0;
+      border: none;
+      border-right: 2px solid var(--cyan);
+      padding-right: 16px;
+      background: transparent;
+      font-family: "Rubik", sans-serif;
+      font-weight: 400;
+      font-size: 13pt;
+      line-height: 2.05;
+      color: var(--ink);
+    }
+    .principle {
+      margin: 18px 0 28px;
+      padding-block: 14px;
+      border-block: 1px solid rgba(46,230,255,0.28);
+      color: var(--cyan);
+      font-family: "Rubik", sans-serif;
+      font-weight: 500;
+      font-size: 12.5pt;
+      line-height: 1.85;
+    }
+    .insight {
+      margin: 28px 0;
+      padding: 18px 18px;
+      border-right: 2px solid var(--gold);
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(16,26,46,0.35));
+      page-break-inside: avoid;
+      font-family: "Rubik", sans-serif;
+      font-weight: 700;
+      font-size: 13pt;
+      line-height: 1.75;
+    }
+    .formula {
+      margin: 20px 0;
+      padding: 14px 14px;
+      border-block: 1px solid var(--line);
+      background: rgba(16,26,46,0.45);
+      page-break-inside: avoid;
+    }
+    .formula-row { display: flex; align-items: flex-start; gap: 12px; }
+    .katex-host { flex: 1; text-align: center; overflow-x: auto; color: #e8eef8; }
+    .katex { color: #e8eef8 !important; }
+    .formula-num { font-family: "IBM Plex Mono", monospace; color: var(--gold); }
+    figcaption { text-align: center; color: var(--muted); font-size: 11pt; margin-top: 8px; line-height: 1.55; }
+    .table-wrap { margin: 20px 0; page-break-inside: avoid; }
+    table { width: 100%; border-collapse: collapse; font-size: 11pt; table-layout: fixed; word-wrap: break-word; line-height: 1.55; }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px 10px; vertical-align: top; text-align: right; }
+    th { color: var(--cyan); font-weight: 600; }
+    caption { caption-side: top; text-align: right; color: var(--muted); margin-bottom: 8px; font-size: 11pt; }
+    .callout {
+      margin: 18px 0;
+      padding: 12px 0;
+      padding-right: 14px;
+      border: none;
+      border-right: 2px solid var(--line);
+      background: transparent;
+      page-break-inside: avoid;
+      font-size: 12pt;
+      line-height: 1.85;
+    }
+    .callout.warning { border-right-color: #f07178; }
+    .callout.definition, .callout.insight { border-right-color: var(--cyan); }
+    .callout.unresolved, .callout.awaiting { border-right-color: var(--gold); }
+    .example, .gloss {
+      margin: 18px 0;
+      padding: 14px 0;
+      padding-right: 14px;
+      border: none;
+      border-right: 1px solid var(--line);
+      page-break-inside: avoid;
+    }
+    code {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.92em;
+      background: rgba(46,230,255,0.08);
+      color: var(--cyan);
+      padding: 0 3px;
+    }
+    .visual-cap { color: var(--muted); font-size: 11pt; line-height: 1.6; }
+    .diagram {
+      margin: 18px 0 22px;
+      padding: 16px 14px;
+      border-block: 1px solid var(--line);
+      background: rgba(16,26,46,0.4);
+      page-break-inside: avoid;
+    }
+    .diagram svg { display: block; margin: 0 auto; max-width: 100%; }
+    .diagram-cap {
+      margin: 10px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11pt;
+    }
+    html { background: var(--void); }
+    @page {
+      size: A4;
+      margin: 22mm 18mm 22mm 18mm;
+      background: #03050c;
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <p class="eyebrow">Digital narrative book · Simulation only · Final edition</p>
+    <h1 class="brand">ZIGZAG</h1>
+    <p class="book">LOOKBACK – המבט לאחור</p>
+    <p class="method">השבחת העסקה</p>
+    <p class="author-name">מאת אביאל רווח</p>
+    <p class="author-credit">יוצר שיטת ZIGZAG · LOOKBACK</p>
+    <p class="tag">אל תרדוף אחרי השוק. למד לעבוד עם התנועה שלו.</p>
+    <p dir="ltr" class="en">Stop chasing the market. Learn how to work with its movement.</p>
+    <p>13 תחנות מסע נרטיבי — אותו מקור כמו בקורא הדיגיטלי · מסע המסלולים.</p>
+    <div class="disclaimer">
+      <strong>הצהרה חינוכית.</strong>
+      תוכן זה ללימוד וסימולציה בלבד (Bybit Linear USDT Perp, Cross, One-Way).
+      אין ייעוץ השקעות, מסחר אמיתי או הבטחות תשואה.
+      יש להבחין בין margin, notional, quantity, avg, PnL, collateral ו־liquidation.
+      דפוס $320 איורי בלבד; תקרת מרג'ין מאושרת $250 · Reject.
+    </div>
+  </section>
+
+  <nav class="toc" id="toc">
+    <h2>תוכן עניינים</h2>
+    <ol><li><a href="#ch-1">תחנה 01 · השער — פתיחת המסע</a></li>
+<li><a href="#ch-2">תחנה 02 · המבט — גילוי המבט לאחור</a></li>
+<li><a href="#ch-3">תחנה 03 · השבחה — השבחת העסקה</a></li>
+<li><a href="#ch-4">תחנה 04 · הרמזור — רמזור הניהול</a></li>
+<li><a href="#ch-5">תחנה 05 · המימוש — מימוש השבעים וחמישה</a></li>
+<li><a href="#ch-6">תחנה 06 · האיזון — חזרה לאיזון ×1</a></li>
+<li><a href="#ch-7">תחנה 07 · הנפש — פסיכולוגיית המסע</a></li>
+<li><a href="#ch-8">תחנה 08 · התיק — תיק המסלולים</a></li>
+<li><a href="#ch-9">תחנה 09 · העצירה — לדעת מתי לעצור</a></li>
+<li><a href="#ch-10">תחנה 10 · האופק — מעבר למסחר</a></li>
+<li><a href="#ch-11">תחנה 11 · השפה — מילון פשוט</a></li>
+<li><a href="#ch-12">תחנה 12 · המדריך — מדריך מעשי</a></li>
+<li><a href="#ch-13">תחנה 13 · הגבול — הצהרה ברורה</a></li>
+<li><a href="#glossary">נספח · מילון מונחים מורחב</a></li></ol>
+  </nav>
+
+  <article class="chapter" id="ch-1">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 01 · השער</p>
+          <h2>פתיחת המסע</h2>
+          <p class="en" dir="ltr">Opening the Journey</p>
+          <p class="lede">איך נכנסים למסע המסלולים: מהו Lookback, מהי השבחת העסקה, ולמה זה ספר סיפור — לא מחברת נוסחאות.</p>
+        </header>
+        <figure class="diagram" aria-label="שער המסע">
+        <svg viewBox="0 0 200 110" width="160" height="88" dir="ltr">
+          <polygon points="100,12 168,52 142,98 58,98 32,52" fill="none" stroke="#2EE6FF" stroke-width="2"/>
+          <circle cx="100" cy="58" r="22" fill="rgba(201,168,76,0.45)" stroke="#C9A84C"/>
+        </svg>
+        <figcaption class="diagram-cap">שער המסע — כניסה לשפת הזיגזג</figcaption>
+      </figure>
+        <blockquote class="story">בלילה הראשון של המסע אין גרף פתוח ואין אות כניסה. יש רק שער: מסלול מוכן מראש, ואור כחלחל שמזכיר שהשוק זז בזיגזג — לא בקו ישר. מי שנכנס לכאן לא מחפש קיצור דרך לרווח. הוא מחפש שפה: איך לעבוד עם תנועה במקום לרדוף אחריה. מאחורי השער מחכות שלוש־עשרה תחנות — סיפור אחד ארוך, לא אוסף כרטיסים.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> ספר Lookback הוא מסע מסלולים: כל פרק הוא תחנה שמלמדת להכין דרך, לא לרדוף אופק.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להבין מהו Lookback ומהי השבחת העסקה כסיפור לימודי אחד.</li><li>להבחין בין ספר נרטיבי לבין מחברת נוסחאות או מבחן בית־ספר.</li><li>לקבל את גבול הסימולציה לפני כל מספר בדוגמאות.</li></ul>
+        <section>
+          <h3>סיפור הפתיחה</h3>
+          <p>ZIGZAG TRADING ACADEMY מזמינה אתכם למסע בעברית: LOOKBACK — המבט לאחור. השיטה נקראת השבחת העסקה. הרעיון המרכזי פשוט וקשה באותה מידה: אל תרדפו אחרי השוק. למדו לעבוד עם התנועה שלו.</p>
+<p>במסע הזה אין חידוני אמריקאי ואין 'ציון עובר'. יש סיפור, עיקרון, דימוי מהחיים, דוגמה מספרית אחרי האינטואיציה, והערה פסיכולוגית. המתמטיקה מגיעה אחרי שהסיפור כבר ברור.</p>
+<aside class="callout sim">
+          <strong>סימולציה בלבד</strong>
+          <p>אין הפקדות, אין מפתחות API, אין ניתוב פקודות אמיתי, ואין הבטחות תשואה. כל מספר הוא תרגיל לימודי על מודל Bybit Linear USDT Perp (Cross, One-Way).</p>
+        </aside>
+        </section>
+<section>
+          <h3>עיקרון המסע</h3>
+          <p>מסע המסלולים אומר: לפני שרצים קדימה — מכינים מסלול. לפני שמגיבים לרעש — מסתכלים לאחור על איך המחיר כבר זז. לפני שמתאהבים בעסקה — מחליטים איך משפרים, מנהלים, מממשים וחוזרים לאיזון.</p>
+<ul><li>Lookback — פילוסופיית המבט לאחור על תנועה.</li><li>השבחת העסקה — שיפור מדוד של פוזיציה, לא הימור רגשי.</li><li>רמזור — שפת ניהול ירוק / צהוב / אדום.</li><li>75% — מימוש כמותי חוזר.</li><li>חזרה ל־×1 — שיבה לאיזון, לא ניצחון מוחלט.</li></ul>
+<p class="visual-cap"><em>איור: מפת המסע: שלוש־עשרה תחנות ממבט לאחור ועד הצהרה ברורה.</em></p>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>דמיינו נהג שמתכונן לנסיעה הררית. הוא לא בוחר בכביש רק כי 'נראה מהיר'. הוא בודק סיבובים, נקודות עצירה ואורות אזהרה. כך גם כאן: המסלול חשוב יותר מהרדיפה אחרי הפסגה הבאה.</p>
+        </section>
+<section>
+          <h3>איך לקרוא את הספר</h3>
+          <p>עברו תחנה־תחנה בפעם הראשונה. מונחי אנגלית כמו <code dir="ltr" class="ltr">margin</code>, <code dir="ltr" class="ltr">notional</code> ו־<code dir="ltr" class="ltr">PnL</code> מופיעים בתוך העברית במכוון — כדי ללמוד את שפת התחום בלי לאבד את זרימת ה־RTL.</p>
+<figure class="table-wrap">
+          <table>
+            <caption>מפת תחנות המסע</caption>
+            <thead><tr><th>בלוק</th><th>תחנות</th><th>מיקוד</th></tr></thead>
+            <tbody><tr><td>פתיחה וגילוי</td><td>1–2</td><td>שער המסע ומבט Lookback</td></tr><tr><td>מכניקה נרטיבית</td><td>3–6</td><td>השבחה, רמזור, 75%, איזון</td></tr><tr><td>אדם ותיק</td><td>7–10</td><td>פסיכולוגיה, תיק, עצירה, פילוסופיה</td></tr><tr><td>ייחוס</td><td>11–13</td><td>מילון, מדריך מעשי, הצהרה</td></tr></tbody>
+          </table>
+        </figure>
+<aside class="callout note">
+          <strong>מתודולוגיה מאושרת</strong>
+          <p>כללי המנוע (סולם 10% מ־P₀, תקרת margin $250, מעבר ×10 תקציבי, מימוש 75% בכמות) מאושרים ללימוד. מינוף מכשיר מרבי נשאר unresolved בלי נתוני Bybit מאומתים.</p>
+        </aside>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>כוונת מסלול לפני מספרים</h4>
+          <p>לומד פותח את הספר ורוצה 'לדלג ישר לנוסחאות'.</p>
+          <ol><li>קורא את סיפור הפתיחה בלי לדלג.</li><li>רושם משפט אחד: מה אני מנסה להכין — לא מה אני מנסה לרדוף.</li><li>רק אז עובר לפרק הבא.</li></ol>
+          <p><strong>תוצאה:</strong> נוצרת כוונת מסלול. בלי זה כל טבלה הופכת לחידה במקום לכלל משמעת.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> במשפט אחד: מה ההבדל אצלכם בין 'להכין מסלול' לבין 'לרדוף אחרי השוק'?</li><li><strong>2.</strong> כתבו מה אסור לעשות באקדמיה (הפקדה, API, הבטחת תשואה) ולמה זה חלק מהשער ולא נספח.</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> השער אינו הבטחה. הוא הזמנה למשמעת — ולמבט לאחור על התנועה שכבר קרתה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Lookback הוא מסע מסלולים נרטיבי — לא מבחן בית־ספר.</li><li>השער מחייב סימולציה בלבד לפני כל מספר.</li></ul>
+      </article>
+<article class="chapter" id="ch-2">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 02 · המבט</p>
+          <h2>גילוי המבט לאחור</h2>
+          <p class="en" dir="ltr">Lookback Discovery</p>
+          <p class="lede">ללמוד לראות תנועה בזיגזג במקום לרדוף אחרי אופק. המבט לאחור הוא משמעת, לא אות כניסה.</p>
+        </header>
+        <figure class="diagram" aria-label="תנועת שוק בזיגזג">
+        <svg viewBox="0 0 420 110" width="360" height="94" dir="ltr">
+          <line x1="24" y1="55" x2="396" y2="55" stroke="rgba(143,160,184,0.35)" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <polyline fill="none" stroke="#2EE6FF" stroke-width="3.2" points="24,88 90,22 150,72 210,18 270,68 330,28 396,62"/>
+          <circle cx="90" cy="22" r="5" fill="#C9A84C"/><circle cx="210" cy="18" r="5" fill="#C9A84C"/>
+          <circle cx="150" cy="72" r="4.5" fill="#2EE6FF"/><circle cx="270" cy="68" r="4.5" fill="#2EE6FF"/>
+        </svg>
+        <figcaption class="diagram-cap">תנועה בזיגזג — לא קו ישר של רדיפה</figcaption>
+      </figure>
+        <blockquote class="story">אחרי שעברתם בשער, הגשר נפתח. מלמטה נראה כאוס של נרות; מלמעלה — מסלולים. מי שלומד Lookback מגלה שהתנועה כבר סיפרה סיפור: עליות, ירידות, מגע בנקודות. המבט לאחור אינו נוסטלגיה. הוא כלי עבודה שמחליף רדיפה בקריאה.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> לעבוד עם תנועת המחיר בזיגזג — לא לרדוף אחרי הנר הבא.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להסביר מהו Lookback כמשמעת קריאה של תנועה.</li><li>להבחין בין מבנה swing לימודי לבין אות כניסה אוטומטי.</li><li>לחבר את המבט לאחור להשבחת העסקה בשלבים הבאים.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>רוב האנשים מסתכלים על השוק כמו על אופק שבורח. Lookback הופך את הכיוון: קודם רואים איך המחיר כבר זז, ורק אחר כך מחליטים איך לעבוד עם מה שקרה — לא איך לרדוף אחרי מה שעוד לא קרה.</p>
+<p class="visual-cap"><em>איור: תנועת זיגזג כשפת לימוד: swing high / swing low — לא אות כניסה אוטומטי.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <p>במתודולוגיית ZigZag לומדים סולם adverse של 10% ממחיר ייחוס מקורי (P₀). ההפעלה היא ב־Touch. החישוב של ספי הסולם מדויק (Decimal) — בלי עיגול שמסתיר את האמת הלימודית.</p>
+<aside class="callout definition">
+          <strong>מבט לאחור ≠ חיזוי</strong>
+          <p>Lookback אינו מנבא את הנר הבא. הוא מלמד לקרוא מסלול שכבר נסלל, כדי לנהל פוזיציה במשמעת.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>מטייל ביער לא רץ אחרי כל צליל. הוא מסתכל על השביל שכבר עבר, על הסימונים, על השיפוע. כך גם כאן: המבט לאחור מארגן את הרעש למסלול שאפשר לנהל.</p>
+        </section>
+<section>
+          <h3>דוגמה מסחרית־לימודית</h3>
+          <p>נניח מחיר ייחוס מקורי P₀ = 100. סולם 10% adverse ארוך־בלבד בונה מגע ב־90, 80, 70… כל מגע הוא הזדמנות לחשוב על חיזוק אופציונלי — לא חובה, ולא הבטחה.</p>
+<figure class="table-wrap">
+          <table>
+            <caption>תצוגת סולם לימודית מ־P₀=100 (Touch)</caption>
+            <thead><tr><th>רמה</th><th>מחיר מגע</th><th>משמעות Lookback</th></tr></thead>
+            <tbody><tr><td>L1</td><td>90</td><td>מבט לאחור על ירידה של 10% מ־P₀</td></tr><tr><td>L2</td><td>80</td><td>מסלול ממשיך; חיזוק עדיין אופציונלי</td></tr><tr><td>L3</td><td>70</td><td>הרעש גדל — המשמעת נבחנת</td></tr></tbody>
+          </table>
+        </figure>
+<aside class="callout warning">
+          <strong>אין סיכון אפס</strong>
+          <p>גם כשהסולם 'ברור' על הנייר, עמלות, סליפג', מימון ופערי מחיר קיימים. Cross margin אינו ביטוח מפני liquidation.</p>
+        </aside>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הפיתוי הגדול הוא להחליף מבט לאחור בציפייה קדימה: 'מה יקרה עכשיו?'. Lookback מחזיר את השאלה ל: 'מה כבר קרה, ומה המסלול שלי בתוכו?'</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>קריאת מסלול לפני תגובה</h4>
+          <p>מחיר ירד מ־100 ל־90 בסימולציה. הלומד רוצה מיד 'לתקן'.</p>
+          <ol><li>מסמן: זה Touch על L1 ביחס ל־P₀.</li><li>רושם: חיזוק אופציונלי — לא חובה.</li><li>בודק תקרת מרג'ין לפני כל פעולה.</li></ol>
+          <p><strong>תוצאה:</strong> התגובה הופכת להחלטת מסלול, לא לרפלקס רדיפה.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> תארו swing אחד שראיתם (גם בדוגמה) במילים של מסלול — לא של ניחוש.</li><li><strong>2.</strong> מתי אצלכם 'להביט לאחור' מרגיש כמו חולשה — ואיך הספר הופך אותו למשמעת?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> מי שמביט רק קדימה רואה רעש. מי שמביט לאחור רואה מסלול.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Lookback קורא תנועה שכבר קרתה כדי לבנות מסלול ניהול.</li><li>סולם 10% מ־P₀ הוא שפת מגע — לא הבטחת תוצאה.</li></ul>
+      </article>
+<article class="chapter" id="ch-3">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 03 · השבחה</p>
+          <h2>השבחת העסקה</h2>
+          <p class="en" dir="ltr">Trade Improvement</p>
+          <p class="lede">איך משפרים פוזיציה דרך חיזוקים מדודים בסולם 10%, תקרת $250, והבחנה בין דוגמת XRP ל־$320 לבין הכלל המאושר.</p>
+        </header>
+        <figure class="diagram" aria-label="השבחת פוזיציה">
+        <svg viewBox="0 0 320 120" width="280" height="105" dir="ltr">
+          <rect x="40" y="78" width="240" height="22" rx="3" fill="rgba(14,111,134,0.85)"/>
+          <rect x="70" y="48" width="180" height="22" rx="3" fill="rgba(46,230,255,0.55)"/>
+          <rect x="105" y="18" width="110" height="22" rx="3" fill="rgba(201,168,76,0.7)"/>
+          <line x1="160" y1="100" x2="160" y2="18" stroke="rgba(46,230,255,0.35)" stroke-width="1.5"/>
+        </svg>
+        <figcaption class="diagram-cap">פיתוח פוזיציה בשכבות — חיזוק מדורג, לא קפיצה עיוורת</figcaption>
+      </figure>
+        <blockquote class="story">מהגשר יורדים אל הסדנה. נפח עובד על חפץ שבור: לא זורק אותו, מוסיף שכבה, בודק משקל, עוצר כשהחומר לא מחזיק. כך השבחת העסקה אחרי Lookback — שיפור מדוד של פוזיציה בתוך תקרה, לא הימור גדול יותר מתוך פחד.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> משפרים פוזיציה בחיזוקים אופציונליים על סולם adverse, לפי מרג'ין מצטבר ותקרת $250 Reject — לא לפי תחושת בטן.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להסביר חיזוק אופציונלי בסולם 10% מ־P₀ ב־Touch.</li><li>להבדיל בין דוגמת דפוס $320 לבין תקרת $250 המאושרת.</li><li>להבחין בין margin, quantity, avg entry ו־PnL.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>השבחת העסקה היא לב השיטה. כשהמחיר נוגע ברמת סולם, אפשר — לא חובה — להוסיף מרג'ין וכמות. רמות שדולגו נשארות מתועדות. הגודל נגזר ממרג'ין מצטבר, עיגול כמות Floor, ומחיר ביצוע מעוגל לרעת התרגיל (conservative/adverse).</p>
+<p class="visual-cap"><em>איור: שכבות חיזוק כערימת מסלול — כל שכבה היא החלטה, לא אוטומט.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <ul><li>Long בלבד; Short כבוי בלימוד.</li><li>סולם 10% ממחיר ייחוס מקורי; הפעלה ב־Touch.</li><li>הקצאה על בסיס <code dir="ltr" class="ltr">margin</code>; תקרה לפוזיציה $250; מדיניות Reject.</li><li>חישוב ספים מדויק; כמות ב־Floor.</li></ul>
+<aside class="callout definition">
+          <strong>מה משתפר?</strong>
+          <p>ממוצע הכניסה (<code dir="ltr" class="ltr">average entry</code>) יכול לזוז לטובת ניהול הפוזיציה כשמוסיפים כמות במחירים נמוכים יותר — אך זה לא מבטל סיכון, עמלות או אפשרות liquidation ב־Cross.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>שיפוץ דירה בתקציב קשיח: אפשר להוסיף שכבת צבע בכל חדר, אבל כשהתקציב נגמר — עוצרים. מי שממשיך 'רק עוד קצת' בלי תקרה לא משפץ. הוא שובר את המסגרת.</p>
+        </section>
+<section>
+          <h3>דוגמה מספרית — והפיוס השקוף</h3>
+          <p>דפוס חיזוק איורי נפוץ בסיפור השיטה: $5 → $5 → $10 → $20 → $40 → $80 → $160. סכום הדפוס: $320. זהו דפוס הכפלה לימודי — לא כלל ביצוע תחת התקרה המאושרת.</p>
+<aside class="callout warning">
+          <strong>פיוס $250 מול $320</strong>
+          <p>המתודולוגיה המאושרת קובעת תקרת מרג'ין $250 לפוזיציה עם Reject. דוגמת $320 ממחישה את צורת ההכפלה בלבד. בסימולציה תואמת־כללים לא משלבים את שני המספרים בשקט: עוצרים או נדחים כשההוספה הבאה שוברת את $250.</p>
+        </aside>
+<figure class="table-wrap">
+          <table>
+            <caption>השוואה שקופה: דפוס איורי מול כלל מאושר</caption>
+            <thead><tr><th>פריט</th><th>ערך</th><th>מעמד</th></tr></thead>
+            <tbody><tr><td>דפוס הכפלה איורי</td><td>$5…$160 = $320</td><td>המחשת צורה בלבד</td></tr><tr><td>תקרת מרג'ין לפוזיציה</td><td>$250</td><td>כלל מאושר · Reject</td></tr><tr><td>מדיניות כשההוספה חורגת</td><td>דחייה</td><td>לא 'לכופף' את התקרה</td></tr></tbody>
+          </table>
+        </figure>
+<p>מקרה XRP בסיפור השיטה הוא תרגיל חינוכי. יש לחשב מחדש מול גודל חוזה/כמות ותקרת $250 — לא להעתיק סכום איורי כאילו הוא תוצאת מסחר.</p>
+<p class="visual-cap"><em>איור: סולם adverse עם חיזוקים אופציונליים ותיעוד רמות שדולגו.</em></p>
+<figure class="formula">
+    <div class="formula-row">
+      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>p</mi><mo>ˉ</mo></mover><mo>=</mo><mfrac><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>q</mi><mi>i</mi></msub><msub><mi>p</mi><mi>i</mi></msub></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>q</mi><mi>i</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">\bar{p} = \frac{\sum_i q_i p_i}{\sum_i q_i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7622em;vertical-align:-0.1944em;"></span><span class="mord katex-accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">p</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord">ˉ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.4254em;vertical-align:-0.9857em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4397em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9857em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+      <span class="formula-num" dir="ltr">(1)</span>
+    </div>
+    <figcaption>נוסחה 1. ממוצע כניסה משוקלל כמות אחרי כמה מילויים — אחרי שהסיפור ברור, לא במקומו.</figcaption>
+  </figure>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הפיתוי להמשיך את דפוס ההכפלה גם אחרי התקרה הוא רגשי: 'הסדרה חייבת להשלים'. Lookback עונה: המסלול כולל גם דחייה. השבחה בלי גבול אינה השבחה.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>חיזוק שנדחה בתקרה</h4>
+          <p>בסימולציה הוקצו כבר $200 מרג'ין לפוזיציה. מתוכנן חיזוק של $80.</p>
+          <ol><li>בודקים: 200 + 80 = 280 &gt; 250.</li><li>מדיניות Reject דוחה את ההוספה.</li><li>מתעדים את ניסיון החיזוק ואת הדחייה — בלי 'לעגל' את התקרה.</li></ol>
+          <p><strong>תוצאה:</strong> הפוזיציה נשארת תחת $250. המשמעת שמרה על המסלול.</p>
+        </div>
+<div class="example">
+          <h4>דפוס $320 כאיור בלבד</h4>
+          <p>לומד רואה את סדרת $5…$160 ורוצה להריץ אותה במלואה.</p>
+          <ol><li>מחשבים סכום: 320.</li><li>משווים לתקרה המאושרת: 250.</li><li>מסמנים ביומן: הדפוס איורי; הביצוע נעצר לפי Reject.</li></ol>
+          <p><strong>תוצאה:</strong> אין ערבוב שקט בין $320 ל־$250. יש שקיפות לימודית.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> הסבירו במילים שלכם למה $320 ו־$250 מופיעים שניהם בספר — ומה אסור לעשות איתם.</li><li><strong>2.</strong> מתי 'עוד חיזוק אחד' אצלכם הוא השבחה — ומתי הוא רדיפה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> השבחה אמיתית יודעת גם להידחות. תקרה שאי אפשר לעבור היא חלק מהשיטה — לא תקלה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>חיזוקים אופציונליים על סולם Touch, תחת תקרת $250 Reject.</li><li>דפוס $320 / XRP הוא איור חינוכי — לא שילוב שקט עם התקרה.</li></ul>
+      </article>
+<article class="chapter" id="ch-4">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 04 · הרמזור</p>
+          <h2>רמזור הניהול</h2>
+          <p class="en" dir="ltr">Traffic Light</p>
+          <p class="lede">ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי לניהול, לא שינוי במכניקת פירוק.</p>
+        </header>
+        <figure class="diagram" aria-label="רמזור ניהול">
+        <svg viewBox="0 0 200 140" width="140" height="98" dir="ltr">
+          <rect x="70" y="8" width="60" height="124" rx="8" fill="#0B1528" stroke="rgba(46,230,255,0.25)"/>
+          <circle cx="100" cy="36" r="14" fill="#3DDC97"/><circle cx="100" cy="70" r="14" fill="#F5C542"/><circle cx="100" cy="104" r="14" fill="#F07178"/>
+        </svg>
+        <figcaption class="diagram-cap">רמזור ניהול — ירוק ×1 · צהוב ×10 · אדום מרבי</figcaption>
+      </figure>
+        <blockquote class="story">מתוך הסדנה יוצאים לצומת ערפל. מעל הצומת תלוי רמזור: הירוק לא אומר 'אין סכנה', הצהוב לא אומר 'הפסד מובטח', האדום לא אומר 'סוף'. שלושתם שפת ניהול תודעתי — כדי שלא תנהגו באותה מהירות בכל מזג אוויר של ההשבחה.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> רמזור ZigZag: ירוק ×1, צהוב ×10, אדום מינוף מכשיר מרבי — סיווג פסיכולוגי; אינו משנה את מכניקת ה־liquidation.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>למפות ירוק / צהוב / אדום לשלבי ×1, ×10 ומינוף מכשיר מרבי.</li><li>להסביר שמעבר ×1→×10 הוא תקציבי ושומר כמות.</li><li>להפריד בין סיווג פסיכולוגי לבין מחיר פירוק בבורסה.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>הרמזור הוא כלי Lookback לניהול עצמי. הוא עוזר לסווג איפה אתם במסלול — לא כדי להבטיח תוצאה, אלא כדי למנוע נהיגה עיוורת.</p>
+<p class="visual-cap"><em>איור: רמזור ניהול: ירוק ×1 · צהוב ×10 · אדום max leverage (מאומת בלבד).</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>שפת הרמזור (לימודית)</caption>
+            <thead><tr><th>צבע</th><th>שלב</th><th>קריאה פסיכולוגית</th><th>הערת סיכון</th></tr></thead>
+            <tbody><tr><td>ירוק</td><td>×1</td><td>סביבת ניהול רגועה יותר (~10% adverse בסולם)</td><td>עדיין יש סיכון, עמלות ופערים</td></tr><tr><td>צהוב</td><td>×10</td><td>דריכות גבוהה (~הפסד מול מרג'ין מוקצה רלוונטי)</td><td>חשיפת notional גדלה; Cross לא מבטל פירוק</td></tr><tr><td>אדום</td><td>מינוף מכשיר מרבי</td><td>אזור קיצון (~200–300% כפוף לבורסה)</td><td>רק מנתוני instrument מאומתים; אחרת unresolved</td></tr></tbody>
+          </table>
+        </figure>
+<p>מעבר ×1→×10 באקדמיה הוא לפי תקרת תקציב (budget-cap), לא טריגר של 'הפסדתי מספיק'. המעבר שומר על הכמות הקיימת. ב־×10 חיזוק נשקל כשהפסד נטו ≥ המרג'ין הרלוונטי שהוקצה.</p>
+<aside class="callout warning">
+          <strong>רמזור ≠ ביטוח</strong>
+          <p>שינוי מינוף לימודי או צבע רמזור אינו מבטיח משיכת הון ואינו מונע liquidation. יש להבחין בין מרג'ין מוקצה, notional, collateral פנוי ומחיר פירוק.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>רמזור בצומת לא מבטל תאונות. הוא משנה התנהגות: בירוק ממשיכים בזהירות, בצהוב נערכים, באדום לא מאיצים 'כי ממהרים'. אותה לוגיקה בעסקה.</p>
+        </section>
+<section>
+          <h3>דוגמה מסחרית־לימודית</h3>
+          <p>פוזיציה בשלב ירוק (×1) עם מרג'ין מצטבר מתקרב לתקרה. המעבר לצהוב (×10) נעשה כי התקציב מוצה — והכמות נשמרת. זה לא 'פרס', זו עליית דריכות.</p>
+<p class="visual-cap"><em>איור: מעבר תקציבי ×1→×10 שומר כמות; האדום רק מנתוני Bybit מאומתים.</em></p>
+<aside class="callout unresolved">
+          <strong>אדום ממתין לאימות</strong>
+          <p>מינוף מכשיר מרבי לא מומצא. בלי נתון Bybit מאומת לכל instrument — האדום מסומן unresolved.</p>
+        </aside>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>אנשים שומעים 'ירוק' ומרגישים ביטחון־יתר. Lookback מלמד: ירוק הוא רשות לנהל — לא רשות להירדם.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>סיווג צבע אחרי מעבר תקציבי</h4>
+          <p>פוזיציה עברה ל־×10 כי נדחתה הוספת מרג'ין נוספת תחת התקרה.</p>
+          <ol><li>מסמנים ביומן: צבע = צהוב.</li><li>מאשרים שהכמות נשמרה.</li><li>כותבים במפורש: liquidation נקבעת במודל הבורסה — לא לפי הצבע.</li></ol>
+          <p><strong>תוצאה:</strong> הסיווג משרת ניהול עצמי בלי לייצר אשליית ביטוח.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> תרגמו ירוק/צהוב/אדום למשפט התנהגות אחד כל אחד — בלי להבטיח תוצאה.</li><li><strong>2.</strong> למה חשוב שהרמזור לא ישנה את מכניקת הפירוק?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> צבע הרמזור משנה את אופן הניהול שלכם — לא את חוקי הבורסה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>רמזור = סיווג פסיכולוגי לשלבי ×1 / ×10 / max.</li><li>מעבר ×10 תקציבי ושומר כמות; אדום רק מנתונים מאומתים.</li></ul>
+      </article>
+<article class="chapter" id="ch-5">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 05 · המימוש</p>
+          <h2>מימוש השבעים וחמישה</h2>
+          <p class="en" dir="ltr">Realize 75%</p>
+          <p class="lede">סגירת 75% מהכמות הנותרת — שוב ושוב — כדי להפוך רווח לא ממומש למשמעת, לא לאשליה.</p>
+        </header>
+        <figure class="diagram" aria-label="מימוש 75%">
+        <svg viewBox="0 0 360 100" width="320" height="88" dir="ltr">
+          <rect x="20" y="28" width="240" height="44" rx="4" fill="rgba(46,230,255,0.45)"/>
+          <text x="140" y="56" text-anchor="middle" fill="#E8EEF8" font-family="Rubik,sans-serif" font-size="16" font-weight="600">75%</text>
+          <rect x="270" y="40" width="70" height="32" rx="4" fill="rgba(201,168,76,0.55)"/>
+          <text x="305" y="61" text-anchor="middle" fill="#E8EEF8" font-family="Rubik,sans-serif" font-size="13" font-weight="500">25%</text>
+        </svg>
+        <figcaption class="diagram-cap">מימוש = סגירת 75% מהכמות הנותרת · נשארים 25%</figcaption>
+      </figure>
+        <blockquote class="story">מעבר לרמזור עומדים מול שולחן ועליו ערימת אבנים זוהרות. מי שלוקח הכול בבת אחת נשבר מהמשקל. Lookback לומד לקחת שלושה רבעים — ולהשאיר רבע חי. אחר כך שוב. ושוב. עד שהערימה חוזרת לקנה מידה אנושי.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> מימוש = סגירת 75% מהכמות הפתוחה הנותרת, ידנית וחוזרת — לא 'משיכת רווח' בלי שינוי כמות.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להגדיר מימוש כסגירת 75% מהכמות הנותרת.</li><li>לחשב סדרת מימושים חוזרים על היתרה.</li><li>להפריד בין PnL לא ממומש לבין כמות שנסגרה.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>בשיטת ZigZag מימוש רווח אינו קסם חשבונאי. סוגרים 75% מהכמות הפתוחה; נשארים 25%. אפשר לחזור על הפעולה על הנותר. ההפעלה ידנית — כי המשמעת שייכת לאדם, לא לאוטומט עיוור.</p>
+<p class="visual-cap"><em>איור: 75% נסגרים · 25% נשארים — וחוזר חלילה על היתרה.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <figure class="formula">
+    <div class="formula-row">
+      <div class="katex-host" dir="ltr"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi></mrow></msub><mo>=</mo><mn>0.75</mn><mtext> </mtext><msub><mi>q</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">q_{\mathrm{close}} = 0.75 \, q_{\mathrm{open}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">close</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9305em;vertical-align:-0.2861em;"></span><span class="mord">0.75</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">open</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></div>
+      <span class="formula-num" dir="ltr">(2)</span>
+    </div>
+    <figcaption>נוסחה 2. כמות לסגירה בכל מימוש — אחרי שהסיפור ברור.</figcaption>
+  </figure>
+<p>עמלות בתרגול הבסיסי: 2 bps לסיבוב מלא (מודל פעם אחת בסגירה). סליפג': 1 bp לכל צד. מימון: 0 בתרגול הבסיסי; כשמופעל — לפני בדיקות סף. Threshold epsilon: 0.</p>
+<aside class="callout definition">
+          <strong>לא משיכת רווח בלי כמות</strong>
+          <p>מימוש כאן משנה <code dir="ltr" class="ltr">quantity</code>. הוא אינו 'להוציא רווח מהחשבון' בלי לצמצם חשיפה.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>קציר: לא עוקרים את כל השדה בבת אחת אם רוצים להשאיר זרעים. לוקחים את רוב היבול — ומשאירים חלק שימשיך לגדול תחת שליטה.</p>
+        </section>
+<section>
+          <h3>סדרת מימוש חוזרת</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>דוגמה: התחלה מ־100 יחידות (מספרים מעוגלים להמחשה)</caption>
+            <thead><tr><th>סבב</th><th>כמות לפני</th><th>נסגר 75%</th><th>נותר 25%</th></tr></thead>
+            <tbody><tr><td>1</td><td>100</td><td>75</td><td>25</td></tr><tr><td>2</td><td>25</td><td>18.75</td><td>6.25</td></tr><tr><td>3</td><td>6.25</td><td>4.6875</td><td>1.5625</td></tr></tbody>
+          </table>
+        </figure>
+<p>כל סבב מקרב את הפוזיציה לקנה מידה שקט יותר — ואל עבר חזרה לאיזון ×1 בפרק הבא. זה לא מבטיח רווח חיובי אחרי עמלות וסליפג'.</p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הקושי אינו מתמטי. הקושי הוא לשחרר 75% כשהסיפור 'עוד יכול לעלות'. Lookback מזכיר: התאהבות בעסקה מתחילה כשמסרבים לממש.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>שני סבבי מימוש</h4>
+          <p>כמות פתוחה 40. מפעילים מימוש פעמיים.</p>
+          <ol><li>סבב א: סוגרים 0.75×40 = 30; נותר 10.</li><li>סבב ב: סוגרים 0.75×10 = 7.5; נותר 2.5.</li><li>רושמים שעמלות/סליפג' בתרגיל הבסיסי ממודלים בנפרד על הסגירות.</li></ol>
+          <p><strong>תוצאה:</strong> החשיפה ירדה דרמטית בלי להעמיד פני 'סיכון אפס'.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> חשבו סבב רביעי אחרי היתרה 1.5625 — מה נסגר ומה נותר? <em>(רמז: 0.75 ו־0.25 מהיתרה.)</em></li><li><strong>2.</strong> איזו התנגדות רגשית עולה בכם מול שחרור 75%?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> רווח שלא מומש בכמות נשאר סיפור. מימוש 75% הופך סיפור למשמעת.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>מימוש = 75% מהכמות הנותרת, ידני וחוזר.</li><li>עמלות, סליפג' ופערים נשארים חלק מהמציאות הלימודית.</li></ul>
+      </article>
+<article class="chapter" id="ch-6">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 06 · האיזון</p>
+          <h2>חזרה לאיזון ×1</h2>
+          <p class="en" dir="ltr">Return to ×1 Balance</p>
+          <p class="lede">לחזור לכיוון ×1 אחרי סערה: לא ניצחון מוחלט, אלא חזרה למסלול מוכן ושקט יותר.</p>
+        </header>
+        <figure class="diagram" aria-label="חזרה לאיזון">
+        <svg viewBox="0 0 320 110" width="280" height="96" dir="ltr">
+          <path d="M40 78 A100 70 0 0 1 280 78" fill="none" stroke="#2EE6FF" stroke-width="3"/>
+          <circle cx="280" cy="78" r="7" fill="#C9A84C"/>
+          <rect x="148" y="68" width="24" height="24" rx="3" fill="rgba(46,230,255,0.35)" stroke="#2EE6FF"/>
+          <text x="160" y="85" text-anchor="middle" fill="#E8EEF8" font-family="IBM Plex Mono,monospace" font-size="11">×1</text>
+        </svg>
+        <figcaption class="diagram-cap">חזרה לאיזון ×1 — קנה מידה שקט אחרי המסע</figcaption>
+      </figure>
+        <blockquote class="story">אחרי המימושים חוזרים לשביל צר ליד מים שקטים. לא כי הסערה 'לא הייתה' — אלא כי המסלול יודע לחזור ל־×1: לקנה מידה שבו אפשר שוב לנשום, לראות, ולהחליט בלי רעש של יתר.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> מטרת רצף המימוש והניהול היא שיבה לכיוון איזון ×1 — לא ניצחון מוחלט על השוק.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לתאר חזרה ל־×1 כתהליך כמות וניהול — לא כקסם.</li><li>לחבר מימוש 75%, רמזור והשבחה למסלול שיבה.</li><li>להימנע משפת 'סיכון אפס אחרי איזון'.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>חזרה לאיזון אינה מחיקת העבר. היא צמצום חשיפה והחזרת הפוזיציה לקנה מידה ירוק יותר — שם Lookback שוב אפשרי בלי רעש יתר.</p>
+<p class="visual-cap"><em>איור: מסילת שיבה: מסערה לכיוון ×1 דרך מימושים מדודים.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <p>אחרי סבבי 75%, הכמות קטנה. הרמזור יכול לחזור להרגיש ירוק יותר מבחינת ניהול עצמי — אך המודל נשאר Cross, והסיכון לא מתאפס. avg entry, PnL ממומש/לא ממומש ו־collateral הם מושגים נפרדים שיש לקרוא בנפרד.</p>
+<aside class="callout insight">
+          <strong>איזון ≠ סיום הסיכון</strong>
+          <p>גם ב־×1 אפשר להפסיד, לשלם עמלות, ולפגוש פער מחיר. האיזון מחזיר יכולת ניהול — לא תעודת ביטוח.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>אחרי ריצה במעלה הר, חוזרים להליכה. לא כי ההר נעלם — אלא כי הקצב שוב אנושי. כך גם חזרה ל־×1.</p>
+        </section>
+<section>
+          <h3>מסלול שיבה לימודי</h3>
+          <ul><li>מזהים צבע רמזור נוכחי ביומן.</li><li>מפעילים מימוש 75% לפי תוכנית — לא לפי פחד או תאווה.</li><li>בודקים כמות, מרג'ין ו־notional אחרי כל סבב.</li><li>חוזרים לקרוא את השוק ב־Lookback כשהרעש יורד.</li></ul>
+<p class="visual-cap"><em>איור: גם אחרי שיבה: avg entry ו־PnL נשארים סיפורים נפרדים מהכמות.</em></p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>יש מי שמתבייש לחזור לאיזון כי זה 'לא נראה כמו ניצחון'. Lookback הופך את הבושה למשמעת: לחזור לשביל זה מקצועיות.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>יומן שיבה</h4>
+          <p>פוזיציה בצהוב עם כמות 16 אחרי סערה.</p>
+          <ol><li>מימוש: נסגר 12; נותר 4.</li><li>מימוש נוסף: נסגר 3; נותר 1.</li><li>מסמנים: כיוון איזון ×1 לניהול — סיכון עדיין קיים.</li></ol>
+          <p><strong>תוצאה:</strong> המסלול שב לקנה מידה שניתן לנהל בלי אשליית ניצחון.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> מה אצלכם נחשב 'ניצחון' — ומה הספר מציע במקום זה?</li><li><strong>2.</strong> כתבו משפט אחד ליומן אחרי שיבה ל־×1 שאין בו הבטחת תשואה.</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> איזון הוא יעד ניהולי. מי שמחפש ניצחון מוחלט נשאר בסערה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>חזרה ל־×1 היא יעד ניהולי אחרי מימוש ושקט.</li><li>איזון אינו סיכון אפס ואינו ניצחון על השוק.</li></ul>
+      </article>
+<article class="chapter" id="ch-7">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 07 · הנפש</p>
+          <h2>פסיכולוגיית המסע</h2>
+          <p class="en" dir="ltr">Journey Psychology</p>
+          <p class="lede">לא להתאהב בעסקה. לשפר, לנהל, לממש, לחזור לאיזון — בלי להפוך את הפוזיציה לזהות.</p>
+        </header>
+        
+        <blockquote class="story">בתחנת הנפש אין גרף על הקיר — רק מראה. מי שמביט רואה לא את המחיר, אלא את ההתקשרות: 'העסקה שלי', 'אני צודק'. Lookback שובר את ההתקשרות בלי להשפיל: משפרים, מנהלים, מממשים, חוזרים לאיזון — כמסלול, לא כזהות.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> אל תתאהבו בעסקה. הפוזיציה היא מסלול לניהול — לא זהות.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לזהות התקשרות רגשית לפוזיציה.</li><li>לחבר רמזור ומימוש לכלים אנטי־התקשרות.</li><li>להפריד בין ערך עצמי לבין תוצאת תרגיל סימולטיבי.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>הפסיכולוגיה במסע אינה מודול נפרד של 'FOMO כללי'. היא המשך ישיר של השיטה: אם אין משמעת רגשית, הרמזור הופך לקישוט וה־75% הופך למשאלה.</p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <ul><li>שפרו — בלי להעניש את עצמכם על מגע בסולם.</li><li>נהלו — לפי צבע רמזור, לא לפי כבוד.</li><li>ממשו — כדי לשחרר התקשרות לכמות.</li><li>חזרו לאיזון — כדי לשחרר התקשרות לדרמה.</li></ul>
+<aside class="callout insight">
+          <strong>משמעת במקום ניבוי רגשי</strong>
+          <p>השאלה אינה 'האם אני צודק?'. השאלה היא 'מה המסלול דורש עכשיו?'</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>שחקן שמתאהב במהלך אחד מפסיק לקרוא את המשחק. מאמן טוב מחזיר אותו למערכת. Lookback הוא המאמן הפנימי.</p>
+        </section>
+<section>
+          <h3>תרחיש לימודי</h3>
+          <p>פוזיציה בצהוב מציגה <code dir="ltr" class="ltr">PnL</code> לא ממומש שלילי. הדחף: 'אם אממש — הפסדתי את הצדק'. התשובה המתודית: מימוש 75% אינו הודאה בכישלון אישי; הוא צמצום חשיפה תחת מסלול.</p>
+<aside class="callout warning">
+          <strong>בלי הבטחות נפשיות</strong>
+          <p>השיטה אינה מבטיחה שקט נפשי מלא ואינה מבטיחה רווח. היא נותנת שפה למשמעת.</p>
+        </aside>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>כתבו ביומן לא רק מחיר — גם משפט התקשרות ששמעתם בראש. עצם הרישום מחזיר מרחק. המרחק הוא Lookback.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>פירוק התקשרות ביומן</h4>
+          <p>הלומד אומר: 'אני חייב להיות צודק בעסקה הזו'.</p>
+          <ol><li>מחליפים ל: 'המסלול דורש בדיקת רמזור'.</li><li>בודקים צבע וכלל מימוש.</li><li>מבצעים פעולה אחת קטנה לפי הכלל — או מתעדים דילוג מודע.</li></ol>
+          <p><strong>תוצאה:</strong> הזהות מתנתקת מהפוזיציה צעד אחד.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> איזה משפט התקשרות חוזר אצלכם מול פוזיציה?</li><li><strong>2.</strong> איך רמזור או מימוש 75% יכולים לקטוע את המשפט הזה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> כשהעסקה הופכת לסיפור עליכם — איבדתם את Lookback.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>הפסיכולוגיה כאן היא אנטי־התקשרות למסלול השיטה.</li><li>משפרים, מנהלים, מממשים, חוזרים לאיזון — בלי להפוך עסקה לזהות.</li></ul>
+      </article>
+<article class="chapter" id="ch-8">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 08 · התיק</p>
+          <h2>תיק המסלולים</h2>
+          <p class="en" dir="ltr">Portfolio of Routes</p>
+          <p class="lede">כמה מסלולים במקביל: הקצאת מרג'ין נפרדת לכל פוזיציה, תקרת $250, וסיכון תיק ולא רק סיכון עסקה.</p>
+        </header>
+        
+        <blockquote class="story">מהמראה נפתחת מפה עם כמה שבילים זוהרים במקביל. מי שמנסה לרוץ בכולם באותה נשימה מאבד את המפה. Lookback מבין: כל מסלול מקבל תקרת מרג'ין משלו — והתיק כולו הוא סיפור סיכון נפרד מכל עסקה בודדת.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> כל פוזיציה = מסלול עם תקרת $250; התיק נמדד בסכום החשיפות והמשמעת — לא בדרמה של עסקה אחת.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להפריד הקצאת מרג'ין בין פוזיציות סימולטיביות.</li><li>להסביר תקרת $250 לכל פוזיציה מול סיכון תיק.</li><li>להימנע מהעברת רגש מעסקה אחת לכל התיק.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>ריבוי פוזיציות מותר בלימוד כאוסף מסלולים. כל אחת long-only במודל Cross One-Way, עם תקרת מרג'ין $250 Reject. ההצלחה אינה 'כולן ירוקות' — אלא שכל אחת מנוהלת כסיפור נפרד תחת אותה פילוסופיה.</p>
+<p class="visual-cap"><em>איור: מספר מסלולים במקביל — לכל אחד תקרה והקצאה משלו.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <ul><li>לא לערבב מרג'ין של פוזיציה א עם ב ביומן הלימודי.</li><li>לבדוק notional מצטבר מול collateral סימולטיבי.</li><li>לזכור: Cross יכול לקשר סיכונים גם כשהיומן מפריד.</li></ul>
+<aside class="callout warning">
+          <strong>Cross וריבוי מסלולים</strong>
+          <p>גם אם אתם מנהלים כל עסקה כמסלול נפרד, במודל Cross הביטחונות משותפים ברמת החשבון הסימולטיבי. פירוק יכול להגיע מאינטראקציה — לא רק מעסקה בודדת.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>כמה פרויקטים בעבודה: לכל אחד תקציב. אם פרויקט אחד בולע את כולם — זו לא 'גמישות'. זו קריסת מסגרת.</p>
+        </section>
+<section>
+          <h3>דוגמת תיק לימודית</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>שלושה מסלולים תחת תקרות נפרדות</caption>
+            <thead><tr><th>מסלול</th><th>מרג'ין מוקצה</th><th>תקרה</th><th>סטטוס</th></tr></thead>
+            <tbody><tr><td>A</td><td>$120</td><td>$250</td><td>ירוק · פעיל</td></tr><tr><td>B</td><td>$250</td><td>$250</td><td>צהוב · ללא חיזוק נוסף</td></tr><tr><td>C</td><td>$80</td><td>$250</td><td>ירוק · מקום לחיזוק</td></tr></tbody>
+          </table>
+        </figure>
+<p class="visual-cap"><em>איור: סיכון תיק כשכבות — לא כדרמה של שורה אחת.</em></p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>כשמסלול אחד כואב, אל תענישו את האחרים. ואל תפצו על כאב במסלול חדש חסר גבול. זה רדיפה בתחפושת תיק.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>הפרדת תקרות</h4>
+          <p>שתי פוזיציות: $200 ו־$100. הלומד רוצה 'להעביר' $50.</p>
+          <ol><li>בודקים: כל פוזיציה עם תקרה עצמאית $250.</li><li>לא ממציאים העברת מרג'ין שעוקפת Reject.</li><li>מתעדים החלטה לכל מסלול בנפרד.</li></ol>
+          <p><strong>תוצאה:</strong> התיק נשאר אוסף מסלולים עם גבולות.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> איך תסמנו ביומן הפרדה בין שלושה מסלולים בלי לערבב מרג'ין?</li><li><strong>2.</strong> מה Cross מלמד אתכם על גבול ההפרדה ה'נפשית' מול המודל?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> תיק בריא הוא אוסף מסלולים עם גבולות — לא אוסף הימורים שחולקים אותו פחד.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>כל פוזיציה תחת $250; התיק הוא אוסף מסלולים.</li><li>Cross יכול לקשר סיכונים גם כשהיומן מפריד.</li></ul>
+      </article>
+<article class="chapter" id="ch-9">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 09 · העצירה</p>
+          <h2>לדעת מתי לעצור</h2>
+          <p class="en" dir="ltr">Knowing When to Stop</p>
+          <p class="lede">Reject לפי תקרה, דילוג על רמה, וסגירה ידנית — מתי המסלול נגמר בלי להפוך את העצירה לכישלון.</p>
+        </header>
+        
+        <blockquote class="story">לפני היער האחרון יש שער קטן עם שלט: 'כאן עוצרים גם כשאפשר להמשיך'. מי שלא יודע לקרוא אותו יהפוך כל Reject לכישלון אישי. מי שכן — מבין שהעצירה היא חלק ממפת המסלול, לא סוף הסיפור.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> עצירה כשרה: Reject בתקרה, דילוג מודע על רמה, סגירה ידנית, או יציאה כשהמסלול איבד משמעת.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>למנות מצבי עצירה לגיטימיים בשיטה.</li><li>להפריד בין עצירת משמעת לבין כניעה רגשית.</li><li>לתעד דילוג ו־Reject בלי בושה.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>בספר הזה עצירה אינה מילה גסה. חיזוק שנדחה, רמה שדולגה, מימוש שמסיים סיפור — כולם תחנות. בלי עצירות המסלול הופך לרדיפה אינסופית.</p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>מצבי עצירה לימודיים</caption>
+            <thead><tr><th>מצב</th><th>מה קורה</th><th>איך מתעדים</th></tr></thead>
+            <tbody><tr><td>Reject תקרה</td><td>הוספת מרג'ין נדחית מעל $250</td><td>סיבת דחייה + יתרת מרג'ין</td></tr><tr><td>דילוג על רמה</td><td>Touch בלי חיזוק</td><td>רמה דולגה נשארת ביומן</td></tr><tr><td>מימוש / סגירה</td><td>צמצום או סיום כמות</td><td>סבב 75% או יציאה מלאה</td></tr><tr><td>עצירת משמעת</td><td>הרגש משתלט על הכלל</td><td>יציאה מהתרגיל עד חזרה לצלולות</td></tr></tbody>
+          </table>
+        </figure>
+<aside class="callout note">
+          <strong>דילוג מתועד</strong>
+          <p>בשיטה המאושרת רמות שדולגו נשארות מתועדות. דילוג אינו 'מחיקה' של המסלול.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>מטייל שמחליט לא לרדת לתהום היום אינו כישלון. הוא קורא מזג אוויר. כך גם Reject.</p>
+        </section>
+<section>
+          <h3>דוגמה</h3>
+          <p>Touch ב־L3. המרג'ין כבר $240. חיזוק מתוכנן $20 נדחה. העצירה הנכונה: לא 'למצוא פרצה', אלא לעבור לניהול הרמזור על מה שקיים — או לממש לפי תוכנית.</p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>יש עצירה בריאה ויש בריחה. ההבדל: האם פעלתם לפי כלל כתוב מראש, או לפי דחף רגעי שמחפש מנוחה מיידית בלי מסלול.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>יומן עצירה</h4>
+          <p>Reject על חיזוק + דחף 'לפתוח פוזיציה חדשה מיד'.</p>
+          <ol><li>מתעדים Reject.</li><li>עוצרים דקה וקוראים את כלל הרמזור.</li><li>מחליטים: ניהול הקיים / מימוש / יציאה מהתרגיל — לא פתיחה נקמנית.</li></ol>
+          <p><strong>תוצאה:</strong> העצירה שומרת על המסע.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> מתי עצירה אצלכם הייתה משמעת — ומתי בריחה?</li><li><strong>2.</strong> נסחו כלל עצירה אישי שתואם תקרת $250 בלי להבטיח רווח.</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> לדעת מתי לעצור זה לא לפרוש מהמסע — זה לשמור עליו.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Reject, דילוג, מימוש ועצירת משמעת הם חלק מהמפה.</li><li>עצירה שומרת על המסע; נקמה שוברת אותו.</li></ul>
+      </article>
+<article class="chapter" id="ch-10">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 10 · האופק</p>
+          <h2>מעבר למסחר</h2>
+          <p class="en" dir="ltr">Beyond Trading</p>
+          <p class="lede">פילוסופיית Lookback כמשמעת חיים: לעבוד עם תנועה, לא לרדוף אחריה — גם מחוץ לגרף.</p>
+        </header>
+        <figure class="diagram" aria-label="תנועת שוק בזיגזג">
+        <svg viewBox="0 0 420 110" width="360" height="94" dir="ltr">
+          <line x1="24" y1="55" x2="396" y2="55" stroke="rgba(143,160,184,0.35)" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <polyline fill="none" stroke="#2EE6FF" stroke-width="3.2" points="24,88 90,22 150,72 210,18 270,68 330,28 396,62"/>
+          <circle cx="90" cy="22" r="5" fill="#C9A84C"/><circle cx="210" cy="18" r="5" fill="#C9A84C"/>
+          <circle cx="150" cy="72" r="4.5" fill="#2EE6FF"/><circle cx="270" cy="68" r="4.5" fill="#2EE6FF"/>
+        </svg>
+        <figcaption class="diagram-cap">תנועה בזיגזג — לא קו ישר של רדיפה</figcaption>
+      </figure>
+        <blockquote class="story">מעבר לגשר האחרון של הגרף נפתח נוף שאינו בורסה: אותה משמעת של מבט לאחור — בעבודה, בלמידה, בשיחה. Lookback אינו רק כלי מסחר. הוא אופן עמידה מול תנועה, עם אותן תקרות ואותו אומץ לעצור.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> לעבוד עם תנועה במקום לרדוף אחריה — עיקרון שחוצה את גבול הגרף.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לנסח את פילוסופיית Lookback מחוץ להקשר מסחר.</li><li>לחבר השבחה, רמזור, מימוש ואיזון לדימויי חיים.</li><li>לחזור לגבול: גם פילוסופיה יפה אינה ייעוץ השקעות.</li></ul>
+        <section>
+          <h3>סיפור התחנה</h3>
+          <p>המסע לא נועד להפוך את חייכם לגרף. הוא נועד להראות שמשמעת מסלולים — הכנה, גבול, מימוש, שיבה — היא שפה אנושית לפני שהיא שפת בורסה.</p>
+<p class="visual-cap"><em>איור: אותו מסלול: מבט לאחור כדרך עמידה מול תנועה.</em></p>
+        </section>
+<section>
+          <h3>העיקרון</h3>
+          <ul><li>השבחה בחיים: לשפר מערכת במקום להחליף אותה בכל בהלה.</li><li>רמזור: לדעת מתי להאט בלי להתבייש.</li><li>75%: לשחרר רוב העומס ולהשאיר ליבה.</li><li>איזון: לחזור לקצב אנושי אחרי סערה.</li></ul>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>שיחה קשה: במקום לרדוף אחרי 'המילה האחרונה', מביטים לאחור על מה כבר נאמר — ומכינים מסלול תשובה. זה Lookback בלי טיקר.</p>
+        </section>
+<section>
+          <h3>חזרה לגבול הלימודי</h3>
+          <aside class="callout sim">
+          <strong>פילוסופיה ≠ איתות</strong>
+          <p>גם כשהסיפור מתרחב מעבר למסחר, האקדמיה נשארת סימולציה וחינוך. אין כאן המלצה לפתוח פוזיציה בחיים האמיתיים.</p>
+        </aside>
+<p>חזרו לדפי השיטה ולמדריך המעשי כשאתם רוצים את המכניקה. חזרו לכאן כשאתם צריכים את המצפן.</p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>הסכנה בפילוסופיה יפה היא שתשמש תירוץ להימנעות ממשמעת מספרית. Lookback האמיתי מחזיק גם סיפור וגם תקרה.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>מסלול יומי לא־מסחרי</h4>
+          <p>יום עמוס עם שלושה משברים קטנים.</p>
+          <ol><li>מבט לאחור: מה כבר קרה לפני התגובה הבאה.</li><li>רמזור אישי: ירוק/צהוב/אדום לפי עומס.</li><li>מימוש 75%: משחררים רוב המשימות הלא־קריטיות.</li></ol>
+          <p><strong>תוצאה:</strong> תרגול שפת המסע מחוץ לגרף — בלי לטעון לרווח פיננסי.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> היכן בחייכם אתם עדיין רודפים אופק במקום להכין מסלול?</li><li><strong>2.</strong> איך תשמרו על הגבול בין השראה פילוסופית לבין סימולציה בלבד?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> אם השיטה חיה רק מול מסך — היא עדיין לא Lookback. אם היא משנה איך אתם עוצרים בחיים — היא התחילה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>Lookback הוא משמעת תנועה גם מחוץ לגרף.</li><li>הפילוסופיה אינה מחליפה תקרות, רמזור ומימוש — ואינה ייעוץ השקעות.</li></ul>
+      </article>
+<article class="chapter" id="ch-11">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 11 · השפה</p>
+          <h2>מילון פשוט</h2>
+          <p class="en" dir="ltr">Simple Glossary</p>
+          <p class="lede">מילון נרטיבי קצר: margin, notional, quantity, avg, PnL, collateral, liquidation — בלי לערבב ביניהם.</p>
+        </header>
+        
+        <blockquote class="story">לפני שסוגרים את המסע — עוצרים במילון. על הקיר שלטים קצרים. מי שמערבב ביניהם נכשל עוד לפני המספרים. מי שלומד להפריד — מדבר Lookback בבהירות, גם כשהרמזור צהוב.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> כל מונח = משמעות אחת. Margin אינו notional; PnL אינו collateral; liquidation אינו 'צבע רמזור'.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>להגדיר את מונחי הליבה בעברית פשוטה.</li><li>להצביע על בלבולים נפוצים בין המונחים.</li><li>לחבר כל מונח למסלול Lookback במקום אחד.</li></ul>
+        <section>
+          <h3>למה מילון עכשיו?</h3>
+          <p>אחרי המסע הנרטיבי מגיעה תחנת שפה קצרה. לא כדי לחזור למבחן — כדי לנעול משמעויות לפני המדריך המעשי וההצהרה.</p>
+        </section>
+<section>
+          <h3>מונחי ליבה</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>מילון פשוט — הפרדות חובה</caption>
+            <thead><tr><th>מונח</th><th>במילים פשוטות</th><th>אל תבלבלו עם</th></tr></thead>
+            <tbody><tr><td><code dir="ltr" class="ltr">margin</code> מוקצה</td><td>הון שולי שהוקצה לפוזיציה בתרגיל</td><td>notional / יתרת בנק</td></tr><tr><td><code dir="ltr" class="ltr">notional</code></td><td>חשיפה רעיונית (גדולה יותר עם מינוף)</td><td>מרג'ין או 'כסף בכיס'</td></tr><tr><td><code dir="ltr" class="ltr">quantity</code></td><td>גודל הפוזיציה ביחידות</td><td>PnL או צבע רמזור</td></tr><tr><td><code dir="ltr" class="ltr">average entry</code></td><td>מחיר כניסה ממוצע משוקלל כמות</td><td>מחיר שוק נוכחי</td></tr><tr><td><code dir="ltr" class="ltr">PnL</code></td><td>רווח/הפסד ממומש או לא ממומש</td><td>collateral פנוי</td></tr><tr><td><code dir="ltr" class="ltr">collateral</code></td><td>ביטחונות פנויים במודל הסימולציה</td><td>רווח מובטח</td></tr><tr><td><code dir="ltr" class="ltr">liquidation</code></td><td>סגירה כפויה במודל בורסה כשביטחונות לא מספיקים</td><td>רמזור צהוב/אדום</td></tr><tr><td>Cross</td><td>ביטחונות משותפים ברמת חשבון סימולטיבי</td><td>ביטוח מפני פירוק</td></tr></tbody>
+          </table>
+        </figure>
+<aside class="callout definition">
+          <strong>75% / Lookback / השבחה</strong>
+          <p>75% = סגירת שלושה רבעים מהכמות הנותרת. Lookback = מבט לאחור על תנועה. השבחת העסקה = שיפור מדוד של פוזיציה תחת תקרה — לא הבטחת תשואה.</p>
+        </aside>
+        </section>
+<section>
+          <h3>דימוי מהחיים</h3>
+          <p>במטבח לא קוראים למלח סוכר. בשיטה לא קוראים ל־notional בשם מרג'ין. אותו עיקרון.</p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>בלבול מונחים נוח לרגש: הוא מאפשר להגיד 'יש לי מקום' כשבעצם יש חשיפה רעיונית גדולה. דיוק לשוני הוא אנטי־הכחשה.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>הפרדת שלושה מספרים</h4>
+          <p>בתרגיל: מרג'ין $100, מינוף לימודי ×10, מחיר ירד.</p>
+          <ol><li>רושמים margin = 100.</li><li>רושמים notional בקירוב לימודי כחשיפה רעיונית נפרדת.</li><li>רושמים PnL לא ממומש כשורה שלישית — לא כ'יתרה למשיכה'.</li></ol>
+          <p><strong>תוצאה:</strong> שלושה מספרים, שלושה שמות — בלי ערבוב.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> בחרו שני מונחים שבלבלתם בעבר — והפרידו אותם במשפט אחד כל אחד.</li><li><strong>2.</strong> למה liquidation אינו זהה לרמזור אדום?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> שפה מדויקת היא חלק מניהול הסיכון.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>מילון פשוט נועל משמעויות לפני המדריך המעשי.</li><li>הפרדת margin / notional / quantity / avg / PnL / collateral / liquidation היא חובה.</li></ul>
+      </article>
+<article class="chapter" id="ch-12">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 12 · המדריך</p>
+          <h2>מדריך מעשי</h2>
+          <p class="en" dir="ltr">Practical Reference</p>
+          <p class="lede">דף עבודה אחד: סולם, רמזור, תקרות, עמלות, סליפג', מימון ופערים — לתרגול סימולטיבי בלבד.</p>
+        </header>
+        
+        <blockquote class="story">בתחנת המדריך פורסים דף עבודה אחד על השולחן. לא כדי להחליף את הסיפור שכבר נקרא — כדי שתוכלו לחזור אליו כשהסימולטור פתוח והראש מלא. כשהסערה מתחילה, חוזרים לדף.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> דף ייחוס אחד: סולם, רמזור, תקרות, מימוש, עלויות ופערים — לתרגול סימולטיבי בלבד.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לשלוף במהירות את כללי השיטה המאושרים.</li><li>לזכור עלויות בסיס וחריגים.</li><li>להשתמש בדף כעוגן משמעת בסימולציה.</li></ul>
+        <section>
+          <h3>דף העבודה</h3>
+          <p>המדריך המעשי אינו בחינה. הוא מפת כיס למסע. השתמשו בו אחרי שקראתם את הסיפור — לא במקומו.</p>
+        </section>
+<section>
+          <h3>כללים מאושרים בקצרה</h3>
+          <figure class="table-wrap">
+          <table>
+            <caption>ייחוס מהיר — מתודולוגיה מאושרת 2026-11-24</caption>
+            <thead><tr><th>נושא</th><th>כלל</th></tr></thead>
+            <tbody><tr><td>כיוון</td><td>Long בלבד</td></tr><tr><td>סולם</td><td>10% adverse מ־P₀ · Touch · Decimal מדויק</td></tr><tr><td>חיזוק</td><td>אופציונלי לרמה · דילוגים מתועדים</td></tr><tr><td>הקצאה</td><td>Margin מצטבר · Floor לכמות</td></tr><tr><td>תקרה</td><td>$250 לפוזיציה · Reject</td></tr><tr><td>×1→×10</td><td>תקציבי · שומר כמות</td></tr><tr><td>×10 חיזוק</td><td>הפסד נטו ≥ מרג'ין רלוונטי</td></tr><tr><td>מינוף max</td><td>רק מ־Bybit מאומת · אחרת unresolved</td></tr><tr><td>מימוש</td><td>סגירת 75% מהכמות הנותרת · ידני · חוזר</td></tr><tr><td>עמלות</td><td>2 bps סיבוב · סליפג' 1 bp/צד · מימון 0 בבסיס</td></tr></tbody>
+          </table>
+        </figure>
+<aside class="callout warning">
+          <strong>$250 מול דפוס $320</strong>
+          <p>דפוס ההכפלה האיורי עד $320 אינו דוחה את תקרת $250. בביצוע לימודי — Reject כשחורגים.</p>
+        </aside>
+<p class="visual-cap"><em>איור: תזכורת חזותית לסולם ולמגע.</em></p>
+        </section>
+<section>
+          <h3>עלויות, פערים ו־Cross</h3>
+          <ul><li>עמלות וסליפג' מכרסמים בתוצאה גם כשהסיפור 'נכון'.</li><li>מימון יכול להיות מופעל בתרגילים מתקדמים — לפני ספים.</li><li>פערי מחיר (gaps) יכולים לדלג מעל מגע מדומיין.</li><li>Cross margin: ביטחונות משותפים; לא ביטוח.</li></ul>
+<aside class="callout sim">
+          <strong>שימוש בדף</strong>
+          <p>הדפיסו או שמרו PDF. כל תרגול סימולטיבי מתחיל בקריאה חוזרת של השורות האלה.</p>
+        </aside>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית</h3>
+          <p>דף הייחוס קיים כי הזיכרון בלחץ משקר. אל תסמכו על 'אני זוכר את השיטה' כשהרמזור צהוב.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>צ'ק־ליסט לפני תרגיל</h4>
+          <p>פתיחת סימולטור לתרגול ערב.</p>
+          <ol><li>קוראים תקרה + Reject.</li><li>מסמנים צבע רמזור התחלתי.</li><li>מאשרים שמימוש = 75% כמות — לא משיכת רווח מילולית.</li></ol>
+          <p><strong>תוצאה:</strong> התרגיל נפתח עם מסלול, לא עם אימפרוביזציה.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> אילו שלוש שורות מהטבלה תשימו מול העיניים בזמן תרגול?</li><li><strong>2.</strong> איך תתעדו פערי מחיר אם Touch 'דילג' בסימולציה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> כשהסערה מתחילה — חוזרים לדף, לא לאינטואיציה הרגעית.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>מדריך מעשי = מפת כיס לכללי השיטה והעלויות.</li><li>חוזרים לדף בלחץ; לא ממציאים בזיכרון.</li></ul>
+      </article>
+<article class="chapter" id="ch-13">
+        <header class="chapter-open">
+          <p class="eyebrow">תחנה 13 · הגבול</p>
+          <h2>הצהרה ברורה</h2>
+          <p class="en" dir="ltr">Clear Disclaimer</p>
+          <p class="lede">סימולציה וחינוך בלבד. אין הבטחות, אין סיכון אפס, אין מסחר אמיתי — ומה כן נשאר בידיים אחרי הספר.</p>
+        </header>
+        
+        <blockquote class="story">בסוף המסע עומדים מול שער יציאה מואר. על המשקוף חרוטה הצהרה שאי אפשר לפספס: כל מה שעברתם היה לימוד. לא הבטחה. לא חשבון. לא קיצור דרך לכסף קל. הגבול הברור הוא חלק מהיופי.</blockquote>
+        <p class="principle"><strong>עיקרון:</strong> סימולציה וחינוך בלבד — בלי סיכון אפס, בלי תשואה מובטחת, בלי מסחר אמיתי.</p>
+        <h3>מה לוקחים מהתחנה</h3>
+        <ul><li>לנסח את גבולות האקדמיה בבהירות.</li><li>לדחות טענות סיכון־אפס או ביצועי עבר.</li><li>לסיים את המסע עם מצפן — לא עם הבטחה.</li></ul>
+        <section>
+          <h3>הצהרה ברורה</h3>
+          <aside class="callout warning">
+          <strong>לא ייעוץ השקעות · לא מסחר אמיתי</strong>
+          <p>ZIGZAG TRADING ACADEMY וספר LOOKBACK הם מוצר לימודי לסימולציה בלבד. אין הפקדות, אין תיווך, אין ניהול תיקים, ואין הבטחת רווח או מניעת הפסד.</p>
+        </aside>
+<p>הדוגמאות המספריות — כולל דפוסי חיזוק, מקרה XRP כתרגיל, וסדרות 75% — הן כלים חינוכיים. הן אינן ביצועי עבר ואינן תחזית.</p>
+        </section>
+<section>
+          <h3>שלמות סיכון</h3>
+          <ul><li>אין טענת סיכון אפס — בשום צבע רמזור.</li><li>שינוי מינוף אינו מבטיח משיכת הון או חסימת liquidation.</li><li>יש להבחין תמיד בין margin, notional, quantity, avg, PnL, collateral ו־liquidation.</li><li>Cross margin, עמלות, סליפג', מימון ופערים הם חלק מהמודל הלימודי.</li></ul>
+<aside class="callout note">
+          <strong>מודל ייחוס</strong>
+          <p>הפדגוגיה מתייחסת ל־Bybit Linear USDT Perpetual, Cross, One-Way. פרמטרי instrument לא מאומתים מסומנים unresolved — ולא מומצאים.</p>
+        </aside>
+        </section>
+<section>
+          <h3>מה כן נשאר בידיים</h3>
+          <p>נשארת שפת מסלול: מבט לאחור, השבחה תחת תקרה, רמזור ניהול, מימוש 75%, חזרה לאיזון, ואומץ לעצור. זה המצפן. לא המפה לכסף קל.</p>
+<p class="visual-cap"><em>איור: סיום המסע: אותן תחנות — עם גבול מואר ביציאה.</em></p>
+        </section>
+<section>
+          <h3>הערה פסיכולוגית אחרונה</h3>
+          <p>אם אחרי הספר אתם מרגישים דחף 'לנסות על אמיתי מיד' — זה בדיוק הרגע לחזור להצהרה הזו. Lookback מתחיל בעצירה מול אשליה.</p>
+        </section>
+        <h3>דוגמאות מספריות</h3><div class="example">
+          <h4>בדיקת גבול אישית</h4>
+          <p>חבר שואל: 'אז השיטה בטוחה?'</p>
+          <ol><li>עונים: זו סימולציה לימודית — לא ביטוח.</li><li>מזכירים תקרת $250 ו־Reject כמשמעת, לא כהבטחה.</li><li>מפנים להצהרה ולמילון ההפרדות.</li></ol>
+          <p><strong>תוצאה:</strong> הגבול נשמר גם בשיחה חברתית.</p>
+        </div>
+        <h3>שאלות להרהור</h3><ol><li><strong>1.</strong> נסחו ב־3 משפטים את גבול האקדמיה שתשמרו לעצמכם.</li><li><strong>2.</strong> מה המצפן שאתם לוקחים מהמסע — בלי מספר תשואה?</li></ol>
+        <aside class="insight"><strong>תובנה לזכור.</strong> הגבול הברור הוא חלק מהיופי של המסע: הוא שומר עליכם מפני אשליה.</aside>
+        <h3>סיכום התחנה</h3>
+        <ul><li>הצהרה ברורה: לימוד וסימולציה בלבד — בלי הבטחות.</li><li>מה שנשאר הוא מצפן משמעת, לא קיצור דרך לכסף.</li></ul>
+      </article>
+
+  <section class="chapter" id="glossary">
+    <header class="chapter-open">
+      <p class="eyebrow">Appendix</p>
+      <h2>מילון מונחים מורחב</h2>
+    </header>
+    <div class="gloss">
+      <h4>מבט לאחור <span dir="ltr" class="en">Lookback</span></h4>
+      <p>פילוסופיית המסע: לקרוא תנועה שכבר קרתה ולהכין מסלול ניהול — לא לרדוף אחרי האופק. אינה אות כניסה ואינה הבטחת תשואה.</p>
+    </div>
+<div class="gloss">
+      <h4>השבחת העסקה <span dir="ltr" class="en">Trade improvement</span></h4>
+      <p>שיפור מדוד של פוזיציה באמצעות חיזוקים אופציונליים תחת תקרת מרג'ין — לא הגדלה רגשית חסרת גבול.</p>
+    </div>
+<div class="gloss">
+      <h4>מרג'ין מוקצה <span dir="ltr" class="en">Allocated margin</span></h4>
+      <p>הון שולי שהוקצה במפורש לפוזיציה בתרגיל. אינו זהה ל־notional, לביטחונות פנויים בחשבון, או למחיר פירוק בבורסה.</p>
+    </div>
+<div class="gloss">
+      <h4>כמות <span dir="ltr" class="en">Quantity</span></h4>
+      <p>גודל הפוזיציה ביחידות. מימוש 75% משנה כמות; אינו זהה ל־PnL או לצבע רמזור.</p>
+    </div>
+<div class="gloss">
+      <h4>חשיפה רעיונית <span dir="ltr" class="en">Notional</span></h4>
+      <p>שווי רעיוני של החשיפה (למשל L × מרג'ין בקירוב לימודי). גדול מהמרג'ין כשיש מינוף — ואינו 'כסף בחשבון'.</p>
+    </div>
+<div class="gloss">
+      <h4>ביטחונות פנויים <span dir="ltr" class="en">Available collateral</span></h4>
+      <p>הון שולי זמין במודל הבורסה לכיסוי פוזיציות. באקדמיה מדובר בסימולציה בלבד — לא ביתרת בנק אמיתית.</p>
+    </div>
+<div class="gloss">
+      <h4>פירוק (Liquidation) <span dir="ltr" class="en">Exchange liquidation</span></h4>
+      <p>מנגנון בורסה שסוגר פוזיציה כשהביטחונות אינם מספיקים. שינוי מינוף לימודי אינו מבטיח מניעת פירוק או משיכת הון.</p>
+    </div>
+<div class="gloss">
+      <h4>חיזוק <span dir="ltr" class="en">Reinforcement</span></h4>
+      <p>הוספת מרג'ין (וכמות) לפוזיציה קיימת אחרי מגע ברמת סולם adverse. אופציונלי לכל רמה; רמות שדולגו נשארות מתועדות.</p>
+    </div>
+<div class="gloss">
+      <h4>סולם Adverse <span dir="ltr" class="en">Adverse ladder</span></h4>
+      <p>רמות מחיר שליליות של 10% מ־מחיר הייחוס המקורי (P₀). הפעלה ב־Touch. חישוב ספי הסולם בדיוק Decimal — לא מעוגל.</p>
+    </div>
+<div class="gloss">
+      <h4>שלב ×1 <span dir="ltr" class="en">×1 stage</span></h4>
+      <p>שלב מינוף לימודי 1x: גודל לפי מרג'ין מצטבר, תקרת מרג'ין $250 לפוזיציה עם מדיניות Reject, ומעבר ל־×10 לפי תקרת תקציב (לא לפי הפסד).</p>
+    </div>
+<div class="gloss">
+      <h4>שלב ×10 <span dir="ltr" class="en">×10 stage</span></h4>
+      <p>שלב מינוף 10x על אותה כמות קיימת. חיזוק כאשר הפסד נטו ≥ המרג'ין הרלוונטי שהוקצה; תקרת מרג'ין מצטברת $250.</p>
+    </div>
+<div class="gloss">
+      <h4>מינוף מכשיר מרבי <span dir="ltr" class="en">Max instrument leverage</span></h4>
+      <p>המינוף המרבי של המכשיר ב־Bybit Linear USDT Perp. נלקח רק מנתוני מכשיר מאומתים — אם חסר, מסומן unresolved ולא מומצא.</p>
+    </div>
+<div class="gloss">
+      <h4>מימוש 75% <span dir="ltr" class="en">75% profit realization</span></h4>
+      <p>סגירת 75% מהכמות הפתוחה (נותרות 25%). הפעלה ידנית; ניתן לחזור על 75% מהנותר בכל פעם. לא משיכת רווח בלי שינוי כמות.</p>
+    </div>
+<div class="gloss">
+      <h4>מחיר כניסה ממוצע <span dir="ltr" class="en">Average entry</span></h4>
+      <p>ממוצע משוקלל כמות של מחירי המילוי: E_avg = Σ(qᵢ Eᵢ) / Σ qᵢ.</p>
+    </div>
+<div class="gloss">
+      <h4>עלויות לימודיות <span dir="ltr" class="en">Educational costs</span></h4>
+      <p>עמלת round-trip 2 bps (מודלת בסגירה), slippage 1 bp לצד, funding = 0 בסימולציות בסיסיות. סף epsilon = 0.</p>
+    </div>
+<div class="gloss">
+      <h4>לונג בלבד <span dir="ltr" class="en">Long-only</span></h4>
+      <p>השיטה המאושרת מאפשרת כיוון long בלבד. Short מנוטרל באקדמיה.</p>
+    </div>
+<div class="gloss">
+      <h4>מדיניות Reject <span dir="ltr" class="en">Reject cap policy</span></h4>
+      <p>אם חיזוק היה חורג מתקרת המרג'ין ($250), הבקשה נדחית. ב־×1 דחייה כזו מניעה מעבר תקציבי ל־×10; ב־×10 דחייה מניעה מעבר למינוף מכשיר מרבי (אם ידוע).</p>
+    </div>
+  </section>
+</body>
+</html>

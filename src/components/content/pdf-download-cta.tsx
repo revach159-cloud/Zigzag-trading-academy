@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Download } from "lucide-react";
 
-const PDF_HREF = "/downloads/zigzag-academy-textbook.pdf";
+const PDF_HREF = "/downloads/zigzag-lookback-final.pdf";
 
 export function PdfDownloadCta({
   variant = "banner",

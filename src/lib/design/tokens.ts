@@ -6,7 +6,7 @@
 export const brand = {
   name: "ZIGZAG",
   fullName: "ZIGZAG TRADING ACADEMY",
-  bookTitleHe: "LOOKBACK · המבט לאחור",
+  bookTitleHe: "LOOKBACK – המבט לאחור",
   bookTitleEn: "LOOKBACK",
   methodHe: "השבחת העסקה",
   methodEn: "Trade Improvement",
@@ -16,6 +16,7 @@ export const brand = {
   taglineHe: "אל תרדוף אחרי השוק. למד לעבוד עם התנועה שלו.",
   /** Author credit — exact name only; no invented titles */
   authorHe: "אביאל רווח",
+  authorBylineHe: "מאת אביאל רווח",
   authorCreditHe: "יוצר שיטת ZIGZAG · LOOKBACK",
   supportHe:
     "ספר דיגיטלי נרטיבי למתודולוגיית ZigZag — השבחת העסקה, רמזור ניהול, מימוש 75% וחזרה לאיזון. סימולציה וחינוך בלבד.",
