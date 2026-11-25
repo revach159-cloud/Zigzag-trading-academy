@@ -9,7 +9,7 @@ const rawCatalog = {
       titleHe: "סקירת מתודולוגיית ZigZag",
       titleEn: "ZigZag Method Overview",
       summaryHe:
-        "מפת השיטה המאושרת: חיזוקים בסולם adverse, מעבר ×1↔×10 לפי תקרת הקצאה, ומימוש 75% בכמות — סימולציה בלבד.",
+        "מפת השיטה המאושרת: חיזוקים בסולם adverse, מעבר ×1→×10 לפי תקרת הקצאה, ומימוש 75% בכמות — סימולציה בלבד.",
       awaitingConfirmation: false,
       sections: [
         {
@@ -28,7 +28,7 @@ const rawCatalog = {
               headersHe: ["עמוד", "מיקוד", "סטטוס"],
               rows: [
                 ["Reinforcement", "הקצאת margin מצטברת, סולם 10% מ־P₀", "מאושר"],
-                ["Leverage 1x↔10x", "מעבר תקציבי; ×10 לפי הפסד מצטבר", "מאושר"],
+                ["Leverage ×1→×10", "מעבר תקציבי; אחר כך ×10 לפי הפסד מצטבר", "מאושר"],
                 ["Profit realization", "סגירה ידנית של 75% מהכמות", "מאושר"],
               ],
             },
@@ -248,8 +248,8 @@ const rawCatalog = {
     },
     {
       slug: "leverage",
-      titleHe: "מינוף 1x↔10x",
-      titleEn: "Leverage 1x ↔ 10x",
+      titleHe: "מינוף ×1→×10",
+      titleEn: "Leverage ×1→×10",
       summaryHe:
         "מעבר ×1→×10 לפי תקרת תקציב; שלב ×10 עם חיזוק לפי הפסד מצטבר ותקרת $250 מצטברת.",
       awaitingConfirmation: false,
@@ -302,7 +302,7 @@ const rawCatalog = {
         {
           id: "ex-l",
           titleHe: "מעבר תקציבי",
-          setupHe: "C_cum=$240 ב־×1; חיזוק $20 נדחה → מעבר ×10, Q נשמרת.",
+          setupHe: "C_cum=$240 ב־×1; חיזוק $20 נדחה → מעבר ×1→×10, Q נשמרת.",
           stepsHe: [
             "מתעדים דחיית חיזוק ×1.",
             "מסמנים מעבר שלב ללא פתיחת פוזיציה חדשה.",

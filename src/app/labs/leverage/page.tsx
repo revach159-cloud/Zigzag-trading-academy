@@ -30,7 +30,7 @@ export default function LeverageLabPage() {
             href="/method/leverage"
             className="text-[var(--zz-cyan)] hover:underline"
           >
-            דף שיטה — 1x↔10x
+            דף שיטה — ×1→×10
           </Link>
         </li>
         <li>

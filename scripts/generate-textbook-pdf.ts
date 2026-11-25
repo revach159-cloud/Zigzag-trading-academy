@@ -31,9 +31,17 @@ function escapeHtml(value: string): string {
 }
 
 function rich(text: string): string {
-  return escapeHtml(text).replace(
-    /`([^`]+)`/g,
-    '<code dir="ltr" class="ltr">$1</code>',
+  return (
+    escapeHtml(text)
+      .replace(
+        /`([^`]+)`/g,
+        '<code dir="ltr" class="ltr">$1</code>',
+      )
+      /* Keep numeric comparisons visually correct in RTL (avoid 250 > 280 flips). */
+      .replace(
+        /(\d+(?:\.\d+)?(?:\s*[+\-×x*\/]\s*\d+(?:\.\d+)?)*)\s*(&gt;|&lt;|≥|≤)\s*(\$?\d+(?:\.\d+)?)/g,
+        '<span dir="ltr" class="ltr">$1 $2 $3</span>',
+      )
   );
 }
 
