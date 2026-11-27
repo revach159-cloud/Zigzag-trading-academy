@@ -1,38 +1,205 @@
+import { readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   chapterCatalog,
+  getAdjacentChapters,
   getChapterBySlug,
+  getReadingProgress,
   listChapters,
 } from "@/lib/content/chapters";
-import { chapterCatalogSchema } from "@/lib/content/schemas";
+import { manuscriptIndex, listAppendices } from "@/lib/content/manuscript/catalog";
+import { getManuscriptBySlug } from "@/lib/content/manuscript/load";
+import { manuscriptIndexSchema } from "@/lib/content/manuscript/types";
+import { glossary, listGlossaryEntries } from "@/lib/content/glossary";
+import { zigzagAssumptions } from "@/lib/math/assumptions";
 
-describe("chapter catalog", () => {
-  it("validates exactly 12 outline chapters", () => {
-    const parsed = chapterCatalogSchema.parse(chapterCatalog);
-    expect(parsed.chapters).toHaveLength(12);
+const CONTENT_DIR = path.join(process.cwd(), "content");
+
+describe("manuscript catalog", () => {
+  it("validates Opening + 11 chapters index", () => {
+    const parsed = manuscriptIndexSchema.parse(manuscriptIndex);
+    expect(parsed.units).toHaveLength(12);
     expect(parsed.simulationOnly).toBe(true);
-    expect(parsed.version).toBe(1);
+    expect(parsed.version).toBe(3);
+    expect(parsed.narrativeId).toBe("lookback-manuscript");
+    expect(chapterCatalog.chapters).toHaveLength(12);
   });
 
-  it("uses unique slugs and sequential numbers", () => {
+  it("uses unique slugs and approved Hebrew titles", () => {
     const chapters = listChapters();
     const slugs = chapters.map((chapter) => chapter.slug);
     expect(new Set(slugs).size).toBe(12);
-    expect(chapters.map((chapter) => chapter.number)).toEqual([
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+    expect(chapters.map((chapter) => chapter.order)).toEqual([
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
     ]);
-    expect(chapters.every((chapter) => chapter.status === "outline")).toBe(
-      true,
-    );
+    expect(chapters.map((chapter) => chapter.titleHe)).toEqual([
+      "לפני שמתחילים: צריך ללמוד לחשוב אחרת",
+      "הרגע שבו מפסיקים לרדוף",
+      "השוק תמיד משאיר עקבות",
+      "לכל דולר יש תפקיד",
+      "כשהשוק הולך נגדך",
+      "אמנות מחיר הכניסה הממוצע",
+      "כוחו של ה־75%",
+      "המינוף: כוח שדורש משמעת",
+      "העסקה הגדולה ביותר היא העסקה שלא פתחת",
+      "האויב שיושב מול המסך",
+      "הזיכרון של הסוחר",
+      "המספרים אינם משקרים, אבל צריך לדעת לקרוא אותם",
+    ]);
   });
 
-  it("resolves chapters by slug", () => {
-    const chapter = getChapterBySlug("reinforcement-mechanics-1x");
-    expect(chapter?.number).toBe(4);
-    expect(chapter?.awaitingConfirmation).toBe(true);
+  it("resolves chapters by slug and adjacency", () => {
+    const chapter = getChapterBySlug("ch-03");
+    expect(chapter?.order).toBe(3);
+    const { prev, next } = getAdjacentChapters("ch-03");
+    expect(prev?.slug).toBe("ch-02");
+    expect(next?.slug).toBe("ch-04");
   });
 
   it("returns undefined for unknown slug", () => {
     expect(getChapterBySlug("does-not-exist")).toBeUndefined();
+  });
+
+  it("computes reading progress", () => {
+    expect(getReadingProgress([]).percent).toBe(0);
+    expect(getReadingProgress(["opening"]).completed).toBe(1);
+  });
+
+  it("keeps glossary and disclaimer as appendices outside chapter numbers", () => {
+    const appendices = listAppendices();
+    expect(appendices.map((item) => item.slug)).toEqual(
+      expect.arrayContaining(["appendix-glossary", "appendix-disclaimer"]),
+    );
+    expect(listChapters().some((chapter) => chapter.slug.includes("appendix"))).toBe(
+      false,
+    );
+  });
+});
+
+describe("manuscript bodies", () => {
+  it("loads a Markdown document for every catalog unit", () => {
+    for (const chapter of listChapters()) {
+      const doc = getManuscriptBySlug(chapter.slug);
+      expect(doc).toBeDefined();
+      expect(doc!.sections.length).toBeGreaterThanOrEqual(2);
+      const blob = JSON.stringify(doc);
+      expect(blob.length).toBeGreaterThan(800);
+      expect(blob).not.toContain("מסלול");
+    }
+  });
+
+  it("defines complete end visuals; Opening has none (no interactive duplicate)", () => {
+    const opening = manuscriptIndex.units.find((unit) => unit.slug === "opening");
+    expect(opening?.endVisual.kind).toBe("none");
+    const interactive = manuscriptIndex.units.filter(
+      (unit) => unit.endVisual.kind !== "none",
+    );
+    const kinds = interactive.map((unit) => unit.endVisual.kind);
+    expect(new Set(kinds).size).toBe(interactive.length);
+    expect(
+      manuscriptIndex.units.every(
+        (unit) => unit.endVisual.status === "complete",
+      ),
+    ).toBe(true);
+  });
+
+  it("teaches portfolio-scaled budget model in ch-03", () => {
+    const doc = getManuscriptBySlug("ch-03");
+    const blob = JSON.stringify(doc);
+    expect(blob).toContain("100,000");
+    expect(blob).toContain("0.05%");
+    expect(blob).toContain("0.5%");
+    expect(blob).toContain("51.2");
+    expect(blob).toContain("2,560");
+    expect(blob).toContain("256");
+    expect(blob).toMatch(/Reject|דחי/);
+    expect(blob).toMatch(/20–30|20-30/);
+    expect(zigzagAssumptions.defaultExampleTradeBudgetUsd).toBe(256);
+    // Must not teach fixed $250 as the global Reject ceiling
+    expect(blob).not.toMatch(/תקרת מרג['׳']ין מוחלטת לפוזיציה:\s*\$250/);
+  });
+
+  it("emphasizes remaining-qty cascade in ch-06", () => {
+    const blob = JSON.stringify(getManuscriptBySlug("ch-06"));
+    expect(blob).toContain("100");
+    expect(blob).toContain("6.25");
+    expect(blob).toContain("1.5625");
+    expect(blob).toMatch(/75%/);
+  });
+
+  it("marks Bybit max leverage unverified in ch-07", () => {
+    const blob = JSON.stringify(getManuscriptBySlug("ch-07"));
+    expect(blob.toLowerCase()).toMatch(/unverified|לא מאומת|null/);
+    expect(zigzagAssumptions.maxInstrumentLeverage).toBeNull();
+  });
+
+  it("covers demo/stress/OOS learning caveats in ch-10", () => {
+    const blob = JSON.stringify(getManuscriptBySlug("ch-10"));
+    expect(blob).toMatch(/דמו|demo|נייר/i);
+    expect(blob).toMatch(/OOS|מחוץ לדגימה|out-of-sample/i);
+    expect(blob).toMatch(/לחץ|stress|גריד/i);
+  });
+
+  it("labels ch-11 metrics as hypothetical", () => {
+    const blob = JSON.stringify(getManuscriptBySlug("ch-11"));
+    expect(blob).toMatch(/HYPOTHETICAL|היפותט/);
+  });
+
+  it("contains zero forbidden מסלול across content/", () => {
+    const files = readdirSync(CONTENT_DIR).filter((name) => name.endsWith(".md"));
+    expect(files.length).toBeGreaterThanOrEqual(12);
+    for (const file of files) {
+      const text = readFileSync(path.join(CONTENT_DIR, file), "utf8");
+      expect(text.includes("מסלול")).toBe(false);
+    }
+  });
+
+  it("contains zero forbidden מסלול across src/ (excl. guard strings)", () => {
+    const srcRoot = path.join(process.cwd(), "src");
+    const stack = [srcRoot];
+    while (stack.length) {
+      const dir = stack.pop()!;
+      for (const name of readdirSync(dir)) {
+        const full = path.join(dir, name);
+        const stat = require("node:fs").statSync(full);
+        if (stat.isDirectory()) {
+          stack.push(full);
+          continue;
+        }
+        if (!/\.(ts|tsx|md|json)$/.test(name)) continue;
+        const text = readFileSync(full, "utf8");
+        // Allow the explicit guard / test mention of the forbidden term
+        const stripped = text
+          .replace(/Forbidden terminology מסלול[^\n]*/g, "")
+          .replace(/contains zero forbidden מסלול[^\n]*/g, "")
+          .replace(/not\.toContain\("מסלול"\)/g, "")
+          .replace(/includes\("מסלול"\)/g, "")
+          .replace(/text\.includes\("מסלול"\)/g, "");
+        expect(stripped.includes("מסלול")).toBe(false);
+      }
+    }
+  });
+});
+
+describe("glossary", () => {
+  it("includes core risk vocabulary and preferred terminology", () => {
+    expect(glossary.simulationOnly).toBe(true);
+    const ids = listGlossaryEntries().map((entry) => entry.id);
+    expect(ids).toEqual(
+      expect.arrayContaining([
+        "lookback",
+        "trade-budget",
+        "trade-size",
+        "margin",
+        "notional",
+        "quantity",
+        "collateral",
+        "liquidation",
+        "profit-75",
+      ]),
+    );
+    const blob = JSON.stringify(glossary);
+    expect(blob).not.toContain("מסלול");
   });
 });

@@ -15,14 +15,24 @@ export default function RiskLabPage() {
       <p className="mt-4 text-[var(--zz-muted)]">
         לחץ על הקצאת הון, חריגות סף, ומהלכים שליליים — סימולציה חינוכית בלבד.
       </p>
-      <p className="mt-4 text-sm">
-        <Link
-          href="/labs/leverage"
-          className="text-[var(--zz-cyan)] hover:underline"
-        >
-          ← למעבדת המינוף
-        </Link>
-      </p>
+      <ul className="mt-4 space-y-2 text-sm">
+        <li>
+          <Link
+            href="/textbook/knowing-when-to-stop"
+            className="text-[var(--zz-cyan)] hover:underline"
+          >
+            תחנה 9 — לדעת מתי לעצור
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/labs/leverage"
+            className="text-[var(--zz-cyan)] hover:underline"
+          >
+            ← למעבדת המינוף
+          </Link>
+        </li>
+      </ul>
       <div className="mt-6">
         <SimDisclaimer compact />
       </div>

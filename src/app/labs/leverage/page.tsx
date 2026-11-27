@@ -16,11 +16,29 @@ export default function LeverageLabPage() {
         תרגילי 1x מול 10x — פוזיציה נפרדת לעומת שינוי מינוף על קיימת אינם
         שקולים. מנוע התרגיל יבוא אחרי אישור המתודולוגיה.
       </p>
-      <p className="mt-4 text-sm">
-        <Link href="/labs/risk" className="text-[var(--zz-cyan)] hover:underline">
-          למעבדת הסיכון ←
-        </Link>
-      </p>
+      <ul className="mt-4 space-y-2 text-sm">
+        <li>
+          <Link
+            href="/textbook/traffic-light"
+            className="text-[var(--zz-cyan)] hover:underline"
+          >
+            תחנה 4 — רמזור הניהול
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/method/leverage"
+            className="text-[var(--zz-cyan)] hover:underline"
+          >
+            דף שיטה — ×1→×10
+          </Link>
+        </li>
+        <li>
+          <Link href="/labs/risk" className="text-[var(--zz-cyan)] hover:underline">
+            למעבדת הסיכון ←
+          </Link>
+        </li>
+      </ul>
       <div className="mt-6">
         <SimDisclaimer compact />
       </div>

@@ -1,0 +1,257 @@
+{
+  "version": 3,
+  "simulationOnly": true,
+  "narrativeId": "lookback-manuscript",
+  "bookTitleHe": "ZIGZAG · LOOKBACK",
+  "bookTitleEn": "LOOKBACK",
+  "methodHe": "השבחת העסקה",
+  "authorHe": "אביאל רווח",
+  "units": [
+    {
+      "id": "opening",
+      "slug": "opening",
+      "order": 0,
+      "kind": "opening",
+      "numberLabelHe": "פרק פתיחה",
+      "titleHe": "לפני שמתחילים: צריך ללמוד לחשוב אחרת",
+      "titleEn": "Before You Begin",
+      "summaryHe": "מניפסט הפתיחה: לחשוב אחרת לפני הגרף, סוחר חוזה מול סוחר ZIGZAG שמתכנן ניהול, בשפת השבחת העסקה, בסימולציה בלבד.",
+      "file": "opening.md",
+      "scene": "cover",
+      "endVisual": {
+        "kind": "none",
+        "slotId": "opening-none",
+        "labelHe": "ללא המחשה",
+        "concept": "Opening comparison lives only in the manuscript table; no interactive duplicate",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-01",
+      "slug": "ch-01",
+      "order": 1,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 1",
+      "titleHe": "הרגע שבו מפסיקים לרדוף",
+      "titleEn": "The Moment You Stop Chasing",
+      "summaryHe": "לעצור רדיפת מחיר ולבחור תוכנית ניהול מוכנה מראש — תקציב עסקה, סולם, Reject — במקום תגובה רגעית.",
+      "file": "ch-01.md",
+      "scene": "zigzag",
+      "endVisual": {
+        "kind": "chase-vs-plan",
+        "slotId": "ch01-chase-vs-plan",
+        "labelHe": "רואים את זה אחרת",
+        "concept": "Chasing price vs predefined plan",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-02",
+      "slug": "ch-02",
+      "order": 2,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 2",
+      "titleHe": "השוק תמיד משאיר עקבות",
+      "titleEn": "The Market Always Leaves Traces",
+      "summaryHe": "LOOKBACK כקריאת עקבות זיגזג: סולם 10% ממחיר ייחוס מקורי, Touch, בלי להפוך מבט לאחור לאות כניסה.",
+      "file": "ch-02.md",
+      "scene": "zigzag",
+      "endVisual": {
+        "kind": "zigzag-history",
+        "slotId": "ch02-zigzag-history",
+        "labelHe": "המחשה מעשית",
+        "concept": "Animated zigzag price history; inspect prior moves",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-03",
+      "slug": "ch-03",
+      "order": 3,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 3",
+      "titleHe": "לכל דולר יש תפקיד",
+      "titleEn": "Every Dollar Has a Role",
+      "summaryHe": "תקציב העסקה במסגרות $100k/$10k: כניסה 0.05%/0.5%, תקציב 51.2× ($2,560/$256), סקייל מתחת ל־$10k, וקיבולת מקבילה כפדגוגיה — לא הבטחת תשואה.",
+      "file": "ch-03.md",
+      "scene": "improvement",
+      "endVisual": {
+        "kind": "capital-allocation",
+        "slotId": "ch03-capital-allocation",
+        "labelHe": "המחשה מעשית",
+        "concept": "Capital allocation simulator (illustrative assumptions)",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-04",
+      "slug": "ch-04",
+      "order": 4,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 4",
+      "titleHe": "כשהשוק הולך נגדך",
+      "titleEn": "When the Market Moves Against You",
+      "summaryHe": "סולם Long מדורג: חיזוק מתוכנן מול קנייה רגשית, Touch, דילוגים מתועדים, ותקרת תקציב.",
+      "file": "ch-04.md",
+      "scene": "improvement",
+      "endVisual": {
+        "kind": "long-ladder",
+        "slotId": "ch04-long-ladder",
+        "labelHe": "כך זה עובד בפועל",
+        "concept": "LONG staged levels; planned reinforcement vs emotional buy",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-05",
+      "slug": "ch-05",
+      "order": 5,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 5",
+      "titleHe": "אמנות מחיר הכניסה הממוצע",
+      "titleEn": "The Art of Average Entry",
+      "summaryHe": "ממוצע כניסה משוקלל בכמות — שיפור אפשרי בחיזוקים נמוכים יותר, בלי לבטל סיכון, עמלות או פירוק.",
+      "file": "ch-05.md",
+      "scene": "improvement",
+      "endVisual": {
+        "kind": "avg-entry-calculator",
+        "slotId": "ch05-avg-entry-calculator",
+        "labelHe": "המחשה מעשית",
+        "concept": "Interactive average-entry calculator",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-06",
+      "slug": "ch-06",
+      "order": 6,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 6",
+      "titleHe": "כוחו של ה־75%",
+      "titleEn": "The Power of 75%",
+      "summaryHe": "מימוש ידני של 75% מהכמות הנותרת שוב ושוב — המפל 100→25→6.25→1.5625 — עם הפרדת ממומש/לא ממומש ועלויות.",
+      "file": "ch-06.md",
+      "scene": "realize-75",
+      "endVisual": {
+        "kind": "qty-cascade-75",
+        "slotId": "ch06-qty-cascade-75",
+        "labelHe": "המחשה מעשית",
+        "concept": "100→25→6.25→1.5625 remaining-qty 75% closes",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-07",
+      "slug": "ch-07",
+      "order": 7,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 7",
+      "titleHe": "המינוף: כוח שדורש משמעת",
+      "titleEn": "Leverage: Power That Demands Discipline",
+      "summaryHe": "שלבי ×1 / ×10 / max מאומת בלבד — הפרדת שדות, רמזור פסיכולוגי, ובלי להמציא מינוף Bybit מקסימלי.",
+      "file": "ch-07.md",
+      "scene": "traffic-light",
+      "endVisual": {
+        "kind": "leverage-stages",
+        "slotId": "ch07-leverage-stages",
+        "labelHe": "כך זה עובד בפועל",
+        "concept": "Leverage ×1 / ×10 / max verified; never imply risk removed",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-08",
+      "slug": "ch-08",
+      "order": 8,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 8",
+      "titleHe": "העסקה הגדולה ביותר היא העסקה שלא פתחת",
+      "titleEn": "The Greatest Trade Is the One You Did Not Open",
+      "summaryHe": "משמעת אי־פתיחה, מתאם תיק, ותקציב עסקה נפרד — קיבולת מקבילה כפדגוגיה בלבד.",
+      "file": "ch-08.md",
+      "scene": "none",
+      "endVisual": {
+        "kind": "portfolio-correlation",
+        "slotId": "ch08-portfolio-correlation",
+        "labelHe": "רואים את זה אחרת",
+        "concept": "Correlated multi-position portfolio risk",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-09",
+      "slug": "ch-09",
+      "order": 9,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 9",
+      "titleHe": "האויב שיושב מול המסך",
+      "titleEn": "The Enemy Sitting at the Screen",
+      "summaryHe": "לא להתאהב בעסקה — להשוות תגובה רגשית למשמעת של שיפור, ניהול, מימוש וחזרה לאיזון.",
+      "file": "ch-09.md",
+      "scene": "none",
+      "endVisual": {
+        "kind": "emotion-vs-discipline",
+        "slotId": "ch09-emotion-vs-discipline",
+        "labelHe": "רואים את זה אחרת",
+        "concept": "Emotional vs disciplined trading cinematic compare",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-10",
+      "slug": "ch-10",
+      "order": 10,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 10",
+      "titleHe": "הזיכרון של הסוחר",
+      "titleEn": "The Trader's Memory",
+      "summaryHe": "יומן כנתוני מחקר: דמו, stress לימודי, הלך־רוח OOS, וזהירות בחקר מסחר יומי — בלי פרק בקטסט.",
+      "file": "ch-10.md",
+      "scene": "none",
+      "endVisual": {
+        "kind": "journal-to-research",
+        "slotId": "ch10-journal-to-research",
+        "labelHe": "רואים את זה אחרת",
+        "concept": "Interactive trading journal → research data",
+        "status": "complete"
+      }
+    },
+    {
+      "id": "ch-11",
+      "slug": "ch-11",
+      "order": 11,
+      "kind": "chapter",
+      "numberLabelHe": "פרק 11",
+      "titleHe": "המספרים אינם משקרים, אבל צריך לדעת לקרוא אותם",
+      "titleEn": "Numbers Don't Lie — But You Must Learn to Read Them",
+      "summaryHe": "קריאת מדדים עם תווית HYPOTHETICAL בלבד — והפרדת שדות בין PnL, notional, מרג'ין ותקציב העסקה.",
+      "file": "ch-11.md",
+      "scene": "none",
+      "endVisual": {
+        "kind": "hypothetical-analytics",
+        "slotId": "ch11-hypothetical-analytics",
+        "labelHe": "המחשה מעשית",
+        "concept": "Analytics dashboard with clearly hypothetical data only",
+        "status": "complete"
+      }
+    }
+  ],
+  "appendices": [
+    {
+      "id": "appendix-glossary",
+      "slug": "appendix-glossary",
+      "kind": "appendix",
+      "titleHe": "נספח · מילון מונחים",
+      "titleEn": "Appendix · Glossary",
+      "file": "appendix-glossary.md"
+    },
+    {
+      "id": "appendix-disclaimer",
+      "slug": "appendix-disclaimer",
+      "kind": "appendix",
+      "titleHe": "נספח · הצהרה ברורה",
+      "titleEn": "Appendix · Disclaimer",
+      "file": "appendix-disclaimer.md"
+    }
+  ]
+}

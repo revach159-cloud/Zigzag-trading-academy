@@ -18,7 +18,7 @@ export function SimDisclaimer({ compact = false }: { compact?: boolean }) {
       אין מסחר אמיתי, הפקדות, או הבטחות תשואה
       {" · "}
       <span dir="ltr" className="ltr-isolate font-mono text-[10px]">
-        Simulation only — not real trading
+        Simulation only: not real trading
       </span>
     </aside>
   );

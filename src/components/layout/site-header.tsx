@@ -7,13 +7,11 @@ import { Menu, X } from "lucide-react";
 import { brand } from "@/lib/design/tokens";
 import { cn } from "@/lib/utils/cn";
 
+/** Academy marketing nav — book routes use BookShell instead. */
 const navItems = [
   { href: "/", label: "בית" },
   { href: "/method", label: "השיטה" },
-  { href: "/textbook", label: "ספר לימוד" },
-  { href: "/simulator", label: "סימולטור" },
-  { href: "/labs/leverage", label: "מעבדות" },
-  { href: "/tests", label: "מבחנים" },
+  { href: "/textbook", label: "LOOKBACK" },
 ] as const;
 
 export function SiteHeader() {
@@ -21,17 +19,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="relative z-40 border-b border-[var(--zz-line)] bg-[var(--zz-void)]/80 backdrop-blur-md">
+    <header className="site-header relative z-40 border-b border-[var(--zz-line)] bg-[var(--zz-void)]/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
           className="group flex flex-col items-start leading-none"
           aria-label={brand.fullName}
         >
-          <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-[0.18em] text-[var(--zz-ink)] transition-colors group-hover:text-[var(--zz-cyan)]">
+          <span className="text-lg font-bold tracking-[0.18em] text-[var(--zz-ink)] transition-colors group-hover:text-[var(--zz-cyan)]">
             {brand.name}
           </span>
-          <span className="mt-0.5 text-[10px] tracking-[0.22em] text-[var(--zz-muted)] uppercase">
+          <span className="mt-0.5 text-[10px] font-medium tracking-[0.22em] text-[var(--zz-muted)] uppercase">
             Trading Academy
           </span>
         </Link>
@@ -50,7 +48,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-sm px-3 py-2 text-sm transition-colors",
+                  "rounded-sm px-3 py-2 text-sm font-medium transition-colors",
                   active
                     ? "text-[var(--zz-cyan)]"
                     : "text-[var(--zz-muted)] hover:text-[var(--zz-ink)]",
