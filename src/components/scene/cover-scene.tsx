@@ -8,6 +8,7 @@ const CoverMarket3D = dynamic(() => import("./cover-market-3d"), {
   loading: () => <CoverStill />,
 });
 
+/** Reduced-motion / no-WebGL still — candles + zigzag only, no dollar notes. */
 function CoverStill() {
   return (
     <div
@@ -24,68 +25,93 @@ function CoverStill() {
       />
       <svg
         viewBox="0 0 800 420"
-        className="absolute inset-0 h-full w-full opacity-70"
+        className="absolute inset-0 h-full w-full opacity-75"
         preserveAspectRatio="xMidYMid slice"
       >
-        {/* Candlestick silhouette */}
+        <defs>
+          <filter id="cover-soft-blur" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="1.2" />
+          </filter>
+          <linearGradient id="zz-gold-line" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#C9A84C" stopOpacity="0.35" />
+            <stop offset="50%" stopColor="#E0C36A" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#C9A84C" stopOpacity="0.45" />
+          </linearGradient>
+        </defs>
+
+        {/* Soft chart plate */}
+        <rect
+          x="36"
+          y="110"
+          width="728"
+          height="230"
+          rx="4"
+          fill="rgba(6,11,22,0.55)"
+          stroke="rgba(46,230,255,0.12)"
+          strokeWidth="1"
+          filter="url(#cover-soft-blur)"
+        />
+
         {Array.from({ length: 22 }).map((_, i) => {
-          const x = 40 + i * 34;
+          const x = 55 + i * 32;
           const up = i % 3 !== 0;
-          const h = 30 + ((i * 17) % 55);
-          const y = 210 - h / 2 + (i % 2 === 0 ? -20 : 25);
+          const h = 28 + ((i * 17) % 52);
+          const y = 220 - h / 2 + (i % 2 === 0 ? -18 : 22);
           return (
             <g key={i}>
               <line
-                x1={x + 8}
-                x2={x + 8}
-                y1={y - 12}
-                y2={y + h + 12}
+                x1={x + 7}
+                x2={x + 7}
+                y1={y - 10}
+                y2={y + h + 10}
                 stroke={up ? "#3DDC97" : "#F07178"}
-                strokeWidth="1.5"
-                opacity="0.55"
+                strokeWidth="1.4"
+                opacity="0.5"
               />
               <rect
                 x={x}
                 y={y}
-                width="16"
+                width="14"
                 height={h}
-                fill={up ? "rgba(61,220,151,0.45)" : "rgba(240,113,120,0.4)"}
+                fill={up ? "rgba(61,220,151,0.48)" : "rgba(240,113,120,0.42)"}
                 stroke={up ? "#3DDC97" : "#F07178"}
                 strokeWidth="1"
               />
             </g>
           );
         })}
+
+        {/* Gold zigzag with clear pivots */}
         <polyline
-          points="60,280 140,120 220,230 320,90 420,250 520,130 620,210 720,100"
+          points="70,275 150,125 235,235 330,95 430,255 530,135 630,215 720,120"
           fill="none"
-          stroke="#E0C36A"
-          strokeWidth="3"
-          opacity="0.9"
+          stroke="url(#zz-gold-line)"
+          strokeWidth="3.2"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          opacity="0.95"
         />
-        {/* Dollar-like rectangles */}
-        <rect
-          x="520"
-          y="60"
-          width="70"
-          height="36"
-          rx="2"
-          fill="rgba(26,107,69,0.55)"
-          stroke="#C9A84C"
-          strokeWidth="1"
-          transform="rotate(12 555 78)"
-        />
-        <rect
-          x="90"
-          y="70"
-          width="58"
-          height="30"
-          rx="2"
-          fill="rgba(26,107,69,0.4)"
-          stroke="#C9A84C"
-          strokeWidth="1"
-          transform="rotate(-8 119 85)"
-        />
+        {[
+          [70, 275],
+          [150, 125],
+          [235, 235],
+          [330, 95],
+          [430, 255],
+          [530, 135],
+          [630, 215],
+          [720, 120],
+        ].map(([cx, cy], i) => (
+          <circle
+            key={i}
+            cx={cx}
+            cy={cy}
+            r="5"
+            fill="#E0C36A"
+            stroke="#C9A84C"
+            strokeWidth="1.5"
+            opacity="0.95"
+          />
+        ))}
       </svg>
     </div>
   );
@@ -114,8 +140,23 @@ export function CoverScene({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={className} data-scene-mode={mode} data-scene-kind="cover-market">
+    <div
+      className={className}
+      data-scene-mode={mode}
+      data-scene-kind="cover-market"
+    >
       {mode === "3d" ? <CoverMarket3D /> : <CoverStill />}
+      {/* Soft depth blur plate — keeps chart decorative behind copy */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backdropFilter: "blur(0.6px)",
+          WebkitBackdropFilter: "blur(0.6px)",
+          background:
+            "radial-gradient(ellipse at 70% 55%, transparent 20%, rgba(2,4,10,0.25) 70%)",
+        }}
+        aria-hidden
+      />
     </div>
   );
 }
