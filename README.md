@@ -25,7 +25,7 @@ npm run pdf
 
 - Dedicated repository — **not** nested under Polymarket Edge Lab
 - Independent Vercel project — no Edge Lab cron schedules in this repo
-- Owner-approved methodology in project docs; illustrative $320 pattern ≠ $250 cap
+- Owner-approved methodology in `docs/approved-methodology.md`; portfolio-scaled trade budget (51.2 × initial entry); illustrative $320 pattern is shape-only — Reject vs scaled budget (e.g. $256 on $10k / $2,560 on $100k), not a fixed $250 global cap
 
 ## Routes
 

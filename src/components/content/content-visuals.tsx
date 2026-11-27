@@ -117,7 +117,7 @@ function VisualSvg({ kind }: { kind: VisualKind }) {
             ×1 stage
           </text>
           <text x="115" y="128" fill="#8fa0b8" fontSize="11" textAnchor="middle">
-            margin ≤ $250
+            margin ≤ תקציב מדורג
           </text>
           <path d="M200 110 H270" stroke="#c9a84c" strokeWidth="2" />
           <polygon points="270,110 258,104 258,116" fill="#c9a84c" />

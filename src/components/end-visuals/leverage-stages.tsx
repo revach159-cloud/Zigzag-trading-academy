@@ -12,10 +12,10 @@ const STAGES = [
     label: "×1",
     title: "שלב בסיס",
     points: [
-      "תקציב עסקה מצטבר",
-      `תקרה ${zigzagAssumptions.perPositionMarginCapUsd}$ Reject`,
-      "מעבר ל־×10 לפי תקרת תקציב — לא לפי הפסד כטריגר",
-      "כמות קיימת נשמרת במעבר",
+      "תקציב עסקה מצטבר מדורג (51.2 × כניסה)",
+      `דוגמה: $${zigzagAssumptions.defaultExampleTradeBudgetUsd} Reject בתיק $10k / $2,560 בתיק $100k`,
+      "מעבר ל־×10 לפי תקרת תקציב שלב ×1 — לא לפי הפסד כטריגר",
+      "כמות קיימת נשמרת במעבר ×1→×10",
     ],
   },
   {
@@ -23,10 +23,11 @@ const STAGES = [
     label: "×10",
     title: "שלב מורחב",
     points: [
-      "חיזוק כשההפסד נטו ≥ מרג׳ין מוקצה רלוונטי",
-      "תקרת מרג׳ין מצטברת $250",
+      "חיזוק כשההפסד נטו ≥ מרג׳ין רלוונטי",
+      "אותו תקציב מדורג נשמר ל־Reject",
       "כשהחיזוק הבא נדחה — מעבר למינוף מקסימלי מאומת בלבד",
-      "מינוף אינו מסיר סיכון פירוק",
+      "×10→×1 הוא תהליך נפרד: אחרי מימוש וצמצום גודל, בכפוף למרג׳ין/ביטחונות",
+      "מינוף אינו מסיר סיכון פירוק ואינו משחרר collateral אוטומטית",
     ],
   },
   {
@@ -38,7 +39,7 @@ const STAGES = [
       zigzagAssumptions.maxInstrumentLeverage == null
         ? "סטטוס נוכחי: לא מאומת (null) — אין להמציא מספר"
         : `מאומת: ×${zigzagAssumptions.maxInstrumentLeverage}`,
-      "תקרת מרג׳ין $250 נשמרת",
+      "תקציב העסקה המדורג נשמר",
       "אין הבטחה למשיכת הון או מניעת פירוק",
     ],
   },
@@ -50,6 +51,9 @@ export function LeverageStages({ endVisual }: { endVisual: EndVisual }) {
 
   return (
     <EndVisualShell endVisual={endVisual}>
+      <p className="mb-3 text-xs leading-6 text-[var(--zz-muted)]">
+        שני תהליכים נפרדים: ×1→×10 (תקציבי) ו־×10→×1 (אחרי מימוש וצמצום) — לא מתג ×1↔×10.
+      </p>
       <div className="flex gap-2" role="tablist" aria-label="שלבי מינוף">
         {STAGES.map((s) => (
           <button
@@ -84,7 +88,7 @@ export function LeverageStages({ endVisual }: { endVisual: EndVisual }) {
           מרג׳ין ≠ notional
         </div>
         <div className="border border-[var(--zz-cyan)]/40 p-2 text-[var(--zz-cyan)]">
-          תקציב ≠ בטוחה
+          מינוף ≠ גודל
         </div>
         <div className="border border-[var(--zz-danger)]/40 p-2 text-[var(--zz-danger)]">
           מינוף ≠ ביטוח

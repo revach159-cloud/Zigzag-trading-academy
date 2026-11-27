@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { zigzagAssumptions } from "@/lib/math/assumptions";
+import {
+  tradeBudgetUsd,
+  zigzagAssumptions,
+} from "@/lib/math/assumptions";
 import {
   averageEntry,
   d,
@@ -36,15 +39,21 @@ describe("decimal-safe LOOKBACK math", () => {
     expect(ladderPrice(100, 2).toString()).toBe("81");
   });
 
-  it("rejects margin that would exceed $250 cap", () => {
-    expect(wouldRejectMargin(200, 40)).toBe(false);
+  it("rejects margin that would exceed portfolio-scaled trade budget", () => {
+    const budget10k = tradeBudgetUsd(10_000); // 256
+    expect(wouldRejectMargin(200, 40, budget10k)).toBe(false);
+    expect(wouldRejectMargin(200, 60, budget10k)).toBe(true);
+    expect(wouldRejectMargin(240, 20, budget10k)).toBe(true);
+    // Default pedagogical cap is $10k example ($256)
     expect(wouldRejectMargin(200, 60)).toBe(true);
-    expect(wouldRejectMargin(240, 20)).toBe(true);
+    expect(wouldRejectMargin(200, 50)).toBe(false);
+
     const patternSum = zigzagAssumptions.illustrativeReinforcementPatternUsd.reduce(
       (acc, n) => acc.plus(n),
       d(0),
     );
     expect(patternSum.toNumber()).toBe(320);
-    expect(patternSum.gt(zigzagAssumptions.perPositionMarginCapUsd)).toBe(true);
+    expect(patternSum.gt(budget10k)).toBe(true);
+    expect(patternSum.lt(tradeBudgetUsd(100_000))).toBe(true);
   });
 });

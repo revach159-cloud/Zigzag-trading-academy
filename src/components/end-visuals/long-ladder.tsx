@@ -3,12 +3,14 @@
 import { useMemo, useState } from "react";
 import type { EndVisual } from "@/lib/content/manuscript/types";
 import { EndVisualShell } from "./shell";
-import { zigzagAssumptions } from "@/lib/math/assumptions";
+import { tradeBudgetUsd, zigzagAssumptions } from "@/lib/math/assumptions";
 import { d, formatUsd, ladderPrice, wouldRejectMargin } from "@/lib/math/decimal";
 import { cn } from "@/lib/utils/cn";
 
 const REF = 1.0;
 const PATTERN = zigzagAssumptions.illustrativeReinforcementPatternUsd;
+/** Default pedagogy frame: $10k → $256 trade budget (shape $320 exceeds it). */
+const EXAMPLE_BUDGET = tradeBudgetUsd(10_000);
 
 export function LongLadder({ endVisual }: { endVisual: EndVisual }) {
   const [mode, setMode] = useState<"planned" | "emotional">("planned");
@@ -18,7 +20,7 @@ export function LongLadder({ endVisual }: { endVisual: EndVisual }) {
     let cumulative = d(0);
     return PATTERN.map((alloc, i) => {
       const price = ladderPrice(REF, i);
-      const nextReject = wouldRejectMargin(cumulative, alloc);
+      const nextReject = wouldRejectMargin(cumulative, alloc, EXAMPLE_BUDGET);
       const accepted = !nextReject;
       if (accepted) cumulative = cumulative.plus(alloc);
       return {
@@ -58,7 +60,7 @@ export function LongLadder({ endVisual }: { endVisual: EndVisual }) {
 
       <p className="mt-3 text-sm text-[var(--zz-muted)]">
         {mode === "planned"
-          ? "סולם Long מ־מחיר ייחוס · Touch · דילוגים מתועדים · תקרת $250 Reject."
+          ? `סולם Long מ־מחיר ייחוס · Touch · דילוגים מתועדים · תקציב מדורג $${EXAMPLE_BUDGET} Reject (דוגמת תיק $10k).`
           : "קנייה רגשית מתעלמת מרמות ומכפילה בלי תיעוד — מסוכן פדגוגית."}
       </p>
 
@@ -106,8 +108,9 @@ export function LongLadder({ endVisual }: { endVisual: EndVisual }) {
       </ol>
 
       <p className="mt-4 text-xs leading-6 text-[var(--zz-gold)]">
-        דפוס הכפלה איורי מסתכם ב־$320 — תחת הכללים המאושרים, חיזוק שחורג מ־$250
-        נדחה (Reject). אין לערבב את האיור עם התקרה.
+        דפוס הכפלה איורי מסתכם ב־$320 (צורת סולם בלבד). בדוגמת תיק $10k תקציב העסקה הוא $
+        {EXAMPLE_BUDGET} — חיזוק שחורג נדחה (Reject). בתיק $100k התקציב $2,560; אין תקרת $250
+        גלובלית.
       </p>
     </EndVisualShell>
   );

@@ -588,7 +588,7 @@ function buildHtml(): string {
       תוכן זה ללימוד וסימולציה בלבד (Bybit Linear USDT Perp, Cross, One-Way).
       אין ייעוץ השקעות, מסחר אמיתי או הבטחות תשואה.
       יש להבחין בין margin, notional, quantity, avg, PnL, collateral ו־liquidation.
-      דפוס $320 איורי בלבד; תקרת מרג'ין מאושרת $250 · Reject.
+      דפוס $320 איורי בלבד; תקציב מדורג 51.2×כניסה (למשל $256 בתיק $10k / $2,560 בתיק $100k) · Reject.
     </div>
   </section>
 

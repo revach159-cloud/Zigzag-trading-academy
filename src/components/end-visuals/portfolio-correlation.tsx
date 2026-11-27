@@ -8,10 +8,12 @@ import { d, formatUsd } from "@/lib/math/decimal";
 
 type Position = { id: string; name: string; budget: number; corr: number };
 
+const CAP = zigzagAssumptions.defaultExampleTradeBudgetUsd; // $10k example = $256
+
 const SEED: Position[] = [
-  { id: "a", name: "BTC-ish", budget: 250, corr: 1 },
-  { id: "b", name: "ETH-ish", budget: 200, corr: 0.85 },
-  { id: "c", name: "SOL-ish", budget: 150, corr: 0.7 },
+  { id: "a", name: "BTC-ish", budget: 120, corr: 1 },
+  { id: "b", name: "ETH-ish", budget: 100, corr: 0.85 },
+  { id: "c", name: "SOL-ish", budget: 80, corr: 0.7 },
 ];
 
 export function PortfolioCorrelation({ endVisual }: { endVisual: EndVisual }) {
@@ -20,7 +22,6 @@ export function PortfolioCorrelation({ endVisual }: { endVisual: EndVisual }) {
 
   const risk = useMemo(() => {
     const naive = positions.reduce((acc, p) => acc.plus(p.budget), d(0));
-    // Illustrative correlated stress: sum(budget × corr × shock%)
     const stressed = positions.reduce(
       (acc, p) => acc.plus(d(p.budget).times(p.corr).times(shock).div(100)),
       d(0),
@@ -31,11 +32,12 @@ export function PortfolioCorrelation({ endVisual }: { endVisual: EndVisual }) {
   return (
     <EndVisualShell endVisual={endVisual} hypothetical>
       <p className="text-sm leading-7 text-[var(--zz-muted)]">
-        הדגמת סיכון תיק במתאם — שמות איוריים בלבד. תקציב לכל פוזיציה כפוף לתקרת{" "}
+        הדגמת סיכון תיק במתאם — שמות איוריים בלבד. תקציב לכל פוזיציה כפוף לתקציב מדורג
+        (דוגמת תיק $10k:{" "}
         <span dir="ltr" className="ltr-isolate font-mono">
-          ${zigzagAssumptions.perPositionMarginCapUsd}
+          ${CAP}
         </span>{" "}
-        Reject. אין זה תיק אמיתי.
+        Reject). אין זה תיק אמיתי.
       </p>
 
       <label className="mt-4 block text-sm">
@@ -61,9 +63,9 @@ export function PortfolioCorrelation({ endVisual }: { endVisual: EndVisual }) {
               תקציב
               <input
                 type="range"
-                min={50}
-                max={250}
-                step={10}
+                min={20}
+                max={CAP}
+                step={4}
                 value={p.budget}
                 onChange={(e) => {
                   const budget = Number(e.target.value);

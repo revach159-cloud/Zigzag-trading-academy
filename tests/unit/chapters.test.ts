@@ -106,10 +106,13 @@ describe("manuscript bodies", () => {
     expect(blob).toContain("0.05%");
     expect(blob).toContain("0.5%");
     expect(blob).toContain("51.2");
-    expect(blob).toContain("250");
+    expect(blob).toContain("2,560");
+    expect(blob).toContain("256");
     expect(blob).toMatch(/Reject|דחי/);
     expect(blob).toMatch(/20–30|20-30/);
-    expect(zigzagAssumptions.perPositionMarginCapUsd).toBe(250);
+    expect(zigzagAssumptions.defaultExampleTradeBudgetUsd).toBe(256);
+    // Must not teach fixed $250 as the global Reject ceiling
+    expect(blob).not.toMatch(/תקרת מרג['׳']ין מוחלטת לפוזיציה:\s*\$250/);
   });
 
   it("emphasizes remaining-qty cascade in ch-06", () => {
@@ -144,6 +147,32 @@ describe("manuscript bodies", () => {
     for (const file of files) {
       const text = readFileSync(path.join(CONTENT_DIR, file), "utf8");
       expect(text.includes("מסלול")).toBe(false);
+    }
+  });
+
+  it("contains zero forbidden מסלול across src/ (excl. guard strings)", () => {
+    const srcRoot = path.join(process.cwd(), "src");
+    const stack = [srcRoot];
+    while (stack.length) {
+      const dir = stack.pop()!;
+      for (const name of readdirSync(dir)) {
+        const full = path.join(dir, name);
+        const stat = require("node:fs").statSync(full);
+        if (stat.isDirectory()) {
+          stack.push(full);
+          continue;
+        }
+        if (!/\.(ts|tsx|md|json)$/.test(name)) continue;
+        const text = readFileSync(full, "utf8");
+        // Allow the explicit guard / test mention of the forbidden term
+        const stripped = text
+          .replace(/Forbidden terminology מסלול[^\n]*/g, "")
+          .replace(/contains zero forbidden מסלול[^\n]*/g, "")
+          .replace(/not\.toContain\("מסלול"\)/g, "")
+          .replace(/includes\("מסלול"\)/g, "")
+          .replace(/text\.includes\("מסלול"\)/g, "");
+        expect(stripped.includes("מסלול")).toBe(false);
+      }
     }
   });
 });

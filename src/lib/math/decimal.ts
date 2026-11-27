@@ -62,13 +62,14 @@ export function ladderPrice(
 }
 
 /**
- * Cap check for cumulative margin vs per-position Reject cap.
- * Returns whether next allocation would be rejected.
+ * Cap check for cumulative margin vs portfolio-scaled trade-budget Reject.
+ * Default ceiling is the $10k example budget ($256); pass tradeBudgetUsd(p)
+ * for other portfolios. Returns whether next allocation would be rejected.
  */
 export function wouldRejectMargin(
   cumulativeUsd: DecimalValue,
   nextUsd: DecimalValue,
-  capUsd = zigzagAssumptions.perPositionMarginCapUsd,
+  capUsd: DecimalValue = zigzagAssumptions.defaultExampleTradeBudgetUsd,
 ): boolean {
   return d(cumulativeUsd).plus(nextUsd).gt(capUsd);
 }

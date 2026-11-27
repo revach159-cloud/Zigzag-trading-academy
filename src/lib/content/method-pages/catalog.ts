@@ -48,10 +48,10 @@ const rawCatalog = {
             {
               type: "list",
               itemsHe: [
-                "גודל בשלב ×1: cumulative allocated capital על בסיס margin; תקרה $250 לפוזיציה — דחייה (Reject).",
+                "גודל בשלב ×1: cumulative allocated capital על בסיס margin; תקציב מדורג (51.2×כניסה; למשל $256 בתיק $10k) — דחייה (Reject).",
                 "סולם adverse: P_k = P₀×(1−0.10×k) ממחיר ייחוס מקורי; הפעלה במגע (Touch).",
                 "מעבר ×1→×10: כשתקרת ההקצאה חוסמת חיזוק ×1 נוסף — שומרים כמות, עוברים שלב.",
-                "שלב ×10: חיזוק כשההפסד הנקי ≥ ה-margin שהוקצה לרמת הרלוונטית; תקרה מצטברת $250.",
+                "שלב ×10: חיזוק כשההפסד הנקי ≥ ה-margin שהוקצה לרמת הרלוונטית; תקציב מדורג מצטבר.",
                 "מימוש: סגירה ידנית של 75% מהכמות הפתוחה; 25% נשארים; חזרתי על הנותר.",
                 "עמלות: 2 bps round-trip בסגירה; slippage 1 bp לצד; funding 0; epsilon 0.",
               ],
@@ -111,9 +111,9 @@ const rawCatalog = {
         {
           id: "q2",
           promptHe: "תקרת margin לפוזיציה בשלב ×1:",
-          choicesHe: ["$100", "$250 עם מדיניות Reject", "ללא תקרה", "$10,000"],
+          choicesHe: ["$100", "תקציב מדורג (51.2×כניסה) עם Reject", "ללא תקרה", "$10,000"],
           correctIndex: 1,
-          explanationHe: "perPositionMarginCapUsd=250; capPolicy=reject.",
+          explanationHe: "tradeBudget=51.2×initialEntry; capPolicy=reject; e.g. $256 on $10k.",
         },
       ],
       awaitingNotesHe: [],
@@ -173,7 +173,7 @@ const rawCatalog = {
               headersHe: ["פרמטר", "ערך", "הערה"],
               rows: [
                 ["בסיס", "margin (לא notional בלבד)", "allocationBasis=margin"],
-                ["תקרה", "$250 לפוזיציה", "חריגה → Reject"],
+                ["תקרה", "תקציב מדורג לפוזיציה", "חריגה → Reject"],
                 ["עיגול", "Floor", "tick לימודי: שמרני לכיוון adverse"],
               ],
               awaitingConfirmation: false,
@@ -195,11 +195,11 @@ const rawCatalog = {
           setupHe: "P₀=100; margin פתיחה $100; חיזוקים $80 ב־90 ו־$60 ב־80.",
           stepsHe: [
             "סולם: 100, 90, 80.",
-            "C_cum: $100 → $180 → $240 (מתחת ל-$250).",
+            "C_cum: $100 → $180 → $240 (מתחת ל-$256 בדוגמת $10k).",
             "כמויות Floor: 1@100; 0@90 אם $80/90→0 או 1@90; 0@80 אם $60/80→0 — בתרגיל מגדילים margin לרמה אם צריך כמות>0.",
             "מעדכנים E_avg בפרק 7.",
           ],
-          resultHe: "יומן חיזוקים שקוף תחת תקרת $250.",
+          resultHe: "יומן חיזוקים שקוף תחת תקציב מדורג.",
           awaitingConfirmation: false,
         },
       ],
@@ -216,7 +216,7 @@ const rawCatalog = {
         failure: [
           {
             id: "fail",
-            titleHe: "חריגה מ-$250",
+            titleHe: "חריגה מתקציב מדורג",
             narrativeHe: "מוסיפים margin שמביא C_cum ל-$260.",
             outcomeHe: "המערכת דוחה (Reject) את החיזוק.",
             lessonHe: "התקרה חלק מהשיטה המאושרת.",
@@ -239,9 +239,9 @@ const rawCatalog = {
         {
           id: "q2",
           promptHe: "תקרת margin לפוזיציה בשלב ×1:",
-          choicesHe: ["$250 Reject", "ללא תקרה", "$25", "רק ב־short"],
+          choicesHe: ["תקציב מדורג Reject", "ללא תקרה", "$25", "רק ב־short"],
           correctIndex: 0,
-          explanationHe: "perPositionMarginCapUsd=250.",
+          explanationHe: "defaultExampleTradeBudgetUsd=256 (portfolio-scaled).",
         },
       ],
       awaitingNotesHe: [],
@@ -251,7 +251,7 @@ const rawCatalog = {
       titleHe: "מינוף ×1→×10",
       titleEn: "Leverage ×1→×10",
       summaryHe:
-        "מעבר ×1→×10 לפי תקרת תקציב; שלב ×10 עם חיזוק לפי הפסד מצטבר ותקרת $250 מצטברת.",
+        "מעבר ×1→×10 לפי תקרת תקציב; שלב ×10 עם חיזוק לפי הפסד מצטבר ותקציב מדורג; ×10→×1 תהליך נפרד אחרי מימוש.",
       awaitingConfirmation: false,
       sections: [
         {
@@ -261,7 +261,7 @@ const rawCatalog = {
             {
               type: "paragraph",
               textHe:
-                "כשחיזוק ×1 נוסף נדחה כי cumulative margin היה עובר את תקרת $250, השיטה עוברת לשלב ×10 על אותה פוזיציה תוך שמירת הכמות — לא פתיחת פוזיציה נפרדת. זה מעבר תקציבי, לא מבוסס על 'הפסד = 100% מהחיזוק האחרון' כתנאי יחיד.",
+                "כשחיזוק ×1 נוסף נדחה כי cumulative margin היה עובר את תקציב העסקה המדורג, השיטה עוברת לשלב ×10 על אותה פוזיציה תוך שמירת הכמות — לא פתיחת פוזיציה נפרדת. זה מעבר תקציבי, לא מבוסס על 'הפסד = 100% מהחיזוק האחרון' כתנאי יחיד.",
             },
             {
               type: "callout",
@@ -286,7 +286,7 @@ const rawCatalog = {
             {
               type: "paragraph",
               textHe:
-                "תקרת margin מצטברת בשלב ×10 היא $250. כשחיזוק ×10 הבא נדחה בגלל התקרה, המערכת עוברת אוטומטית למינוף מקסימלי של ה-instrument — רק אם המספר אומת מנתוני Bybit; אחרת מסומן unresolved ולא ממציאים ערך.",
+                "בשלב ×10 נשמר תקציב העסקה המדורג. כשחיזוק ×10 הבא נדחה בגלל התקציב, המערכת עוברת אוטומטית למינוף מקסימלי של ה-instrument — רק אם המספר אומת מנתוני Bybit; אחרת מסומן unresolved ולא ממציאים ערך.",
             },
             {
               type: "callout",
