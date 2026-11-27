@@ -50,6 +50,12 @@ export function useChapterProgress(slug?: string) {
   return getReadingProgress(completed);
 }
 
+/** Marks chapter visited + scroll restore without rendering any chrome. */
+export function ChapterVisitTracker({ slug }: { slug: string }) {
+  useChapterProgress(slug);
+  return null;
+}
+
 export function ReadingProgressBar({ slug }: { slug?: string }) {
   const progress = useChapterProgress(slug);
 

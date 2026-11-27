@@ -9,7 +9,7 @@ import { ContentBlocks, countFormulas } from "./content-blocks";
 import { EduDisclaimer } from "./edu-disclaimer";
 import { PdfDownloadCta } from "./pdf-download-cta";
 import { EducationalScene } from "@/components/scene/educational-scene";
-import { ReadingProgressBar } from "./reading-progress";
+import { ChapterVisitTracker } from "./reading-progress";
 
 type ChapterViewProps = {
   chapter: Chapter;
@@ -38,13 +38,11 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
         <PdfDownloadCta variant="compact" />
       </div>
 
-      <div className="mt-6">
-        <ReadingProgressBar slug={chapter.slug} />
-      </div>
+      <ChapterVisitTracker slug={chapter.slug} />
 
       {/* Editorial station opening — literary, not a website card */}
       <motion.header
-        className="book-chapter-open relative mt-10 overflow-hidden"
+        className="book-chapter-open relative mt-6 overflow-hidden"
         {...fade}
         transition={{ duration: 0.75 }}
       >

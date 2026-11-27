@@ -19,10 +19,10 @@
       "file": "opening.md",
       "scene": "cover",
       "endVisual": {
-        "kind": "philosophy-compare",
-        "slotId": "opening-philosophy-compare",
-        "labelHe": "רואים את זה אחרת",
-        "concept": "Side-by-side: traditional vs ZigZag trader philosophies",
+        "kind": "none",
+        "slotId": "opening-none",
+        "labelHe": "ללא המחשה",
+        "concept": "Opening comparison lives only in the manuscript table; no interactive duplicate",
         "status": "complete"
       }
     },

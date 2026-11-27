@@ -117,13 +117,13 @@ export function BookShell({ children, toc, totalUnits }: BookShellProps) {
 
           <div className="flex items-center gap-1.5 sm:gap-2">
             <div
-              className="hidden items-center gap-2 sm:flex"
+              className="flex max-w-[46vw] items-center gap-1.5 sm:max-w-none sm:gap-2"
               aria-label={reading.progressLabelHe}
             >
-              <span className="text-[11px] text-[var(--zz-muted)]">
-                {visitedCount}/{totalUnits}
+              <span className="truncate text-[10px] text-[var(--zz-muted)] sm:text-[11px]">
+                {visitedCount}/{totalUnits} {reading.progressLabelHe}
               </span>
-              <div className="h-1 w-20 overflow-hidden rounded-full bg-[rgba(168,184,208,0.12)]">
+              <div className="hidden h-1 w-20 overflow-hidden rounded-full bg-[rgba(168,184,208,0.12)] sm:block">
                 <div
                   className="h-full rounded-full bg-gradient-to-l from-[var(--zz-cyan)] to-[var(--zz-emerald)] transition-[width] duration-500"
                   style={{ width: `${percent}%` }}

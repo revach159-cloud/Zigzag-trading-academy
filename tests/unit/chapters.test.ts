@@ -89,9 +89,14 @@ describe("manuscript bodies", () => {
     }
   });
 
-  it("defines unique complete end visuals in index", () => {
-    const kinds = manuscriptIndex.units.map((unit) => unit.endVisual.kind);
-    expect(new Set(kinds).size).toBe(12);
+  it("defines complete end visuals; Opening has none (no interactive duplicate)", () => {
+    const opening = manuscriptIndex.units.find((unit) => unit.slug === "opening");
+    expect(opening?.endVisual.kind).toBe("none");
+    const interactive = manuscriptIndex.units.filter(
+      (unit) => unit.endVisual.kind !== "none",
+    );
+    const kinds = interactive.map((unit) => unit.endVisual.kind);
+    expect(new Set(kinds).size).toBe(interactive.length);
     expect(
       manuscriptIndex.units.every(
         (unit) => unit.endVisual.status === "complete",

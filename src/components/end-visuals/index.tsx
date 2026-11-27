@@ -17,6 +17,8 @@ import { EndVisualShell } from "./shell";
 
 export function EndVisualExperience({ endVisual }: { endVisual: EndVisual }) {
   switch (endVisual.kind) {
+    case "none":
+      return null;
     case "philosophy-compare":
       return <PhilosophyCompare endVisual={endVisual} />;
     case "chase-vs-plan":

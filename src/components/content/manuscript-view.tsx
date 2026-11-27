@@ -11,7 +11,7 @@ import { SimDisclaimer } from "@/components/layout/sim-disclaimer";
 import { EduDisclaimer } from "./edu-disclaimer";
 import { PdfDownloadCta } from "./pdf-download-cta";
 import { EducationalScene } from "@/components/scene/educational-scene";
-import { ReadingProgressBar } from "./reading-progress";
+import { ChapterVisitTracker } from "./reading-progress";
 import {
   ManuscriptBlocks,
   countManuscriptFormulas,
@@ -42,6 +42,8 @@ export function ManuscriptView({
 
   return (
     <article className="book-chapter mx-auto w-full max-w-3xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
+      <ChapterVisitTracker slug={chapter.slug} />
+
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/textbook"
@@ -52,12 +54,8 @@ export function ManuscriptView({
         <PdfDownloadCta variant="compact" />
       </div>
 
-      <div className="mt-4">
-        <ReadingProgressBar slug={chapter.slug} />
-      </div>
-
       <motion.header
-        className="book-chapter-open relative mt-6 overflow-hidden"
+        className="book-chapter-open relative mt-5 overflow-hidden"
         {...fade}
         transition={{ duration: 0.75 }}
       >
@@ -125,7 +123,9 @@ export function ManuscriptView({
         );
       })}
 
-      <EndVisualExperience endVisual={endVisual} />
+      {endVisual.kind !== "none" ? (
+        <EndVisualExperience endVisual={endVisual} />
+      ) : null}
 
       {next ? (
         <p className="mt-10 text-sm leading-7 text-[var(--zz-muted)]">

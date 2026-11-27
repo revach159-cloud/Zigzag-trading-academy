@@ -6,8 +6,8 @@ kind: opening
 titleHe: לפני שמתחילים: צריך ללמוד לחשוב אחרת
 titleEn: Before You Begin
 summaryHe: מניפסט הפתיחה: לחשוב אחרת לפני הגרף, סוחר חוזה מול סוחר ZIGZAG שמתכנן ניהול, בשפת השבחת העסקה, בסימולציה בלבד.
-endVisualKind: philosophy-compare
-endVisualLabelHe: רואים את זה אחרת
+endVisualKind: none
+endVisualLabelHe: ללא המחשה
 endVisualStatus: complete
 ---
 
