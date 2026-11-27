@@ -6,33 +6,27 @@ import type { EndVisual } from "@/lib/content/manuscript/types";
 import { EndVisualShell } from "./shell";
 import { cn } from "@/lib/utils/cn";
 
+/**
+ * Interactive contrast chrome — intentionally not a second copy of the
+ * manuscript comparison table («הסוחר הרגיל מול סוחר ZIGZAG»).
+ */
 const SIDES = [
   {
     id: "traditional",
-    title: "הגישה הרגילה",
+    title: "גישה רגילה",
     points: [
-      "מנסה לנחש את התנועה הבאה",
-      "מחפשת כניסה מושלמת",
-      "מתמקדת בכיוון המחיר",
-      "מחפשת רווח גדול בעסקה",
-      "מסתמכת על נקודת עצירה אחת",
-      "נוטה להגיב לתנודות",
-      "מודדת הצלחה לפי Win Rate",
-      "חושבת על העסקה הבודדת",
+      "שואלת לאן ילך הנר הבא",
+      "מגיבה לכאב או לסיפוק מיידי",
+      "מודדת הצלחה בצדקת התחזית",
     ],
   },
   {
     id: "zigzag",
     title: "גישת ZIGZAG",
     points: [
-      "מתכננת תגובה למספר תרחישים",
-      "בונה כניסה בשלבים",
-      "מתמקדת גם בניהול הכמות",
-      "מחפשת ניהול יעיל של התיק",
-      "מגדירה תקציב וגבולות פעולה",
-      "פועלת לפי תוכנית מוגדרת",
-      "בוחנת רווחיות, Drawdown וצריכת תקציב",
-      "חושבת על כלל הפוזיציות יחד",
+      "שואלת כיצד לנהל כמה תרחישים",
+      "פועלת לפי תוכנית ותקציב עסקה",
+      "מודדת הצלחה במשמעת התהליך",
     ],
   },
 ] as const;
@@ -47,7 +41,7 @@ export function PhilosophyCompare({ endVisual }: { endVisual: EndVisual }) {
         {(
           [
             ["both", "שני הצדדים"],
-            ["traditional", "מסורתי"],
+            ["traditional", "רגילה"],
             ["zigzag", "ZIGZAG"],
           ] as const
         ).map(([id, label]) => (
@@ -68,6 +62,11 @@ export function PhilosophyCompare({ endVisual }: { endVisual: EndVisual }) {
           </button>
         ))}
       </div>
+
+      <p className="mt-4 text-sm leading-7 text-[var(--zz-muted)]">
+        הטבלה המלאה מופיעה בסעיף הקודם. כאן רק ניגוד שאלות לתרגול, בלי ניקוד
+        רווח.
+      </p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
         {SIDES.map((side) => {

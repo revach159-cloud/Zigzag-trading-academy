@@ -689,7 +689,7 @@ function buildHtml(): string {
     <p class="author-credit">${escapeHtml(brand.authorCreditHe)}</p>
     <p class="tag">${escapeHtml(brand.taglineHe)}</p>
     <p dir="ltr" class="en">${escapeHtml(brand.taglineEn)}</p>
-    <p>${chapterCatalog.chapters.length} יחידות נרטיביות — פרק פתיחה ו־11 פרקים · אותו מקור כמו בקורא הדיגיטלי · ${escapeHtml(brand.narrativeConceptHe)}.</p>
+    <p>${chapterCatalog.chapters.length} פרקים נרטיביים · פרק פתיחה ו־11 פרקים · אותו מקור כמו בקורא הדיגיטלי · ${escapeHtml(brand.narrativeConceptHe)}.</p>
     <div class="disclaimer">
       <strong>הצהרה חינוכית.</strong>
       תוכן זה ללימוד וסימולציה בלבד (Bybit Linear USDT Perp, Cross, One-Way).

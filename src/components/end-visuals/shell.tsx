@@ -3,7 +3,8 @@ import type { ReactNode } from "react";
 
 /** Hebrew display titles for end-visual H2s (UI chrome — not manuscript prose). */
 const TITLE_HE: Record<string, string> = {
-  "philosophy-compare": "הסוחר הרגיל מול סוחר ZIGZAG",
+  // Must not repeat the manuscript section title «הסוחר הרגיל מול סוחר ZIGZAG».
+  "philosophy-compare": "המחשה אינטראקטיבית",
   "chase-vs-plan": "רדיפת מחיר מול תוכנית ניהול מוכנה",
   "zigzag-history": "היסטוריית מחיר בזיגזג לבדיקת עקבות",
   "capital-allocation": "סימולטור תקציב עסקה (הנחות איוריות)",

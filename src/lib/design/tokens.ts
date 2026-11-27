@@ -63,5 +63,5 @@ export const motion = {
 export const reading = {
   storageKey: "zz-lookback-reader-v3",
   measureRem: 38,
-  progressLabelHe: "יחידות שנקראו",
+  progressLabelHe: "פרקים שנקראו",
 } as const;

@@ -111,7 +111,7 @@ export default function TextbookPage() {
             תוכן העניינים
           </h2>
           <p className="journey-toc-lede">
-            {chapterCatalog.chapters.length} יחידות ב־{brand.bookTitleHe}: פרק
+            {chapterCatalog.chapters.length} פרקים ב־{brand.bookTitleHe}: פרק
             פתיחה ואחריו פרקים 1–11.
           </p>
 
