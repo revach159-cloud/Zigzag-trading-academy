@@ -22,12 +22,12 @@ export function ManuscriptBlocks({
   let formulaNumber = formulaStart;
 
   return (
-    <div className="space-y-5 text-[1.02rem] leading-8">
+    <div className="book-manuscript-prose">
       {blocks.map((block, index) => {
         switch (block.type) {
           case "paragraph":
             return (
-              <p key={`p-${index}`} className="text-[var(--zz-ink)]/95">
+              <p key={`p-${index}`}>
                 <RichText text={block.textHe} />
               </p>
             );
@@ -66,8 +66,8 @@ export function ManuscriptBlocks({
                 key={`callout-${index}`}
                 className={`border-r-2 pr-4 ${calloutToneClass[block.tone] ?? calloutToneClass.note}`}
               >
-                <p className="text-sm font-medium">{block.titleHe}</p>
-                <p className="mt-2 text-[0.98rem] leading-8 text-[var(--zz-ink)]/90">
+                <p className="zz-subtitle">{block.titleHe}</p>
+                <p className="mt-2 text-[var(--zz-ink)]/90">
                   <RichText text={block.textHe} />
                 </p>
               </aside>
@@ -76,17 +76,17 @@ export function ManuscriptBlocks({
             return (
               <div key={`table-${index}`} className="overflow-x-auto">
                 {block.captionHe ? (
-                  <p className="mb-2 text-sm text-[var(--zz-muted)]">
+                  <p className="mb-2 zz-subtitle">
                     {block.captionHe}
                   </p>
                 ) : null}
-                <table className="w-full min-w-[28rem] border-collapse text-sm">
+                <table className="book-table w-full min-w-[28rem] border-collapse text-[0.95em] leading-[1.65]">
                   <thead>
                     <tr className="border-b border-[var(--zz-line)] text-[var(--zz-cyan)]">
                       {block.headersHe.map((header) => (
                         <th
                           key={header}
-                          className="px-2 py-2 text-start font-medium"
+                          className="px-2.5 py-2.5 text-start font-semibold"
                         >
                           <RichText text={header} />
                         </th>
@@ -102,7 +102,7 @@ export function ManuscriptBlocks({
                         {row.map((cell, cellIndex) => (
                           <td
                             key={`cell-${rowIndex}-${cellIndex}`}
-                            className="px-2 py-2 align-top text-[var(--zz-ink)]/90"
+                            className="px-2.5 py-2.5 align-top text-[var(--zz-ink)]/92"
                           >
                             <RichText text={cell} />
                           </td>

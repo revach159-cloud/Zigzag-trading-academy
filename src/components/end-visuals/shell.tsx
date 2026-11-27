@@ -31,7 +31,7 @@ export function EndVisualShell({
   return (
     <section
       id="end-visual"
-      className="end-visual-shell mt-16 px-4 py-10 sm:px-6"
+      className="end-visual-shell mt-10 px-4 py-8 sm:px-6"
       aria-label={endVisual.labelHe}
       data-end-visual-kind={endVisual.kind}
       data-end-visual-status={endVisual.status}

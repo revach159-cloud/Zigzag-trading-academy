@@ -41,7 +41,7 @@ export function ManuscriptView({
   const endVisual = chapter.endVisual;
 
   return (
-    <article className="book-chapter mx-auto w-full max-w-3xl flex-1 px-4 py-10 sm:px-6 sm:py-14">
+    <article className="book-chapter mx-auto w-full max-w-3xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/textbook"
@@ -52,22 +52,22 @@ export function ManuscriptView({
         <PdfDownloadCta variant="compact" />
       </div>
 
-      <div className="mt-6">
+      <div className="mt-4">
         <ReadingProgressBar slug={chapter.slug} />
       </div>
 
       <motion.header
-        className="book-chapter-open relative mt-10 overflow-hidden"
+        className="book-chapter-open relative mt-6 overflow-hidden"
         {...fade}
         transition={{ duration: 0.75 }}
       >
         {chapter.scene !== "none" ? (
-          <div className="book-scene-stage mb-10 h-64 w-full sm:h-80">
+          <div className="book-scene-stage mb-5 h-48 w-full sm:h-60">
             <EducationalScene
               kind={chapter.scene}
               className="absolute inset-0 h-full w-full"
             />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--zz-void)] via-[var(--zz-void)]/75 to-transparent px-5 pb-6 pt-20">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--zz-void)] via-[var(--zz-void)]/75 to-transparent px-5 pb-5 pt-16">
               <p className="text-xs font-medium tracking-[0.28em] text-[var(--zz-cyan)]">
                 {chapter.numberLabelHe}
               </p>
@@ -79,19 +79,19 @@ export function ManuscriptView({
           </p>
         )}
 
-        <h1 className="zz-title-chapter mt-2 text-[var(--zz-ink)]">
+        <h1 className="zz-title-chapter mt-1 text-[var(--zz-ink)]">
           {chapter.titleHe}
         </h1>
         <p
           dir="ltr"
-          className="ltr-isolate mt-3 text-sm font-medium tracking-[0.06em] text-[var(--zz-muted)]"
+          className="ltr-isolate zz-subtitle mt-2 tracking-[0.06em]"
         >
           {chapter.titleEn}
         </p>
-        <p className="book-chapter-lede mt-7 max-w-[38rem]">
+        <p className="book-chapter-lede mt-4">
           <RichText text={chapter.summaryHe} />
         </p>
-        <div className="mt-5">
+        <div className="mt-3">
           <SimDisclaimer compact />
         </div>
       </motion.header>
@@ -105,16 +105,20 @@ export function ManuscriptView({
         // heading so approved manuscripts can open under the chapter H1 only.
         const isLeadProse = section.titleHe === "פתיחה";
         return (
-          <section key={section.id} className="mt-14" id={section.id}>
+          <section
+            key={section.id}
+            className={index === 0 ? "mt-6" : "mt-9"}
+            id={section.id}
+          >
             {index > 0 ? (
-              <div className="book-visual-pause mb-10" aria-hidden />
+              <div className="book-visual-pause mb-5" aria-hidden />
             ) : null}
             {!isLeadProse ? (
               <h2 className="book-section-title">
                 <RichText text={section.titleHe} />
               </h2>
             ) : null}
-            <div className={isLeadProse ? undefined : "mt-5"}>
+            <div className={isLeadProse ? undefined : "mt-3.5"}>
               <ManuscriptBlocks blocks={section.blocks} formulaStart={start} />
             </div>
           </section>
@@ -124,7 +128,7 @@ export function ManuscriptView({
       <EndVisualExperience endVisual={endVisual} />
 
       {next ? (
-        <p className="mt-14 text-sm leading-7 text-[var(--zz-muted)]">
+        <p className="mt-10 text-sm leading-7 text-[var(--zz-muted)]">
           הפרק הבא:{" "}
           <Link
             href={`/textbook/${next.slug}`}
@@ -134,16 +138,16 @@ export function ManuscriptView({
           </Link>
         </p>
       ) : (
-        <p className="mt-14 text-sm leading-7 text-[var(--zz-muted)]">
+        <p className="mt-10 text-sm leading-7 text-[var(--zz-muted)]">
           כאן מסתיימים אחד־עשר הפרקים. הנספחים (מילון והצהרה) ממתינים מחוץ
           למספור.
         </p>
       )}
 
-      <EduDisclaimer className="mt-12" />
+      <EduDisclaimer className="mt-8" />
 
       <nav
-        className="mt-14 flex flex-col gap-6 border-t border-[var(--zz-line)] pt-8 sm:flex-row sm:justify-between"
+        className="mt-10 flex flex-col gap-5 border-t border-[var(--zz-line)] pt-6 sm:flex-row sm:justify-between"
         aria-label="ניווט בין פרקים"
       >
         {prev ? (

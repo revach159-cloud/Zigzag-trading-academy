@@ -20,23 +20,23 @@
   --zz-muted: #8fa0b8;
   --zz-danger: #f07178;
 
-  /* Rubik type scale — rem on 16px */
+  /* Rubik type scale — rem on 16px (screen + print-friendly) */
   --zz-text-xs: 0.875rem; /* 14 — captions (never tiny) */
-  --zz-text-sm: 0.9375rem; /* 15 — secondary */
-  --zz-text-base: 1.125rem; /* 18 — body reading */
-  --zz-text-md: 1.1875rem; /* 19 — lead / story */
-  --zz-text-lg: 1.375rem; /* 22 — section */
-  --zz-text-xl: 1.75rem; /* 28 — chapter mobile */
-  --zz-text-2xl: 2.25rem; /* 36 — chapter */
+  --zz-text-sm: 1rem; /* 16 — secondary / subhead */
+  --zz-text-base: 1.25rem; /* 20 — body reading */
+  --zz-text-md: 1.3125rem; /* 21 — lead / story */
+  --zz-text-lg: 1.625rem; /* 26 — section */
+  --zz-text-xl: 1.875rem; /* 30 — strong section / chapter mobile */
+  --zz-text-2xl: 2.375rem; /* 38 — chapter */
   --zz-text-3xl: 2.75rem; /* 44 — book title mobile */
   --zz-text-4xl: 3.5rem; /* 56 — book title */
 
   --zz-leading-tight: 1.2;
   --zz-leading-snug: 1.35;
-  --zz-leading-body: 1.9;
-  --zz-leading-story: 2.05;
+  --zz-leading-body: 1.78;
+  --zz-leading-story: 1.85;
 
-  --zz-measure: 38rem; /* comfortable Hebrew measure */
+  --zz-measure: 40rem; /* comfortable Hebrew measure */
 
   --background: var(--zz-void);
   --foreground: var(--zz-ink);
@@ -208,15 +208,17 @@ body {
   letter-spacing: -0.015em;
 }
 
-/* SemiBold section headings */
+/* SemiBold → Bold section headings (clear step above body) */
 .zz-title-section,
 .book-section-title {
   font-family: var(--font-rubik), "Rubik", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--zz-text-lg);
   line-height: var(--zz-leading-snug);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
   color: var(--zz-ink);
+  padding-block-end: 0.35rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--zz-cyan) 28%, transparent);
 }
 
 /* Medium subtitles / nav labels */
@@ -226,6 +228,7 @@ body {
   font-size: var(--zz-text-sm);
   line-height: 1.5;
   letter-spacing: 0.04em;
+  color: var(--zz-muted);
 }
 
 /* Regular body */
@@ -234,6 +237,22 @@ body {
   font-size: var(--zz-text-base);
   line-height: var(--zz-leading-body);
   max-width: var(--zz-measure);
+}
+
+/* Manuscript reading column */
+.book-manuscript-prose {
+  font-weight: 400;
+  font-size: var(--zz-text-base);
+  line-height: var(--zz-leading-body);
+  max-width: var(--zz-measure);
+}
+
+.book-manuscript-prose > * + * {
+  margin-top: 1.05em;
+}
+
+.book-manuscript-prose p {
+  color: color-mix(in srgb, var(--zz-ink) 96%, transparent);
 }
 
 /* Light secondary — sparingly */
@@ -274,8 +293,9 @@ body {
 .book-chapter-lede {
   font-weight: 400;
   font-size: var(--zz-text-md);
-  line-height: 1.85;
-  color: color-mix(in srgb, var(--zz-muted) 92%, var(--zz-ink));
+  line-height: var(--zz-leading-body);
+  max-width: var(--zz-measure);
+  color: color-mix(in srgb, var(--zz-muted) 88%, var(--zz-ink));
 }
 
 .book-story-section {
@@ -319,7 +339,7 @@ body {
 
 .book-visual-pause {
   height: 1px;
-  margin-block: 3rem;
+  margin-block: 1.35rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -354,14 +374,14 @@ body {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  min-height: 18rem;
+  min-height: 14rem;
   border: none;
   border-block: 1px solid color-mix(in srgb, var(--zz-cyan) 16%, transparent);
   background:
     radial-gradient(ellipse at 50% 28%, rgba(46, 230, 255, 0.14), transparent 55%),
     radial-gradient(ellipse at 82% 78%, rgba(201, 168, 76, 0.07), transparent 42%),
     linear-gradient(180deg, #050814 0%, #03050c 100%);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5);
 }
 
 .book-scene-stage::after {
@@ -649,7 +669,12 @@ body {
 
   .zz-title-chapter,
   .book-hebrew-display {
-    font-size: 2.5rem;
+    font-size: 2.625rem;
+  }
+
+  .zz-title-section,
+  .book-section-title {
+    font-size: var(--zz-text-xl);
   }
 }
 
@@ -658,9 +683,14 @@ body {
     padding-inline: 1rem;
   }
 
+  .book-manuscript-prose {
+    font-size: 1.125rem; /* 18 on small screens */
+    line-height: 1.75;
+  }
+
   .book-story {
-    font-size: 1.05rem;
-    line-height: 1.9;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   .book-story::first-letter {
@@ -668,7 +698,7 @@ body {
   }
 
   .book-scene-stage {
-    min-height: 12.5rem;
+    min-height: 11rem;
   }
 }
 
@@ -677,6 +707,8 @@ body {
     background: #03050c !important;
     color: #e8eef8 !important;
     font-family: "Rubik", sans-serif !important;
+    font-size: 12.5pt;
+    line-height: 1.75;
   }
 
   header,
@@ -688,6 +720,29 @@ body {
 
   a[href^="/downloads/"] {
     display: none !important;
+  }
+
+  .book-manuscript-prose {
+    font-size: 12.5pt;
+    line-height: 1.75;
+  }
+
+  .book-section-title {
+    font-size: 16pt;
+    font-weight: 700;
+  }
+
+  .zz-title-chapter {
+    font-size: 22pt;
+  }
+
+  .book-visual-pause {
+    margin-block: 0.85rem;
+  }
+
+  .book-scene-stage {
+    min-height: 10rem;
+    box-shadow: none;
   }
 }
 

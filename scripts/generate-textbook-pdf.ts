@@ -390,14 +390,14 @@ function buildHtml(): string {
       color: var(--ink);
       font-family: "Rubik", sans-serif;
       font-weight: 400;
-      font-size: 12.5pt;
-      line-height: 1.95;
+      font-size: 13.5pt;
+      line-height: 1.78;
       background: var(--void);
       -webkit-font-smoothing: antialiased;
     }
-    p { margin: 0 0 0.95em; }
-    ul, ol { margin: 0 0 1.1em; padding-inline-start: 1.2em; line-height: 1.95; }
-    li { margin-bottom: 0.45em; }
+    p { margin: 0 0 0.85em; }
+    ul, ol { margin: 0 0 0.95em; padding-inline-start: 1.2em; line-height: 1.78; }
+    li { margin-bottom: 0.35em; }
     .ltr { unicode-bidi: isolate; direction: ltr; }
     h1, h2, h3, h4 {
       font-family: "Rubik", sans-serif;
@@ -405,9 +405,9 @@ function buildHtml(): string {
       font-weight: 700;
       letter-spacing: -0.01em;
     }
-    h2 { font-size: 22pt; line-height: 1.3; margin: 0 0 0.35em; }
-    h3 { font-size: 14.5pt; font-weight: 600; margin: 1.4em 0 0.55em; line-height: 1.4; }
-    h4 { font-size: 12.5pt; font-weight: 600; margin: 0.9em 0 0.4em; }
+    h2 { font-size: 22pt; line-height: 1.3; margin: 0 0 0.3em; }
+    h3 { font-size: 16pt; font-weight: 700; margin: 1.1em 0 0.4em; line-height: 1.35; border-bottom: 1px solid rgba(46,230,255,0.28); padding-bottom: 0.2em; }
+    h4 { font-size: 13.5pt; font-weight: 600; margin: 0.75em 0 0.35em; color: var(--muted); }
     a { color: var(--cyan); text-decoration: none; }
     .cover {
       min-height: 92vh;
