@@ -226,11 +226,30 @@ function buildHtml(): string {
   const glossary = listGlossaryEntries();
 
   const tocItems = chapters
-    .map(
-      (ch) =>
-        `<li><a href="#ch-${ch.number}">${escapeHtml(ch.stationHe)} — ${escapeHtml(ch.titleHe)}</a></li>`,
-    )
-    .concat([`<li><a href="#glossary">נספח · מילון מונחים מורחב</a></li>`])
+    .map((ch) => {
+      const num =
+        ch.kind === "opening" ? "00" : String(ch.order).padStart(2, "0");
+      return `<li class="toc-card">
+        <a href="#ch-${ch.number}">
+          <span class="toc-num" aria-hidden="true">${num}</span>
+          <span class="toc-body">
+            <span class="toc-label">${escapeHtml(ch.stationHe)}</span>
+            <span class="toc-title">${escapeHtml(ch.titleHe)}</span>
+          </span>
+        </a>
+      </li>`;
+    })
+    .concat([
+      `<li class="toc-card toc-card--appendix">
+        <a href="#glossary">
+          <span class="toc-num" aria-hidden="true">+</span>
+          <span class="toc-body">
+            <span class="toc-label toc-label--appendix">נספח</span>
+            <span class="toc-title">מילון מונחים מורחב</span>
+          </span>
+        </a>
+      </li>`,
+    ])
     .join("\n");
 
   let formulaGlobal = 1;
@@ -460,11 +479,80 @@ function buildHtml(): string {
     }
     .toc {
       page-break-after: always;
-      padding: 36px 4px;
-      background: var(--void);
+      padding: 36px 4px 28px;
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(46,230,255,0.08), transparent 42%),
+        radial-gradient(ellipse at 88% 8%, rgba(201,168,76,0.07), transparent 40%),
+        var(--void);
     }
-    .toc h2 { color: var(--ink); font-weight: 700; }
-    .toc ol { line-height: 2.2; color: var(--muted); font-weight: 400; font-size: 12pt; }
+    .toc h2 {
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 26pt;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.1), 0 6px 18px rgba(46,230,255,0.12);
+      margin: 0 0 18px;
+    }
+    .toc ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toc-card a {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px 14px;
+      align-items: start;
+      padding: 12px 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(201,168,76,0.28);
+      background:
+        linear-gradient(145deg, rgba(16,26,46,0.95) 0%, rgba(5,8,15,0.98) 45%, rgba(10,18,36,0.95) 100%),
+        radial-gradient(ellipse at 10% 0%, rgba(201,168,76,0.14), transparent 50%),
+        radial-gradient(ellipse at 90% 100%, rgba(46,230,255,0.1), transparent 48%);
+      box-shadow:
+        inset 0 1px 0 rgba(232,238,248,0.1),
+        inset 0 -1px 0 rgba(0,0,0,0.45),
+        0 8px 18px rgba(0,0,0,0.38),
+        0 2px 0 rgba(2,4,10,0.9);
+      page-break-inside: avoid;
+    }
+    .toc-num {
+      font-family: "Rubik", sans-serif;
+      font-weight: 800;
+      font-size: 22pt;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      min-width: 1.7em;
+      text-align: center;
+      color: #e0c36a;
+      text-shadow:
+        0 1px 0 rgba(255,235,170,0.55),
+        0 2px 0 rgba(90,68,18,0.9),
+        0 4px 0 rgba(50,38,10,0.75),
+        0 8px 14px rgba(201,168,76,0.28),
+        0 0 12px rgba(46,230,255,0.16);
+    }
+    .toc-body { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .toc-label {
+      font-weight: 500;
+      font-size: 9pt;
+      letter-spacing: 0.16em;
+      color: var(--cyan);
+    }
+    .toc-label--appendix { color: var(--gold); }
+    .toc-title {
+      font-weight: 700;
+      font-size: 12.5pt;
+      line-height: 1.35;
+      color: var(--ink);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
     .chapter { page-break-before: always; }
     .chapter-open {
       padding: 28px 0 24px;

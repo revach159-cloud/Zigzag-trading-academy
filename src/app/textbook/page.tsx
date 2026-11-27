@@ -107,43 +107,33 @@ export default function TextbookPage() {
         </div>
 
         <section className="mt-16 pb-16" id="toc" aria-labelledby="toc-heading">
-          <h2
-            id="toc-heading"
-            className="text-3xl font-bold text-[var(--zz-ink)] sm:text-4xl"
-          >
+          <h2 id="toc-heading" className="journey-toc-heading">
             תוכן העניינים
           </h2>
-          <p className="mt-3 max-w-2xl text-base font-normal leading-8 text-[var(--zz-muted)]">
+          <p className="journey-toc-lede">
             {chapterCatalog.chapters.length} יחידות ב־{brand.bookTitleHe}: פרק
             פתיחה ואחריו פרקים 1–11.
           </p>
 
-          <ol className="mt-10">
+          <ol className="journey-toc mt-10">
             {chapters.map((chapter) => (
               <li key={chapter.id}>
                 <Link
                   href={`/textbook/${chapter.slug}`}
                   className="journey-toc-item group"
                 >
-                  <span className="journey-toc-num">
+                  <span className="journey-toc-num" aria-hidden="true">
                     {chapter.kind === "opening"
                       ? "00"
                       : String(chapter.order).padStart(2, "0")}
                   </span>
-                  <div>
-                    <p className="text-[11px] font-medium tracking-[0.22em] text-[var(--zz-cyan)] uppercase">
-                      {chapter.numberLabelHe}
-                    </p>
-                    <h3 className="mt-1 text-2xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
-                      {chapter.titleHe}
-                    </h3>
-                    <p
-                      dir="ltr"
-                      className="ltr-isolate mt-1 text-sm text-[var(--zz-muted)]"
-                    >
+                  <div className="journey-toc-body">
+                    <p className="journey-toc-label">{chapter.numberLabelHe}</p>
+                    <h3 className="journey-toc-title">{chapter.titleHe}</h3>
+                    <p dir="ltr" className="ltr-isolate journey-toc-en">
                       {chapter.titleEn}
                     </p>
-                    <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--zz-muted)]">
+                    <p className="journey-toc-summary">
                       <RichText text={chapter.summaryHe} />
                     </p>
                   </div>
@@ -154,20 +144,17 @@ export default function TextbookPage() {
               <li key={appendix.id}>
                 <Link
                   href={`/textbook/${appendix.slug}`}
-                  className="journey-toc-item group"
+                  className="journey-toc-item journey-toc-item--appendix group"
                 >
-                  <span className="journey-toc-num">+</span>
-                  <div>
-                    <p className="text-[11px] tracking-[0.22em] text-[var(--zz-gold)] uppercase">
+                  <span className="journey-toc-num" aria-hidden="true">
+                    +
+                  </span>
+                  <div className="journey-toc-body">
+                    <p className="journey-toc-label journey-toc-label--appendix">
                       נספח
                     </p>
-                    <h3 className="mt-1 text-2xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-gold)]">
-                      {appendix.titleHe}
-                    </h3>
-                    <p
-                      dir="ltr"
-                      className="ltr-isolate mt-1 text-sm text-[var(--zz-muted)]"
-                    >
+                    <h3 className="journey-toc-title">{appendix.titleHe}</h3>
+                    <p dir="ltr" className="ltr-isolate journey-toc-en">
                       {appendix.titleEn}
                     </p>
                   </div>
