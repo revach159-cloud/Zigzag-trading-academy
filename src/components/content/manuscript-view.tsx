@@ -101,15 +101,20 @@ export function ManuscriptView({
       {document.sections.map((section, index) => {
         const start = formulaStart;
         formulaStart += countManuscriptFormulas(section.blocks);
+        // Parser labels untitled lead prose as "פתיחה"; hide that synthetic
+        // heading so approved manuscripts can open under the chapter H1 only.
+        const isLeadProse = section.titleHe === "פתיחה";
         return (
           <section key={section.id} className="mt-14" id={section.id}>
             {index > 0 ? (
               <div className="book-visual-pause mb-10" aria-hidden />
             ) : null}
-            <h2 className="book-section-title">
-              <RichText text={section.titleHe} />
-            </h2>
-            <div className="mt-5">
+            {!isLeadProse ? (
+              <h2 className="book-section-title">
+                <RichText text={section.titleHe} />
+              </h2>
+            ) : null}
+            <div className={isLeadProse ? undefined : "mt-5"}>
               <ManuscriptBlocks blocks={section.blocks} formulaStart={start} />
             </div>
           </section>

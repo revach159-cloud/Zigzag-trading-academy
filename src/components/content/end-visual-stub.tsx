@@ -1,7 +1,7 @@
 import type { EndVisual } from "@/lib/content/manuscript/types";
 
 const KIND_HINTS: Record<string, string> = {
-  "philosophy-compare": "השוואה קולנועית: סוחר מסורתי מול סוחר ZIGZAG",
+  "philosophy-compare": "הסוחר הרגיל מול סוחר ZIGZAG",
   "chase-vs-plan": "רדיפת מחיר מול תוכנית ניהול מוכנה",
   "zigzag-history": "היסטוריית מחיר בזיגזג לבדיקת עקבות",
   "capital-allocation": "סימולטור תקציב עסקה (הנחות איוריות)",
