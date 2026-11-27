@@ -1,6 +1,6 @@
 /**
  * LOOKBACK manuscript catalog — Opening + Chapters 1–11.
- * Source of truth: /content/index.json + Markdown units.
+ * Client-safe re-exports from catalog (no node:fs).
  */
 export {
   chapterCatalog,
@@ -8,6 +8,8 @@ export {
   getChapterBySlug,
   getReadingProgress,
   listChapters,
-} from "./manuscript/load";
+  listAppendices,
+  manuscriptIndex,
+} from "./manuscript/catalog";
 
 export type { Chapter, ChapterCatalog } from "./manuscript/types";

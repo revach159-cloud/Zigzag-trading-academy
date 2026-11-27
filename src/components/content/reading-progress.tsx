@@ -2,34 +2,49 @@
 
 import { useEffect, useState } from "react";
 import { getReadingProgress } from "@/lib/content/chapters";
-
-const STORAGE_KEY = "zz-lookback-progress-v2";
+import { reading } from "@/lib/design/tokens";
+import {
+  loadReaderState,
+  markVisited,
+  saveScrollPosition,
+} from "@/lib/reading/persistence";
 
 export function useChapterProgress(slug?: string) {
   const [completed, setCompleted] = useState<string[]>([]);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const parsed = raw ? (JSON.parse(raw) as string[]) : [];
-      setCompleted(Array.isArray(parsed) ? parsed : []);
-    } catch {
-      setCompleted([]);
-    }
+    const state = loadReaderState();
+    setCompleted(state.visited);
   }, []);
 
   useEffect(() => {
     if (!slug) return;
-    setCompleted((prev) => {
-      if (prev.includes(slug)) return prev;
-      const next = [...prev, slug];
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
+    const next = markVisited(slug);
+    setCompleted(next.visited);
+
+    const restore = next.positions[slug];
+    if (typeof restore === "number" && restore > 0.05 && restore < 0.95) {
+      requestAnimationFrame(() => {
+        const max =
+          document.documentElement.scrollHeight - window.innerHeight;
+        if (max > 0) window.scrollTo({ top: max * restore, behavior: "auto" });
+      });
+    }
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const max =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        saveScrollPosition(slug, ratio);
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [slug]);
 
   return getReadingProgress(completed);
@@ -39,16 +54,16 @@ export function ReadingProgressBar({ slug }: { slug?: string }) {
   const progress = useChapterProgress(slug);
 
   return (
-    <div className="w-full" aria-label="התקדמות קריאה">
+    <div className="w-full" aria-label={reading.progressLabelHe}>
       <div className="mb-1 flex items-center justify-between text-[11px] text-[var(--zz-muted)]">
         <span>
-          {progress.completed}/{progress.total} תחנות
+          {progress.completed}/{progress.total} {reading.progressLabelHe}
         </span>
         <span>{progress.percent}%</span>
       </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-[rgba(125,211,252,0.12)]">
+      <div className="h-1.5 overflow-hidden rounded-full bg-[rgba(168,184,208,0.12)]">
         <div
-          className="h-full rounded-full bg-gradient-to-l from-[var(--zz-cyan)] to-[var(--zz-electric)] transition-[width] duration-500"
+          className="h-full rounded-full bg-gradient-to-l from-[var(--zz-cyan)] to-[var(--zz-emerald)] transition-[width] duration-500"
           style={{ width: `${progress.percent}%` }}
         />
       </div>

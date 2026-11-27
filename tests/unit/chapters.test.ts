@@ -8,11 +8,8 @@ import {
   getReadingProgress,
   listChapters,
 } from "@/lib/content/chapters";
-import {
-  getManuscriptBySlug,
-  listAppendices,
-  manuscriptIndex,
-} from "@/lib/content/manuscript/load";
+import { manuscriptIndex, listAppendices } from "@/lib/content/manuscript/catalog";
+import { getManuscriptBySlug } from "@/lib/content/manuscript/load";
 import { manuscriptIndexSchema } from "@/lib/content/manuscript/types";
 import { glossary, listGlossaryEntries } from "@/lib/content/glossary";
 import { zigzagAssumptions } from "@/lib/math/assumptions";
@@ -92,12 +89,12 @@ describe("manuscript bodies", () => {
     }
   });
 
-  it("defines unique incomplete end visuals in index", () => {
+  it("defines unique complete end visuals in index", () => {
     const kinds = manuscriptIndex.units.map((unit) => unit.endVisual.kind);
     expect(new Set(kinds).size).toBe(12);
     expect(
       manuscriptIndex.units.every(
-        (unit) => unit.endVisual.status === "stub_incomplete",
+        (unit) => unit.endVisual.status === "complete",
       ),
     ).toBe(true);
   });

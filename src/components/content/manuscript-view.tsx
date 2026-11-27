@@ -16,7 +16,7 @@ import {
   ManuscriptBlocks,
   countManuscriptFormulas,
 } from "./manuscript-blocks";
-import { EndVisualStub } from "./end-visual-stub";
+import { EndVisualExperience } from "@/components/end-visuals";
 
 type ManuscriptViewProps = {
   chapter: Chapter;
@@ -114,7 +114,7 @@ export function ManuscriptView({
         );
       })}
 
-      <EndVisualStub endVisual={endVisual} />
+      <EndVisualExperience endVisual={endVisual} />
 
       {next ? (
         <p className="mt-14 text-sm leading-7 text-[var(--zz-muted)]">

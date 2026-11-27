@@ -7,13 +7,11 @@ import { Menu, X } from "lucide-react";
 import { brand } from "@/lib/design/tokens";
 import { cn } from "@/lib/utils/cn";
 
+/** Academy marketing nav — book routes use BookShell instead. */
 const navItems = [
   { href: "/", label: "בית" },
   { href: "/method", label: "השיטה" },
   { href: "/textbook", label: "LOOKBACK" },
-  { href: "/simulator", label: "סימולטור" },
-  { href: "/labs/leverage", label: "מעבדות" },
-  { href: "/tests", label: "מבחנים" },
 ] as const;
 
 export function SiteHeader() {
@@ -21,7 +19,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="relative z-40 border-b border-[var(--zz-line)] bg-[var(--zz-void)]/80 backdrop-blur-md">
+    <header className="site-header relative z-40 border-b border-[var(--zz-line)] bg-[var(--zz-void)]/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"

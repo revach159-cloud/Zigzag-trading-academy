@@ -1,13 +1,16 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { listChapters, chapterCatalog } from "@/lib/content/chapters";
-import { listAppendices } from "@/lib/content/manuscript/load";
+import {
+  listChapters,
+  chapterCatalog,
+  listAppendices,
+} from "@/lib/content/chapters";
 import { SimDisclaimer } from "@/components/layout/sim-disclaimer";
 import { RichText } from "@/lib/content/rich-text";
 import { brand } from "@/lib/design/tokens";
 import { PdfDownloadCta } from "@/components/content/pdf-download-cta";
 import { EduDisclaimer } from "@/components/content/edu-disclaimer";
-import { EducationalScene } from "@/components/scene/educational-scene";
+import { CoverScene } from "@/components/scene/cover-scene";
 import { TextbookCoverClient } from "@/components/content/textbook-cover-client";
 
 export const metadata: Metadata = {
@@ -21,24 +24,21 @@ export default function TextbookPage() {
   return (
     <main className="flex-1">
       <section
-        className="book-cover relative isolate min-h-[calc(100vh-7.5rem)] overflow-hidden px-4 py-16 sm:px-8 sm:py-20"
+        className="book-cover relative isolate min-h-[100svh] overflow-hidden px-4 py-16 sm:px-8 sm:py-20"
         aria-label="שער הספר"
       >
         <div className="absolute inset-0 -z-10">
-          <EducationalScene
-            kind="cover"
-            className="absolute inset-0 h-full w-full opacity-55"
-          />
+          <CoverScene className="absolute inset-0 h-full w-full" />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(105deg, rgba(3,5,12,0.92) 0%, rgba(3,5,12,0.72) 42%, rgba(3,5,12,0.45) 70%, rgba(3,5,12,0.75) 100%)",
+                "linear-gradient(105deg, rgba(2,4,10,0.88) 0%, rgba(2,4,10,0.55) 38%, rgba(2,4,10,0.35) 62%, rgba(2,4,10,0.72) 100%)",
             }}
             aria-hidden
           />
           <div
-            className="absolute inset-x-0 bottom-0 h-40"
+            className="absolute inset-x-0 bottom-0 h-48"
             style={{
               background:
                 "linear-gradient(to top, var(--zz-void), transparent)",
@@ -47,57 +47,36 @@ export default function TextbookPage() {
           />
         </div>
 
-        <div className="relative mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col justify-center">
-          <p className="zz-subtitle text-[11px] tracking-[0.4em] text-[var(--zz-gold)] uppercase">
+        <div className="relative mx-auto flex min-h-[78vh] w-full max-w-6xl flex-col justify-center">
+          <p className="zz-subtitle text-[11px] tracking-[0.4em] text-[var(--zz-silver)] uppercase">
             {brand.narrativeConceptEn}
           </p>
-          <h1 className="zz-title-hero mt-5 tracking-[0.12em] text-[var(--zz-ink)]">
-            {brand.name}
+          <h1 className="zz-title-hero mt-5 tracking-[0.08em] text-[var(--zz-ink)]">
+            ZIGZAG · LOOKBACK
           </h1>
-          <p className="mt-4 text-3xl font-bold leading-snug text-[var(--zz-cyan)] sm:text-5xl">
-            {brand.bookTitleHe}
-          </p>
-          <p className="mt-3 text-sm font-medium tracking-[0.06em] text-[var(--zz-gold)]">
+          <p className="mt-4 text-xl font-semibold tracking-[0.06em] text-[var(--zz-gold)] sm:text-2xl">
             {brand.methodHe}
           </p>
-          <p className="mt-6 text-lg font-medium tracking-[0.04em] text-[var(--zz-gold)] sm:text-xl">
+          <p className="mt-6 text-lg font-medium tracking-[0.04em] text-[var(--zz-silver)] sm:text-xl">
             {brand.authorBylineHe}
-          </p>
-          <p className="mt-1.5 text-sm font-normal tracking-[0.02em] text-[var(--zz-cyan)]/85">
-            {brand.authorCreditHe}
           </p>
           <p className="mt-8 max-w-xl text-lg font-normal leading-9 text-[var(--zz-muted)] sm:text-xl">
             {brand.taglineHe}
           </p>
-          <p
-            dir="ltr"
-            className="ltr-isolate mt-3 max-w-xl text-sm font-medium text-[var(--zz-muted)]"
-          >
-            {brand.taglineEn}
-          </p>
-          <p className="mt-5 max-w-lg text-[0.95rem] font-normal leading-7 text-[var(--zz-muted)]">
-            ספר נרטיבי עברי — פרק פתיחה ו־11 פרקים. סימולציה ולימוד בלבד.
-          </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               href={`/textbook/${chapters[0]?.slug ?? "opening"}`}
-              className="border border-[var(--zz-cyan)]/50 bg-[rgba(46,230,255,0.1)] px-5 py-3 text-sm text-[var(--zz-cyan)] hover:bg-[rgba(46,230,255,0.18)]"
+              className="cover-cta px-6 py-3.5 text-sm font-semibold tracking-[0.04em]"
             >
-              התחלת הקריאה
+              {brand.ctaStartReadingHe}
             </Link>
             <a
               href="#toc"
-              className="border border-[var(--zz-line)] px-5 py-3 text-sm text-[var(--zz-muted)] hover:text-[var(--zz-ink)]"
+              className="border border-[var(--zz-line)] px-5 py-3.5 text-sm text-[var(--zz-muted)] hover:text-[var(--zz-ink)]"
             >
               תוכן העניינים
             </a>
-            <Link
-              href="/textbook/appendix-glossary"
-              className="text-sm text-[var(--zz-gold)] hover:underline"
-            >
-              מילון
-            </Link>
             <SimDisclaimer compact />
           </div>
 
@@ -114,10 +93,10 @@ export default function TextbookPage() {
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link
-            href="/method"
+            href="/textbook/appendix-glossary"
             className="text-sm text-[var(--zz-cyan)] hover:underline"
           >
-            לדפי השיטה ←
+            מילון ←
           </Link>
           <Link
             href="/textbook/appendix-disclaimer"
@@ -136,7 +115,7 @@ export default function TextbookPage() {
           </h2>
           <p className="mt-3 max-w-2xl text-base font-normal leading-8 text-[var(--zz-muted)]">
             {chapterCatalog.chapters.length} יחידות ב־{brand.bookTitleHe}: פרק
-            פתיחה ואחריו פרקים 1–11. כל יחידה נטענת מקובץ Markdown נפרד.
+            פתיחה ואחריו פרקים 1–11.
           </p>
 
           <ol className="mt-10">

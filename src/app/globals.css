@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --zz-void: #03050c;
-  --zz-abyss: #070b16;
+  --zz-void: #02040a;
+  --zz-abyss: #05080f;
   --zz-midnight: #0a1224;
   --zz-navy: #0b1528;
   --zz-panel: #101a2e;
-  --zz-line: rgba(125, 211, 252, 0.14);
+  --zz-line: rgba(168, 184, 208, 0.14);
+  --zz-silver: #c5d0e0;
   --zz-cyan: #2ee6ff;
   --zz-cyan-bright: #7af0ff;
   --zz-cyan-dim: #1aa8c4;
   --zz-electric: #3b82f6;
   --zz-gold: #c9a84c;
+  --zz-gold-bright: #e0c36a;
   --zz-gold-soft: rgba(201, 168, 76, 0.18);
+  --zz-emerald: #3ddc97;
   --zz-ink: #e8eef8;
   --zz-muted: #8fa0b8;
   --zz-danger: #f07178;
@@ -59,10 +62,10 @@ body {
   margin: 0;
   min-height: 100%;
   background:
-    radial-gradient(ellipse at 12% -10%, rgba(46, 230, 255, 0.09), transparent 44%),
-    radial-gradient(ellipse at 92% 8%, rgba(201, 168, 76, 0.06), transparent 38%),
-    radial-gradient(ellipse at 50% 120%, rgba(59, 130, 246, 0.05), transparent 40%),
-    var(--zz-void);
+    radial-gradient(ellipse at 14% -8%, rgba(46, 230, 255, 0.07), transparent 42%),
+    radial-gradient(ellipse at 88% 6%, rgba(201, 168, 76, 0.07), transparent 36%),
+    radial-gradient(ellipse at 50% 110%, rgba(61, 220, 151, 0.04), transparent 42%),
+    linear-gradient(180deg, #02040a 0%, #05080f 48%, #02040a 100%);
   color: var(--zz-ink);
   font-family: var(--font-rubik), "Rubik", sans-serif;
   font-weight: 400;
@@ -70,6 +73,104 @@ body {
   line-height: var(--zz-leading-body);
   font-feature-settings: "kern" 1;
   text-rendering: optimizeLegibility;
+}
+
+.book-shell {
+  isolation: isolate;
+}
+
+.book-toc-drawer {
+  animation: book-drawer-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.end-visual-shell {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-block: 1px solid color-mix(in srgb, var(--zz-silver) 18%, transparent);
+  background:
+    radial-gradient(ellipse at 70% 0%, rgba(201, 168, 76, 0.08), transparent 50%),
+    radial-gradient(ellipse at 20% 100%, rgba(46, 230, 255, 0.06), transparent 45%),
+    linear-gradient(180deg, rgba(5, 8, 15, 0.92), rgba(2, 4, 10, 0.98));
+}
+
+.end-visual-widget {
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--zz-line) 90%, transparent);
+  background: rgba(10, 18, 36, 0.55);
+}
+
+.hypothetical-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--zz-gold) 45%, transparent);
+  padding: 0.25rem 0.55rem;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--zz-gold);
+  text-transform: uppercase;
+}
+
+.cover-cta {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--zz-gold) 55%, transparent);
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.22),
+    rgba(46, 230, 255, 0.1)
+  );
+  color: var(--zz-ink);
+  transition: border-color 240ms ease, background 240ms ease, transform 240ms ease;
+}
+
+.cover-cta:hover {
+  border-color: var(--zz-gold-bright);
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.32),
+    rgba(46, 230, 255, 0.16)
+  );
+}
+
+.cover-cta::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(232, 238, 248, 0.12) 50%,
+    transparent 65%
+  );
+  transform: translateX(120%);
+  animation: cover-sheen 4.5s ease-in-out infinite;
+}
+
+@keyframes cover-sheen {
+  0%,
+  55% {
+    transform: translateX(120%);
+  }
+  75%,
+  100% {
+    transform: translateX(-120%);
+  }
+}
+
+@keyframes book-drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .ltr-isolate {
@@ -369,6 +470,11 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .cover-cta::after,
+  .book-toc-drawer {
+    animation: none !important;
   }
 
   .book-story::first-letter {

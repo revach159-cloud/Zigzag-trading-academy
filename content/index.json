@@ -23,7 +23,7 @@
         "slotId": "opening-philosophy-compare",
         "labelHe": "רואים את זה אחרת",
         "concept": "Side-by-side: traditional vs ZigZag trader philosophies",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -42,7 +42,7 @@
         "slotId": "ch01-chase-vs-plan",
         "labelHe": "רואים את זה אחרת",
         "concept": "Chasing price vs predefined plan",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -61,7 +61,7 @@
         "slotId": "ch02-zigzag-history",
         "labelHe": "המחשה מעשית",
         "concept": "Animated zigzag price history; inspect prior moves",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -80,7 +80,7 @@
         "slotId": "ch03-capital-allocation",
         "labelHe": "המחשה מעשית",
         "concept": "Capital allocation simulator (illustrative assumptions)",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -99,7 +99,7 @@
         "slotId": "ch04-long-ladder",
         "labelHe": "כך זה עובד בפועל",
         "concept": "LONG staged levels; planned reinforcement vs emotional buy",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -118,7 +118,7 @@
         "slotId": "ch05-avg-entry-calculator",
         "labelHe": "המחשה מעשית",
         "concept": "Interactive average-entry calculator",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -137,7 +137,7 @@
         "slotId": "ch06-qty-cascade-75",
         "labelHe": "המחשה מעשית",
         "concept": "100→25→6.25→1.5625 remaining-qty 75% closes",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -156,7 +156,7 @@
         "slotId": "ch07-leverage-stages",
         "labelHe": "כך זה עובד בפועל",
         "concept": "Leverage ×1 / ×10 / max verified; never imply risk removed",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -175,7 +175,7 @@
         "slotId": "ch08-portfolio-correlation",
         "labelHe": "רואים את זה אחרת",
         "concept": "Correlated multi-position portfolio risk",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -194,7 +194,7 @@
         "slotId": "ch09-emotion-vs-discipline",
         "labelHe": "רואים את זה אחרת",
         "concept": "Emotional vs disciplined trading cinematic compare",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -213,7 +213,7 @@
         "slotId": "ch10-journal-to-research",
         "labelHe": "רואים את זה אחרת",
         "concept": "Interactive trading journal → research data",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     },
     {
@@ -232,7 +232,7 @@
         "slotId": "ch11-hypothetical-analytics",
         "labelHe": "המחשה מעשית",
         "concept": "Analytics dashboard with clearly hypothetical data only",
-        "status": "stub_incomplete"
+        "status": "complete"
       }
     }
   ],

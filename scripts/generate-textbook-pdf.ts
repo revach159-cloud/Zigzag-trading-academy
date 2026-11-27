@@ -245,13 +245,13 @@ function buildHtml(): string {
         ${diagram}
         <blockquote class="story">${rich(body.openingStoryHe)}</blockquote>
         <p class="principle"><strong>עיקרון:</strong> ${rich(body.principleHe)}</p>
-        <h3>מה לוקחים מהתחנה</h3>
+        <h3>מה לוקחים מהפרק</h3>
         <ul>${body.learningObjectivesHe.map((o) => `<li>${rich(o)}</li>`).join("")}</ul>
         ${sectionParts.join("\n")}
         ${examples}
         ${reflections}
         <aside class="insight"><strong>תובנה לזכור.</strong> ${rich(body.memorableInsightHe)}</aside>
-        <h3>סיכום התחנה</h3>
+        <h3>סיכום הפרק</h3>
         <ul>${summary}</ul>
       </article>`;
     })
@@ -555,7 +555,7 @@ function buildHtml(): string {
     <p class="author-credit">${escapeHtml(brand.authorCreditHe)}</p>
     <p class="tag">${escapeHtml(brand.taglineHe)}</p>
     <p dir="ltr" class="en">${escapeHtml(brand.taglineEn)}</p>
-    <p>${chapterCatalog.chapters.length} תחנות מסע נרטיבי — אותו מקור כמו בקורא הדיגיטלי · ${escapeHtml(brand.narrativeConceptHe)}.</p>
+    <p>${chapterCatalog.chapters.length} יחידות נרטיביות — פרק פתיחה ו־11 פרקים · אותו מקור כמו בקורא הדיגיטלי · ${escapeHtml(brand.narrativeConceptHe)}.</p>
     <div class="disclaimer">
       <strong>הצהרה חינוכית.</strong>
       תוכן זה ללימוד וסימולציה בלבד (Bybit Linear USDT Perp, Cross, One-Way).
@@ -597,8 +597,8 @@ async function main() {
 
   const chapters = listChapters();
   const missingBodies = chapters.filter((ch) => !getChapterBodyBySlug(ch.slug));
-  if (chapters.length !== 13) {
-    throw new Error(`Expected 13 chapters, got ${chapters.length}`);
+  if (chapters.length !== 12) {
+    throw new Error(`Expected 12 units (opening + 11 chapters), got ${chapters.length}`);
   }
   if (missingBodies.length > 0) {
     throw new Error(
@@ -610,8 +610,9 @@ async function main() {
     throw new Error("Glossary is empty — refusing to write final PDF");
   }
 
+  const chromePath = process.env.PLAYWRIGHT_CHROME;
   const browser = await chromium.launch({
-    executablePath: process.env.PLAYWRIGHT_CHROME || "/usr/local/bin/google-chrome",
+    ...(chromePath ? { executablePath: chromePath } : {}),
     headless: true,
   });
   try {

@@ -8,7 +8,7 @@ titleEn: Before You Begin
 summaryHe: מניפסט הפתיחה של LOOKBACK — ההבדל בין סוחר שחוזה את הצעד הבא לבין סוחר ZIGZAG שמתכנן ניהול על פני תנועות אפשריות, בשפת השבחת העסקה, בסימולציה בלבד.
 endVisualKind: philosophy-compare
 endVisualLabelHe: רואים את זה אחרת
-endVisualStatus: stub_incomplete
+endVisualStatus: complete
 ---
 
 ## המחשבה שעומדת לפני הגרף

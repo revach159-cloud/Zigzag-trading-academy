@@ -4,9 +4,17 @@ export function SceneFallback2D({ kind }: { kind: Exclude<SceneKind, "none"> }) 
   switch (kind) {
     case "cover":
       return (
-        <div className="flex h-full items-center justify-center bg-[radial-gradient(ellipse_at_center,rgba(46,230,255,0.18),transparent_55%),#03050c]">
-          <p className="text-3xl font-extrabold tracking-[0.28em] text-[var(--zz-cyan)]">
-            LOOKBACK
+        <div className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_55%_40%,rgba(201,168,76,0.16),transparent_50%),radial-gradient(ellipse_at_20%_70%,rgba(46,230,255,0.1),transparent_45%),#02040a]">
+          <svg viewBox="0 0 320 120" className="absolute inset-x-0 h-full w-full opacity-60" aria-hidden>
+            <polyline
+              points="20,90 60,40 100,75 150,25 200,80 250,35 300,55"
+              fill="none"
+              stroke="#E0C36A"
+              strokeWidth="2.5"
+            />
+          </svg>
+          <p className="relative text-2xl font-extrabold tracking-[0.18em] text-[var(--zz-ink)] sm:text-3xl">
+            ZIGZAG · LOOKBACK
           </p>
         </div>
       );
