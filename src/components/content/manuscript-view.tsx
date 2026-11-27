@@ -106,7 +106,9 @@ export function ManuscriptView({
             {index > 0 ? (
               <div className="book-visual-pause mb-10" aria-hidden />
             ) : null}
-            <h2 className="book-section-title">{section.titleHe}</h2>
+            <h2 className="book-section-title">
+              <RichText text={section.titleHe} />
+            </h2>
             <div className="mt-5">
               <ManuscriptBlocks blocks={section.blocks} formulaStart={start} />
             </div>

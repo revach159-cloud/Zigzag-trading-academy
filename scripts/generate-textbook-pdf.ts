@@ -31,18 +31,45 @@ function escapeHtml(value: string): string {
 }
 
 function rich(text: string): string {
-  return (
-    escapeHtml(text)
-      .replace(
-        /`([^`]+)`/g,
-        '<code dir="ltr" class="ltr">$1</code>',
-      )
-      /* Keep numeric comparisons visually correct in RTL (avoid 250 > 280 flips). */
-      .replace(
-        /(\d+(?:\.\d+)?(?:\s*[+\-×x*\/]\s*\d+(?:\.\d+)?)*)\s*(&gt;|&lt;|≥|≤)\s*(\$?\d+(?:\.\d+)?)/g,
-        '<span dir="ltr" class="ltr">$1 $2 $3</span>',
-      )
-  );
+  // Inline \( ... \) → KaTeX via placeholders so nested KaTeX spans survive escape.
+  const mathChunks: string[] = [];
+  const withTokens = text.replace(/\\\(([\s\S]+?)\\\)/g, (_full, latex: string) => {
+    let html: string;
+    try {
+      html = katex.renderToString(latex.trim(), {
+        throwOnError: false,
+        displayMode: false,
+        strict: "ignore",
+      });
+    } catch {
+      html = `<code dir="ltr" class="ltr">${escapeHtml(latex)}</code>`;
+    }
+    const idx = mathChunks.length;
+    mathChunks.push(html);
+    return `@@KATEX${idx}@@`;
+  });
+
+  let escaped = escapeHtml(withTokens)
+    .replace(
+      /`([^`]+)`/g,
+      '<code dir="ltr" class="ltr">$1</code>',
+    )
+    /* Keep numeric cascades (100→25→6.25) LTR in RTL pages. */
+    .replace(
+      /(\d+(?:\.\d+)?(?:\s*→\s*\d+(?:\.\d+)?)+)/g,
+      '<span dir="ltr" class="ltr">$1</span>',
+    )
+    /* Keep numeric comparisons visually correct in RTL (avoid 250 > 280 flips). */
+    .replace(
+      /(\d+(?:\.\d+)?(?:\s*[+\-×x*\/]\s*\d+(?:\.\d+)?)*)\s*(&gt;|&lt;|≥|≤)\s*(\$?\d+(?:\.\d+)?)/g,
+      '<span dir="ltr" class="ltr">$1 $2 $3</span>',
+    );
+
+  escaped = escaped.replace(/@@KATEX(\d+)@@/g, (_m, idx: string) => {
+    return mathChunks[Number(idx)] ?? "";
+  });
+
+  return escaped;
 }
 
 function renderFormula(latex: string, number: number, captionHe: string): string {

@@ -53,6 +53,15 @@ function stripInlineMd(text: string): string {
     .trim();
 }
 
+/** Standalone LaTeX line without $$ / \[ fences (common in ch-05). */
+function isBareLatexLine(trimmed: string): boolean {
+  if (!trimmed || /[\u0590-\u05FF]/.test(trimmed)) return false;
+  if (trimmed.startsWith("\\(") || trimmed.startsWith("\\[")) return false;
+  return /\\[a-zA-Z]+|[_^]\{|\\frac|\\sum|\\approx|\\cdot|\\mathrm|\\text/.test(
+    trimmed,
+  );
+}
+
 function parseTable(lines: string[], start: number): {
   block: ManuscriptBlock;
   next: number;
@@ -203,6 +212,61 @@ function parseBlocks(sectionBody: string): ManuscriptBlock[] {
         type: "formula",
         id: `formula-${formulaCounter}`,
         latex: trimmed.slice(2, -2).trim(),
+      });
+      i += 1;
+      continue;
+    }
+
+    // Display math: \[ ... \] (possibly multi-line)
+    if (trimmed === "\\[" || trimmed.startsWith("\\[")) {
+      flushParagraph();
+      const latexLines: string[] = [];
+      if (trimmed === "\\[") {
+        i += 1;
+      } else {
+        const rest = trimmed.slice(2);
+        if (rest.endsWith("\\]")) {
+          formulaCounter += 1;
+          blocks.push({
+            type: "formula",
+            id: `formula-${formulaCounter}`,
+            latex: rest.slice(0, -2).trim() || "\\;",
+          });
+          i += 1;
+          continue;
+        }
+        latexLines.push(rest);
+        i += 1;
+      }
+      while (i < lines.length && lines[i]!.trim() !== "\\]") {
+        const row = lines[i]!;
+        if (row.trim().endsWith("\\]")) {
+          latexLines.push(row.replace(/\\]\s*$/, ""));
+          i += 1;
+          break;
+        }
+        latexLines.push(row);
+        i += 1;
+      }
+      if (i < lines.length && lines[i]!.trim() === "\\]") {
+        i += 1;
+      }
+      formulaCounter += 1;
+      blocks.push({
+        type: "formula",
+        id: `formula-${formulaCounter}`,
+        latex: latexLines.join("\n").trim() || "\\;",
+      });
+      continue;
+    }
+
+    if (isBareLatexLine(trimmed)) {
+      flushParagraph();
+      formulaCounter += 1;
+      blocks.push({
+        type: "formula",
+        id: `formula-${formulaCounter}`,
+        latex: trimmed,
       });
       i += 1;
       continue;

@@ -8,6 +8,7 @@ import { brand, reading } from "@/lib/design/tokens";
 import { cn } from "@/lib/utils/cn";
 import {
   loadReaderState,
+  markVisited,
   toggleBookmark,
   type ReaderState,
 } from "@/lib/reading/persistence";
@@ -42,8 +43,14 @@ export function BookShell({ children, toc, totalUnits }: BookShellProps) {
     : undefined;
 
   useEffect(() => {
+    // Keep chrome progress in sync with chapter visits (parent effects run
+    // before children, so load-only would lag ReadingProgressBar by one).
+    if (currentSlug) {
+      setState(markVisited(currentSlug));
+      return;
+    }
     setState(loadReaderState());
-  }, [pathname]);
+  }, [pathname, currentSlug]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

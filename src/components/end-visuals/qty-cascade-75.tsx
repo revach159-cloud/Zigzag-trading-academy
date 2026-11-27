@@ -30,7 +30,10 @@ export function QtyCascade75({ endVisual }: { endVisual: EndVisual }) {
         />
       </label>
 
-      <div className="mt-5 flex flex-wrap items-end gap-3">
+      <div
+        dir="ltr"
+        className="ltr-isolate mt-5 flex flex-wrap items-end gap-3"
+      >
         {cascade.map((qty, i) => {
           const height = Math.max(12, qty.toNumber() * 0.9);
           return (
@@ -40,10 +43,10 @@ export function QtyCascade75({ endVisual }: { endVisual: EndVisual }) {
                 style={{ height }}
                 aria-hidden
               />
-              <span dir="ltr" className="ltr-isolate font-mono text-xs text-[var(--zz-ink)]">
+              <span className="font-mono text-xs text-[var(--zz-ink)]">
                 {formatQty(qty)}
               </span>
-              <span className="text-[10px] text-[var(--zz-muted)]">
+              <span className="text-[10px] text-[var(--zz-muted)]" dir="rtl">
                 {i === 0 ? "התחלה" : `אחרי #${i}`}
               </span>
             </div>

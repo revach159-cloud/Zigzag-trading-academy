@@ -1,6 +1,22 @@
 import type { EndVisual } from "@/lib/content/manuscript/types";
 import type { ReactNode } from "react";
 
+/** Hebrew display titles for end-visual H2s (UI chrome — not manuscript prose). */
+const TITLE_HE: Record<string, string> = {
+  "philosophy-compare": "השוואה קולנועית: סוחר מסורתי מול סוחר ZIGZAG",
+  "chase-vs-plan": "רדיפת מחיר מול תוכנית ניהול מוכנה",
+  "zigzag-history": "היסטוריית מחיר בזיגזג לבדיקת עקבות",
+  "capital-allocation": "סימולטור תקציב עסקה (הנחות איוריות)",
+  "long-ladder": "סולם Long מדורג — חיזוק מתוכנן מול קנייה רגשית",
+  "avg-entry-calculator": "מחשבון מחיר כניסה ממוצע",
+  "qty-cascade-75": "מפל כמות אחרי מימוש 75%",
+  "leverage-stages": "שלבי מינוף ×1 / ×10 / max מאומת",
+  "portfolio-correlation": "סיכון תיק במתאם בין פוזיציות",
+  "emotion-vs-discipline": "רגש מול משמעת מול אותו מסך",
+  "journal-to-research": "יומן מסחר → נתוני מחקר",
+  "hypothetical-analytics": "דשבורד אנליטיקה עם תווית HYPOTHETICAL",
+};
+
 export function EndVisualShell({
   endVisual,
   children,
@@ -10,6 +26,8 @@ export function EndVisualShell({
   children: ReactNode;
   hypothetical?: boolean;
 }) {
+  const titleHe = TITLE_HE[endVisual.kind] ?? endVisual.labelHe;
+
   return (
     <section
       id="end-visual"
@@ -30,7 +48,7 @@ export function EndVisualShell({
           ) : null}
         </div>
         <h2 className="mt-3 text-2xl font-bold text-[var(--zz-ink)] sm:text-3xl">
-          {endVisual.concept}
+          {titleHe}
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--zz-muted)]">
           אינטראקטיבי ללימוד בלבד · אינו המלצת מסחר · אינו מבטיח תוצאה

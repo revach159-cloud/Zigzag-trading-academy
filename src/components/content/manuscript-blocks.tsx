@@ -88,7 +88,7 @@ export function ManuscriptBlocks({
                           key={header}
                           className="px-2 py-2 text-start font-medium"
                         >
-                          {header}
+                          <RichText text={header} />
                         </th>
                       ))}
                     </tr>

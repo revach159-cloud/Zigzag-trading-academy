@@ -3,6 +3,7 @@ import type {
   AppendixMeta,
   ManuscriptDocument,
 } from "@/lib/content/manuscript/types";
+import { RichText } from "@/lib/content/rich-text";
 import { EduDisclaimer } from "./edu-disclaimer";
 import { ManuscriptBlocks } from "./manuscript-blocks";
 
@@ -39,7 +40,9 @@ export function AppendixView({
 
       {document.sections.map((section) => (
         <section key={section.id} className="mt-12" id={section.id}>
-          <h2 className="book-section-title">{section.titleHe}</h2>
+          <h2 className="book-section-title">
+            <RichText text={section.titleHe} />
+          </h2>
           <div className="mt-5">
             <ManuscriptBlocks blocks={section.blocks} />
           </div>
