@@ -72,18 +72,30 @@ function rich(text: string): string {
   return escaped;
 }
 
+/** Bodies adapter fills schema-required captions with these when manuscript has none. */
+const GENERIC_FORMULA_CAPTION = "נוסחה";
+const GENERIC_TABLE_CAPTION = "טבלה";
+
+function isGenericCaption(captionHe: string, generic: string): boolean {
+  return !captionHe.trim() || captionHe.trim() === generic;
+}
+
 function renderFormula(latex: string, number: number, captionHe: string): string {
   const html = katex.renderToString(latex, {
     throwOnError: false,
     displayMode: true,
     strict: "ignore",
   });
+  // Number is already shown as (N); omit stub "נוסחה N. נוסחה" when no real caption.
+  const caption = isGenericCaption(captionHe, GENERIC_FORMULA_CAPTION)
+    ? ""
+    : `<figcaption>נוסחה ${number}. ${rich(captionHe)}</figcaption>`;
   return `<figure class="formula">
     <div class="formula-row">
       <div class="katex-host" dir="ltr">${html}</div>
       <span class="formula-num" dir="ltr">(${number})</span>
     </div>
-    <figcaption>נוסחה ${number}. ${rich(captionHe)}</figcaption>
+    ${caption}
   </figure>`;
 }
 
@@ -108,10 +120,16 @@ function renderBlocks(
         parts.push(renderFormula(block.latex, num, block.captionHe));
         break;
       }
-      case "table":
+      case "table": {
+        const tableCaption = isGenericCaption(
+          block.captionHe,
+          GENERIC_TABLE_CAPTION,
+        )
+          ? ""
+          : `<caption>${rich(block.captionHe)}</caption>`;
         parts.push(`<figure class="table-wrap">
           <table>
-            <caption>${rich(block.captionHe)}</caption>
+            ${tableCaption}
             <thead><tr>${block.headersHe.map((h) => `<th>${rich(h)}</th>`).join("")}</tr></thead>
             <tbody>${block.rows
               .map(
@@ -122,6 +140,7 @@ function renderBlocks(
           </table>
         </figure>`);
         break;
+      }
       case "callout":
         parts.push(`<aside class="callout ${block.tone}">
           <strong>${rich(block.titleHe)}</strong>
