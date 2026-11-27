@@ -42,7 +42,7 @@ export default function TestsPage() {
       </ul>
       <div className="mt-6 border border-dashed border-[var(--zz-line)] bg-[var(--zz-panel)]/30 p-8 text-center text-sm text-[var(--zz-muted)]">
         מודול מבחנים מרוכז אינו חלק מספר Lookback הנרטיבי; המסע מחליף חידונים
-        בהרהור ובמשמעת מסלול.
+        בהרהור ובמשמעת LOOKBACK.
         <div className="mt-3">
           <SimDisclaimer compact />
         </div>

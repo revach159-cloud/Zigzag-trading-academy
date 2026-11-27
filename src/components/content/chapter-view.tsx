@@ -264,14 +264,14 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
 
       {next ? (
         <p className="mt-14 text-sm leading-7 text-[var(--zz-muted)]">
-          המסלול ממשיך אל{" "}
+          הפרק הבא:{" "}
           <Link
             href={`/textbook/${next.slug}`}
             className="text-[var(--zz-cyan)] hover:underline"
           >
             {next.titleHe}
           </Link>
-          — אותה שפת Lookback, תחנה אחת קדימה.
+          — אותה שפת LOOKBACK.
         </p>
       ) : (
         <p className="mt-14 text-sm leading-7 text-[var(--zz-muted)]">
@@ -317,7 +317,7 @@ export function ChapterView({ chapter, body, prev, next }: ChapterViewProps) {
             href="/textbook"
             className="text-sm text-[var(--zz-gold)] hover:underline"
           >
-            השלמת המסע · חזרה לשער ←
+            חזרה לשער הספר ←
           </Link>
         )}
       </nav>

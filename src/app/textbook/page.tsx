@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { listChapters, chapterCatalog } from "@/lib/content/chapters";
+import { listAppendices } from "@/lib/content/manuscript/load";
 import { SimDisclaimer } from "@/components/layout/sim-disclaimer";
 import { RichText } from "@/lib/content/rich-text";
 import { brand } from "@/lib/design/tokens";
@@ -9,17 +10,16 @@ import { EduDisclaimer } from "@/components/content/edu-disclaimer";
 import { EducationalScene } from "@/components/scene/educational-scene";
 import { TextbookCoverClient } from "@/components/content/textbook-cover-client";
 
-
 export const metadata: Metadata = {
   title: `${brand.bookTitleHe} — ספר דיגיטלי`,
 };
 
 export default function TextbookPage() {
   const chapters = listChapters();
+  const appendices = listAppendices();
 
   return (
     <main className="flex-1">
-      {/* Full-bleed cinematic cover */}
       <section
         className="book-cover relative isolate min-h-[calc(100vh-7.5rem)] overflow-hidden px-4 py-16 sm:px-8 sm:py-20"
         aria-label="שער הספר"
@@ -76,25 +76,24 @@ export default function TextbookPage() {
             {brand.taglineEn}
           </p>
           <p className="mt-5 max-w-lg text-[0.95rem] font-normal leading-7 text-[var(--zz-muted)]">
-            ספר נרטיבי עברי — {chapterCatalog.chapters.length} תחנות מסע, בלי
-            חידוני אמריקאי. סימולציה ולימוד בלבד.
+            ספר נרטיבי עברי — פרק פתיחה ו־11 פרקים. סימולציה ולימוד בלבד.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <Link
-              href={`/textbook/${chapters[0]?.slug ?? "opening-the-journey"}`}
+              href={`/textbook/${chapters[0]?.slug ?? "opening"}`}
               className="border border-[var(--zz-cyan)]/50 bg-[rgba(46,230,255,0.1)] px-5 py-3 text-sm text-[var(--zz-cyan)] hover:bg-[rgba(46,230,255,0.18)]"
             >
-              התחלת המסע
+              התחלת הקריאה
             </Link>
             <a
               href="#toc"
               className="border border-[var(--zz-line)] px-5 py-3 text-sm text-[var(--zz-muted)] hover:text-[var(--zz-ink)]"
             >
-              מפת המסע
+              תוכן העניינים
             </a>
             <Link
-              href="/textbook/glossary"
+              href="/textbook/appendix-glossary"
               className="text-sm text-[var(--zz-gold)] hover:underline"
             >
               מילון
@@ -121,7 +120,7 @@ export default function TextbookPage() {
             לדפי השיטה ←
           </Link>
           <Link
-            href="/textbook/clear-disclaimer"
+            href="/textbook/appendix-disclaimer"
             className="text-sm text-[var(--zz-gold)] hover:underline"
           >
             להצהרה הברורה ←
@@ -133,11 +132,11 @@ export default function TextbookPage() {
             id="toc-heading"
             className="text-3xl font-bold text-[var(--zz-ink)] sm:text-4xl"
           >
-            מפת המסע
+            תוכן העניינים
           </h2>
           <p className="mt-3 max-w-2xl text-base font-normal leading-8 text-[var(--zz-muted)]">
-            שלוש־עשרה תחנות בנרטיב {brand.narrativeConceptHe}. כל תחנה היא פרק
-            ספרותי: סיפור, עיקרון, דימוי, דוגמה, פסיכולוגיה ותובנה.
+            {chapterCatalog.chapters.length} יחידות ב־{brand.bookTitleHe}: פרק
+            פתיחה ואחריו פרקים 1–11. כל יחידה נטענת מקובץ Markdown נפרד.
           </p>
 
           <ol className="mt-10">
@@ -148,11 +147,13 @@ export default function TextbookPage() {
                   className="journey-toc-item group"
                 >
                   <span className="journey-toc-num">
-                    {String(chapter.number).padStart(2, "0")}
+                    {chapter.kind === "opening"
+                      ? "00"
+                      : String(chapter.order).padStart(2, "0")}
                   </span>
                   <div>
                     <p className="text-[11px] font-medium tracking-[0.22em] text-[var(--zz-cyan)] uppercase">
-                      {chapter.stationHe}
+                      {chapter.numberLabelHe}
                     </p>
                     <h3 className="mt-1 text-2xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-cyan)]">
                       {chapter.titleHe}
@@ -170,22 +171,30 @@ export default function TextbookPage() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/textbook/glossary" className="journey-toc-item group">
-                <span className="journey-toc-num">+</span>
-                <div>
-                  <p className="text-[11px] tracking-[0.22em] text-[var(--zz-gold)] uppercase">
-                    נספח חי
-                  </p>
-                  <h3 className="mt-1 text-2xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-gold)]">
-                    מילון מונחים מורחב
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-[var(--zz-muted)]">
-                    אותם מונחי ליבה כמו בתחנה 11 — בפורמט עיון מהיר.
-                  </p>
-                </div>
-              </Link>
-            </li>
+            {appendices.map((appendix) => (
+              <li key={appendix.id}>
+                <Link
+                  href={`/textbook/${appendix.slug}`}
+                  className="journey-toc-item group"
+                >
+                  <span className="journey-toc-num">+</span>
+                  <div>
+                    <p className="text-[11px] tracking-[0.22em] text-[var(--zz-gold)] uppercase">
+                      נספח
+                    </p>
+                    <h3 className="mt-1 text-2xl font-bold text-[var(--zz-ink)] group-hover:text-[var(--zz-gold)]">
+                      {appendix.titleHe}
+                    </h3>
+                    <p
+                      dir="ltr"
+                      className="ltr-isolate mt-1 text-sm text-[var(--zz-muted)]"
+                    >
+                      {appendix.titleEn}
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
           </ol>
         </section>
 

@@ -3,7 +3,7 @@ id: opening
 slug: opening
 order: 0
 kind: chapter
-titleHe: לפני שמתחילים — צריך ללמוד לחשוב אחרת
+titleHe: לפני שמתחילים: צריך ללמוד לחשוב אחרת
 titleEn: Before You Begin
 summaryHe: מניפסט הפתיחה של LOOKBACK — ההבדל בין סוחר שחוזה את הצעד הבא לבין סוחר ZIGZAG שמתכנן ניהול על פני תנועות אפשריות, בשפת השבחת העסקה, בסימולציה בלבד.
 endVisualKind: philosophy-compare

@@ -10,8 +10,8 @@ export const brand = {
   bookTitleEn: "LOOKBACK",
   methodHe: "השבחת העסקה",
   methodEn: "Trade Improvement",
-  narrativeConceptHe: "מסע המסלולים",
-  narrativeConceptEn: "Journey of Prepared Routes",
+  narrativeConceptHe: "המבט לאחור",
+  narrativeConceptEn: "LOOKBACK",
   taglineEn: "Stop chasing the market. Learn how to work with its movement.",
   taglineHe: "אל תרדוף אחרי השוק. למד לעבוד עם התנועה שלו.",
   /** Author credit — exact name only; no invented titles */
@@ -19,7 +19,7 @@ export const brand = {
   authorBylineHe: "מאת אביאל רווח",
   authorCreditHe: "יוצר שיטת ZIGZAG · LOOKBACK",
   supportHe:
-    "ספר דיגיטלי נרטיבי למתודולוגיית ZigZag — השבחת העסקה, רמזור ניהול, מימוש 75% וחזרה לאיזון. סימולציה וחינוך בלבד.",
+    "ספר דיגיטלי נרטיבי למתודולוגיית ZigZag — השבחת העסקה, תקציב העסקה, מימוש 75% ומשמעת מינוף. סימולציה וחינוך בלבד.",
 } as const;
 
 export const colors = {

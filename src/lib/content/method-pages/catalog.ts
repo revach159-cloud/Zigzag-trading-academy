@@ -308,7 +308,7 @@ const rawCatalog = {
             "מסמנים מעבר שלב ללא פתיחת פוזיציה חדשה.",
             "ב־×10 ממתינים להפסד מצטבר ≥ margin הרלוונטי לחיזוק הבא.",
           ],
-          resultHe: "מסלול מעבר אחד וברור — בלי Path A/B.",
+          resultHe: "מעבר אחד וברור — בלי Path A/B.",
           awaitingConfirmation: false,
         },
       ],

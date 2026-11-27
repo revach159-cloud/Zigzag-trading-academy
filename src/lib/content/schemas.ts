@@ -186,7 +186,9 @@ export const methodCatalogSchema = z.object({
   pages: z.array(methodPageSchema).min(1),
 });
 
+/** @deprecated Prefer Chapter from manuscript/types — kept for transitional chapter-view */
 export type Chapter = z.infer<typeof chapterSchema>;
+/** @deprecated Prefer ChapterCatalog from manuscript/types */
 export type ChapterCatalog = z.infer<typeof chapterCatalogSchema>;
 export type ChapterStatus = z.infer<typeof chapterStatusSchema>;
 export type ContentBlock = z.infer<typeof contentBlockSchema>;

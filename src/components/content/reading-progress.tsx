@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getReadingProgress } from "@/lib/content/chapters";
 
-const STORAGE_KEY = "zz-lookback-progress-v1";
+const STORAGE_KEY = "zz-lookback-progress-v2";
 
 export function useChapterProgress(slug?: string) {
   const [completed, setCompleted] = useState<string[]>([]);

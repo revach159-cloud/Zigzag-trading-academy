@@ -5,15 +5,22 @@ import {
   getChapterBySlug,
   listChapters,
 } from "@/lib/content/chapters";
-import { getChapterBodyBySlug } from "@/lib/content/bodies";
-import { ChapterView } from "@/components/content/chapter-view";
+import {
+  getAppendixBySlug,
+  getManuscriptBySlug,
+  listAppendices,
+} from "@/lib/content/manuscript/load";
+import { ManuscriptView } from "@/components/content/manuscript-view";
+import { AppendixView } from "@/components/content/appendix-view";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return listChapters().map((chapter) => ({ slug: chapter.slug }));
+  const units = listChapters().map((chapter) => ({ slug: chapter.slug }));
+  const appendices = listAppendices().map((item) => ({ slug: item.slug }));
+  return [...units, ...appendices];
 }
 
 export async function generateMetadata({
@@ -21,19 +28,44 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const chapter = getChapterBySlug(slug);
-  if (!chapter) return { title: "פרק לא נמצא" };
-  return { title: `פרק ${chapter.number}: ${chapter.titleHe}` };
+  if (chapter) {
+    return {
+      title:
+        chapter.kind === "opening"
+          ? chapter.titleHe
+          : `${chapter.numberLabelHe}: ${chapter.titleHe}`,
+    };
+  }
+  const appendix = getAppendixBySlug(slug);
+  if (appendix) {
+    return { title: appendix.meta.titleHe };
+  }
+  return { title: "פרק לא נמצא" };
 }
 
 export default async function ChapterPage({ params }: PageProps) {
   const { slug } = await params;
   const chapter = getChapterBySlug(slug);
-  const body = getChapterBodyBySlug(slug);
-  if (!chapter || !body) notFound();
+  if (chapter) {
+    const document = getManuscriptBySlug(slug);
+    if (!document) notFound();
+    const { prev, next } = getAdjacentChapters(slug);
+    return (
+      <ManuscriptView
+        chapter={chapter}
+        document={document}
+        prev={prev}
+        next={next}
+      />
+    );
+  }
 
-  const { prev, next } = getAdjacentChapters(slug);
+  const appendix = getAppendixBySlug(slug);
+  if (appendix) {
+    return (
+      <AppendixView meta={appendix.meta} document={appendix.document} />
+    );
+  }
 
-  return (
-    <ChapterView chapter={chapter} body={body} prev={prev} next={next} />
-  );
+  notFound();
 }
